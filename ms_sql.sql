@@ -279,3 +279,21 @@ go
 
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.08_SP_20160418','11.4.0.08',getdate());
 go
+
+
+
+
+
+
+alter table SYS_CORP_SET add relactionId varchar(20) ;
+go
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER trigger [ezoffice].[trigger_oa_mail_user_delete] on [ezoffice].[OA_MAIL_USER] after delete
+as
+update oa_system_remind  set newmail = newmail-(select COUNT(*) from Deleted 	where notread = 1   and mailstatus<>4  and mailstatus<>2 and userid = emp_id) where exists(select 1 from Deleted where notread = 1  and mailstatus<>4  and mailstatus<>2  and userid = emp_id);
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.09_SP_20160423','11.4.0.09',getdate());
+go

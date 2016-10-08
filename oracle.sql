@@ -250,3 +250,14 @@ update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='2016124
 commit; 
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.08_SP_20160418','11.4.0.08',sysdate);
 commit;
+
+
+
+
+
+alter table SYS_CORP_SET add relactionId varchar2(20) ;
+comment on column SYS_CORP_SET.relactionId
+  is '关联ID';
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.09_SP_20160423','11.4.0.09',sysdate);
+commit;

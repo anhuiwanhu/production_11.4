@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.whir.org.vo.MoveOAmanager.UserOrgSynErrLogPO"
+        table="USER_ORG_SYN_ERRLOG"
+        schema="EZOFFICE">
+        <id name="id" column="id">
+            <generator class="native" />
+        </id>
+        <property name="username" column="username" />
+        <property name="empid" column="empid" />
+        <property name="phonenum" column="phonenum" />
+        <property name="orgid" column="orgid"/>
+        <property name="orgname" column="orgname" />
+        <property name="create_date" column="create_date" />
+        <property name="event" column="event" />
+        <property name="result" column="result" />
+        <property name="user_org_flag" column="user_org_flag" />
+    </class>
+</hibernate-mapping>

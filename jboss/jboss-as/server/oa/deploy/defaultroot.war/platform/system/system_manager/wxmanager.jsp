@@ -14,6 +14,7 @@ String corpid2 = (String)(session.getAttribute("corpid")==null?"":session.getAtt
 //if(corpid.equals(session.getAttribute("corpid")) ||( request.getParameter("appId") != null && request.getParameter("appId").equals(corpid)) ){
 //	session.setAttribute("corpid",corpid);
 List<CorpSetAppPO> csapppolist	= (List<CorpSetAppPO>)request.getAttribute("csapppolist");
+String relactionId =(String)(request.getAttribute("relactionId")==null? "empId":request.getAttribute("relactionId"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,10 +52,10 @@ List<CorpSetAppPO> csapppolist	= (List<CorpSetAppPO>)request.getAttribute("csapp
 				<tr>
 					
 					<td width="4%"></td>
-					<td width="15%">  
+					<td width="17%">  
 						填写企业号CorpID <span class="MustFillColor">*</span> ：
 					</td>
-					<td width="20%">
+					<td width="30%">
 						<s:hidden name="cspo.id" id="id" />
 						<s:textfield type="text" id="corpid" cssClass="inputText" name="cspo.corpid" 
 					 	 whir-options="vtype:['notempty',{},'spechar3'],'promptText':'企业号后台-设置-账号信息'" class="inputText" 
@@ -62,42 +63,57 @@ List<CorpSetAppPO> csapppolist	= (List<CorpSetAppPO>)request.getAttribute("csapp
 					 	/>  
 					</td>
 					<td width="3%"></td>
-					<td width="57%">
+					<td width="50%">
 						<input style="display:none" type="button" id="checkcorpid" class="btnButton4font"  onclick="corpidcheck()"   value="验  证" /> 
 					</td>
 				</tr>
 				<tr>
 					<td width="4%"></td>
-					<td width="15%">  
+					<td width="17%">  
 						填写管理员Corpsecret <span class="MustFillColor">*</span> ：
 					</td>
-					<td width="30%">
+					<td width="35%">
 						<s:textfield type="text" id="corpsecret" Class="inputText" name="cspo.corpsecret" 
 					 	 whir-options="vtype:['notempty',{},'spechar3'],'promptText':'企业号后台-设置-权限管理-新建管理员组后即可查看'" class="inputText"/>  
 					</td>
-					<td width="47%">
+					<td width="40%">
 					</td>
 				</tr>
 				<tr>
 					<td width="4%"></td>
-					<td width="15%">  
+					<td width="17%">  
 						填写应用Token <span class="MustFillColor">*</span> ：
 					</td>
-					<td width="30%">
+					<td width="35%">
 						<s:textfield type="text" id="token" Class="inputText" name="cspo.token"  
 					 	 whir-options="vtype:['notempty',{},'spechar3'],'promptText':'企业号后台-应用中心-创建应用-回调模式-回调URL及密钥'" class="inputText"/>  
 					</td>
-					<td width="47%">
+					<td width="40%">
 					</td>
 				</tr>
 				<tr>
 					<td width="4%"></td>
-					<td width="20%">  
+					<td width="25%">  
 						填写应用EncodingAESKey <span class="MustFillColor">*</span> ：
 					</td>
-					<td width="30%">
+					<td width="38%">
 						<s:textfield type="text" id="encodingAESKey" Class="inputText" name="cspo.encodingAESKey"  
 					 	 whir-options="vtype:['notempty',{},'spechar3'],'promptText':'企业号后台-应用中心-创建应用-回调模式-回调URL及密钥'" />  
+					</td>
+					<td width="30%">
+					</td>
+				</tr>
+				<tr style="display:none">
+					<td width="4%"></td>
+					<td width="20%">  
+						设置关联ID ：
+					</td>
+					<td width="30%">
+						
+						<input type="radio" value="empId" id="relactionId1" name="relactionId"  <%if("empId".equals(relactionId)){%>checked<%}%>>empId&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" value="userAccount" id="relactionId2" name="relactionId"  <%if("userAccount".equals(relactionId)){%>checked<%}%>>OA账号&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" value="userSimpleName" id="relactionId3" name="relactionId"  <%if("userSimpleName".equals(relactionId)){%>checked<%}%>>用户简码&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" value="empIdCard" id="relactionId4" name="relactionId"  <%if("empIdCard".equals(relactionId)){%>checked<%}%>>身份证号 
 					</td>
 					<td width="43%">
 					</td>
@@ -361,6 +377,7 @@ function updatecorpset(){
  var token = $('#token').val();
  var encodingAESKey = $('#encodingAESKey').val();
  var id = $('#id').val();
+ var relactionId = $("input[name='relactionId']:checked").val();
 
  if(corpid==null||corpid==""||corpid=="企业号后台-设置-账号信息"
  ||corpsecret==null||corpsecret==""||corpsecret=="企业号后台-设置-权限管理-新建管理员组后即可查看"
@@ -370,7 +387,7 @@ function updatecorpset(){
  	return false;
  }
 	$.ajax({
-				url: "/defaultroot/MoveOAmanager!savecorpset.action?corpid="+corpid+"&corpsecret="+corpsecret+"&token="+token+"&encodingAESKey="+encodingAESKey+"&id="+id,
+				url: "/defaultroot/MoveOAmanager!savecorpset.action?corpid="+corpid+"&corpsecret="+corpsecret+"&token="+token+"&encodingAESKey="+encodingAESKey+"&id="+id+"&relactionId="+relactionId,
 				cache: false,
 				async: true,
 				success: function(dataForm) {

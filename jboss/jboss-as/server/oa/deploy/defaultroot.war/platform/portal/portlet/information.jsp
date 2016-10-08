@@ -115,7 +115,7 @@ Portlet.setMoreLink('<%=portletSettingId%>',{});
    
 <%if("0".equals(infoType)){//文%>
     <div class="wh-portal-pic-content clearfix">   
-		<div class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow">
+		<div id="wh-portal-iclist-<%=portletSettingId%>-<%=i0%>" class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow">
         <%
             int j0 = topPreview?1:0;
             for (; j0 < list.size(); j0++) {
@@ -153,9 +153,9 @@ if(isImage){
 		<div class="wh-portal-pic-box">
         	<a href="javascript:void(0)"><img src="<%=_images[0]%>" alt="<%=_images[1]%>" width="100%" height="188" onclick="<%=imageLink%>"/></a>
 		</div>
-		<div class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow wh-portal-info-content">
-<%}%>
-		<div class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow">
+	<%}%>
+	<div class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow wh-portal-info-content">
+		<div id="wh-portal-iclist-<%=portletSettingId%>-<%=i0%>" class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow">
 <%}%>
         <%
 		int j0 = topPreview?1:0;
@@ -177,8 +177,11 @@ if(isImage){
             </a>
         </div>
 		<%}%>
+<%if(isImage){%>
 		</div>
 	</div>
+<%}%>
+</div>
 <%}else{%>
 <%
 String channelId = cid[i0];
@@ -449,7 +452,7 @@ slideTab('slide04-<%=portletSettingId%>');
     if(list != null && list.size() > 0){
     %>
 	//列表滚动
-    var _wrap=$('.wh-portal-iclist-<%=portletSettingId%>-<%=a0%>');
+    var _wrap=$('#wh-portal-iclist-<%=portletSettingId%>-<%=a0%>');
 	<%if(!topPreview || (topPreview && list.size() > 1)){%>
 	scrolling(_wrap);
     <%}%>

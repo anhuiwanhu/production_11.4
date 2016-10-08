@@ -3,55 +3,53 @@
 <%@page import="com.whir.component.security.crypto.EncryptUtil"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <% 
-  response.setHeader("Cache-Control","no-store");
-  response.setHeader("Pragma","no-cache");
-  response.setDateHeader ("Expires", 0);
- 
-  String processDefinitionId=EncryptUtil.htmlcode(request,"processDefinitionId"); //request.getParameter("processDefinitionId")==null?"":request.getParameter("processDefinitionId").toString();
-  String processInstanceId=EncryptUtil.htmlcode(request,"processInstanceId");// request.getParameter("processInstanceId")==null?"":request.getParameter("processInstanceId").toString();
-  String ezflowBusinessKey=EncryptUtil.htmlcode(request,"ezflowBusinessKey");//request.getParameter("ezflowBusinessKey")==null?"":request.getParameter("ezflowBusinessKey").toString();
-  String whir_formKey=EncryptUtil.htmlcode(request,"whir_formKey");//request.getParameter("whir_formKey")==null?"":request.getParameter("whir_formKey").toString();
-  String whir_stauts=EncryptUtil.htmlcode(request,"whir_stauts");//request.getParameter("whir_stauts")==null?"":request.getParameter("whir_stauts").toString();
+	response.setHeader("Cache-Control","no-store");
+	response.setHeader("Pragma","no-cache");
+	response.setDateHeader ("Expires", 0);
+	
+	String processDefinitionId=EncryptUtil.htmlcode(request,"processDefinitionId"); //request.getParameter("processDefinitionId")==null?"":request.getParameter("processDefinitionId").toString();
+	String processInstanceId=EncryptUtil.htmlcode(request,"processInstanceId");// request.getParameter("processInstanceId")==null?"":request.getParameter("processInstanceId").toString();
+	String ezflowBusinessKey=EncryptUtil.htmlcode(request,"ezflowBusinessKey");//request.getParameter("ezflowBusinessKey")==null?"":request.getParameter("ezflowBusinessKey").toString();
+	String whir_formKey=EncryptUtil.htmlcode(request,"whir_formKey");//request.getParameter("whir_formKey")==null?"":request.getParameter("whir_formKey").toString();
+	String whir_stauts=EncryptUtil.htmlcode(request,"whir_stauts");//request.getParameter("whir_stauts")==null?"":request.getParameter("whir_stauts").toString();
+	
+	com.whir.service.api.ezflowservice.EzFlowMainService  mainService=new com.whir.service.api.ezflowservice.EzFlowMainService();
+	
+	String p_wf_whir_dealedActInfo=EncryptUtil.htmlcode(request,"p_wf_whir_dealedActInfo"); 
+	
+	List  dealingList=mainService.findDealingActivity(processInstanceId);
+  
+	//&dealedActivityIds="+dealedActivityIds+"&activity="+activity;
+	com.whir.ezflow.vo.ChoosedActivityVO  vo=null;
+	String dealedActivityIds="";
+	String nowActivityIds="";
+  
+	String dealedActivityIds_="";
+	List  dealedList=mainService.findDealedActivity_real(processInstanceId);
+	if(dealedList!=null&&dealedList.size()>0){
+		for(int i=0;i<dealedList.size();i++){
+			vo=(com.whir.ezflow.vo.ChoosedActivityVO)dealedList.get(i);
+			dealedActivityIds_+="$"+vo.getActivityId()+"$";
+		}
+	} 
+	dealedActivityIds=mainService.findDealedActivityStrs(processInstanceId,dealedActivityIds_);
 
-  com.whir.service.api.ezflowservice.EzFlowMainService  mainService=new com.whir.service.api.ezflowservice.EzFlowMainService();
-
-  String p_wf_whir_dealedActInfo=EncryptUtil.htmlcode(request,"p_wf_whir_dealedActInfo"); 
- 
-  List  dealingList=mainService.findDealingActivity(processInstanceId);
-  
-  
-  //&dealedActivityIds="+dealedActivityIds+"&activity="+activity;
-  com.whir.ezflow.vo.ChoosedActivityVO  vo=null;
-  String dealedActivityIds="";
-  String nowActivityIds="";
-  
-  
-   String dealedActivityIds_="";
-   List  dealedList=mainService.findDealedActivity_real(processInstanceId);
-   if(dealedList!=null&&dealedList.size()>0){
-	  for(int i=0;i<dealedList.size();i++){
-		 vo=(com.whir.ezflow.vo.ChoosedActivityVO)dealedList.get(i);
-		 dealedActivityIds_+="$"+vo.getActivityId()+"$";
-	  }
-   } 
-   dealedActivityIds=mainService.findDealedActivityStrs(processInstanceId,dealedActivityIds_);
-
-   dealedActivityIds=dealedActivityIds+p_wf_whir_dealedActInfo;
-   if(whir_stauts.equals("100")){
-     dealedActivityIds+="$endevent1$";
-   } 
- 
-   if(!whir_stauts.equals("")){
-       //dealedActivityIds+="$startevent1$";
-   } 
-
-   if(dealingList!=null&&dealingList.size()>0){
-	  for(int i=0;i<dealingList.size();i++){
-		  vo=(com.whir.ezflow.vo.ChoosedActivityVO)dealingList.get(i);
-	      nowActivityIds+="$"+vo.getActivityId()+"$";
- 	  }
-   } 
-  
+	dealedActivityIds=dealedActivityIds+p_wf_whir_dealedActInfo;
+	if(whir_stauts.equals("100")){
+		dealedActivityIds+="$startevent1$";
+		dealedActivityIds+="$endevent1$";
+	} 
+	
+	if(!whir_stauts.equals("")){
+		//dealedActivityIds+="$startevent1$";
+	} 
+	
+	if(dealingList!=null&&dealingList.size()>0){
+		for(int i=0;i<dealingList.size();i++){
+			 vo=(com.whir.ezflow.vo.ChoosedActivityVO)dealingList.get(i);
+			nowActivityIds+="$"+vo.getActivityId()+"$";
+ 		}
+	}
 %>
 <html>
 <head>

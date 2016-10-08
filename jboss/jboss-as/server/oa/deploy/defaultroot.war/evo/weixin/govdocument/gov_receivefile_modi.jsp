@@ -28,14 +28,6 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
     <link rel="stylesheet" type="text/css" href="/defaultroot/evo/weixin/template/css/mobiscroll/mobiscroll.animation.css"/>
 </head>
 <body>
-<c:if test="${not empty docXml3}">
-	<x:parse xml="${docXml3}" var="doc"/>
-	<c:set var="EmpLivingPhoto"><x:out select="$doc//EmpLivingPhoto/text()" /></c:set>
-</c:if>
-<c:if test="${not empty EmpLivingPhoto}"><c:set var="EmpLivingPhoto">/defaultroot/upload/peopleinfo/${EmpLivingPhoto}</c:set></c:if>
-<%if(empLivingPhoto !=null && !"".equals(empLivingPhoto)){%>
-<c:set var="EmpLivingPhoto"><%=empLivingPhoto%></c:set>
-<%}%>
 <c:if test="${not empty docXml}">
 <x:parse xml="${docXml}" var="doc"/>
 <c:set var="hasbackbutton"><x:out select="$doc//workInfo/havebackbutton/text()"/></c:set>
@@ -45,6 +37,8 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 <c:set var="worktitle"><x:out select="$doc//workInfo/worktitle/text()"/></c:set>
 <c:set var="worksubmittime"><x:out select="$doc//workInfo/worksubmittime/text()"/></c:set>
 <c:set var="wfsmsRight"><x:out select="$doc//smsRight/text()"/></c:set>
+<c:set var="EmpLivingPhoto"><x:out select="$doc//workInfo/empLivingPhoto/text()"/></c:set>
+<c:if test="${not empty EmpLivingPhoto}"><c:set var="EmpLivingPhoto">/defaultroot/upload/peopleinfo/${EmpLivingPhoto}</c:set></c:if>
 <section class="wh-section wh-section-bottomfixed">
     <article class="wh-edit wh-edit-document">
         <div class="wh-container">
