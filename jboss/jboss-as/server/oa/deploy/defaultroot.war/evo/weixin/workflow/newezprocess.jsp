@@ -59,13 +59,13 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 									<%--单行文本 101--%>
 									<c:when test="${showtype =='101' && readwrite =='1'}">
 										<c:if test="${ fieldtype == '1000000'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);" />
 										</c:if>
 										<c:if test="${ fieldtype == '1000001'   }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="18" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="18" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 										</c:if>
 										<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text"  name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text"  name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 										</c:if>
 									</c:when>
 	
@@ -309,10 +309,10 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 									<%--金额 301--%>
 									<c:when test="${showtype =='301' && readwrite =='1'}">
 										<c:if test="${fieldtype == '1000000' || fieldtype == '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>')" value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>');mainMath(this);" value='<x:out select="$fd/value/text()"/>' />
 										</c:if>
 										<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>')" value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>');mainMath(this);" value='<x:out select="$fd/value/text()"/>' />
 										</c:if>
 									</c:when>								
 									<%--批示意见 401--%>
@@ -369,14 +369,14 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 										String[] newexpArr = exp.split("\\.");
 										String  newxp = newexpArr[2];
 										String nexp = (String)newxp.substring(0,newxp.length()-1);
-										nexp = nexp.replace("$","");
+										//nexp = nexp.replace("$","");
                                         pageContext.setAttribute("expressionval",nexp);
 										%>
 										<c:if test="${readwrite == '1'}">
-											<input class="edit-ipt-r" placeholder="请输入" id="${expressionval}" type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>'/>
+											<input class="edit-ipt-r mainhj" mainsum="${expressionval}" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>'/>
 										</c:if>
 										<c:if test="${readwrite != '1'}">
-											<input class="edit-ipt-r" placeholder="" id="${expressionval}" type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' readonly="readonly"/>
+											<input class="edit-ipt-r mainhj" placeholder="" mainsum="${expressionval}" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' readonly="readonly"/>
 										</c:if>
 									</c:when>
 									<%--大写字段 302--%>
@@ -397,6 +397,11 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 									<%--日期时间计算 808--%>
 									<c:when test="${showtype =='808' && readwrite =='1'}">
 										该字段暂不支持手机办理，请于电脑端操作。
+									</c:when>
+									<%--计算字段 203--%>
+									<c:when test="${showtype =='203' && readwrite =='1'}">
+										<c:set var="expressionval"><x:out select="$fd/expressionval/text()"/></c:set>
+										<input class="edit-ipt-r mainmath" readonly="readonly" mainmathfun="${expressionval}" type="text" maxlength="18" id='<x:out select="$fd/sysname/text()"/>'  name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
 									</c:when>
 									<c:otherwise>
 										<x:out select="$fd/value/text()"/>
@@ -740,6 +745,32 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 			$("#" + cid).val(valRmb);				
 		}
 	
+	}
+    
+	//主表计算字段
+	function mainMath(obj){
+		var id=obj.id;
+		var objval =document.getElementById(id).value;
+        if(isNaN(objval)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
+		var val = $('.edit-ipt-r.mainmath').attr("mainmathfun");//合计字段的公式
+		var mathId = $('.edit-ipt-r.mainmath').attr("id");
+		var str = val.replace(/\*/g, '|').replace(/\+/g, '|').replace(/\-/g, '|').replace(/\//g, '|').replace(/\(/g, '|').replace(/\)/g, '|');
+		str = str.replace("||", "|");
+		var strArr = str.split("|");
+		var sa="";//公式id;
+		var mval="";//公式id对应的值
+		for(var i=0;i<strArr.length;i++){
+			sa = strArr[i];
+			if(sa !=null && sa!=''){
+				mval = document.getElementById(sa).value;
+				val=val.replace(sa,mval);
+			}			
+		}
+        document.getElementById(mathId).value=eval(val);
 	}
 </script>
 

@@ -57,7 +57,7 @@
                             流水号：  
                         </td>  
                         <td>  
-							<s:select name="wordPo.sendDocumentSeqId" list="#request.seqList" headerKey="-1" headerValue="--请选择--" cssClass="easyui-combobox" cssStyle="width:96%;" data-options="width:202,panelHeight:'500', editable:false">
+							<s:select name="wordPo.sendDocumentSeqId" list="#request.seqList" headerKey="-1" headerValue="--请选择--" cssClass="easyui-combobox" cssStyle="width:96%;" data-options="width:202,panelHeight:'500', editable:true">
 						   </s:select>
                         </td>  
                     </tr>	
@@ -98,7 +98,7 @@
 							<s:hidden name="wordPo.receiveOrg" id="receiveOrg"/>
 							<s:hidden name="wordPo.receiveGroup" id="receiveGroup"/>
 							<s:textarea name="wordPo.receiveScopeName"  id="receiveScopeName" cols="112" rows="3" readonly="true" cssClass="inputTextarea" cssStyle="width:96%;"></s:textarea><a href="javascript:void(0);" class="selectIco textareaIco" onclick="openSelect({allowId:'receiveScopeId', allowName:'receiveScopeName', select:'userorg', single:'no', show:'userorg', range:'*0*'});"></a>
-							<br><font color="red" style="font-color:red">使用范围为空时默认所有用户</label>
+							<br><font color="red" style="font-color:red">使用范围为空时默认所有用户</font></label>
                         </td>  
                     </tr>
 					<%

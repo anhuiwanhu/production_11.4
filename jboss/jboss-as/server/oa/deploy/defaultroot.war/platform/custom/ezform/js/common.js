@@ -72,6 +72,12 @@ function saveTheFormData(flag, obj){
 }
 
 function saveFormData(flag, obj){
+	var formCode = $('#formCode').val();
+    if (/[\u4E00-\u9FA5]/i.test(formCode)) {
+    	whir_alert('表单编号不能输入汉字！', null);
+        return;
+    }
+	
     //var tableId = whirCombobox.getValue('tableId');
     var tableId = whirExtCombobox.getValue('tableId');
     if(tableId == ''){

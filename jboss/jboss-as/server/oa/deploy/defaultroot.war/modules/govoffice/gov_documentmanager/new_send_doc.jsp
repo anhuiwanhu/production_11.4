@@ -349,9 +349,10 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 						   <div class="doc_Movetitle">
 							 <ul>
 								  <li class="aon"  id="Panle0"><a href="javascript:void(0);" onClick="changePanle(0);" >基本信息</a></li>
-								  <!--<li id="Panle1"><a href="javascript:void(0);" onClick="changePanle(1);">流程图</a></li>--> 
 								  <li id="Panle1" ><a href="javascript:void(0);" onClick="changePanle(1);">关联流程<span class="redBold" id="viewrelationnum"></span></a></li>
-								  <!--<li id="Panle3" ><a href="#" onClick="changePanle(3);">相关附件<span class="redBold" id="viewaccnum"></span></a></li>-->
+                                  <li id="Panle2"><a href="javascript:void(0);" onClick="changePanle(2);">流程图</a></li>
+
+                                 <!--<li id="Panle3" ><a href="#" onClick="changePanle(3);">相关附件<span class="redBold" id="viewaccnum"></span></a></li>-->
 							 </ul>
 						   </div>  
 						   <div class="clearboth"></div>  
@@ -455,7 +456,7 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
  */
 function  changePanle(flag){
 	//if( flag == 3 ) flag= 2;
-	for(var i=0;i<2;i++){
+	for(var i=0;i<3;i++){
 		//if(i==1 || i==3){
 		//	continue;
 		//}
@@ -466,14 +467,14 @@ function  changePanle(flag){
 	$("div[id^='docinfo']").hide();
 	$("#docinfo"+flag).show();
     
-	//显示流程图
+	//显示关联流程
 	if(flag=="1"){
 		//传流程图的div的id
-         showWorkFlowRelation("docinfo1");//showWorkFLowGraph("docinfo1");
+         showWorkFlowRelation("docinfo1");//
 	}
-    //显示关联流程
+    //显示流程图
 	if(flag=="2" ){
-	  // showWorkFlowRelation("docinfo2");
+        showWorkFLowGraph("docinfo2");
 	}
 }
 

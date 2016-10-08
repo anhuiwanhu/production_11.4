@@ -88,13 +88,13 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<%--单行文本 101--%>
 								<c:when test="${showtype =='101' && readwrite =='1'}">
 									<c:if test="${fieldtype == '1000000' }">
-										<input placeholder="请输入" class="edit-ipt-r" type="number" maxlength="9" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+										<input placeholder="请输入" class="edit-ipt-r" type="number" maxlength="9" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 									</c:if>
 									<c:if test="${fieldtype == '1000001' }">
-										<input placeholder="请输入" class="edit-ipt-r" type="number" maxlength="18" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+										<input placeholder="请输入" class="edit-ipt-r" type="number" maxlength="18" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 									</c:if>
 									<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-										<input placeholder="请输入" class="edit-ipt-r" type="text" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+										<input placeholder="请输入" class="edit-ipt-r" type="text" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 									</c:if>
 								</c:when>
 								<%--密码输入 102--%>
@@ -179,7 +179,8 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								</c:when>
 								<%--html编辑 113--%>
 								<c:when test="${showtype =='113' && readwrite =='1'}">
-									<textarea name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="$(this).next('.edit-txta-num').html($(this).attr('maxlength')-$(this).val().length );" class="edit-txta edit-txta-l" maxlength="300"><x:out select="$fd/value/text()"/></textarea>
+									<input type="hidden" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/hiddenval/text()"/>'/>
+									<textarea onkeyup="$(this).next('.edit-txta-num').html($(this).attr('maxlength')-$(this).val().length );" class="edit-txta edit-txta-l" maxlength="300"><x:out select="$fd/value/text()"/></textarea>
 									<span class="edit-txta-num"><script>document.write(300-"<x:out select="$fd/value/text()"/>".length);</script></span>
 								</c:when>
 								<%--附件上传 115--%>
@@ -313,10 +314,10 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<%--金额 301--%>
 								<c:when test="${showtype =='301' && readwrite =='1'}">
 									<c:if test="${fieldtype == '1000000' || fieldtype == '1000001'  }">
-										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="number" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>')" value='<x:out select="$fd/value/text()"/>' />
+										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="number" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>');mainMath(this);" value='<x:out select="$fd/value/text()"/>' />
 									</c:if>
 									<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>')" value='<x:out select="$fd/value/text()"/>' />
+										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>');mainMath(this);" value='<x:out select="$fd/value/text()"/>' />
 									</c:if>
 								</c:when>
 								<%--批示意见 401--%>
@@ -415,14 +416,14 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										String[] newexpArr = exp.split("\\.");
 										String  newxp = newexpArr[2];
 										String nexp = (String)newxp.substring(0,newxp.length()-1);
-										nexp = nexp.replace("$","");
+										//nexp = nexp.replace("$","");
                                         pageContext.setAttribute("expressionval",nexp);
 										%>
 										<c:if test="${readwrite == '1'}">
-											<input class="edit-ipt-r" placeholder="请输入" id="${expressionval}" type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>'/>
+											<input class="edit-ipt-r mainhj" placeholder="请输入" mainsum="${expressionval}" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>'/>
 										</c:if>
 										<c:if test="${readwrite != '1'}">
-											<input class="edit-ipt-r" placeholder="请输入" id="${expressionval}" type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' readonly="readonly"/>
+											<input class="edit-ipt-r mainhj" placeholder="请输入" mainsum="${expressionval}" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' readonly="readonly"/>
 										</c:if>
 									</c:when>
 								<%--大写字段 302--%>
@@ -443,6 +444,11 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<%--日期时间计算 808--%>
 								<c:when test="${showtype =='808' && readwrite =='1'}">
 									该字段暂不支持手机办理，请于电脑端操作。
+								</c:when>
+								<%--计算字段 203--%>
+								<c:when test="${showtype =='203' && readwrite =='1'}">
+									<c:set var="expressionval"><x:out select="$fd/expressionval/text()"/></c:set>
+									<input class="edit-ipt-r mainmath" readonly="readonly" mainmathfun="${expressionval}" type="text" maxlength="18" id='<x:out select="$fd/sysname/text()"/>'  name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
 								</c:when>
 								<c:otherwise>
 									<x:out select="$fd/value/text()"/>
@@ -637,6 +643,9 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
                         <c:if test="${fn:indexOf(modibutton,'AddSign') >0}">
                         	<a href="javascript:$('#addSignForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-plus"></i>加签</a>
                         </c:if>
+                        <c:if test="${fn:indexOf(modibutton,'Selfsend') >0}">
+                        	<a href="javascript:$('#selfsendForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-plus"></i>阅件</a>
+                        </c:if>
                     </div>
                     <div class="fbtn-more-nav-arrow"></div>
                 </div>
@@ -699,6 +708,15 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 	<input type="hidden" name="workStatus" value="0">
 </form>
 <!----------加签结束---------->
+<!----------阅件开始---------->
+<form id="selfsendForm" class="dialog" action="/defaultroot/dealfile/selfSend.controller?workId=${wfworkId}" method="post">
+	<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
+	<input type="hidden" name="worktitle" value="${worktitle}">
+	<input type="hidden" name="workcurstep" value="${workcurstep}">
+	<input type="hidden" name="worksubmittime" value="${worksubmittime}">
+	<input type="hidden" name="workStatus" value="0">
+</form>
+<!----------阅件结束---------->
 </c:if>
 </body>
 </html>
@@ -1112,5 +1130,31 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 			$("#" + cid).val(valRmb);				
 		}
 	
+	}
+
+	//主表计算字段
+	function mainMath(obj){
+		var id=obj.id;
+		var objval =document.getElementById(id).value;
+        if(isNaN(objval)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
+		var val = $('.edit-ipt-r.mainmath').attr("mainmathfun");//合计字段的公式
+		var mathId = $('.edit-ipt-r.mainmath').attr("id");
+		var str = val.replace(/\*/g, '|').replace(/\+/g, '|').replace(/\-/g, '|').replace(/\//g, '|').replace(/\(/g, '|').replace(/\)/g, '|');
+		str = str.replace("||", "|");
+		var strArr = str.split("|");
+		var sa="";//公式id;
+		var mval="";//公式id对应的值
+		for(var i=0;i<strArr.length;i++){
+			sa = strArr[i];
+			if(sa !=null && sa!=''){
+				mval = document.getElementById(sa).value;
+				val=val.replace(sa,mval);
+			}			
+		}
+        document.getElementById(mathId).value=eval(val);
 	}
 </script>

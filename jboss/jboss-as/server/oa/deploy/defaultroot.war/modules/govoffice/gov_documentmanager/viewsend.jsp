@@ -659,7 +659,7 @@ $(document).ready(function(){
 
 	
 		if(userAgent.indexOf('windows nt') < 0 ){
-			whir_alert("该页面不支持在PAD上显示，请于PC端查看!");
+			whir_alert("该页面不支持PAD或者Linux客户端上显示，请于windowsPC端查看!");
 		}else{
 			var content = 'null';
 			WebOffice.WebUrl="<%=mServerUrl%>";

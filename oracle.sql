@@ -463,3 +463,12 @@ insert into ez_secu_pagelist (secu_url, client_url, list_type, createtime) value
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.22_SP_20160827','11.4.0.22',sysdate);
 commit;
+
+
+
+
+
+alter table union_task modify REMIDTYPE VARCHAR2(200);
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.23_SP_20160911','11.4.0.23',sysdate);
+commit;

@@ -251,7 +251,7 @@ String.prototype.replaceAll = function(s1,s2){ return this.replace(new RegExp(s1
 	//查询
 	function InfoSynchronization(id,o1,o2,o3,o4,o5,o6){
 		//var srcurl="InformationAction.do?action=otherAdd&channelType=0&_type=4&userDefine=0&_fileId="+id;
-		var srcurl="/defaultroot/Information!add.action?module=0&action=otherAdd&channelType=0&_type=4&userDefine=0&_fileId="+id;
+		var srcurl="/defaultroot/Information!add.action?isfromgov=1&module=0&action=otherAdd&channelType=0&_type=4&userDefine=0&_fileId="+id;
 
 		if(o1!=""&&o1!="null"){
 			srcurl+="&_docNO="+o1;

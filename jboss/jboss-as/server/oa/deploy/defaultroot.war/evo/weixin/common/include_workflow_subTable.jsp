@@ -76,13 +76,13 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 														<%--单行文本 101--%>
 														<c:when test="${showtype =='101' && readwrite =='1'}">
 															<c:if test="${ fieldtype == '1000000'  }">
-																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sub_<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');" value='<x:out select="$field/value/text()"/>'   />
+																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sub_<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');math(this)" value='<x:out select="$field/value/text()"/>'   />
 															</c:if>
 															<c:if test="${ fieldtype == '1000001'   }">
-																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="18" name='_sub_<x:out select="$field/sysname/text()"/>'  onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');"  value='<x:out select="$field/value/text()"/>' />
+																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="18" name='_sub_<x:out select="$field/sysname/text()"/>'  onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');math(this)"  value='<x:out select="$field/value/text()"/>' />
 															</c:if>
 															<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text"  name='_sub_<x:out select="$field/sysname/text()"/>'  onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');" value='<x:out select="$field/value/text()"/>'/>
+																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text"  name='_sub_<x:out select="$field/sysname/text()"/>'  onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');math(this)" value='<x:out select="$field/value/text()"/>'/>
 															</c:if>
 															<input type="hidden"  name="keyv" value="${name},${totfield},_sub_<x:out select='$field/sysname/text()'/>"/>
 														</c:when>
@@ -333,10 +333,10 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 														<%--金额 301--%>
 														<c:when test="${showtype =='301' && readwrite =='1'}">
 															<c:if test="${fieldtype == '1000000' || fieldtype == '1000001'  }">
-																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" name='_sub_<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');" value='<x:out select="$field/value/text()"/>' />
+																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" name='_sub_<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');math(this);" value='<x:out select="$field/value/text()"/>' />
 															</c:if>
 															<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" name='_sub_<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');" value='<x:out select="$field/value/text()"/>' />
+																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" name='_sub_<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');math(this);" value='<x:out select="$field/value/text()"/>' />
 															</c:if>
 															<input type="hidden"  name="keyv" value="${name},${totfield},_sub_<x:out select='$field/sysname/text()'/>"/>
 														</c:when>
@@ -476,6 +476,12 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 																<c:set var="fileValues" value="${fn:replace(values,',;', '|')}" />
 																<input name="_sub_file_<x:out select="$field/sysname/text()"/>" type="hidden" value="${fileValues }">
 															</c:if>
+														</c:when>
+														<%--计算字段 203--%>
+														<c:when test="${showtype =='203' && readwrite =='1'}">
+														    <c:set var="expressionval"><x:out select="$field/expressionval/text()"/></c:set>
+															<input class="edit-ipt-r whmath" readonly="readonly" mathfun="${expressionval}" type="text" maxlength="18" id='<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');" name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' />
+															<input type="hidden"  name="keyv" value="${name},${totfield},_sub_<x:out select='$field/sysname/text()'/>"/>
 														</c:when>
 														<c:otherwise>
 															<c:set var="index" value="${index+1}"/>
@@ -696,6 +702,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		$('[id="subFooter_'+subTableName+'"]').hide();
 		$('#subFooter_totname').hide();
 		$('[id="subTableInput_'+subTableName+'"]').val($('[id="swiper_ul_'+subTableName+'"] li').length+'条子表记录');
+		maniSum();
     }
         
     function finishSubTableForm2(){
@@ -836,7 +843,6 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 			}else{
 			
 			}*/
-			
 			map[sysname]=sysname+":"+sum;
 			for(var prop in map){
 				content += map[prop];
@@ -849,17 +855,18 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 			subId = subId.replace("$","");
 			var sumrmb = changeNumMoneyToChinese(sum);
             var rmbId = $("#" + subId).attr("name");//大写金额
-			rmbId =rmbId.substring(6,rmbId.length);
-			rmbId = rmbId.replace("$","");
-			if($("#" + subId).val() != 'undefined'){
-				$("#" + subId).val(sum);				
-			}
-            if($("#" + rmbId).val() != 'undefined'){
-				$("#" + rmbId).val(sumrmb);				
+			if(rmbId != undefined &&　rmbId　!= 'undefined'){
+				rmbId =rmbId.substring(6,rmbId.length);
+				rmbId = rmbId.replace("$","");
+				if($("#" + subId).val() != 'undefined'){
+					$("#" + subId).val(sum);				
+				}
+				if($("#" + rmbId).val() != 'undefined'){
+					$("#" + rmbId).val(sumrmb);				
+				}
 			}
 
 		}
-       
 	}
 
 	function initTot(){
@@ -1054,6 +1061,57 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 　　return ChineseStr;
 
 　　}
+    
+	//子表计算字段
+    function math(obj){
+		var id = obj.id;
+		var objval =document.getElementById(id).value;
+        if(isNaN(objval)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
+		var val = $('.edit-ipt-r.whmath').attr("mathfun");//合计字段的公式
+		var mathId = $('.edit-ipt-r.whmath').attr("id");
+		var arr=id.split("_");
+		var str = val.replace(/\*/g, '|').replace(/\+/g, '|').replace(/\-/g, '|').replace(/\//g, '|').replace(/\(/g, '|').replace(/\)/g, '|');
+		str = str.replace("||", "|");
+		if(arr.length>2){//两个及以上子表
+			var num = id.substring(id.length-2,id.length-1);
+			mathId = mathId.substring(0,mathId.length-3)+"_"+num+"_";
+		}
+		var strArr = str.split("|");
+		var sa="";//公式id;
+		var mval="";//公式id对应的值
+	    for(var i=0;i<strArr.length;i++){
+			sa = strArr[i];
+			if(arr.length>2 && sa !=null && sa!=''){//两个及以上子表
+				sa = sa+"_"+num+"_";
+			}
+			if(sa !=null && sa!=''){
+				mval = document.getElementById(sa).value;
+				if(arr.length>2){
+					sa = sa.substring(0,sa.length-3); 
+				}
+				val=val.replace(sa,mval);
+			}			
+		}
+        document.getElementById(mathId).value=eval(val);
+		//alert('val='+val);
+	}
+    
+	//主表合计字段
+	function maniSum(){
+		var val = $('.edit-ipt-r.mainhj').attr("mainsum");//主表合计字段子表字段的字段名
+		val = "_sub_"+val;
+		var sum= 0-0;
+		var varr = document.getElementsByName(val);
+		for(var i=0;i<varr.length;i++){
+			var num = varr[i].value-0;
+			sum =sum+num;
+		}
+		$('.edit-ipt-r.mainhj').val(sum);
+	}
 </script>
 
 

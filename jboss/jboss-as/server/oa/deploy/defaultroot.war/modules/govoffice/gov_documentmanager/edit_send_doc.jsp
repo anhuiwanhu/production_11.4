@@ -3,6 +3,7 @@
 <%@ page isELIgnored ="false" %>
 <%@ taglib uri="/WEB-INF/tag-lib/gov.tld" prefix="gov" %>
 <%
+    whir_custom_str="tagit";
 String local = session.getAttribute("org.apache.struts.action.LOCALE").toString();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

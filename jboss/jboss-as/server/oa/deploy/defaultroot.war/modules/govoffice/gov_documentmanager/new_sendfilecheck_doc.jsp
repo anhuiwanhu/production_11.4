@@ -204,9 +204,10 @@ String local = session.getAttribute("org.apache.struts.action.LOCALE").toString(
 					   <div class="doc_Movetitle">
 						 <ul>
 							 <li class="aon"  id="Panle0"><a href="javascript:void(0);" onClick="changePanle(0);" >基本信息</a></li>
-							 <!-- <li id="Panle1"><a href="javascript:void(0);" onClick="changePanle(1);">流程图</a></li> -->
 							  <li id="Panle2" ><a href="javascript:void(0);" onClick="changePanle(2);">关联流程<span class="redBold" id="viewrelationnum"></span></a></li>
-							 <!-- <li id="Panle3" ><a href="#" onClick="changePanle(3);">相关附件<span class="redBold" id="viewaccnum"></span></a></li>-->
+                             <li id="Panle1"><a href="javascript:void(0);" onClick="changePanle(1);">流程图</a></li>
+
+                             <!-- <li id="Panle3" ><a href="#" onClick="changePanle(3);">相关附件<span class="redBold" id="viewaccnum"></span></a></li>-->
 						 </ul>
 					   </div>  
                        <div class="clearboth"></div>  
@@ -275,7 +276,7 @@ String local = session.getAttribute("org.apache.struts.action.LOCALE").toString(
 function  changePanle(flag){
 //	if( flag == 3 ) flag= 2;
 	for(var i=0;i<4;i++){
-		if(i==1 || i==3){
+		if( i==3){
 			continue;
 		}
 		$("#Panle"+i).removeClass("aon");

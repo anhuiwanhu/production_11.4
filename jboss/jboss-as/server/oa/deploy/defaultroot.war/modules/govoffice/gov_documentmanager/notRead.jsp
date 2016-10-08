@@ -206,19 +206,21 @@ String.prototype.replaceAll = function(s1,s2){ return this.replace(new RegExp(s1
 
 	function getTitle(po,i){
 
-    <%
-        if(com.whir.common.util.CommonUtils.isLinuxClient(request)){
-        %>
-        var tempurl ='<%=smartInUse==1?"/defaultroot/public/download":fileServer%>/download.jsp?verifyCode='+po.verifyCode1+'&FileName='+po.goldGridId+po.documentWordType+'&name='+encodeURIComponent(po.documentSendFileTitle)+po.documentWordType+'&path=govdocumentmanager';
-            return "<a href='"+tempurl+"' target='dwin' >"+po.documentSendFileTitle+"</a>";
-    <%} else  if(!com.whir.common.util.CommonUtils.isForbiddenPad(request)){
-	 %>
-			return ""+po.documentSendFileTitle+"";	 
-		 <%
-		 }else{
-		 %>
+    <%-- <%
+         if(com.whir.common.util.CommonUtils.isLinuxClient(request)){
+         %>
+         var tempurl ='<%=smartInUse==1?"/defaultroot/public/download":fileServer%>/download.jsp?verifyCode='+po.verifyCode1+'&FileName='+po.goldGridId+po.documentWordType+'&name='+encodeURIComponent(po.documentSendFileTitle)+po.documentWordType+'&path=govdocumentmanager';
+             return "<a href='"+tempurl+"' target='dwin' >"+po.documentSendFileTitle+"</a>";
+     <%} else
+
+      if(!com.whir.common.util.CommonUtils.isForbiddenPad(request)){
+      %>
+             return ""+po.documentSendFileTitle+"";
+          <%
+          }else{
+          %>--%>
 			return "<a href='javascript:void(0)' onclick='openWin({url:\"GovDocSendProcess!viewfile.action?sendFileUserId="+po.sendFileUserId+"&empId="+po.empId +"&p_wf_recordId="+po.id+"&canDownLoad="+po.canDownload+"\",width:620,height:290,isResizable: true,isFull: true,winName:\"shownoteread\"});' ><b><font color='red'>"+po.documentSendFileTitle+"</font></b></a>";
-		<%}%>
+		<%--<%}%>--%>
 		
 	}
 
@@ -282,7 +284,7 @@ String.prototype.replaceAll = function(s1,s2){ return this.replace(new RegExp(s1
 		//查询
 	function InfoSynchronization(id,o1,o2,o3,o4,o5,o6){
 		//var srcurl="InformationAction.do?action=otherAdd&channelType=0&_type=4&userDefine=0&_fileId="+id;
-		var srcurl="/defaultroot/Information!add.action?module=0&action=otherAdd&channelType=0&_type=4&userDefine=0&_fileId="+id;
+		var srcurl="/defaultroot/Information!add.action?isfromgov=1&module=0&action=otherAdd&channelType=0&_type=4&userDefine=0&_fileId="+id;
 
 		if(o1!=""&&o1!="null"){
 			srcurl+="&_docNO="+o1;

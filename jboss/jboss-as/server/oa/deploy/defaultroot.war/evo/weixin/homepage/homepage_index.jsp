@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0,minimal-ui">
-    <title>合集页面</title>
+    <title>移动办公应用门户中心</title>
     <link rel="stylesheet" href="/defaultroot/evo/weixin/template/css/template.reset.css" />
     <link rel="stylesheet" href="/defaultroot/evo/weixin/template/css/template.icon.css" />
     <link rel="stylesheet" href="/defaultroot/evo/weixin/template/css/template.fa.css" />
