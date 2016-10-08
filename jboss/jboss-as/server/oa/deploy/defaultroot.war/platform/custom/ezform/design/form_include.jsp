@@ -50,12 +50,12 @@
                 </td>
                 <td for="表单编号" width="100" class="td_lefttitle tdpad">表单编号<span class="MustFillColor">*</span>：</td>
                 <td width="42%" class="tdpad">
-                    <s:if test="formType == 0 && sysAttr != 0">
+                    <s:if test="formId == null">
                         <s:textfield name="formCode" id="formCode" cssClass="inputText" whir-options="vtype:['notempty',{'maxLength':35},'spechar3']" cssStyle="width:298px;" maxlength="35"/>
                     </s:if>
                     <s:else>
                         <s:textfield name="formCode" id="formCode" cssClass="inputText" whir-options="vtype:['notempty','spechar3']" cssStyle="width:298px;" maxlength="35" readonly="true"/>
-                    </s:else>
+                	</s:else>
                 </td>
             </tr>
 

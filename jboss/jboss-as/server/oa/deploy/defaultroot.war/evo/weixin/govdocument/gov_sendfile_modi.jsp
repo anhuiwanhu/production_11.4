@@ -977,7 +977,19 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<td>
 									<c:choose>
 										<c:when test="${isCurrent eq 'true' && not empty commentField && '-1' ne commentField && 'nullCommentField' ne commentField && param.workStatus ne '102' && param.workStatus ne '101'}">
-											<textarea name='comment_input' class="edit-txta edit-txta-l" maxlength="300" placeholder="请输入文字"></textarea>
+											<textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="300"></textarea>
+											<div class="examine" style="text-align:right;">
+												<a class="edit-select edit-ipt-r">
+													<div class="edit-sel-show">
+														<span>常用审批语</span>
+													</div>    
+													<select class="btn-bottom-pop" onchange="selectComment(this);">
+														<option value="0">常用审批语</option> 
+														<option value="同意">同意</option>
+														<option value="已阅">已阅</option>
+													</select>
+												</a>
+											</div>
 											<x:forEach select="$ct/commentContent" var="cc">
 												<c:set var="commentDate"><x:out select="$cc//date/text()"/></c:set>
 												<x:out select="$cc//content/text()"/>&nbsp;&nbsp;<x:out select="$cc//person/text()"/><c:if test="${not empty commentDate}">(${commentDate})</c:if></br>
@@ -1414,4 +1426,14 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 			}
 		});
 	}
+	//选择批示意见
+	function selectComment(obj){
+		 var $selectObj = $(obj);
+	     var selectVal = $selectObj.val();
+	     if(selectVal == '0'){
+	         selectVal = '';
+	     }
+	     var $textarea = $('#comment_input');
+	     $textarea.val($textarea.val()+selectVal);
+    }
 </script>

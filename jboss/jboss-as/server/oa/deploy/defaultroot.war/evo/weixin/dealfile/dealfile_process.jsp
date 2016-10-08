@@ -325,8 +325,9 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 												</div>    
 												<select class="btn-bottom-pop" onchange="selectComment(this);">
 													<option value="0">常用审批语</option> 
-													<option value="同意">同意</option>
-													<option value="已阅">已阅</option>
+													 <x:forEach select="$doc//officelist" var="selectvalue" >
+														<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
+												     </x:forEach>
 												</select>
 											</a>
 										</div>
@@ -399,8 +400,9 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										</div>    
 										<select class="btn-bottom-pop" onchange="selectComment(this);">
 											<option value="0">常用审批语</option> 
-											<option value="同意">同意</option>
-											<option value="已阅">已阅</option>
+											<x:forEach select="$doc//officelist" var="selectvalue" >
+												<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
+										    </x:forEach>
 										</select>
 									</a>
 								</div>
@@ -649,6 +651,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
     
     //表单必填项验证
     function formCheck(){
+        var commentmustnonull = ${commentmustnonull};
 		return confirmForm();
     	var tipsName = '';
     	var checkOk = true;
@@ -660,7 +663,16 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
     			checkOk = false;
     			return false;
     		}
-    	});
+    	});    	
+    	if(commentmustnonull == 'true'){
+	       	if($('comment_input') != null){
+	            var comment = $('comment_input').value;
+	            if(comment == ''){ 
+	            	alert('批示意见不能为空！')
+	            	checkOk = false;
+	            }
+	        }
+        }
     	return checkOk;
     }
     
