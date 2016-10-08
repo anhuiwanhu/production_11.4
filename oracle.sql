@@ -261,3 +261,10 @@ comment on column SYS_CORP_SET.relactionId
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.09_SP_20160423','11.4.0.09',sysdate);
 commit;
+
+
+
+
+
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.10_SP_20160427','11.4.0.10',sysdate);
+commit;

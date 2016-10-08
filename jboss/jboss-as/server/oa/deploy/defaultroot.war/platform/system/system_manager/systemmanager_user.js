@@ -742,11 +742,12 @@ function checkInput(){
      		return false;
      	}
     }
-    var empIdCardCheck = empIdCardAllow();
-    	 if(!empIdCardCheck){
-     		return false;
-     	}
-    
+	if(tansUse == '1'){
+		var empIdCardCheck = empIdCardAllow();
+			 if(!empIdCardCheck){
+				return false;
+			}
+    }
     return true;
 }
 

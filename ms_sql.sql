@@ -297,3 +297,10 @@ update oa_system_remind  set newmail = newmail-(select COUNT(*) from Deleted 	wh
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.09_SP_20160423','11.4.0.09',getdate());
 go
+
+
+
+
+
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.10_SP_20160427','11.4.0.10',getdate());
+go
