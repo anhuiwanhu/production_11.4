@@ -585,11 +585,19 @@ if(relaSet!=null && relaSet.size()>0){
             $("div[id$='-<%=d_oldFieldName%>'] > a.openSelectIco").css('display', '');
         }else if("212"!=d_showId && "214"!=d_showId && "404"!=d_showId && "405"!=d_showId){
             var modifyField = $("#p_wf_cur_ModifyField").val();
-        	if(modifyField.indexOf("<%=d_oldFieldName%>")!=-1){//当流程设置里面设置了该字段可写时,该字段才能可写
+        	//if(modifyField.indexOf("<%=d_oldFieldName%>")!=-1){//当流程设置里面设置了该字段可写时,该字段才能可写
+        	$("#p_wf_cur_ModifyField").val(modifyField+"$"+_d_oldFieldName+"$");
 	            _setFieldReadonly(_d_oldFieldName, false);
-        	} 
+        	//} 
         }
-    }
+    }else{
+		var d_showId = '<%=d_showId%>';
+	    var _d_oldFieldName = '<%=d_oldFieldName%>';
+		//101 单行文本   102  密码输入   110 多行文本  301金额    406 账号
+		if("101"==d_showId||"102"==d_showId||"110"==d_showId||"301"==d_showId||"406"==d_showId){
+			document.getElementById(_d_oldFieldName).value="";
+		}
+	}
 <%
     }
 }}

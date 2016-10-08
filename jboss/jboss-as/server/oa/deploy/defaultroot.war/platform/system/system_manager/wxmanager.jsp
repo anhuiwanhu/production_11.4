@@ -455,8 +455,11 @@ var num = corpsetappname_table-2;
 	}
 }
  function revalue(obj){
- $(obj).val("");
- 	$(obj).css("color","#333");
+  var value= $(obj).val();
+	 if("请填写对应的ID"==value){
+		$(obj).val("");
+	 }
+	$(obj).css("color","#333");
  }
  
  //企业号页签

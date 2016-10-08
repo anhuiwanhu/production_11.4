@@ -292,3 +292,10 @@ comment on column SYS_CORP_SET.last_relactionId  is '最近一次同步所使用
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.13_SP_20160510','11.4.0.13',sysdate);
 commit;
+
+
+
+
+
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.14_SP_20160519','11.4.0.14',sysdate);
+commit;

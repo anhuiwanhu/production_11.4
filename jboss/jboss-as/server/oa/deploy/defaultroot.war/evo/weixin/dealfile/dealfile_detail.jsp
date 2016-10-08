@@ -160,6 +160,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										<x:forEach select="$fd//dataList/comment" var="ct" >
 											<x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)
 										</x:forEach>
+											<c:if test="${readwrite =='1' }">
 <%--										<c:if test="${sysname == passRoundCommField}">--%>
 											<textarea class="edit-txta edit-txta-l" placeholder="请输入" name="comment_input" id="comment_input" maxlength="50"></textarea>
 											<div class="examine" style="text-align:right;">
@@ -167,14 +168,16 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 													<div class="edit-sel-show">
 														<span>常用审批语</span>
 													</div>    
-													<select class="btn-bottom-pop" id="sel" onchange="selectComment(this);">
-														<option value="">常用审批语</option> 
-														<option value="同意">同意</option>
-														<option value="已阅">已阅</option>
+													<select class="btn-bottom-pop" onchange="selectComment(this);">
+														<option value="0">常用审批语</option> 
+														 <x:forEach select="$doc//officelist" var="selectvalue" >
+															<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
+													     </x:forEach>
 													</select>
 												</a>
 											</div>
 <%--										</c:if>--%>
+										</c:if>
 									</c:when>
 									<c:otherwise>
 										<x:out select="$fd/value/text()"/>
@@ -218,9 +221,9 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 						<!--子表信息end-->
 	
 						<!--批示意见begin-->
-						<c:set var="commentField" ><x:out select="$doc//workInfo/commentField/text()"/></c:set>
-						<c:set var="actiCommFieldType" ><x:out select="$doc//workInfo/actiCommFieldType/text()"/></c:set>
-						<c:if test="${actiCommFieldType != '-1' && (commentField == '-1' || commentField == 'nullCommentField' || commentField == 'autoCommentField' || commentField == 'null') }">
+						<c:set var="passRoundCommField" ><x:out select="$doc//workInfo/passRoundCommField/text()"/></c:set>
+						<c:set var="passRoundCommFieldType" ><x:out select="$doc//workInfo/passRoundCommFieldType/text()"/></c:set>
+						<c:if test="${passRoundCommField == 'autoCommentField'}">
 						<tr>
 							<th>审批意见：
 								<c:if test="${commentmustnonull eq true}">
@@ -237,15 +240,16 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										</div>    
 										<select class="btn-bottom-pop" onchange="selectComment(this);">
 											<option value="0">常用审批语</option> 
-											<option value="同意">同意</option>
-											<option value="已阅">已阅</option>
+											 <x:forEach select="$doc//officelist" var="selectvalue" >
+												<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
+										     </x:forEach>
 										</select>
 									</a>
 								</div>
 		                    </td>
 						</tr>
 						</c:if>
-						<x:forEach select="$doc2//commentList/comment" var="ct" >
+						<x:forEach select="$doc//commentList/comment" var="ct" >
 							<c:set var="commentType"><x:out select="$ct//type/text()"/></c:set>
 							<c:set var="commentContent"><x:out select="$ct//content/text()"/></c:set>
 							<tr>

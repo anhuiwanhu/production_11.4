@@ -327,3 +327,14 @@ alter table SYS_CORP_SET add last_relactionId varchar(20) ;
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.13_SP_20160510','11.4.0.13',getdate());
 go
+
+
+
+
+
+update ezoffice.HR_RPT_INIT_FIELD set VAL_SOURCE='ezoffice.FN_DATEDIFF_SYS(''month'', a.EMPFIREDATE)' WHERE SHOW_NAME='工龄';
+go
+update ezoffice.HR_RPT_INIT_FIELD set VAL_SOURCE='ezoffice.FN_DATEDIFF_SYS(''month'', a.INTOCOMPANYDATE)' WHERE SHOW_NAME='本单位工龄';
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.14_SP_20160519','11.4.0.14',getdate());
+go

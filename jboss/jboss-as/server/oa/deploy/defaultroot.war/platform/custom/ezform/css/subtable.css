@@ -1,0 +1,233 @@
+@charset "utf-8";
+
+.subtablediv table{
+	width:100%;
+}
+
+/**输入样式**/
+.subtablediv .flowInput{
+    /*border:1px solid #E8E8E8;*/
+
+    width: 90%;
+    /*border: 1px solid #8d8c8c;*/
+    border: 1px solid #dedee7;
+    line-height: 27px;
+    height: 27px;
+    padding: 0px;
+    color: #555;
+    margin:3px;
+    font-size:13px;
+    vertical-align:middle;
+}
+
+.subtablediv .flowInputNoBorder{
+    border:0px solid #E8E8E8;
+    margin:3px;
+    font-size:13px;
+    vertical-align:middle;
+    overflow:hidden;
+    resize:none;
+}
+
+.subtablediv .flowInputenter{
+    /*border:1px solid blue;*/
+
+    width: 90%;
+    border: 1px solid #0f8fcf;
+    line-height: 27px;
+    height: 27px;
+    padding: 0px;
+    color: #555;
+    background: #F7FFFF;
+    margin:3px;
+    font-size:13px;
+    vertical-align:middle;
+}
+
+/**普通输入样式**/
+.subtablediv .formInputMust{
+    width:86%;
+    vertical-align:middle;
+}
+
+.subtablediv .formInputMust2{
+    width:86%;
+    vertical-align:middle;
+}
+
+.subtablediv .formInput{
+    width:90%;
+    vertical-align:middle;
+}
+
+.subtablediv .formInput2{
+    width:90%;
+    vertical-align:middle;
+}
+
+/**自动编号下拉样式**/
+.subtablediv .formInputAutoCodeMust{
+    width:45%;
+    vertical-align:middle;
+}
+
+.subtablediv .formInputAutoCodeMust2{
+    width:45%;
+    vertical-align:middle;
+}
+
+.subtablediv .formInputAutoCode{
+    width:45%;
+    vertical-align:middle;
+}
+
+.subtablediv .formInputAutoCode2{
+    width:45%;
+    vertical-align:middle;
+}
+
+.subtablediv .formInputAutoCodeSelect{
+    width:50%;
+    vertical-align:middle;
+}
+
+/**带选择按钮样式**/
+.subtablediv .formInputBtnMust{
+    width: 86%;
+}
+
+.subtablediv .formInputBtnMust2{
+    width: 86%;
+}
+
+.subtablediv .formInputBtn{
+    width:90%;
+}
+
+.subtablediv .formInputBtn2{
+    width:90%;
+}
+
+/**仅输入数字样式**/
+.subtablediv .formInputMustIme{
+    width:86%;
+    ime-mode:disabled;
+    vertical-align:middle;
+}
+
+.subtablediv .formInputMustIme2{
+    width:86%;
+    ime-mode:disabled;
+    vertical-align:middle;
+}
+
+.subtablediv .formInputIme{
+    width:90%;
+    ime-mode:disabled;
+    vertical-align:middle;
+}
+
+/**不带边框样式**/
+.subtablediv .formInputMustNoBorder{
+    font-family: "微软雅黑", "仿宋_GB2312";
+    width:86%;
+    border:0px solid white;
+    vertical-align:middle;
+    overflow:hidden;
+}
+
+.subtablediv .formInputMustNoBorder2{
+    font-family: "微软雅黑", "仿宋_GB2312";
+    width:86%;
+    border:0px solid white;
+    vertical-align:middle;
+    overflow:hidden;
+}
+
+.subtablediv .formInputNoBorder{
+    font-family: "微软雅黑", "仿宋_GB2312";
+    width:90%;
+    border:0px solid white;
+    vertical-align:middle;
+    overflow:hidden;
+}
+
+/**模拟单行文本样式**/
+.subtablediv .formInputareaMust{
+    width:86%;
+    word-wrap:break-word;
+    word-break:break-all;
+    /*height:expression(this.scrollHeight+2);*/
+    overflow:hidden;
+    resize:none;
+    line-height: 27px;
+}
+
+.subtablediv .formInputareaMust2{
+    width:86%;
+    word-wrap:break-word;
+    word-break:break-all;
+    /*height:expression(this.scrollHeight+2);*/
+    overflow:hidden;
+    resize:none;
+    line-height: 27px;
+}
+
+.subtablediv .formInputarea{
+    width:90%;
+    word-wrap:break-word;
+    word-break:break-all;
+    /*height:expression(this.scrollHeight+2);*/
+    overflow:hidden;
+    font-size:13px;
+    resize:none;
+    line-height: 27px;
+}
+
+/**多行文本样式**/
+.subtablediv .formTexttareaMust{
+    width:86%;
+    word-wrap:break-word;
+    word-break:break-all;
+    height:94px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    resize:none;
+    line-height: 27px;
+}
+
+.subtablediv .formTextareaMust2{
+    width:86%;
+    word-wrap:break-word;
+    word-break:break-all;
+    height:94px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    resize:none;
+    line-height: 27px;
+}
+
+.subtablediv .formTextarea{
+    width:90%;
+    word-wrap:break-word;
+    word-break:break-all;
+    height:94px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    resize:none;
+    line-height: 27px;
+}
+
+.subtablediv .formInputNoBorderFixed{
+    border:0px solid white;
+    width:75px;
+    vertical-align:middle;
+}
+
+.subtablediv .formPercent{
+    width:80%;
+}
+
+.subtablediv .cls-ui-readonly{
+    border: 0px;
+}

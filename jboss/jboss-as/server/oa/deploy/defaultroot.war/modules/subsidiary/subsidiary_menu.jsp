@@ -23,7 +23,6 @@
 	//java中判断是否国产化客户端环境
 	boolean isCOSClient = com.whir.component.util.SystemUtils.isCOS4Firefox4(request);//true-是 false-否
 
-
 	int menuIndex=0;
 	//此处公共业务逻辑
 	ManagerBD managerBD = new ManagerBD();

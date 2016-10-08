@@ -455,6 +455,8 @@ function accountAllow(){
  * 检查用户的输入信息是否合法
  */
 function checkInput(){
+	var empId = "";
+	empId = $('#empId').val();
     var userAccounts = $('#userAccounts').val();
     /*if(userAccounts==''){
         whir_alert("用户账号不能为空！", function(){
@@ -729,7 +731,7 @@ function checkInput(){
    
     var mobileUserFlag  = $('#mobileUserFlag');
     if(mobileUserFlag.is(':checked')){ 
-    	var appflag = judgmentAppNum(userAccounts);
+    	var appflag = judgmentAppNum(userAccounts,empId);
     	if(appflag=="0"){
     		return false;
     	}
@@ -737,7 +739,7 @@ function checkInput(){
     
     var enterprisenumber  = $('#enterprisenumber');
     if(enterprisenumber.is(':checked')){
-    	 var weixinflag = judgmentWeixinNum(userAccounts);
+    	 var weixinflag = judgmentWeixinNum(userAccounts,empId);
     	 if(weixinflag=="0"){
      		return false;
      	}
@@ -1126,10 +1128,10 @@ function callback_changeOrg(msg){
 	$("#_orgId").val($("#orgIds").val());
 }
 
-function judgmentAppNum(userAccount){
+function judgmentAppNum(userAccount,empId){
 	var flag = "0";
 	$.ajax({
-		url: "/defaultroot/User!judgmentAPPNum.action?userAccount="+userAccount,
+		url: "/defaultroot/User!judgmentAPPNum.action?userAccount="+userAccount+"&empId="+empId,
 		cache: false,
 		async: false,
 		success: function(dataForm) {
@@ -1145,10 +1147,10 @@ function judgmentAppNum(userAccount){
 	return flag;
 }
 
-function judgmentWeixinNum(userAccount){
+function judgmentWeixinNum(userAccount,empId){
 	var flag = "0";
 	$.ajax({
-		url: "/defaultroot/User!judgmentWeixinNum.action?userAccount="+userAccount,
+		url: "/defaultroot/User!judgmentWeixinNum.action?userAccount="+userAccount+"&empId="+empId,
 		cache: false,
 		async: false,
 		success: function(dataForm) {

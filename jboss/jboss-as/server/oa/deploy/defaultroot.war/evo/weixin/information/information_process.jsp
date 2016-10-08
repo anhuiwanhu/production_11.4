@@ -9,6 +9,12 @@
 String workId = request.getParameter("workId");
 String orgId = session.getAttribute("orgId").toString();
 String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.getParameter("empLivingPhoto");
+java.util.Map sysMap = com.whir.org.common.util.SysSetupReader.getInstance().getSysSetupMap(""+session.getAttribute("domainId"));
+//上传下载方式：1：http，0：ftp
+int smartInUse = 0;
+if(sysMap != null && sysMap.get("附件上传") != null){
+	smartInUse = Integer.parseInt(sysMap.get("附件上传").toString());
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -46,6 +52,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 	      String newTitle = org.apache.commons.lang.StringEscapeUtils.unescapeXml(aTitle);
 	    %>     
 	    <c:set var="newTitle" value="<%=newTitle%>" />
+	    <form id="sendForm" action="/defaultroot/workflow/sendnew.controller" method="post">
 	    <section class="wh-section wh-section-bottomfixed">
     		<article class="wh-edit wh-edit-document">
     			<div class="wh-container">
@@ -213,7 +220,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										%>
 							            <div class="wh-article-atta">
 							                <i class="fa fa-paperclip"></i>
-							                <a href="javascript:void();" onclick="clickSub('<%=downloadFileLink%>',this);">
+							                <a href="javascript:void();" onclick="clickSub('<%=downloadFileLink%>',this,'${filename}','information','<%=smartInUse%>');">
 							                    <strong class="atta-name">${appName}</strong>
 							                </a>
 							                <span class="atta-size"><%=fileSizeStr%></span>
@@ -249,7 +256,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										%>
 							            <div class="wh-article-atta">
 							                <i class="fa fa-paperclip"></i>
-							                <a href="javascript:void();" onclick="clickSub('<%=downloadFileLink%>',this);">
+							                <a href="javascript:void();" onclick="clickSub('<%=downloadFileLink%>',this,'${filename}','information','<%=smartInUse%>');">
 							                    <strong class="atta-name">${appName}</strong>
 							                </a>
 							                <span class="atta-size"><%=fileSizeStr%></span>
@@ -258,10 +265,121 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 							    </td>
 						    </tr>
 					    </x:if>
+					    <!--批示意见begin-->
+				    	<c:if test="${param.workStatus eq '0'}">
+				    		<c:set var="commentField" ><x:out select="$workInfoDoc//workInfo/commentField/text()"/></c:set>
+							<c:set var="actiCommFieldType" ><x:out select="$workInfoDoc//workInfo/actiCommFieldType/text()"/></c:set>
+							<c:if test="${actiCommFieldType != '-1' && (commentField == '-1' || commentField == 'nullCommentField' || commentField == 'autoCommentField' || commentField == 'null') }">
+							<tr>
+								<th>审批意见：
+									<c:if test="${commentmustnonull eq true}">
+										<i class="fa fa-asterisk"></i>
+									</c:if>
+								</th>
+								<td>
+		                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="50"></textarea>
+									<%--<a href="#" class="edit-slt-r">常用语审批</a>--%>
+									<div class="examine" style="text-align:right;">
+										<a class="edit-select edit-ipt-r">
+											<div class="edit-sel-show">
+												<span>常用审批语</span>
+											</div>    
+											<select class="btn-bottom-pop" onchange="selectComment(this);">
+												<option value="0">常用审批语</option> 
+												<x:forEach select="$workInfoDoc//officelist" var="selectvalue" >
+													<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
+											    </x:forEach>
+											</select>
+										</a>
+									</div>
+			                    </td>
+							</tr>
+							</c:if>
+				    	</c:if>
+						<c:if test="${param.workStatus eq '2'}">
+				    		<c:set var="passRoundCommField" ><x:out select="$workInfoDoc//workInfo/passRoundCommField/text()"/></c:set>
+							<c:set var="passRoundCommFieldType" ><x:out select="$workInfoDoc//workInfo/passRoundCommFieldType/text()"/></c:set>
+							<c:if test="${passRoundCommField == 'autoCommentField'}">
+							<tr>
+								<th>审批意见：
+									<c:if test="${commentmustnonull eq true}">
+										<i class="fa fa-asterisk"></i>
+									</c:if>
+								</th>
+								<td>
+		                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="50"></textarea>
+									<%--<a href="#" class="edit-slt-r">常用语审批</a>--%>
+									<div class="examine" style="text-align:right;">
+										<a class="edit-select edit-ipt-r">
+											<div class="edit-sel-show">
+												<span>常用审批语</span>
+											</div>    
+											<select class="btn-bottom-pop" onchange="selectComment(this);">
+												<option value="0">常用审批语</option> 
+												 <x:forEach select="$workInfoDoc//officelist" var="selectvalue" >
+													<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
+											     </x:forEach>
+											</select>
+										</a>
+									</div>
+			                    </td>
+							</tr>
+							</c:if>
+				    	</c:if>
+						<x:forEach select="$workInfoDoc//commentList/comment" var="ct" >
+							<c:set var="commentType"><x:out select="$ct//type/text()"/></c:set>
+							<c:set var="commentContent"><x:out select="$ct//content/text()"/></c:set>
+							<tr>
+								<th><x:out select="$ct//step/text()"/>：</th>
+								<td><x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)</td>
+							</tr>
+						</x:forEach>
+						<!--批示意见end-->
 	            	</table>
             	</div>
     		</article>
    		</section>
+		<input type="hidden" name="tableId" value="<%=workId%>" />
+		<input type="hidden" name="recordId" value="<x:out select="$workInfoDoc//workInfo/workrecord_id/text()"/>" />
+		<input type="hidden" name="activityId" value="<x:out select="$workInfoDoc//workInfo/initactivity/text()"/>" />
+		<input type="hidden" name="workId" value="<x:out select="$workInfoDoc//workInfo/wf_work_id/text()"/>" />
+		<input type="hidden" name="stepCount" value="<x:out select="$workInfoDoc//workInfo/workstepcount/text()"/>" />
+		<input type="hidden" name="isForkTask" value="<x:out select="$workInfoDoc//isForkTask/text()"/>" />
+		<input type="hidden" name="forkStepCount" value="<x:out select="$workInfoDoc//forkStepCount/text()"/>" />
+		<input type="hidden" name="forkId" value="<x:out select="$workInfoDoc//forkId/text()"/>" />
+		<input type="hidden" name="activityclass" value="<x:out select="$workInfoDoc//activityClass/text()"/>" />
+		<input type="hidden" name="commentType" value="0" />
+		<input type="hidden" name="pass_title" value="" />
+		<input type="hidden" name="pass_time" value="" />
+		<input type="hidden" name="pass_person" value="" />
+		<input type="hidden" name="__sys_operateType" value="2" />
+		<input type="hidden" name="__sys_infoId" value='<x:out select="$workInfoDoc//paramList/workrecord_id/text()"/>' />
+		<input type="hidden" name="__sys_pageId" value='<x:out select="$workInfoDoc//paramList/worktable_id/text()"/>' />
+		<input type="hidden" name="__sys_formType" value='<x:out select="$workInfoDoc//paramList/formType/text()"/>' />	
+		<input type="hidden" name="__main_tableName" value='<x:out select="$workInfoDoc//fieldList/tableName/text()"/>' />	
+		<input type="hidden" name="actiCommFieldType" value='<x:out select="$workInfoDoc//workInfo/actiCommFieldType/text()"/>' />
+		<input type="hidden" name="curCommField" value='<x:out select="$workInfoDoc//workInfo/commentField/text()"/>' />
+		<input type="hidden" name="trantype" value='<x:out select="$workInfoDoc//workInfo/trantype/text()"/>' />
+		<x:if select="$workInfoDoc//workInfo/commentmustnonull" var="commentmustnonull">
+			<input type="hidden" name="commentmustnonull" value='<x:out select="$workInfoDoc//workInfo/commentmustnonull/text()"/>' />
+		</x:if>
+		<x:if select="$workInfoDoc//workInfo/backnocomment" var="backnocomment">
+			<input type="hidden" name="backnocomment" value='<x:out select="$workInfoDoc//workInfo/backnocomment/text()"/>' />
+		</x:if>
+		<x:if select="$workInfoDoc//workInfo/backMailRange" var="backMailRange">
+			<input type="hidden" name="backMailRange" value='<x:out select="$workInfoDoc//workInfo/backMailRange/text()"/>' />
+		</x:if>
+		<x:if select="$workInfoDoc//workInfo/smsRight" var="smsRight">
+			<input type="hidden" name="smsRight" value='<x:out select="$workInfoDoc//workInfo/smsRight/text()"/>' />
+		</x:if>
+		<input type="file" style="display:none;" value="" name="comment_input_shouxie" id="comment_input_shouxie"/>
+		<input type="file" style="display:none;" value="" name="comment_input_yuyin" id="comment_input_yuyin"/>
+		<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
+		<input type="hidden" name="worktitle" value="${title}">
+		<input type="hidden" name="workcurstep" value="${workcurstep}">
+		<input type="hidden" name="worksubmittime" value="${worksubmittime}">
+		<input type="hidden" name="workStatus" value="0">
+	</form>
 	</c:if>
 	<%--
 	<c:if test="${param.workStatus ne '101' && param.workStatus ne '102' && param.workStatus ne '1100'}">
@@ -350,46 +468,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 		<input type="hidden" name="worksubmittime" value="${worksubmittime}">
 		<input type="hidden" name="workStatus" value="1100">
 	</form>
-	<form id="sendForm" action="/defaultroot/workflow/sendnew.controller" method="post">
-		<input type="hidden" name="tableId" value="<%=workId%>" />
-		<input type="hidden" name="recordId" value="<x:out select="$workInfoDoc//workInfo/workrecord_id/text()"/>" />
-		<input type="hidden" name="activityId" value="<x:out select="$workInfoDoc//workInfo/initactivity/text()"/>" />
-		<input type="hidden" name="workId" value="<x:out select="$workInfoDoc//workInfo/wf_work_id/text()"/>" />
-		<input type="hidden" name="stepCount" value="<x:out select="$workInfoDoc//workInfo/workstepcount/text()"/>" />
-		<input type="hidden" name="isForkTask" value="<x:out select="$workInfoDoc//isForkTask/text()"/>" />
-		<input type="hidden" name="forkStepCount" value="<x:out select="$workInfoDoc//forkStepCount/text()"/>" />
-		<input type="hidden" name="forkId" value="<x:out select="$workInfoDoc//forkId/text()"/>" />
-		<input type="hidden" name="activityclass" value="<x:out select="$workInfoDoc//activityClass/text()"/>" />
-		<input type="hidden" name="commentType" value="0" />
-		<input type="hidden" name="pass_title" value="" />
-		<input type="hidden" name="pass_time" value="" />
-		<input type="hidden" name="pass_person" value="" />
-		<input type="hidden" name="__sys_operateType" value="2" />
-		<input type="hidden" name="__sys_infoId" value='<x:out select="$workInfoDoc//paramList/workrecord_id/text()"/>' />
-		<input type="hidden" name="__sys_pageId" value='<x:out select="$workInfoDoc//paramList/worktable_id/text()"/>' />
-		<input type="hidden" name="__sys_formType" value='<x:out select="$workInfoDoc//paramList/formType/text()"/>' />	
-		<input type="hidden" name="__main_tableName" value='<x:out select="$workInfoDoc//fieldList/tableName/text()"/>' />	
-		<input type="hidden" name="actiCommFieldType" value='<x:out select="$workInfoDoc//workInfo/actiCommFieldType/text()"/>' />
-		<input type="hidden" name="curCommField" value='<x:out select="$workInfoDoc//workInfo/commentField/text()"/>' />
-		<input type="hidden" name="trantype" value='<x:out select="$workInfoDoc//workInfo/trantype/text()"/>' />
-		<x:if select="$workInfoDoc//workInfo/commentmustnonull" var="commentmustnonull">
-			<input type="hidden" name="commentmustnonull" value='<x:out select="$workInfoDoc//workInfo/commentmustnonull/text()"/>' />
-		</x:if>
-		<x:if select="$workInfoDoc//workInfo/backnocomment" var="backnocomment">
-			<input type="hidden" name="backnocomment" value='<x:out select="$workInfoDoc//workInfo/backnocomment/text()"/>' />
-		</x:if>
-		<x:if select="$workInfoDoc//workInfo/backMailRange" var="backMailRange">
-			<input type="hidden" name="backMailRange" value='<x:out select="$workInfoDoc//workInfo/backMailRange/text()"/>' />
-		</x:if>
-		<x:if select="$workInfoDoc//workInfo/smsRight" var="smsRight">
-			<input type="hidden" name="smsRight" value='<x:out select="$workInfoDoc//workInfo/smsRight/text()"/>' />
-		</x:if>
-		<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
-		<input type="hidden" name="worktitle" value="${title}">
-		<input type="hidden" name="workcurstep" value="${workcurstep}">
-		<input type="hidden" name="worksubmittime" value="${worksubmittime}">
-		<input type="hidden" name="workStatus" value="0">
-	</form>
+	
 	<form id="backForm" action="/defaultroot/workflow/back.controller" method="post">
 		<input type="hidden" name="workId" value="<%=workId%>">
 		<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
@@ -554,5 +633,24 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 				alert("异常！");
 			}
 		});
+	}
+	
+	//选择批示意见
+    function selectComment(obj){
+    	var $selectObj = $(obj);
+    	var selectVal = $selectObj.val();
+    	if(selectVal == '0'){
+        	selectVal = '';
+        }
+    	var $textarea = $selectObj.parent().parent().siblings();
+    	setSpanHtml(obj,selectVal);
+    	$textarea.val($textarea.val() + selectVal);
+    }
+  //设置span中的值
+	function setSpanHtml(obj,selectVal){
+    	if(!selectVal){
+    		selectVal = $(obj).find("option:selected").text();
+    	}
+		$(obj).parent().find('div>span').html(selectVal);
 	}
 </script>
