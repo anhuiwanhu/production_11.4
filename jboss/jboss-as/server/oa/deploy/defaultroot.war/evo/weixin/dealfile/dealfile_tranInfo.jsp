@@ -55,8 +55,10 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
             </div>
            	<c:if test="${not empty docXml}">
 			<x:parse xml="${docXml}" var="doc"/>
+			<c:set var="isMustBack"><x:out select="$doc//isMustBack/text()"/></c:set>
 			<form id="sendForm" class="dialog" action="/defaultroot/workflow/updateprocess2.controller" method="post">
 				<input type="hidden" value="${param.workId}" name="workId"/>
+				<input type="hidden" value="${isMustBack}" name="isMustBack"/>
 				<table class="wh-table-edit">
 					<tr>
 						<th>选择办理人<i class="fa fa-asterisk"></i>：</th>
@@ -118,6 +120,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 	
 	function onSubmit(){ 
 	    var userId = '<%=userId%>';
+	    var isMustBack='${isMustBack}';
 		var cbUserId =$("#chooseUserId").val();
 		if(cbUserId == ""){
 			alert("办理人不能为空！");

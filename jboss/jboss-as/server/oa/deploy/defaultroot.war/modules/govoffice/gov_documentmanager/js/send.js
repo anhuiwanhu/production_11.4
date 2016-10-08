@@ -1511,7 +1511,7 @@ function cmdReadtext(){
             "&EditType=1&UserName="+$("*[name='UserName']").val()+"&CanSave=1&showTempSign=0&showTempHead=1&ShowSign=0&showSignButton=1&showTransPDF=1&showEditButton=1&saveDocFile=1&moduleType=govdocument&textContent=-1&FileType="+$("*[name='documentWordType']").val();
     
 
-	openWin({url:url,width:620,height:350,winName:'afadfaf'});
+	openWin({url:url,width:620,height:350});
 
 	//var url = "/defaultroot/public/iWebOfficeSign/DocumentEdit.jsp?RecordID="+$("*[name='RecordID']").val() +"&EditType=1&UserName="+$("*[name='UserName']").val()+"&ShowSign=0&CanSave=1";
 	//openWin({url:url,width:620,height:350,winName:'sendtoother'});

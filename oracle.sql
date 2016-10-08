@@ -450,3 +450,16 @@ alter table oa_mailinterior add cloudcontrol number(1);
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.21_SP_20160813','11.4.0.21',sysdate);
 commit;
+
+
+
+
+
+alter table union_task  modify  REMIDTYPE VARCHAR2(200);
+commit;
+insert into ez_secu_pagelist (secu_url, client_url, list_type, createtime) values ('/modules/subsidiary/ezcard/ordersIfExistResult.jsp', '', 1, sysdate);
+commit;
+insert into ez_secu_pagelist (secu_url, client_url, list_type, createtime) values ('/modules/subsidiary/ezcard/ordersIfExistResult.jsp', '', 3, sysdate);
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.22_SP_20160827','11.4.0.22',sysdate);
+commit;

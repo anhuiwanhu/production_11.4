@@ -38,6 +38,7 @@ String worktitle = request.getParameter("worktitle")==null?"":request.getParamet
 String workcurstep = request.getParameter("workcurstep")==null?"":request.getParameter("workcurstep");
 String worksubmittime = request.getParameter("worksubmittime")==null?"":request.getParameter("worksubmittime");
 String workStatus = request.getParameter("workStatus")==null?"":request.getParameter("workStatus");
+String userId = session.getAttribute("userId").toString();
 %>
 <body>
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
@@ -74,6 +75,10 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 				<!--gateType  XOR或者空时：多个活动选一个  XAND：多个活动都选  XX：多个活动选择多个-->
 				<c:set var="gateType"><x:out select="$doc//gateType/text()"/></c:set>
 				<input type="hidden" id="gateType" name="gateType" value="${gateType}"/>
+				<c:set var="workType">${workType}</c:set>
+				<input type="hidden" id="workType" name="workType" value="${workType}"/>
+				<c:set var="comment_input">${comment_input}</c:set>
+				<input type="hidden" id="comment_input" name="comment_input" value="${comment_input}"/>
 	            <table class="wh-table-edit">
 		            <c:choose>
 						<c:when test="${gateType == 'XX'}">
@@ -295,6 +300,51 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 							</tr>
 						</c:otherwise>
 					</c:choose>
+					<c:if test="${workType == '0'}">
+					<x:forEach select="$doc//nextActivityList" var="n" varStatus="statusc">
+						<c:set var="id"><x:out select="$n//id/text()"/></c:set>
+						<c:set var="scopeType"><x:out select="$n/scopeType/text()"/></c:set>
+						<%--处理办理人只有一个人的情况--%>
+						<%
+						int scopeIdLength =0;
+						%>
+						<c:set var="scopeId"><x:out select="$n/scopeId/text()"/></c:set>
+						<c:if test="${scopeId !=null && scopeId !=''}">
+						<%
+						String scopeId =(String)pageContext.getAttribute("scopeId");
+						if(scopeId.indexOf("*") <0 && scopeId.indexOf("@") <0){
+							scopeId =scopeId.replaceAll("\\$",",");
+							scopeId =scopeId.replaceAll(",,",",");
+							scopeId =scopeId.substring(scopeId.indexOf(",")+1, scopeId.lastIndexOf(","));
+							String[] scopeIds =scopeId.split(",");
+							if(scopeIds !=null && scopeIds.length >0){
+								scopeIdLength =scopeIds.length;
+							}
+						}
+						%>
+						</c:if>
+						<c:set var="scopeIdLength" value="<%=scopeIdLength %>"></c:set>
+						<%--处理办理人只有一个人的情况--%>
+					<tr>
+						<th>下一办理人<i class="fa fa-asterisk"></i>：</th>
+						<td>
+							<c:set var="scopeType"><x:out select="$n//scopeType/text()"/></c:set>
+							<x:if select="$n//scopeType/text() = 'default_users' ">
+								<input type="hidden" id='chooseUserId' name='chooseUserId' value='<x:out select="$n//scopeId/text()"/>' />
+								<input type="text"   readonly="readonly" id='chooseUserName' name='chooseUserName' value='<x:out select="$n//scopeName/text()"/>' class="edit-ipt-r" />
+							</x:if>
+							<x:if select="$n//scopeType/text() = 'scopes_user' ">
+								<input type="hidden" id='chooseUserId' name='chooseUserId' value='' />
+								<input placeholder="请选择" type="text"   readonly="readonly" id='chooseUserName' name='chooseUserName' value='' class="edit-ipt-r edit-ipt-arrow" onclick='selectUser("1","chooseUserName","chooseUserId","<x:out select="$n//scopeId/text()"/>");'/>
+							</x:if>
+							<c:if test="${scopeType != 'scopes_user' && scopeType != 'default_users' }">
+								<input type="hidden" id='chooseUserId' name='chooseUserId' value='' />
+								<input placeholder="请选择" type="text"   readonly="readonly" id='chooseUserName' name='chooseUserName' value='' class="edit-ipt-r edit-ipt-arrow" onclick='selectUser("1","chooseUserName","chooseUserId","<x:out select="$n//scopeId/text()"/>");'/>
+							</c:if>
+						</td>
+					</tr>
+					</x:forEach>
+				</c:if>
 	            </table>
 			</div>
 		</form>
@@ -305,7 +355,14 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
     <div class="wh-wrapper">
         <div class="wh-container">
             <div class="wh-footer-btn">
+			<c:if test="${workType != '0'}">
                 <a href="javascript:onSubmit();" class="fbtn-matter col-xs-6 fbtn-single"><i class="fa fa-check-square"></i>发送</a>
+            </c:if>
+			<!--随机流程-->
+			<c:if test="${workType == '0'}">
+                <a href="javascript:send();" class="fbtn-matter col-xs-5"><i class="fa fa-check-square"></i>发送</a>
+				<a href="javascript:onSubmit();" class="fbtn-matter col-xs-5"><i class="fa fa-check-square"></i>结束流程</a>
+            </c:if>
             </div>
         </div>
     </div>
@@ -589,4 +646,46 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 		$(this).parent().find(">a").find('span').html(value);
 		$(this).removeClass("open"); 
 	})
+    
+	//随机流程发送
+	function send(){ 
+	    var userId = '<%=userId%>';
+	    var isMustBack='${isMustBack}';
+		var cbUserId =$("#chooseUserId").val();
+		if(cbUserId == ""){
+			alert("办理人不能为空！");
+			return false;
+		}
+		if(cbUserId.indexOf(userId+',')>-1){
+			alert('办理人中不能包含自己！');
+			return false;
+		}
+		loadPage();
+		var url ='/defaultroot/workflow/workflowTran.controller';
+		var openUrl ='/defaultroot/dealfile/list.controller?workStatus=<%=workStatus%>';
+		$.ajax({
+			type: 'POST',
+			url: url,
+			data: $('#sendForm').serialize(),
+			async: true,
+			dataType: 'text',
+			success: function(data){
+				if(dialog){
+					dialog.close();
+				}
+				var json = eval("("+data+")");
+				if(json!=null){
+					if(json.result == 'success'){
+						alert("发送成功！");
+						window.location.href =openUrl;
+					}else{
+						alert("发送失败！");
+					}
+				}
+			},
+			error: function(){
+				alert("异常！");
+			}
+		});
+	}
 </script>

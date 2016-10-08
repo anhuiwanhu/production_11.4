@@ -310,10 +310,10 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 									<%--金额 301--%>
 									<c:when test="${showtype =='301' && readwrite =='1'}">
 										<c:if test="${fieldtype == '1000000' || fieldtype == '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeypress="this.value=this.value.replace(/[^01]/g, '')"  value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>')"  value='<x:out select="$fd/value/text()"/>' />
 										</c:if>
 										<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>')" value='<x:out select="$fd/value/text()"/>' />
 										</c:if>
 									</c:when>
 									<%--批示意见 401--%>
@@ -732,5 +732,21 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
     	}
 		$(obj).parent().find('div>span').html(selectVal);
 	}    
+    
+	//金额大写
+	function changeMoney(id,name){
+		var val =document.getElementById(id).value;
+		if(isNaN(val)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
+		var cid = id.replace("$","");
+        var valRmb = changeNumMoneyToChinese(val);
+		if($("#" + cid).val() != 'undefined'){
+			$("#" + cid).val(valRmb);				
+		}
+	
+	}
     
 </script>

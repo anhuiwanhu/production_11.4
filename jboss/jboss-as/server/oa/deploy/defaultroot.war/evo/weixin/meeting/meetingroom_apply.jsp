@@ -175,7 +175,7 @@
 
 	function checkForm(){
 		flag = 1;
-		var startDate=$("#startDate").val();
+		var startDate=$("#startHour").val();
 		var startHour=$("#startHour").val();
 		var endDate=$("#endDate").val();
 		var endHour=$("#endHour").val();
@@ -218,6 +218,27 @@
 		    { 
 				alert("开始日期不能早于当前日期！"); 
 				return false; 
+		    }
+		    
+		    var startArr = startHour.split(':');
+		    var sum1 = '';
+		    for (var i = 0; i < startArr.length; i++) {
+		    	sum1 = startArr[0]*60*60+startArr[1]*60;
+		    }
+		    
+		    var endArr = endHour.split(':'); 
+		    var sum2 = '';
+		    for (var i = 0; i < endArr.length; i++) {
+		    	sum2 = endArr[0]*60*60+endArr[1]*60;
+		    }
+		    
+		    if(sum1 > sum2){
+		    	alert("结束时间不能早于开始时间！");
+		    	return false; 
+		    }
+		    if(sum1 == sum2){
+		    	alert("开始时间不能和结束时间相同！");
+		    	return false; 
 		    }
 		}
         return true;

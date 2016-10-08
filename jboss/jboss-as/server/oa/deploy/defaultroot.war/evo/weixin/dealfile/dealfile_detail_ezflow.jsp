@@ -71,6 +71,8 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 												String saveFileNames ="";
 												String moduleName ="customform";
 												String aValues =(String)pageContext.getAttribute("values");
+												aValues=aValues.replace("&amp;","&");
+												System.out.println("aValues----------------->"+aValues);
 												String[] aval  = aValues.split(";");
 												String[] aval0=new String[0];
 												String[] aval1=new String[0];
@@ -152,6 +154,26 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										<c:when test="${showtype =='401' }">
 											<x:forEach select="$fd//dataList/comment" var="ct" >
 												<x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)
+												<c:if test="${not empty accDocXml}">
+				           								<x:parse xml="${accDocXml}" var="accdoc"/>
+				           								<x:forEach select="$accdoc//acc" var="ac" >
+				           									<c:set var="showAc"><x:out select="$ac//accName/text()"/></c:set>
+				           									<c:set var="saveAc"><x:out select="$ac//accSaveName/text()"/></c:set>
+															<%
+																String realFileNames1 =(String)pageContext.getAttribute("showAc");
+																String saveFileNames1 =(String)pageContext.getAttribute("saveAc");
+																String moduleName1 ="workflow_acc";
+																realFileNames1 =realFileNames1.substring(0,realFileNames1.length());
+																saveFileNames1 =saveFileNames1.substring(0,saveFileNames1.length());
+																
+															%>
+															<jsp:include page="../common/include_download.jsp" flush="true">
+																	<jsp:param name="realFileNames"	value="<%=realFileNames1%>" />
+																	<jsp:param name="saveFileNames" value="<%=saveFileNames1%>" />
+																	<jsp:param name="moduleName" value="<%=moduleName1%>" />
+															</jsp:include>
+														</x:forEach>
+												</c:if>
 											</x:forEach>
 										</c:when>
 		
@@ -207,6 +229,26 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<th><x:out select="$ct//step/text()"/>：</th>
 								<td>
 									<x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)
+									<c:if test="${not empty accDocXml}">
+	           								<x:parse xml="${accDocXml}" var="accdoc"/>
+	           								<x:forEach select="$accdoc//acc" var="ac" >
+	           									<c:set var="showAc"><x:out select="$ac//accName/text()"/></c:set>
+	           									<c:set var="saveAc"><x:out select="$ac//accSaveName/text()"/></c:set>
+												<%
+													String realFileNames1 =(String)pageContext.getAttribute("showAc");
+													String saveFileNames1 =(String)pageContext.getAttribute("saveAc");
+													String moduleName1 ="workflow_acc";
+													realFileNames1 =realFileNames1.substring(0,realFileNames1.length());
+													saveFileNames1 =saveFileNames1.substring(0,saveFileNames1.length());
+													
+												%>
+												<jsp:include page="../common/include_download.jsp" flush="true">
+														<jsp:param name="realFileNames"	value="<%=realFileNames1%>" />
+														<jsp:param name="saveFileNames" value="<%=saveFileNames1%>" />
+														<jsp:param name="moduleName" value="<%=moduleName1%>" />
+												</jsp:include>
+											</x:forEach>
+									</c:if>
 								</td>
 							</tr>
 						</x:forEach>

@@ -40,6 +40,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 <c:set var="isEzFlow"><x:out select="$doc//workInfo/isEzFlow/text()"/></c:set>
 <c:set var="processCommentAcc"><x:out select="$doc//workInfo/processCommentAcc/text()"/></c:set>
 <c:set var="isDossier"><x:out select="$doc//workInfo/isDossier/text()"/></c:set>
+<c:set var="trantype"><x:out select="$doc//workInfo/trantype/text()"/></c:set>
 <c:if test="${not empty EmpLivingPhoto}"><c:set var="EmpLivingPhoto">/defaultroot/upload/peopleinfo/${EmpLivingPhoto}</c:set></c:if>
 <form id="sendForm" class="dialog" action="/defaultroot/workflow/sendnew.controller" method="post">
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
@@ -69,9 +70,18 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 							<tr>
 			                    <th>
 				                    <x:out select="$fd/name/text()"/>
-				                    <c:if test="${mustfilled == '1' && readwrite == '1'}">
-				                    	<i class="fa fa-asterisk"></i>
-				                    </c:if>：
+				                    <c:choose>
+										<c:when test="${showtype != '401' }">
+											<c:if test="${mustfilled == '1' && readwrite == '1'}">
+												<i class="fa fa-asterisk"></i>
+											    </c:if>：
+										</c:when>
+										<c:otherwise>
+											<c:if test="${commentmustnonull == 'true' && readwrite == '1'}">
+												<i class="fa fa-asterisk"></i>
+											</c:if>：
+										</c:otherwise>
+									</c:choose>
 			                    </th>
 							<td style="text-align:right">
 							<c:choose>
@@ -186,16 +196,20 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										String saveFileNames ="";
 										String moduleName ="customform";
 										String aValues =(String)pageContext.getAttribute("values");
+										aValues=aValues.replace("&amp;","&");
+										System.out.println("aValues----------------->"+aValues);
 										String[] aval  = aValues.split(";");
 										String[] aval0=new String[0];
 										String[] aval1=new String[0];
 										if(aval[0] != null && aval[0].endsWith(",")) {
 											saveFileNames =aval[0].substring(0, aval[0].length() -1);
 											saveFileNames =saveFileNames.replaceAll(",","|");
+											System.out.println("saveFileNames----------------->"+saveFileNames);
 										}
 										if(aval[1] != null && aval[1].endsWith(",")) {
 											realFileNames =aval[1].substring(0, aval[1].length() -1);
 											realFileNames =realFileNames.replaceAll(",","|");
+											System.out.println("realFileNames----------------->"+realFileNames);
 										}
 										%>
 										<jsp:include page="../common/include_download.jsp" flush="true">
@@ -299,10 +313,10 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<%--金额 301--%>
 								<c:when test="${showtype =='301' && readwrite =='1'}">
 									<c:if test="${fieldtype == '1000000' || fieldtype == '1000001'  }">
-										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="number" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="number" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>')" value='<x:out select="$fd/value/text()"/>' />
 									</c:if>
 									<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
+										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>')" value='<x:out select="$fd/value/text()"/>' />
 									</c:if>
 								</c:when>
 								<%--批示意见 401--%>
@@ -334,6 +348,26 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 													<jsp:param name="saveFileNames" value="<%=saveFileNames%>" />
 													<jsp:param name="moduleName" value="<%=moduleName%>" />
 											</jsp:include>
+										</c:if>
+										<c:if test="${not empty accDocXml}">
+		           								<x:parse xml="${accDocXml}" var="accdoc"/>
+		           								<x:forEach select="$accdoc//acc" var="ac" >
+		           									<c:set var="showAc"><x:out select="$ac//accName/text()"/></c:set>
+		           									<c:set var="saveAc"><x:out select="$ac//accSaveName/text()"/></c:set>
+													<%
+														String realFileNames1 =(String)pageContext.getAttribute("showAc");
+														String saveFileNames1 =(String)pageContext.getAttribute("saveAc");
+														String moduleName1 ="workflow_acc";
+														realFileNames1 =realFileNames1.substring(0,realFileNames1.length());
+														saveFileNames1 =saveFileNames1.substring(0,saveFileNames1.length());
+														
+													%>
+													<jsp:include page="../common/include_download.jsp" flush="true">
+															<jsp:param name="realFileNames"	value="<%=realFileNames1%>" />
+															<jsp:param name="saveFileNames" value="<%=saveFileNames1%>" />
+															<jsp:param name="moduleName" value="<%=moduleName1%>" />
+													</jsp:include>
+												</x:forEach>
 										</c:if>
 									</x:forEach>
 									<c:if test="${readwrite =='1' }">
@@ -505,7 +539,27 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										<jsp:param name="saveFileNames" value="<%=saveFileNames%>" />
 										<jsp:param name="moduleName" value="<%=moduleName%>" />
 								</jsp:include>
-								</c:if>						
+								</c:if>
+								<c:if test="${not empty accDocXml}">
+           								<x:parse xml="${accDocXml}" var="accdoc"/>
+           								<x:forEach select="$accdoc//acc" var="ac" >
+           									<c:set var="showAc"><x:out select="$ac//accName/text()"/></c:set>
+           									<c:set var="saveAc"><x:out select="$ac//accSaveName/text()"/></c:set>
+											<%
+												String realFileNames1 =(String)pageContext.getAttribute("showAc");
+												String saveFileNames1 =(String)pageContext.getAttribute("saveAc");
+												String moduleName1 ="workflow_acc";
+												realFileNames1 =realFileNames1.substring(0,realFileNames1.length());
+												saveFileNames1 =saveFileNames1.substring(0,saveFileNames1.length());
+												
+											%>
+											<jsp:include page="../common/include_download.jsp" flush="true">
+													<jsp:param name="realFileNames"	value="<%=realFileNames1%>" />
+													<jsp:param name="saveFileNames" value="<%=saveFileNames1%>" />
+													<jsp:param name="moduleName" value="<%=moduleName1%>" />
+											</jsp:include>
+										</x:forEach>
+								</c:if>
 								</td>
 							</tr>
 						</x:forEach>
@@ -566,6 +620,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 					<input type="hidden" name="worksubmittime" value="${worksubmittime}">
 					<input type="hidden" name="workStatus" value="0">
 					<input type="hidden" name="isDossier" value="${isDossier }">
+					<input type="hidden" name="worktype"  value='<x:out select="$doc2//worktype/text()"/>' />
             	</c:if>
         </div>
     </article>
@@ -631,6 +686,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 	<input type="hidden" name="worktitle" value="${worktitle}">
 	<input type="hidden" name="workcurstep" value="${workcurstep}">
 	<input type="hidden" name="worksubmittime" value="${worksubmittime}">
+	<input type="hidden" name="trantype" value="${trantype}">
 	<input type="hidden" name="workStatus" value="0">
 </form>
 <!----------转办结束---------->
@@ -1041,4 +1097,20 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 		});
 		//window.open('/defaultroot/dealfile/subprocess.controller?workId='+workId);
 	}*/
+	
+	//金额大写
+	function changeMoney(id,name){
+		var val =document.getElementById(id).value;
+		if(isNaN(val)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
+		var cid = id.replace("$","");
+        var valRmb = changeNumMoneyToChinese(val);
+		if($("#" + cid).val() != 'undefined'){
+			$("#" + cid).val(valRmb);				
+		}
+	
+	}
 </script>

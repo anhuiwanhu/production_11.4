@@ -66,7 +66,7 @@
 <c:if test="${empty docXml}">
 <div class="wh-article-lists">
    <ul id="content_ul">
-		<li><p><a>系统没有查询到会务流程列表！</a></p></li>
+		<li><p><a>暂无可用的会议申请ezFLOW流程！</a></p></li>
    </ul>
 </div>
 </c:if>
