@@ -85,6 +85,13 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 									%>
 							        <%=newcontent%>
 				            	</c:when>
+				            	<c:when test="${informationType =='2'}">
+				            		<%
+			                        String linkcontent = StringUtils.replace(informationContent,"&nbsp;","");
+				            		linkcontent = linkcontent.replace(" ", "");
+									%>
+							        <a href="<%=linkcontent%>"><%=linkcontent%></a>
+				            	</c:when>
 				            	<c:when test="${informationType =='3'}">
 								    <%
 									informationContent = informationContent.replace("<![CDATA[","").replace("]]","");
@@ -284,15 +291,27 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 		            <div class="wh-footer-btn">
 						<c:choose>
 							<c:when test="${param.workStatus eq '0'}">
+								<div class="fbtn-more-nav">
+				                    <div class="fbtn-more-nav-inner">
+				                    	<c:if test="${fn:indexOf(modibutton,'Tran') >0}">
+				                        	<a href="javascript:$('#tranInfoForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-share"></i>转办</a>
+				                        </c:if>
+				                        <c:if test="${fn:indexOf(modibutton,'AddSign') >0}">
+				                        	<a href="javascript:$('#addSignForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-plus"></i>加签</a>
+				                        </c:if>
+				                    </div>
+				                    <div class="fbtn-more-nav-arrow"></div>
+				                </div>
 				                <c:choose>
 					                <c:when test="${hasbackbutton == 'true' }">
-						               	<a href="javascript:$('#backForm').submit();" class="fbtn-cancel col-xs-6"><i class="fa fa-arrow-left"></i>退回</a>
-						                <a href="javascript:$('#sendForm').submit();" class="fbtn-matter col-xs-6"><i class="fa fa-check-square"></i>发送</a>
+						               	<a href="javascript:$('#backForm').submit();" class="fbtn-cancel col-xs-5"><i class="fa fa-arrow-left"></i>退回</a>
+						                <a href="javascript:$('#sendForm').submit();" class="fbtn-matter col-xs-5"><i class="fa fa-check-square"></i>发送</a>
 					                </c:when>
 					                <c:otherwise>
-						                <a href="javascript:$('#sendForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-check-square"></i>发送</a>
+						                <a href="javascript:$('#sendForm').submit();" class="fbtn-matter col-xs-10"><i class="fa fa-check-square"></i>发送</a>
 					                </c:otherwise>
 				                </c:choose>
+				                <span id="fbtnMore" class="fbtn-matter col-xs-2"><i class="fa fa-bars"></i></span>
 							</c:when>
 							<c:when test="${param.workStatus eq '2'}">
 								<a href="javascript:workfolwSend('${wfworkId}');" class="fbtn-matter col-xs-6 fbtn-single"><i class="fa fa-check-square"></i>发送</a>
@@ -386,6 +405,24 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 		<input type="hidden" name="isForkTask" value='<x:out select="$workInfoDoc//workInfo/isForkTask/text()"/>'>
 		<input type="hidden" name="curCommField" value='<x:out select="$workInfoDoc//workInfo/commentField/text()"/>' />
 	</form>
+	<!----------转办开始---------->
+	<form id="tranInfoForm" class="dialog" action="/defaultroot/dealfile/tranInfo.controller?workId=${wfworkId}" method="post">
+		<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
+		<input type="hidden" name="worktitle" value="${title}">
+		<input type="hidden" name="workcurstep" value="${workcurstep}">
+		<input type="hidden" name="worksubmittime" value="${worksubmittime}">
+		<input type="hidden" name="workStatus" value="0">
+	</form>
+	<!----------转办结束---------->
+	<!----------加签开始---------->
+	<form id="addSignForm" class="dialog" action="/defaultroot/dealfile/addSign.controller?workId=${wfworkId}" method="post">
+		<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
+		<input type="hidden" name="worktitle" value="${title}">
+		<input type="hidden" name="workcurstep" value="${workcurstep}">
+		<input type="hidden" name="worksubmittime" value="${worksubmittime}">
+		<input type="hidden" name="workStatus" value="0">
+	</form>
+	<!----------加签结束---------->
 </c:if>
 </body>
 </html>
@@ -411,6 +448,17 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
     }
 
     $(function(){
+    	//更多菜单展开
+        var fbtnMore = $("#fbtnMore");
+        var fbtnMoreCon = $(".fbtn-more-nav");
+        $(".wh-section").click(function(){
+            fbtnMoreCon.hide();
+        })
+        fbtnMoreCon.hide();
+        fbtnMore.click(function(){
+            fbtnMoreCon.toggle();
+        });
+        
         //演示1
         $("#demo-1").tap(function(){
             $.dialog({

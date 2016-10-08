@@ -103,17 +103,17 @@ String relactionId =(String)(request.getAttribute("relactionId")==null? "empId":
 					<td width="30%">
 					</td>
 				</tr>
-				<tr style="display:none">
+				<tr style="display:">
 					<td width="4%"></td>
 					<td width="20%">  
 						设置关联ID ：
 					</td>
 					<td width="30%">
 						
-						<input type="radio" value="empId" id="relactionId1" name="relactionId"  <%if("empId".equals(relactionId)){%>checked<%}%>>empId&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" value="userAccount" id="relactionId2" name="relactionId"  <%if("userAccount".equals(relactionId)){%>checked<%}%>>OA账号&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" value="userSimpleName" id="relactionId3" name="relactionId"  <%if("userSimpleName".equals(relactionId)){%>checked<%}%>>用户简码&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" value="empIdCard" id="relactionId4" name="relactionId"  <%if("empIdCard".equals(relactionId)){%>checked<%}%>>身份证号 
+						<input type="radio" value="empId" id="relactionId1" name="relactionId"  <%if("empId".equals(relactionId)){%>checked<%}%>>&nbsp;empId&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" value="userAccount" id="relactionId2" name="relactionId"  <%if("userAccount".equals(relactionId)){%>checked<%}%>>&nbsp;OA账号(不支持中文)&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" value="userSimpleName" id="relactionId3" name="relactionId"  <%if("userSimpleName".equals(relactionId)){%>checked<%}%>>&nbsp;用户简码&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" value="empIdCard" id="relactionId4" name="relactionId"  <%if("empIdCard".equals(relactionId)){%>checked<%}%>>&nbsp;身份证号 
 					</td>
 					<td width="43%">
 					</td>

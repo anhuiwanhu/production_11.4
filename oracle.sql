@@ -282,3 +282,13 @@ commit;
 
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.12_SP_20160505','11.4.0.12',sysdate);
 commit;
+
+
+
+
+
+alter table SYS_CORP_SET add last_relactionId varchar2(20) ;
+comment on column SYS_CORP_SET.last_relactionId  is '最近一次同步所使用的关联ID';
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.13_SP_20160510','11.4.0.13',sysdate);
+commit;

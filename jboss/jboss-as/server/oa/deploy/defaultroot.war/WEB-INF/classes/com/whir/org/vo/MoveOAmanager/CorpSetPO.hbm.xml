@@ -12,5 +12,6 @@
         <property name="token" column="token" />
         <property name="encodingAESKey" column="encodingAESKey" />
         <property name="relactionId" column="relactionId" />
+        <property name="last_relactionId" column="last_relactionId" />
     </class>
 </hibernate-mapping>

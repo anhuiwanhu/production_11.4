@@ -318,3 +318,12 @@ go
 
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.12_SP_20160505','11.4.0.12',getdate());
 go
+
+
+
+
+
+alter table SYS_CORP_SET add last_relactionId varchar(20) ;
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.13_SP_20160510','11.4.0.13',getdate());
+go

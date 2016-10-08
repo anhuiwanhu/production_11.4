@@ -89,7 +89,7 @@ String expNodeCode = request.getParameter("expNodeCode");
 			id++;
 			}
 			%>
-			,{ id:1000000003, pId:1, name:"按状态分类显示", url:"", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000003, pId:-11, name:"按状态分类显示", url:"", target:'mainFrame',iconSkin:"fa fa"}
 			,{ id:10000000031, pId:1000000003, name:"未处理收文", url:"<%=rootPath%>/GovRecvDocSet!isNotHandle.action", target:'mainFrame',iconSkin:"fa fa"}
 			,{ id:10000000032, pId:1000000003, name:"已处理收文", url:"<%=rootPath%>/GovRecvDocSet!isHandle.action", target:'mainFrame',iconSkin:"fa fa"}
 			,{ id:10000000033, pId:1000000003, name:"无需处理收文", url:"<%=rootPath%>/GovRecvDocSet!notHandle.action", target:'mainFrame',iconSkin:"fa fa"}

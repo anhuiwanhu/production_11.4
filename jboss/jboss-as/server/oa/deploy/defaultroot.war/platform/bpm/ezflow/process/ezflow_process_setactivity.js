@@ -302,7 +302,7 @@ function save(type) {
 	if(nodeNeedAgentInput.length > 0) {
 		model.setAttribute("whir:nodeNeedAgent", nodeNeedAgentInput[0].value);
 	}else{
-		model.removeAttribute("whir:nodeNeedAgent");
+		model.setAttribute("whir:nodeNeedAgent", false);
 	}
 
     //办理人设置审批意见查看范围
@@ -541,7 +541,7 @@ function save(type) {
 			    extension.set("workAddressType",$("select[name='workAddressType']")[0].value);
 
 
-				//whir:nodeNeedAgent		是否允许代办   T/F
+				//participantGroupNeedAllSend		默认全部发送
 				var participantGroupNeedAllSendInput = $("input[name='participantGroupNeedAllSend']:checked");
 				if(participantGroupNeedAllSendInput.length > 0) {
 					 extension.set("groupNeedAllSend","true");
@@ -1061,10 +1061,19 @@ function initData(id) {
 
 	//whir:nodeNeedAgent		是否允许代办   T/F
 	var nodeNeedAgent = model.getAttribute("whir:nodeNeedAgent");
-	if(nodeNeedAgent != null) {
+	if(nodeNeedAgent =='true' || nodeNeedAgent ==true || nodeNeedAgent =='false' || nodeNeedAgent ==false) {
 		var nodeNeedAgentInput = $("input[name='nodeNeedAgent']");
 		if(nodeNeedAgentInput.length > 0) {
-			nodeNeedAgentInput[0].checked = nodeNeedAgent;
+			if(nodeNeedAgent =='true' || nodeNeedAgent ==true){
+				nodeNeedAgentInput[0].checked = true;
+			}else{
+				nodeNeedAgentInput[0].checked = false;
+			}
+		}
+	}else{
+		var nodeNeedAgentInput = $("input[name='nodeNeedAgent']");
+		if(nodeNeedAgentInput.length > 0) {
+			nodeNeedAgentInput[0].checked = true;
 		}
 	}
     
