@@ -338,3 +338,12 @@ update ezoffice.HR_RPT_INIT_FIELD set VAL_SOURCE='ezoffice.FN_DATEDIFF_SYS(''mon
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.14_SP_20160519','11.4.0.14',getdate());
 go
+
+
+
+
+
+delete from  ez_secu_pagelist  where    list_type=3  and   secu_url='/officeserverservlet';
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.15_SP_20160529','11.4.0.15',getdate());
+go

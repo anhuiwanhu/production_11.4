@@ -299,3 +299,12 @@ commit;
 
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.14_SP_20160519','11.4.0.14',sysdate);
 commit;
+
+
+
+
+
+delete from  ez_secu_pagelist  where    list_type=3  and   secu_url='/officeserverservlet';
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.15_SP_20160529','11.4.0.15',sysdate);
+commit;
