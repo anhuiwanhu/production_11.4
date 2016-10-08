@@ -21,15 +21,33 @@
     <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/alert/zepto.alert.js"></script>
     <script type="text/javascript" src="/defaultroot/evo/weixin/js/common.js"></script>
 </head>
+<%
+String flagChannelId = request.getParameter("channelId")==null?"":request.getParameter("channelId");
+String flagChannelName = request.getParameter("channelName")==null?"":request.getParameter("channelName");
+String title = request.getParameter("title")==null?"":request.getParameter("title");
+%>
 <body>
 <section id="sectionScroll" class="wh-section wh-section-topstatic">
     <header class="wh-search">
         <div class="wh-container">
-            <form method="post" action="/defaultroot/information/infoList.controller" id="searchForm">
-            	<input type="hidden" name="searchChannel" value="${channelId}" id="channelId"/>
-                <input type="search" placeholder="搜索信息标题" name="title" value="${title}"/>
-                <i class="fa fa-search"></i>
-            </form>
+		<c:set var="flagChannelId"><%=flagChannelId%></c:set>
+		<c:set var="flagChannelName"><%=flagChannelName%></c:set>
+		<c:set var="title"><%=title%></c:set>
+			<c:choose>  
+  				   <c:when test="${flagChannelId ==''}">
+						<form method="post" action="/defaultroot/information/allChannelList.controller" id="searchForm">
+							<input type="hidden" name="searchChannel" value="${channelId}" id="channelId"/>
+							<input type="search" placeholder="搜索栏目标题" name="channelName" value=""/>
+							<i class="fa fa-search"></i>
+						</form>
+				   </c:when>  
+				   <c:otherwise> 
+						<form method="post" id="searchForm" onsubmit="searchTitle()">
+							<input type="search" placeholder="搜索信息标题" name="title" value="${title}"  id="search_title"/>
+							<i class="fa fa-search"></i>
+						</form>
+				   </c:otherwise>  
+			</c:choose>  
         </div>
     </header>
     <aside class="wh-category wh-category-info">
@@ -97,11 +115,15 @@
 	var pagerOffset = "0";
 	var channelId = "";
 	var title = "";
-	var channelType = "";
+	var channelType = "0";
 	var userDefine = "";
+	function searchTitle(){
+		 loadInfoList();
+	}
 	$(function(){
 		channelId = "${channelId}";
-		title = $("#search_title").val();
+		//title = $("#search_title").val();
+		title = "${title}";
 		if(channelId != "0"){
 			loadInfoList();
 		}

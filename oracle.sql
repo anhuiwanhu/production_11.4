@@ -166,3 +166,87 @@ commit;
 
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.07_SP_20160408','11.4.0.07',sysdate);
 commit;
+
+
+
+
+
+create table ls_oa_mail_tj as
+select  a.emp_id,count(*) cnt
+from OA_MAIL_USER a 
+where a.notread = 1 and a.mailstatus in(0,1,3,5)
+group by a.emp_id;
+commit;
+
+update oa_system_remind remind
+set remind.newmail = (
+select nvl(b.cnt,0)
+from ls_oa_mail_tj b
+where remind.userid = b.emp_id);
+commit;
+
+update oa_system_remind remind
+set remind.newmail = 0
+where remind.newmail is null;
+commit;
+
+drop table ls_oa_mail_tj;
+commit;
+
+
+CREATE OR REPLACE TRIGGER trigger_oa_mail_user
+AFTER DELETE OR INSERT OR UPDATE ON oa_mail_user
+for each row
+BEGIN
+IF INSERTING THEN
+--INSERT触发
+   IF :new.NOTREAD = 1 THEN
+      IF :new.mailstatus = 1 and :new.mail_id is not null THEN
+         update oa_system_remind t set t.newmail = t.newmail+1 where t.userid = :new.emp_id;
+      END IF;
+   END IF;
+ELSIF UPDATING THEN
+--UPDATE触发
+   IF :new.mailstatus = 4 THEN
+      IF :old.mailstatus != 4 and :old.mailstatus != 2 and :old.NOTREAD = 1 THEN
+         update oa_system_remind t set t.newmail = t.newmail-1 where t.userid = :new.emp_id;
+      END IF;
+   ELSIF :new.mailstatus != 4 THEN
+     IF :new.NOTREAD = 1 and :old.NOTREAD = 0 and :old.mailstatus != 2 THEN
+        update oa_system_remind t set t.newmail = t.newmail+1 where t.userid = :new.emp_id;
+     ELSIF :new.NOTREAD = 0 and :old.NOTREAD = 1 and :old.mailstatus != 2 THEN
+        update oa_system_remind t set t.newmail = t.newmail-1 where t.userid = :new.emp_id;
+     END IF;
+     --非删除操作，且文件未读
+     IF :new.NOTREAD = 1 and :old.NOTREAD = 1 THEN
+       --移动到废件箱-1
+       IF :old.mailstatus != 2 and :new.mailstatus = 2 THEN
+         update oa_system_remind t set t.newmail = t.newmail-1 where t.userid = :new.emp_id;
+       --移出废件箱+1
+       ELSIF :new.mailstatus != 2 and :old.mailstatus = 2 THEN
+         update oa_system_remind t set t.newmail = t.newmail+1 where t.userid = :new.emp_id;
+       END IF;
+     END IF;
+     
+   END IF;
+ELSIF DELETING THEN
+--DELETE触发
+   IF :old.NOTREAD = 1 and :old.mailstatus != 4 and :old.mailstatus != 2 THEN
+          update oa_system_remind t set t.newmail = t.newmail-1 where t.userid = :old.emp_id;
+   END IF;
+END IF;
+END;
+/
+
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='201610801920.png' where uploadType ='1080*1920';                       
+commit;         
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='20167201280.png' where uploadType ='720*1280';                     
+commit;         
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='2016480854.png' where uploadType = '480*845';                       
+commit;          
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='20167501334.png' where uploadType ='750*1334';                     
+commit;        
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='201612422208.png' where uploadType = '1242*2208';                       
+commit; 
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.08_SP_20160418','11.4.0.08',sysdate);
+commit;

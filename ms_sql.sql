@@ -167,3 +167,115 @@ go
 
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.07_SP_20160408','11.4.0.07',getdate());
 go
+
+
+
+
+
+select a.emp_id,count(*) cnt
+into ls_oa_mail_tj
+from OA_MAIL_USER a 
+where a.notread = 1 and a.mailstatus in(0,1,3,5)
+group by a.emp_id;
+go
+
+update oa_system_remind
+set newmail = (
+select cnt
+from ls_oa_mail_tj
+where userid = emp_id);
+go
+
+update oa_system_remind
+set newmail = 0
+where newmail is null;
+go
+
+
+drop table ls_oa_mail_tj;
+go
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [ezoffice].[trigger_oa_mail_user_update] on [ezoffice].[OA_MAIL_USER] after update
+as
+declare 
+@newNotread numeric(20),
+@newMailId numeric(20),
+@newMailStatus numeric(20),
+@oldNotread numeric(20),
+@oldMailId numeric(20),
+@oldMailStatus numeric(20),
+@newEmpId numeric(20),
+@oldEmpId numeric(20)
+select @newNotread=notread,@newMailId=mail_id,@newMailStatus=mailstatus,@newEmpid=emp_id from Inserted
+select @oldNotread=notread,@oldMailId=mail_id,@oldMailStatus=mailstatus,@oldEmpid=emp_id from Deleted
+if (@newNotread = 1 and @oldNotread = 0 and @oldMailStatus <> 2)
+	begin
+		if(@oldMailStatus = 1 and (@newMailStatus = 10 or @newMailStatus = 11))
+			update oa_system_remind set newmail = newmail-1 where userid = @newEmpid;
+		else
+		if(@newMailStatus = 1 and @oldMailStatus <> 1)
+			update oa_system_remind set newmail = newmail+1 where userid = @newEmpid;
+		else
+		if(@newMailStatus <> 1 and @oldMailStatus = 1)
+			update oa_system_remind set newmail = newmail-1 where userid = @newEmpid;
+		else
+		if(@oldNotread <> 1)
+			update oa_system_remind set newmail = newmail+1 where userid = @newEmpid;
+	end
+else
+if(@newNotread <> 1 and @oldNotread = 1 and @oldMailStatus <> 2)
+	update oa_system_remind set newmail = newmail-1 where userid = @newEmpid;
+else
+--未读邮件移入移出废件箱
+if(@newNotread = 1 and @oldNotread = 1 and @newMailStatus <> 4)
+	begin
+		--移动到废件箱
+		if(@oldMailStatus <> 2 and @newMailStatus = 2)
+			update oa_system_remind set newmail = newmail-1 where userid = @newEmpid;
+		else
+		--移出废件箱
+		if(@oldMailStatus = 2 and @newMailStatus <> 2)
+			update oa_system_remind set newmail = newmail+1 where userid = @newEmpid;
+	end
+else
+
+--修改部分
+if(@newMailStatus = 4 and @oldMailStatus <> 4 and @oldMailStatus <> 2 and @oldNotread = 1)
+	update oa_system_remind set newmail = newmail-1 where userid = @newEmpid;
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER trigger [ezoffice].[trigger_oa_mail_user_delete] on [ezoffice].[OA_MAIL_USER] after delete
+as
+declare 
+@oldNotread numeric(20),
+@oldMailId numeric(20),
+@oldMailStatus numeric(20),
+@oldEmpId numeric(20)
+select @oldNotread=notread,@oldMailId=mail_id,@oldMailStatus=mailstatus,@oldEmpid=emp_id from Deleted
+if @oldNotread = 1 and @oldMailStatus <> 4 and @oldMailStatus <> 2
+          update oa_system_remind set newmail = newmail-1 where userid = @oldEmpid;
+
+
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='201610801920.png' where uploadType ='1080*1920';                       
+go         
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='20167201280.png' where uploadType ='720*1280';                     
+go           
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='2016480854.png' where uploadType = '480*845';                       
+go           
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='20167501334.png' where uploadType ='750*1334';                     
+go         
+update OA_EVO_INFO set IMGUPLOADSHOWNAME = 'logo.png',IMGUPLOADSAVENAME='201612422208.png' where uploadType = '1242*2208';                       
+go
+
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.08_SP_20160418','11.4.0.08',getdate());
+go

@@ -1,0 +1,14 @@
+1、安装OpenOffice
+
+2、启动OpenOffice服务 
+
+3、路径：oa|deploy\defaultroot.war\WEB-INF\config
+   文件名：whconfig.xml
+   添加以下语句：
+
+  <openOfficeConfig>
+      <!-- openOffice服务IP配置 -->
+      <Property name="linkIp" value="192.168.0.28" />
+  </openOfficeConfig>
+
+  备注：value后引号内为实际ip的值
