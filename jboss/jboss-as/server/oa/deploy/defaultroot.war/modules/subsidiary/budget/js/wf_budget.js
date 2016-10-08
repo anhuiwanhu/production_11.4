@@ -199,6 +199,7 @@ function beforeSubmitBudgetEvent(){
 				
 				var curAmount='';
 				curAmount = $('input[name=' + $('input[name=budgetCost]').val().replace("$", "\\$") + ']')[k].value;
+				curAmount=curAmount.replace(/,/g,""); //2016-09-13 修改页面金额显示为6,6666会有问题 11.5.0.5补丁
 				//if(curAmount<0) {
 				//	whir_alert("预算金额不能小于0！",null,null);
 					//$('input[name=' + budgetCostObj[k].value + ']').focus();
@@ -233,6 +234,7 @@ function beforeSubmitBudgetEvent(){
 							subjectperiod =$('input[name=' + budgetYearMonth.replace("$", "\\$") + ']')[n].value;;
 							var curAmount='';
 							curAmount = $('input[name=' + budgetCost.replace("$", "\\$") + ']')[n].value;
+							curAmount=curAmount.replace(/,/g,""); //2016-09-13 修改页面金额显示为6,6666会有问题 11.5.0.5补丁
 							//if(curAmount<0) {
 								//whir_alert("预算金额不能小于0！",null,null);
 
@@ -333,11 +335,11 @@ function beforeSubmitBudgetEvent(){
 			}
 			
 			if(tip !=''){
-				if(tip.indexOf('没') >= 0){
+				/**if(tip.indexOf('没') >= 0){////2016-09-14 王建总说要改的
 					result = false;
-					whir_alert('您提交的:' + tip + '请申请预算!',null,null);
-				}
-				if(tip.indexOf('超') >= 0){
+					whir_alert('您提交的:' + tip + '请申请预算!',null,null);					 
+				}**/
+				//if(tip.indexOf('超') >= 0){
 					if(twoTip == '0' || outSectionIds != sectionIds || outSubjectids != subjectids ||outCurAmounts != curAmounts){
 					//twoTip = '1';
 					//outSectionIds = sectionIds;
@@ -349,7 +351,7 @@ function beforeSubmitBudgetEvent(){
 						whir_alert('您提交的:' + tip + '请申请预算!',null,null);
 					}
 					}
-				}
+				//}
 				
 			}
 		}

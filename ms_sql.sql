@@ -472,3 +472,10 @@ alter table union_task alter column REMIDTYPE VARCHAR(200);
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.23_SP_20160911','11.4.0.23',getdate());
 go
+
+
+
+
+
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.24_SP_20160914','11.4.0.24',getdate());
+go

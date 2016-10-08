@@ -758,11 +758,11 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 	function mainMath(obj){
 		var id=obj.id;
 		var objval =document.getElementById(id).value;
-        if(isNaN(objval)){
-			document.getElementById(id).value="";
-			alert("请输入数字");
-			return false;
-		}
+        //if(isNaN(objval)){
+			//document.getElementById(id).value="";
+			//alert("请输入数字");
+			//return false;
+		//}
 		var val = $('.edit-ipt-r.mainmath').attr("mainmathfun");//合计字段的公式
 		var mathId = $('.edit-ipt-r.mainmath').attr("id");
 		var str = val.replace(/\*/g, '|').replace(/\+/g, '|').replace(/\-/g, '|').replace(/\//g, '|').replace(/\(/g, '|').replace(/\)/g, '|');

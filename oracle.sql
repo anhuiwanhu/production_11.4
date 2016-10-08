@@ -472,3 +472,10 @@ alter table union_task modify REMIDTYPE VARCHAR2(200);
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.23_SP_20160911','11.4.0.23',sysdate);
 commit;
+
+
+
+
+
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.24_SP_20160914','11.4.0.24',sysdate);
+commit;

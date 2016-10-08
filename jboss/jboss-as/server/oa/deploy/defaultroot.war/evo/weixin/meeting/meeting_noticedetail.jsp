@@ -175,7 +175,15 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
           <tr>
             <th>出席人数：</th>
             <td>
-               <span class="edit-ipt-reslut-l" ><x:out select="$doc//personNum/text()" /></span>
+               <c:set var="personNum"><x:out select="$doc//personNum/text()"/></c:set>
+				<%
+				String pnum =(String)pageContext.getAttribute("personNum");
+				if(pnum == null || "null".equals(pnum)){
+					String npnum ="";
+					pageContext.setAttribute("personNum",npnum);	
+				}
+				%>
+               <span class="edit-ipt-reslut-l" >${personNum}</span>
             </td>
           </tr>
           <tr>
@@ -220,13 +228,29 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 			<tr>				
 				<th>出席领导 ：</th>
 				<td>					
-					<span class="edit-ipt-reslut-l" ><x:out select="$doc//attendeeLeader/text()" /></span>    
+					<c:set var="attendeeLeader"><x:out select="$doc//attendeeLeader/text()"/></c:set>
+					<%
+					String att =(String)pageContext.getAttribute("attendeeLeader");
+					if(att == null || "null".equals(att)){
+						String natt ="";
+						pageContext.setAttribute("attendeeLeader",natt);	
+					}
+					%>
+					<span class="edit-ipt-reslut-l" >${attendeeLeader}</span>   
 				</td>
 			</tr>
 			<!-- 会议记录人 -->
 				<th>会议记录人 ：</th>
 				<td>					
-					<span class="edit-ipt-reslut-l" ><x:out select="$doc//notePersonName/text()" /></span>   
+					<c:set var="notePersonName"><x:out select="$doc//notePersonName/text()"/></c:set>
+					<%
+					String notePer =(String)pageContext.getAttribute("notePersonName");
+					if(notePer == null || "null".equals(notePer)){
+						String nnotePer ="";
+						pageContext.setAttribute("notePersonName",nnotePer);	
+					}
+					%>
+					<span class="edit-ipt-reslut-l" >${notePersonName}</span>     
 				</td>
 			</tr>
 			<!-- 会议出席人 -->

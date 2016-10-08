@@ -1066,11 +1066,11 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
     function math(obj){
 		var id = obj.id;
 		var objval =document.getElementById(id).value;
-        if(isNaN(objval)){
-			document.getElementById(id).value="";
-			alert("请输入数字");
-			return false;
-		}
+       // if(isNaN(objval)){
+			//document.getElementById(id).value="";
+			//alert("请输入数字");
+			//return false;
+		//}
 		var val = $('.edit-ipt-r.whmath').attr("mathfun");//合计字段的公式
 		var mathId = $('.edit-ipt-r.whmath').attr("id");
 		var arr=id.split("_");

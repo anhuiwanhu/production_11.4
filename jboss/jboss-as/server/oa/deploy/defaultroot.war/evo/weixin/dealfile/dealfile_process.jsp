@@ -573,7 +573,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 						<!--退回意见begin-->
 						<c:set var="dealTipsContent" ><x:out select="$doc//dealTipsContent/text()" escapeXml="false" /></c:set>
 						<c:if test="${not empty dealTipsContent}">
-							<c:if test="${fn:indexOf(dealTipsContent,'加签提示') == -1}">
+							<c:if test="${fn:indexOf(dealTipsContent,'加签提示') == -1">
 								<tr>
 									<th>退回意见：</th>
 									<td id="dealTipsContent">${dealTipsContent}</td>
@@ -1136,11 +1136,11 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 	function mainMath(obj){
 		var id=obj.id;
 		var objval =document.getElementById(id).value;
-        if(isNaN(objval)){
-			document.getElementById(id).value="";
-			alert("请输入数字");
-			return false;
-		}
+        //if(isNaN(objval)){
+			//document.getElementById(id).value="";
+			//alert("请输入数字");
+			//return false;
+		//}
 		var val = $('.edit-ipt-r.mainmath').attr("mainmathfun");//合计字段的公式
 		var mathId = $('.edit-ipt-r.mainmath').attr("id");
 		var str = val.replace(/\*/g, '|').replace(/\+/g, '|').replace(/\-/g, '|').replace(/\//g, '|').replace(/\(/g, '|').replace(/\)/g, '|');

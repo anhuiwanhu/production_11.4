@@ -61,6 +61,7 @@
 			            	<c:when test="${informationType =='0' || informationType =='1'}">
 								<%
 								informationContent = com.whir.component.util.StringUtils.resizeImgSize(informationContent, "240", "50%");
+								informationContent = informationContent.replaceAll("amp;", "");
 								%>
 						        <p style="text-indent:2em;"><%=informationContent%></p>
 			            	</c:when>
