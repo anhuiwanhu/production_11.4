@@ -13,6 +13,7 @@
 			   <result name="sendFileWordList">/modules/govoffice/gov_documentmanager/sendFileWordList.jsp</result>
 			   <result name="sendFileWordList">/modules/govoffice/gov_documentmanager/sendFileWordList.jsp</result>
 			   <result name="sendFileNumList">/modules/govoffice/gov_documentmanager/sendFileNumList.jsp</result>
+			   <result name="sendFileNumListRadio">/modules/govoffice/gov_documentmanager/sendFileNumListRadio.jsp</result>
 			   <result name="sendFileSeqList">/modules/govoffice/gov_documentmanager/sendFileSeqList.jsp</result>
 			   <result name="sendFileFileTypeList">/modules/govoffice/gov_documentmanager/sendFileFileTypeList.jsp</result>
 			   <result name="sendFileTemplateList">/modules/govoffice/gov_documentmanager/sendFileTemplateList.jsp</result>

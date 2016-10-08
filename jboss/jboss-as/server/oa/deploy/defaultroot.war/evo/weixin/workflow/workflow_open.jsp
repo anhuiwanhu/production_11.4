@@ -94,39 +94,39 @@
 	//----------------------------根据pc打开地址 判断是哪个模块打开  start---------------------------------
 	//工作流
 	if(pcopenURL.indexOf("/wfopenflow!updateProcess.action")!=-1){
-		openUrl = "/defaultroot/dealfile/process.controller?workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;
+		openUrl = "/defaultroot/dealfile/process.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 
 	//ezFLOW
 	if(isezflow.equals("1")){
-		openUrl = "/defaultroot/dealfile/process.controller?workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;
+		openUrl = "/defaultroot/dealfile/process.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 
 	//发文
 	if(pcopenURL.indexOf("/GovDocSendProcess!editfile.action")!=-1){
-		openUrl = contextPath + "/doc/sendGovProcess.controller?workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;
+		openUrl = contextPath + "/doc/sendGovProcess.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 	
 	//收文
 	if(pcopenURL.indexOf("/GovDocReceiveProcess!editfile.action")!=-1){
-		openUrl = contextPath + "/doc/receiveGovProcess.controller?workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;
+		openUrl = contextPath + "/doc/receiveGovProcess.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 	
 	//信息
 	if(pcopenURL.indexOf("/Information!updateProcess.action")!=-1){
-		openUrl = contextPath + "/information/process.controller?workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;
+		openUrl = contextPath + "/information/process.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 	//车辆
 	if(pcopenURL.indexOf("/voitureApply!modi.action")!=-1){
-		openUrl = contextPath + "/dealfile/voitureProcess.controller?workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;
+		openUrl = contextPath + "/dealfile/voitureProcess.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 	//出库退库
 	if(pcopenURL.indexOf("/outStockAction!modifyFlow.action")!=-1){
-		openUrl = contextPath + "/dealfile/getOutStockResult.controller?workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;
+		openUrl = contextPath + "/dealfile/getOutStockResult.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 	//进货退货
 	if(pcopenURL.indexOf("/intoStockAction!modifyFlow.action")!=-1){
-		openUrl = contextPath + "/dealfile/getIntoStockResult.controller?workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;
+		openUrl = contextPath + "/dealfile/getIntoStockResult.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 	//----------------------------根据pc打开地址 判断是哪个模块打开  end---------------------------------
 	//跳转到相应页面
@@ -142,7 +142,7 @@
 		}
 	}else{
 
-		openUrl =  getDealFileDetailUrl(pcopenURL)+"?from=push&workStatus="+workstatus+"&workId="+workId+"&t="+generateToken(public_access_token,"workId",workId)+"&empLivingPhoto="+empLivingPhoto;;
+		openUrl =  getDealFileDetailUrl(pcopenURL)+"?from=push&workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;;
 		if(!openUrl.equals("")){
 			try{
 				response.sendRedirect(openUrl);

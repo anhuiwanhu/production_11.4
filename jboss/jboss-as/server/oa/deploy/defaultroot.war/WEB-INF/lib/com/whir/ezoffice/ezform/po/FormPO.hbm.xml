@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.whir.ezoffice.ezform.po.FormPO" table="ez_form" schema="ezoffice">
+        <id name="formId" column="form_id">
+            <generator class="native" />
+        </id>
+        <property name="formGuid" column="form_guid" />
+        <property name="formName" column="form_name" />
+        <property name="formType" column="form_type" />
+        <property name="formCode" column="form_code" />
+        <property name="formContent" column="form_content" />
+
+		<property name="formDesc" column="form_desc" />
+		<property name="formXML" column="form_xml" />
+		<property name="formEvents" column="form_events" />
+		<property name="formJsp" column="form_jsp" />
+		<property name="formVersion" column="form_version" />
+
+		<property name="scopeNames" column="scope_names" />
+        <property name="scopeUserIds" column="scope_userids" />
+		<property name="scopeOrgIds" column="scope_orgids" />
+		<property name="scopeGroupIds" column="scope_groupids" />
+
+		<property name="createDate" column="createdate" />
+		<property name="createUserId" column="createuserid" />
+		<property name="createOrgId" column="createorgid" />
+        <property name="domainId" column="domain_id" />
+
+        <property name="formJspMobile" column="form_jsp_mobile" />
+        <property name="sysAttr" column="sys_attr" />
+        
+        <property name="editorType" column="editortype" />
+
+        <many-to-one name="modulePO"
+            class="com.whir.ezoffice.ezform.po.FormModulePO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="form_module" />
+    </class>
+</hibernate-mapping>

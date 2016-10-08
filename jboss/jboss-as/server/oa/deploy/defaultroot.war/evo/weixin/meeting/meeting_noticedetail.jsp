@@ -462,14 +462,14 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 			if(flag == '0'){//主动扫码
 				applyIdVal = result;
 				if(applyIdVal != boardroomApplyId){//判断是否是本次会议二维码
-					alert("二维码不匹配，请扫描本次会议二维码！");
+					alert("非参会二维码，请确认后重新扫描！");
 					return false;
 				}
 				idVal = meetingId;
 			}else{//被动扫码
 				applyIdVal = result.split(";")[0];
 				if(applyIdVal != boardroomApplyId){//判断是否是本次会议二维码
-					alert("二维码不匹配，请扫描本次会议二维码！");
+					alert("非参会二维码，请确认后重新扫描！");
 					return false;
 				}
 				meetingId = result.split(";")[1];
@@ -487,7 +487,11 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 			url : "meetingNoticeStatus.controller",
 			type : "post",
 			data : {"meetingId":idVal,"boardroomApplyId":applyIdVal,"empId":empId,"empName":empName,"orgId":orgId,"orgName":orgName,"flag":flag},
-			success : function(){
+			success : function(val){
+				if(val == '1'){
+					alert('重复扫描！');
+					return false;
+				}
 				if(flag == '1'){
 					var result ='<div class="meeting-scan">'
 								+ '<h2>扫描结果如下</h2>'

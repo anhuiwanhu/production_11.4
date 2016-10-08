@@ -106,8 +106,8 @@
 					}else if( '<x:out select="$n/scopeType/text()"/>' == 'scopes_user' ){
 						var scopeName = '<x:out select="$n/scopeName/text()"/>';
 						var scopeId_ = '<x:out select="$n/scopeId/text()"/>'
-						if(scopeName.split(',').length == 1){
-						    if(scopeId_.indexOf('*0*')> -1){
+						if(scopeId_.split(',').length == 1){
+						    if(scopeId_.indexOf('*')> -1 || scopeId_.indexOf('@')> -1){
 						    	$('#userId').val('');
 	          	 				$('#userName').val('');
 						    }else{

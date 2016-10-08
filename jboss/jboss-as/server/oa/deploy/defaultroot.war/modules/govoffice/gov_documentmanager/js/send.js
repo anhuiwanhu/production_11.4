@@ -940,8 +940,9 @@ function cmdWordWindowDue(){
 	//document.all.$field10.value = "[联系电话]"+((document.all.field10)?document.all.field10.value:"");
 
 	$("*[name='$field10']").val(   "[联系电话]"+((  $("*[name='field10']").length > 0 )?   $("*[name='field10']").val() :"") );
+    $("*[name='$field4']").val(   "[备用字段4]"+((  $("*[name='field4']").length > 0 )?   $("*[name='field4']").val() :"") );
 
-	$("*[name='$sendFileDraft']").val(   "[拟稿人]"+((  $("*[name='sendFileDraft']").length > 0 )?   $("*[name='sendFileDraft']").val() :"") );
+    $("*[name='$sendFileDraft']").val(   "[拟稿人]"+((  $("*[name='sendFileDraft']").length > 0 )?   $("*[name='sendFileDraft']").val() :"") );
 	//document.all.$field10.value = "[联系电话]"+document.all.field10.value;
 	//document.all.$sendFileDraft.value="[拟稿人]"+((document.all.sendFileDraft)?document.all.sendFileDraft.value:"");
 
@@ -1220,8 +1221,9 @@ function cmdWordWindowReDue(){
 	//document.all.$field10.value = "[联系电话]"+((document.all.field10)?document.all.field10.value:"");
 
 	$("*[name='$field10']").val(   "[联系电话]"+((  $("*[name='field10']").length > 0 )?   $("*[name='field10']").val() :"") );
+    $("*[name='$field4']").val(   "[备用字段4]"+((  $("*[name='field4']").length > 0 )?   $("*[name='field4']").val() :"") );
 
-	$("*[name='$sendFileProof']").val(   "[校对]"+((  $("*[name='sendFileProof']").length > 0 )?   $("*[name='sendFileProof']").val() :"") );
+    $("*[name='$sendFileProof']").val(   "[校对]"+((  $("*[name='sendFileProof']").length > 0 )?   $("*[name='sendFileProof']").val() :"") );
 
 
 	$("*[name='$sendFileDraft']").val(   "[拟稿人]"+((  $("*[name='sendFileDraft']").length > 0 )?   $("*[name='sendFileDraft']").val() :"") );

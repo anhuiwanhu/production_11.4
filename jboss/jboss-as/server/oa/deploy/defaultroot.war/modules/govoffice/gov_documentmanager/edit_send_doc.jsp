@@ -275,6 +275,46 @@ if(!com.whir.common.util.CommonUtils.isForbiddenPad(request) && modiButton == nu
 	 //邮件转发增加查看正文2015-4-22 15号补丁
 	
 }
+    //屏蔽Linux客户端的查阅正文等按钮
+    if(com.whir.common.util.CommonUtils.isLinuxClient(request) && modiButton != null){
+        modiButton = modiButton.replaceAll(",Downtext","");
+
+        modiButton = modiButton.replaceAll(",Readtext",",Downtext");
+        modiButton = modiButton.replaceAll(",Viewtext",",Downtext");
+        modiButton = modiButton.replaceAll(",SeeWord",",Downtext");
+        modiButton = modiButton.replaceAll(",WritetextModi",",Downtext");
+        //替换掉多余的Downtext;
+        if(modiButton.indexOf(",Downtext")!=-1){
+            String str1=",Downtext";
+            int tempIndex=modiButton.indexOf(",Downtext")+str1.length();
+            String tempModiButton=modiButton.substring(0,tempIndex);
+            String tempModiButton2=modiButton.substring(tempIndex);
+            tempModiButton2=tempModiButton2.replaceAll(",Downtext","");
+            modiButton=tempModiButton+tempModiButton2;
+        }
+
+    }
+    if(com.whir.common.util.CommonUtils.isLinuxClient(request) && modiButton == null && request.getAttribute("p_wf_modiButton") != null){
+        modiButton =  (String)request.getAttribute("p_wf_modiButton");
+        modiButton = modiButton.replaceAll(",Downtext","");
+
+        modiButton = modiButton.replaceAll(",Readtext",",Downtext");
+        modiButton = modiButton.replaceAll(",Viewtext",",Downtext");
+        modiButton = modiButton.replaceAll(",SeeWord",",Downtext");
+        modiButton = modiButton.replaceAll(",WritetextModi",",Downtext");
+        //邮件转发增加查看正文2015-4-22 15号补丁
+        //替换掉多余的Downtext;
+        if(modiButton.indexOf(",Downtext")!=-1){
+            String str1=",Downtext";
+            int tempIndex=modiButton.indexOf(",Downtext")+str1.length();
+            String tempModiButton=modiButton.substring(0,tempIndex);
+            String tempModiButton2=modiButton.substring(tempIndex);
+            tempModiButton2=tempModiButton2.replaceAll(",Downtext","");
+            modiButton=tempModiButton+tempModiButton2;
+        }
+
+
+    }
 
 if("notsend".equals( request.getParameter("fromex") ) ){
 	modiButton = ",Viewtext,Print,AddNew,ReadHistorytext,Toreceive,Tocheck";
@@ -414,8 +454,8 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 <input type="hidden" name="$signsendTime" value="-1">
 <input type="hidden" name="$sendFileProof" value="-1">
 
-
-<input type="hidden" name="$field9" value="-1">
+    <input type="hidden" name="$field4" value="-1">
+    <input type="hidden" name="$field9" value="-1">
 <input type="hidden" name="$field10" value="-1">
 <input type="hidden" name="$sendFileDraft" value="-1">
 <input type="hidden" name="$zjkySeq" value="-1">

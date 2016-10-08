@@ -1,0 +1,9 @@
+/*可以在这里添加你自己的css*/
+table{
+font-size:20px;
+padding:10px 10px;
+}
+
+span{
+font-size:24px!important;
+}

@@ -961,45 +961,67 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 						</x:if>
 						<!-- 批示意见内容 -->
 <%--						<c:set var="commentField"><x:out select="$doc//workInfo/commentField/text()"/></c:set>--%>
-						<c:set var="commentField"><x:out select="$govDoc//curCommField/text()"/></c:set>
-						<x:forEach select="$govDoc//commentList/contentList" var="ct" >
-							<c:set var="isCurrent"><x:out select="$ct//current/text()" /></c:set>
+						<c:set var="commentField"><x:out select="$doc//workInfo/commentField/text()"/></c:set>
+						<c:set var="commentFieldName"><x:out select="$doc//workInfo/commentFieldName/text()"/></c:set>
+						<x:forEach select="$doc//commentList/comment" var="ct" >
 							<tr>
 								<th>
-									<x:out select="$ct//name/text()"/>
+									<x:out select="$ct//step/text()"/>
 								</th>
-								<td>
-									<c:choose>
-										<c:when test="${isCurrent eq 'true' && not empty commentField && '-1' ne commentField && 'nullCommentField' ne commentField && param.workStatus ne '102' && param.workStatus ne '101'}">
-											<textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="300"></textarea>
-											<div class="examine" style="text-align:right;">
-												<a class="edit-select edit-ipt-r">
-													<div class="edit-sel-show">
-														<span>常用审批语</span>
-													</div>    
-													<select class="btn-bottom-pop" onchange="selectComment(this);">
-														<option value="0">常用审批语</option> 
-													 <x:forEach select="$doc//officelist" var="selectvalue" >
-														<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
-												     </x:forEach>
-													</select>
-												</a>
-											</div>
-											<x:forEach select="$ct/commentContent" var="cc">
-												<c:set var="commentDate"><x:out select="$cc//date/text()"/></c:set>
-												<x:out select="$cc//content/text()"/>&nbsp;&nbsp;<x:out select="$cc//person/text()"/><c:if test="${not empty commentDate}">(${commentDate})</c:if></br>
-											</x:forEach>
-										</c:when>
-										<c:otherwise>
-											<x:forEach select="$ct/commentContent" var="cc">
-												<c:set var="commentDate"><x:out select="$cc//date/text()"/></c:set>
-												<x:out select="$cc//content/text()"/>&nbsp;&nbsp;<x:out select="$cc//person/text()"/><c:if test="${not empty commentDate}">(${commentDate})</c:if></br>
-											</x:forEach>
-										</c:otherwise>
-									</c:choose>
+								<td>					
+									<c:set var="commentDate"><x:out select="$ct//date/text()"/></c:set>
+									<x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/><c:if test="${not empty commentDate}">(${commentDate})</c:if></br>												
 								</td>
 							</tr>
 						</x:forEach>
+						<c:choose>
+                        <c:when test="${not empty commentFieldName && not empty commentField && '-1' ne commentField && 'nullCommentField' ne commentField && param.workStatus ne '102' && param.workStatus ne '101'}">
+							<tr>
+								<th>
+									${commentFieldName}
+								</th>
+								<td>
+									<textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="300"></textarea>
+									<div class="examine" style="text-align:right;">
+										<a class="edit-select edit-ipt-r">
+											<div class="edit-sel-show">
+												<span>常用审批语</span>
+											</div>    
+											<select class="btn-bottom-pop" onchange="selectComment(this);">
+												<option value="0">常用审批语</option> 
+											 <x:forEach select="$doc//officelist" var="selectvalue" >
+												<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
+											 </x:forEach>
+											</select>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</c:when>
+						<c:when test="${not empty workcurstep && not empty commentField && '-1' ne commentField && 'nullCommentField' ne commentField && param.workStatus ne '102' && param.workStatus ne '101'}">
+							<tr>
+								<th>
+									${workcurstep}
+								</th>
+								<td>
+									<textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="300"></textarea>
+									<div class="examine" style="text-align:right;">
+										<a class="edit-select edit-ipt-r">
+											<div class="edit-sel-show">
+												<span>常用审批语</span>
+											</div>    
+											<select class="btn-bottom-pop" onchange="selectComment(this);">
+												<option value="0">常用审批语</option> 
+											 <x:forEach select="$doc//officelist" var="selectvalue" >
+												<option value='<x:out select="$selectvalue/text()"/>'><x:out select="$selectvalue/text()"/></option>
+											 </x:forEach>
+											</select>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</c:when>
+						</c:choose>
 						<%--
 						<c:if test="${not empty commentField && '-1' ne commentField && 'nullCommentField' ne commentField && param.workStatus ne '102' && param.workStatus ne '101'}">
 							<tr>

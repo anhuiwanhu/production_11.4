@@ -54,13 +54,13 @@
 							<c:set var="filename"><x:out select="$pic/text()"/></c:set>
 							<c:set var="folderVal">${fn:substring(filename,0,6)}</c:set>
 							<c:if test="${displayImage != '0'}">
-								<p><img src='/defaultroot/upload/information/${folderVal}/${filename}'/></p>
+								<p><a href="/defaultroot/upload/information/${folderVal}/${filename}"><img src='/defaultroot/upload/information/${folderVal}/${filename}'/></a></p>
 							</c:if>
 						</x:forEach>
 			            <c:choose>
 			            	<c:when test="${informationType =='0' || informationType =='1'}">
 								<%
-								informationContent = com.whir.component.util.StringUtils.resizeImgSize(informationContent, "240", "");
+								informationContent = com.whir.component.util.StringUtils.resizeImgSize(informationContent, "240", "50%");
 								%>
 						        <p style="text-indent:2em;"><%=informationContent%></p>
 			            	</c:when>

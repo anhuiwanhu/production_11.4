@@ -56,7 +56,7 @@
                     </s:if>
                     <s:else>
                         <s:textfield name="formCode" id="formCode" cssClass="inputText" whir-options="vtype:['notempty','spechar3']" cssStyle="width:298px;" maxlength="35" readonly="true"/>
-                	</s:else>
+                    </s:else>
                 </td>
             </tr>
 
@@ -90,34 +90,51 @@
                 <s:else>
                 <td for="显示模板" class="td_lefttitle" valign="top">显示模板：</td>
                 <s:if test="formType == 0">
-                        <s:if test="formId!=null">
-                <td colspan=3>
-                    
-                        <input type="checkbox" name="syncPrintForm" id="syncPrintForm" value="1">同步到打印模板
-                       
-                </td>
-            </tr>
-            <tr>
-                <td class="td_lefttitle" valign="top">&nbsp;</td>
-                 </s:if>
-                    </s:if>
+					<s:if test="formId!=null">
+						<td colspan=3>
+							<input type="checkbox" name="syncPrintForm" id="syncPrintForm" value="1">同步到打印模板
+							<!--<input type="button" class="btnButton4font" onClick="changeEditor()" value="切换编辑器" />-->
+						</td>
+					</tr>
+					<tr>
+						<td class="td_lefttitle" valign="top">&nbsp;</td>
+					</s:if>
+					<s:else>
+						<td colspan=3>
+							<input type="button" class="btnButton4font" onClick="changeEditor()" value="切换编辑器" />
+						</td>
+					</tr>
+					<tr>
+						<td class="td_lefttitle" valign="top">&nbsp;</td>
+					</s:else>
+                </s:if>
                 </s:else>
-
                 <td colspan=3 valign=top>
                     <input type="hidden" name="formContent" id="formContent"/>
                     <s:if test="formId!=null">
                     <div id="codeDIV" style="display:none"><s:property value="formContent" escape="false"/></div>
                     </s:if>
-                    <SCRIPT LANGUAGE="JavaScript">
-                    <!--
-                        $('#formContent').val($('#codeDIV').html());
-                        $('#codeDIV').html('');
-                    //-->
-                    </SCRIPT>
+					<s:if test="editorType==1">
+						<SCRIPT LANGUAGE="JavaScript">
+							$('#formContent').val($('#codeDIV').html()); 
+							$('#codeDIV').html('');
+						</SCRIPT>
+					</s:if>
                     <table width="100%" border="0">
                         <tr>
                             <td style="width:80%" valign=top>
-                                <iframe id="templateIframe" src="<%=rootPath%>/public/edit/ewebeditor.htm?id=formContent&style=coolblue&hiddenCodeTab=0&ezform=1&lang=<%=whir_locale%>" frameborder="0" scrolling="no" width="100%" height="520"></iframe>
+								<!--<div id="ewebeditor" style="display:none">
+									<iframe id="templateIframe" src="<%=rootPath%>/public/edit/ewebeditor.htm?id=formContent&style=coolblue&hiddenCodeTab=0&ezform=1&lang=<%=whir_locale%>" frameborder="0" scrolling="no" width="100%" height="520"></iframe>
+                            	</div>-->
+								<input type="hidden" id="editorType" name="editorType" <s:if test="editorType == null || editorType=='null' || editorType=='' ">value="0"</s:if><s:else>value="<s:property value="editorType" escape="false"/>"</s:else>>
+								<div id="editor" <s:if test="editorType == null || editorType=='null' || editorType=='' ">data-type="0"</s:if><s:else>data-type="<s:property value="editorType" escape="false"/>"</s:else>>
+									<s:if test="editorType==1 ">
+										<iframe id="templateIframe" src="<%=rootPath%>/public/edit/ewebeditor.htm?id=formContent&style=coolblue&hiddenCodeTab=0&ezform=1&lang=<%=whir_locale%>" frameborder="0" scrolling="no" width="100%" height="520"></iframe>
+									</s:if>
+									<s:else>
+										<iframe id="templateIframe" src="<%=rootPath%>/public/uEditor/ueditor.jsp" frameborder="0" scrolling="no" width="100%" height="600"></iframe> 
+									</s:else>
+								</div>
                             </td>
                             <td style="width:20%" id="fieldDIV" valign="top"></td>
                         </tr>
@@ -328,9 +345,27 @@ Ext.onReady(function() {
 
     loadField(true);
 
+	setTimeout("lazyLoad()",1000);
+	//lazyLoad();
     //$("#syncPrintForm").uniform();
 
     </s:else>
 });
+
+function changeEditor(){
+	var dataType = $("#editor").attr("data-type");
+	if(dataType=="0"){
+		var ewebeditor = "<iframe id='templateIframe' src='<%=rootPath%>/public/edit/ewebeditor.htm?id=formContent&style=coolblue&hiddenCodeTab=0&ezform=1&lang=<%=whir_locale%>' frameborder='0' scrolling='no' width='100%' height='520'></iframe>";
+		$("#editor").attr("data-type","1");
+		$("#editor").html(ewebeditor);
+		$("#editorType").val("1");
+	}else{
+		var ueditor = "<iframe id='templateIframe' src='<%=rootPath%>/public/uEditor/ueditor.jsp' frameborder='0' scrolling='no' width='100%' height='600'></iframe> ";
+		$("#editor").attr("data-type","0");
+		$("#editor").html(ueditor);
+		$("#editorType").val("0");
+		lazyLoad();
+	}
+}
 //-->
 </SCRIPT>

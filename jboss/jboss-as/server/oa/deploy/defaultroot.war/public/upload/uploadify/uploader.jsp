@@ -138,7 +138,7 @@ if(session.getAttribute("userName")!=null){
 				 InputStream stream =  fi.getInputStream();
 				 String filetype = FileType.getFileType(stream);
                  System.out.println("=============filetype:"+filetype);
-				String s2 = "|.war|.exe|.js|.jsp|.bat|.chm|.class|.mxp|.sql|.jspx|.asp|.cmd|.ocx|.com|.dll|";
+				String s2 = "|.war|.exe|.js|.jsp|.bat|.class|.mxp|.sql|.jspx|.asp|.cmd|.ocx|.com|.dll|";
 				boolean b2= s2.indexOf("|." + filetype + "|") > -1; 
 				if(b2){
 				 System.out.println("=============filetype：文件类型非法");

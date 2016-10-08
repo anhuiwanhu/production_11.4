@@ -86,6 +86,7 @@ function saveFormData(flag, obj){
         whir_alert('请选择关联数据表字段！', null);
         return;
     }
+
     /*var boardroomField = $('#boardroomField').val();
 	if(boardroomField!="" && boardroomField!="null"){
 		var fieldFlag="true";
@@ -143,10 +144,16 @@ function saveFormData(flag, obj){
 			return;
 		}
 	}
-    
     var templateIframe = document.getElementById("templateIframe");
+	var type = document.getElementById("editor").getAttribute("data-type");
     try{
-        $('#formContent').val(templateIframe.contentWindow.getHTML());
+		if(type=="1"){
+			$('#formContent').val(templateIframe.contentWindow.getHTML());
+		}else{
+			templateIframe.contentWindow.ue.execCommand('source');
+			$('#formContent').val(templateIframe.contentWindow.ue.getContent());
+			templateIframe.contentWindow.ue.execCommand('source');
+		}
     }catch(e){
         $('#formContent').val(templateIframe.getHTML());
     }
@@ -230,11 +237,17 @@ function initExtCss(){
 //获得指定表的所有字段
 function getTableField() {
     $('#fieldDIV').html('');
-
+	var type = document.getElementById("editor").getAttribute("data-type");
     try{
-        clearField(document.getElementById('templateIframe').contentWindow.document.getElementById('eWebEditor').contentWindow.document);
-        clearTable(document.getElementById('templateIframe').contentWindow.document.getElementById('eWebEditor').contentWindow.document);
-    }catch(e){
+		//-------------------------------------------------修改表单---------------------------------------------------------
+		if(type=="1"){
+			clearField(document.getElementById('templateIframe').contentWindow.document.getElementById('eWebEditor').contentWindow.document);
+			clearTable(document.getElementById('templateIframe').contentWindow.document.getElementById('eWebEditor').contentWindow.document);
+		}else{
+			clearField(document.getElementById('templateIframe').contentWindow.document.getElementById('ueditor_0').contentWindow.document);
+			clearTable(document.getElementById('templateIframe').contentWindow.document.getElementById('ueditor_0').contentWindow.document);
+		}
+	}catch(e){
         clearField(document.getElementById("templateIframe").eWebEditor.document);
         clearTable(document.getElementById("templateIframe").eWebEditor.document);
     }
@@ -267,6 +280,7 @@ function loadField(flag) {
 		 if (priField != null && priField.length > 0) {
 	    	for(var i=0;i<priField.length;i++){
                 var mainField = priField[i];
+
                 //var fieldelt = $('#fieldelt').val();
                 var sel = checkedFields(mainFields, mainField.tablenm, mainField.fieldname, false);//是否选中
 				//var sel = fieldelt.indexOf(mainField.fieldid+"-"+mainField.fieldname)>=0?"checked":"";
@@ -336,13 +350,16 @@ function loadField(flag) {
 }
 
 function lazyLoad(){
+
     var eWebEditor_Temp_HTML = null;
 
     var templateIframe = document.getElementById("templateIframe");
     try{
-        eWebEditor_Temp_HTML = templateIframe.contentWindow.document.getElementById('eWebEditor_Temp_HTML');
+        //eWebEditor_Temp_HTML = templateIframe.contentWindow.document.getElementById('eWebEditor_Temp_HTML');
+		eWebEditor_Temp_HTML = templateIframe.contentWindow.document.getElementById('ueditor_0');
     }catch(e){
-        eWebEditor_Temp_HTML = templateIframe.document.getElementById('eWebEditor_Temp_HTML');
+        //eWebEditor_Temp_HTML = templateIframe.document.getElementById('eWebEditor_Temp_HTML');
+		eWebEditor_Temp_HTML = templateIframe.document.getElementById('ueditor_0');
     }
 
     if(eWebEditor_Temp_HTML){
@@ -355,12 +372,15 @@ function lazyLoad(){
 function setLazyContent(){
     var templateIframe = document.getElementById("templateIframe");
     try{
-        templateIframe.contentWindow.insertHTML($('#codeDIV').html());
+        //templateIframe.contentWindow.insertHTML($('#codeDIV').html());
+		templateIframe.contentWindow.ue.execCommand('inserthtml',$('#codeDIV').html().replace(/  /g,'')); 
     }catch(e){
-        templateIframe.insertHTML($('#codeDIV').html());
+        //templateIframe.insertHTML($('#codeDIV').html());
+
+		templateIframe.ue.execCommand('inserthtml',$('#codeDIV').html()); 
     }
 
-    $('#codeDIV').html('');
+    //$('#codeDIV').html('');
 }
 
 function showField(data) {
@@ -456,10 +476,15 @@ function setHTML2Editor(obj, fnm) {
     var field_show = $(obj).attr('field_show');
 
     var doc = null;
-
+	var type = document.getElementById("editor").getAttribute("data-type");
     try{
-        doc = document.getElementById('templateIframe').contentWindow.document.getElementById('eWebEditor').contentWindow.document;
-    }catch(e){
+
+		if(type=="1"){
+			doc = document.getElementById('templateIframe').contentWindow.document.getElementById('eWebEditor').contentWindow.document;
+		}else{
+			doc = document.getElementById('templateIframe').contentWindow.document.getElementById('ueditor_0').contentWindow.document;
+		}
+	}catch(e){
         doc = document.getElementById("templateIframe").eWebEditor.document;
     }
 
@@ -502,7 +527,9 @@ function setHTML2Editor(obj, fnm) {
 
     html = "<div style=width:100%; id=" + valId + "-" + valName + ">" + html + "</div>";
     var idn = valId + "-" + valName;
+
     var divobj = doc.getElementById(eval("\"" + idn + "\""));
+
     if (divobj) {
         try {
             if($.browser.msie){
@@ -557,10 +584,18 @@ function setHTML2Editor(obj, fnm) {
     }else{
         templateIframe.insertHTML(html);
     }*/
+
     var templateIframe = document.getElementById("templateIframe");
+
     try{
-        templateIframe.contentWindow.insertHTML(html);
+		if(type=="1"){
+			templateIframe.contentWindow.insertHTML(html);
+		}else{
+			templateIframe.contentWindow.ue.focus();  
+			templateIframe.contentWindow.ue.execCommand('inserthtml',html);
+		}
     }catch(e){
+
         templateIframe.insertHTML(html);
     }
 
@@ -576,10 +611,14 @@ function setForHTML2Editor(obj, fnm, tblnm){
     var field_show = $(obj).attr('field_show');    
 
     var doc = null;
-
+	var type = document.getElementById("editor").getAttribute("data-type");
     try{
-        doc = document.getElementById('templateIframe').contentWindow.document.getElementById('eWebEditor').contentWindow.document;
-    }catch(e){
+		if(type=="1"){//ewebeditor
+			doc = document.getElementById('templateIframe').contentWindow.document.getElementById('eWebEditor').contentWindow.document;
+		}else{
+			doc = document.getElementById('templateIframe').contentWindow.document.getElementById('ueditor_0').contentWindow.document;
+		}
+	}catch(e){
         doc = document.getElementById("templateIframe").eWebEditor.document;
     }
 	
@@ -634,6 +673,13 @@ function setForeignHTML(doc, tblnm) {
         doc.getElementById(tblnm + "DIV").parentNode.removeChild(doc.getElementById(tblnm + "DIV"));
     } //else{
 
+	//新编辑器添加内容开始
+	if (doc.getElementById("zw")) {
+		doc.getElementById("zw").parentNode.removeChild(doc.getElementById("zw").parentNode.firstChild);
+		doc.getElementById("zw").parentNode.removeChild(doc.getElementById("zw"));
+    }
+	//新编辑器添加内容结束
+
     try {
         if (doc.selection.type != "Control") {
             var elem = doc.selection.createRange().parentElement()
@@ -668,22 +714,33 @@ function setForeignHTML(doc, tblnm) {
     } catch (er) {}
 
     var templateIframe = document.getElementById("templateIframe");
+	var type = document.getElementById("editor").getAttribute("data-type");
     try{
-        templateIframe.contentWindow.insertHTML("<DIV id=" + tblnm + "DIV style='width:100%;' align='center' class='subtablediv'></DIV>");
-    }catch(e){
-        templateIframe.insertHTML("<DIV id=" + tblnm + "DIV style='width:100%;' align='center' class='subtablediv'></DIV>");
-    }
+		if(type=="1"){
+			templateIframe.contentWindow.insertHTML("<DIV id=" + tblnm + "DIV style='width:100%;' align='center' class='subtablediv'></DIV>");
+		}else{
+			templateIframe.contentWindow.ue.execCommand('inserthtml',"<br><DIV id=" + tblnm + "DIV style='width:100%;' align='center' class='subtablediv'></DIV><div id='zw'></div>"); 	
+		}
+	}catch(e){
+		if(type=="1"){
+			templateIframe.insertHTML("<DIV id=" + tblnm + "DIV style='width:100%;' align='center' class='subtablediv'></DIV>");
+		}else{
+			templateIframe.ue.execCommand('inserthtml',"<DIV id=" + tblnm + "DIV style='width:100%;' align='center' class='subtablediv'></DIV>"); 
+		}
+	}
 
     try {
         doc.editGetActiveObject().innerHTML = doc.editGetActiveObject().innerHTML.replace("&nbsp;", "").replace("&nbsp;", "").replace("&nbsp;", "").replace("&nbsp;", "").replace("&nbsp;", "").replace("&nbsp;", "").replace("&nbsp;", "").replace("&nbsp;", "").replace("<p></p>", "").replace("<p></p>", "").replace("<p></p>", "").replace("<p></p>", "").replace("<p></p>", "").replace("<P></P>", "").replace("<P></P>", "").replace("<P></P>", "").replace("<P></P>", "").replace("<P></P>", "");
     } catch (er) {}
     //}
-
     if (obj.value && obj.value.length > 0) {
         var ff = obj.value.split(";");
         var wid = doc.getElementById(tblnm + "DIV").parentNode.offsetWidth;
         var tblHead = "<table style='border-right: #000000 2px solid; border-top: #000000 2px solid; border-left: #000000 2px solid; width: " + (wid >= 750 ? "750" : wid) + "; border-bottom: #000000 2px solid; border-collapse: collapse' bordercolor='#000000' cellspacing='0' cellpadding='0' align='center' border='0'><tr>";
-        var tblRow = "<tr id=" + tblnm + "TR onmouseover='try{setAbsolute(this)}catch(ETR){}'>";
+        if(type!="1"){
+			tblHead = "<table style='border-right: #000000 2px solid; border-top: #000000 2px solid; border-left: #000000 2px solid; width: " + (wid >= 750 ? "750" : wid) + "; border-bottom: #000000 2px solid; border-collapse: collapse;margin-bottom:5px;' bordercolor='#000000' cellspacing='0' cellpadding='0' align='center' border='0'><tr>";
+		}
+		var tblRow = "<tr id=" + tblnm + "TR onmouseover='try{setAbsolute(this)}catch(ETR){}'>";
         for (var i = 0; i < ff.length; i++) {
             if (ff[i].length < 1) continue;
             //alert(ff[i]+"    "+document.getElementById(ff[i]).tagName);

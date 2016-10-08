@@ -385,6 +385,11 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 					if('<x:out select="$n/id/text()"/>' != '-100' && '<x:out select="$n/id/text()"/>' != '-2' && document.getElementById('userId<x:out select="$n/id/text()"/>').value == ''){
 						alert('<x:out select="$n/name/text()"/>办理人不能为空');
 						return false;
+					}else if('<x:out select="$n/id/text()"/>' == '-2'){
+						if('${isDossier}'){
+							alert('该流程需要归档，请于PC端办理完毕！');
+							return false;
+						}
 					}
 				</x:forEach>
 				ajaxSend(url);
@@ -401,6 +406,11 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 						if('<x:out select="$n/id/text()"/>' != '-100' && '<x:out select="$n/id/text()"/>' != '-2' && document.getElementById('userId<x:out select="$n/id/text()"/>').value == ''){
 							alert('<x:out select="$n/name/text()"/>办理人不能为空');
 							return false;
+						}else if('<x:out select="$n/id/text()"/>' == '-2'){
+							if('${isDossier}'){
+								alert('该流程需要归档，请于PC端办理完毕！');
+								return false;
+							}
 						}
 					}
 				</x:forEach>
@@ -424,6 +434,11 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 					if($('#activity').val() !='' && $('#activity').val() !='-2' && $('#activity').val() !='-100'){
 						if($('#userName') != null && $('#userName').val() == ''){
 							alert('办理人不能为空');
+							return false;
+						}
+					}else if($('#activity').val() =='-2' ){
+						if('${isDossier}'){
+							alert('该流程需要归档，请于PC端办理完毕！');
 							return false;
 						}
 					}

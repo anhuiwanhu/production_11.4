@@ -194,13 +194,25 @@ String.prototype.replaceAll = function(s1,s2){ return this.replace(new RegExp(s1
 	function formatDate(po,i){
 		return getFormatDateByLong(po.createdTime,"yyyy-MM-dd hh:mm:ss");
 	}
-	
+    <%
+    //java.util.Map sysMap = com.whir.org.common.util.SysSetupReader.getInstance().getSysSetupMap(session.getAttribute("domainId").toString());
+    int smartInUse = 0;
+    if(sysMap != null && sysMap.get("附件上传") != null){
+        smartInUse = Integer.parseInt(sysMap.get("附件上传").toString());
+    }
+    String fileServer = com.whir.component.config.ConfigReader.getFileServer(request.getRemoteAddr());
+
+    %>
 
 	function getTitle(po,i){
 
-		 <%
-		 if(!com.whir.common.util.CommonUtils.isForbiddenPad(request)){
-		 %>
+    <%
+        if(com.whir.common.util.CommonUtils.isLinuxClient(request)){
+        %>
+        var tempurl ='<%=smartInUse==1?"/defaultroot/public/download":fileServer%>/download.jsp?verifyCode='+po.verifyCode1+'&FileName='+po.goldGridId+po.documentWordType+'&name='+encodeURIComponent(po.documentSendFileTitle)+po.documentWordType+'&path=govdocumentmanager';
+            return "<a href='"+tempurl+"' target='dwin' >"+po.documentSendFileTitle+"</a>";
+    <%} else  if(!com.whir.common.util.CommonUtils.isForbiddenPad(request)){
+	 %>
 			return ""+po.documentSendFileTitle+"";	 
 		 <%
 		 }else{
@@ -255,15 +267,7 @@ String.prototype.replaceAll = function(s1,s2){ return this.replace(new RegExp(s1
 		//alert(html);
 		return html;
 	}
-<%
-//java.util.Map sysMap = com.whir.org.common.util.SysSetupReader.getInstance().getSysSetupMap(session.getAttribute("domainId").toString());
-int smartInUse = 0;
-if(sysMap != null && sysMap.get("附件上传") != null){
-	smartInUse = Integer.parseInt(sysMap.get("附件上传").toString());
-}
-String fileServer = com.whir.component.config.ConfigReader.getFileServer(request.getRemoteAddr());
 
-%>
 	
 	function downloadLink(po,i){
 		var url = '<%=smartInUse==1?"/defaultroot/public/download":fileServer%>/download.jsp?verifyCode='+po.verifyCode1+'&FileName='+po.goldGridId+po.documentWordType+'&name='+encodeURIComponent(po.documentSendFileTitle)+po.documentWordType+'&path=govdocumentmanager';

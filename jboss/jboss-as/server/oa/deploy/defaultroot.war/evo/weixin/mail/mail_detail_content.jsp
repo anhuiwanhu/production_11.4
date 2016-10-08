@@ -17,7 +17,7 @@
 	<c:set var="channelId">${channelId}</c:set>
 	<%
 	    String content = (String)pageContext.getAttribute("mailcontent");
-	    content = com.whir.component.util.StringUtils.resizeImgSize(content, "240", "");
+	    content = com.whir.component.util.StringUtils.resizeImgSize(content, "240", "50%");
 	    if(content.indexOf("查看表单")!=-1){
 	    	content = content.replaceAll("查看表单", "");
 	    }

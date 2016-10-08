@@ -44,9 +44,12 @@
                             文号：  
                         </td>  
                         <td>  
-				           <s:select name="wordPo.sendDocumentNumId" list="#request.numList" headerKey="-1" editable="false" headerValue="--请选择--" cssClass="easyui-combobox" cssStyle="width:96%;" data-options="width:202,panelHeight:'500', editable:false">
+				           <%--<s:select name="wordPo.sendDocumentNumId" list="#request.numList" headerKey="-1" editable="false" headerValue="--请选择--" cssClass="easyui-combobox" cssStyle="width:96%;" data-options="width:202,panelHeight:'500', editable:false">
 
-						   </s:select>
+						   </s:select>--%>
+                            <s:hidden name="wordPo.sendDocumentNumId" id="sendDocumentNumId"/>
+                            <s:textfield  id="sendDocumentNumName" name="numPo.numName"  readonly="true" cssClass="inputText" cssStyle="width:96%;" /><a  href="javascript:void(0);" class="selectIco" onclick="popup({content:'url:<%=rootPath%>/GovDocSet!sendFileNumListRadio.action?tempWHId='+$('#sendDocumentNumId').val(),title: '文号列表',width:800,height:600});"></a>
+
                         </td>  
                     </tr>
                     <tr>  
@@ -68,7 +71,7 @@
                         </td>  
                         <td>  
 							<s:hidden name="wordPo.templateId" id="templateId"/>
-                            <s:textfield name="wordPo.templateName" id="templateName"  readonly="true" cssClass="inputText" cssStyle="width:96%;" /><a  href="javascript:void(0);" class="selectIco" onclick="popup({content:'url:<%=rootPath%>/GovDocSet!sendTempList.action',title: '模板列表',width:800,height:500});"></a>
+                            <s:textfield name="wordPo.templateName" id="templateName"  readonly="true" cssClass="inputText" cssStyle="width:96%;" /><a  href="javascript:void(0);" class="selectIco" onclick="popup({content:'url:<%=rootPath%>/GovDocSet!sendTempList.action',title: '模板列表',width:800,height:600});"></a>
                         </td>  
                     </tr>
 					<%
@@ -80,7 +83,7 @@
                         </td>  
                         <td>  
 							<s:hidden name="wordPo.poolProcessId" id="processId"/>
-                            <s:textfield name="wordPo.processName" id="processName" readonly="true" cssClass="inputText" cssStyle="width:96%;"/><a href="javascript:void(0);" class="selectIco" onclick="popup({content:'url:<%=rootPath%>/GovDocSet!sendProcessList.action?moduleId=2',title: '流程列表',width:800,height:500,winName:'selProcess'});"></a>
+                            <s:textfield name="wordPo.processName" id="processName" readonly="true" cssClass="inputText" cssStyle="width:96%;"/><a href="javascript:void(0);" class="selectIco" onclick="popup({content:'url:<%=rootPath%>/GovDocSet!sendProcessList.action?moduleId=2',title: '流程列表',width:800,height:600,winName:'selProcess'});"></a>
                         </td>  
                     </tr>
 

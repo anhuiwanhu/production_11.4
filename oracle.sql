@@ -414,3 +414,14 @@ INSERT INTO EZ_SECU_PAGELIST(SECU_URL,LIST_TYPE) VALUES ('/officeserverservlet',
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.19_SP_20160715','11.4.0.19',sysdate);
 commit;
+
+
+
+
+
+alter table ez_form add  editorType varchar2(50) ;
+commit;
+comment on column ez_form.editorType   is '编辑器种类 0 uEditor 1 eWebEditor';
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.20_SP_20160730','11.4.0.20',sysdate);
+commit;

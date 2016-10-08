@@ -39,6 +39,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 <c:set var="EmpLivingPhoto"><x:out select="$doc//workInfo/empLivingPhoto/text()"/></c:set>
 <c:set var="isEzFlow"><x:out select="$doc//workInfo/isEzFlow/text()"/></c:set>
 <c:set var="processCommentAcc"><x:out select="$doc//workInfo/processCommentAcc/text()"/></c:set>
+<c:set var="isDossier"><x:out select="$doc//workInfo/isDossier/text()"/></c:set>
 <c:if test="${not empty EmpLivingPhoto}"><c:set var="EmpLivingPhoto">/defaultroot/upload/peopleinfo/${EmpLivingPhoto}</c:set></c:if>
 <form id="sendForm" class="dialog" action="/defaultroot/workflow/sendnew.controller" method="post">
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
@@ -564,6 +565,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 					<input type="hidden" name="workcurstep" value="${workcurstep}">
 					<input type="hidden" name="worksubmittime" value="${worksubmittime}">
 					<input type="hidden" name="workStatus" value="0">
+					<input type="hidden" name="isDossier" value="${isDossier }">
             	</c:if>
         </div>
     </article>
