@@ -490,7 +490,7 @@ function scrolling(obj){
 		%>
 			$('#slide-pic-flex-<%=portletSettingId%>-<%=b0%>').flexslider({
 			    manualControls:"#wh-pic-small-<%=portletSettingId%>-<%=b0%> li",
-			    animation: "slide",
+			    animation: "fade",
 			    directionNav: false,
 			    pauseOnHover: false
 			});

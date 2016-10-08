@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services>
+	<vkey>whir2011</vkey>
+	<service id="c0">
+		<class>com.whir.service.parse.DesktopParse</class>
+		<methods>
+		    <method>loginDesktop</method>
+			<method>getRemindInfoByUserId</method>
+			<method>checkLogin</method>
+			<method>getLoginURL</method>
+            <method>isAttachmentEncrypt</method>
+            <method>getAttachmentId</method>
+		</methods>
+	</service>
+	<service id="c1">
+		<class>com.whir.service.parse.SystemParse</class>
+		<methods>
+			<method>addUser</method>
+			<method>updateUser</method>
+			<method>deleteUserByUserId</method>
+			<method>getUserList</method>
+			<method>getUserInfoByUserAccounts</method>
+			<method>getUserInfoByUserId</method>
+			<method>addOrganization</method>
+			<method>updateOrganization</method>
+			<method>deleteOrganizationByOrgId</method>
+			<method>getOrganizationList</method>
+			<method>getOrgInfoByOrgId</method>
+			<method>getParentOrgInfoByOrgId</method>
+			<method>getSubOrgListByOrgId</method>
+			<method>getSearchUserList</method>
+            <method>getOrgInfoByOrgCode</method>
+			<method>syncUserList</method>
+            <method>getGroupsByUserId</method>
+            <method>getGroupUsersByGroupId</method>
+            <method>getGroupUsersByUserName</method>
+            <method>getOrgByUserIdWithRange</method>
+            <method>deleteUserByUserAccount</method>
+			<method>getEVOWord</method>
+		</methods>
+	</service>
+	<service id="c2">
+		<class>com.whir.service.parse.MailParse</class>
+		<methods>
+			<method>sendSysMail</method>
+			<method>sendSysOutMail</method>
+			<method>getMailReceiveBoxList</method>
+			<method>getMailReceiveBoxInfoDetails</method>
+			<method>sendMail</method>
+			<method>getMailSendedList</method>
+            <method>getDraftBoxList</method>
+			<method>getDraftInfoDetails</method>
+			<method>saveMail</method>
+			<method>getIdsAndAccountsBySimple</method>
+			<method>hasMailSendMessageRight</method>
+			<method>delMailsToDeserted</method>
+			<method>delMailsQuite</method>
+			<method>getDesertedBoxList</method>
+			<method>delDrafts</method>
+		</methods>
+	</service>
+	<service id="c3">
+		<class>com.whir.service.parse.RealTimeParse</class>
+		<methods>
+			<method>getRealTimeMessageType</method>
+			<method>modifyPasswordRealTime</method>
+			<method>sendNotifyRealTime</method>
+		</methods>
+	</service>
+	<service id="c4">
+		<class>com.whir.service.parse.SmsParse</class>
+		<methods>
+			<method>sendSmsMessage</method>
+		</methods>
+	</service>
+	<service id="c5">
+		<class>com.whir.service.parse.WorkflowParse</class>
+		<methods>
+			<method>workflowSend</method>
+			<method>getFileDealed_workFlow</method>
+			<method>workFlow_getNextActivity</method>
+			<method>updateProcess</method>
+			<method>workflow_getcurTransactUserList</method>
+			<method>workFlow_getWorkInfoByworkId</method>
+			<method>workFlow_judgeButtonType</method>
+			<method>getFileDealed_workFlow_withAccount</method>
+			<method>getFlowedActivity_workFlow</method>
+			<method>workFlow_back</method>
+			<method>workflow_getWriteFieldByworkId</method>
+			<method>workflow_getUserProcessByModuleIds</method>
+			<method>workflow_getFirstNextList</method>
+			<method>workflow_getFirstTransactUserRange</method>
+			<method>workflow_sendFirst</method>
+			<method>workFlow_searchDealWithList_all_num</method>
+			<method>workFlow_searchDealWithList_all</method>
+			<method>completeTask</method>
+			<method>workflow_getAllPackage</method>
+			<method>workflow_getlog</method>
+			<method>workflow_getWFAcc</method>
+			<method>workflow_searchDealWithList</method>
+			<method>workflow_getUserPackage</method>
+			<method>workflow_getFirstNoWriteField</method>
+		</methods>
+	</service>
+	
+	<service id="c6">
+		<class>com.whir.service.parse.WorkReportParse</class>
+		<methods>
+			<method>getMyWeekReportList</method>
+			<method>getMyWeekReportDetail</method>
+			<method>getMyMonthReportList</method>
+			<method>getMyMonthReportDetail</method>
+			<method>getMyOtherReportList</method>
+			<method>getMyOtherReportDetail</method>
+			<method>getSubWeekReportList</method>
+			<method>getSubWeekReportDetail</method>
+			<method>getSubMonthReportList</method>
+			<method>getSubMonthReportDetail</method>
+			<method>getSubOtherReportList</method>
+			<method>getSubOtherReportDetail</method>
+			<method>getSearchWeekReportList</method>
+			<method>getSearchWeekReportDetail</method>
+			<method>getSearchMonthReportList</method>
+			<method>getSearchMonthReportDetail</method>
+			<method>getSearchOtherReportList</method>
+			<method>getSearchOtherReportDetail</method>
+			<method>checkReport</method>
+			<method>addReportOther</method>
+			<method>addWeekReportOrMonthReport</method>
+            <method>getUnreadReportNum</method>
+			<method>getSearchAllReportList</method>
+			<method>hasRightToSearchReport</method>
+		</methods>
+	</service>
+	<service id="c7">
+		<class>com.whir.service.parse.PersonParse</class>
+		<methods>
+		    <method>getPersonList</method>
+		    <method>LoadPerson</method>
+			<method>SavePerson</method>
+			<method>DeletePerson</method>
+			<method>AddPerson</method>	
+			<method>getInnerPersonList</method>
+		    <method>getInnerPersonOrgList</method>
+		    <method>getInnerPersonOrgInfoList</method>
+		</methods>
+	</service>	
+	<service id="c8">
+		<class>com.whir.service.parse.InformationParse</class>
+		<methods>
+			<method>getAllInformationChannel</method>
+			<method>saveMyDisplayChannel</method>
+			<method>getMyDisplayChannelList</method>
+			<method>information_getMobileList</method>
+			<method>information_loadMobileInformation</method>
+			<method>information_loadMobileByWorkId</method>
+			<method>saveInformation</method>
+			<method>Information_getCanIssueChannel</method>
+			<method>getInformationTag</method>
+			<method>getInformationTagList</method>
+			<method>viewUserStat</method>
+			<method>getImageInfo</method>
+			<method>getImage</method>
+			<method>getInformationList</method>
+            <method>htmlToText</method>
+			<method>setInformationComment</method>
+			<method>getInformationComment</method>
+			<method>getChannelByParentChannel</method>
+			<method>getInformationChannelByChannelId</method>
+			<method>canIssue</method>
+			<method>getTransChannel</method>
+			<method>listInformation</method>
+			<method>getAccessory</method>
+			<method>getImageInfoList</method>
+			<method>getAllUserChannel</method>
+			<method>getCanIssueChannel_noProcess</method>
+			<method>getCanIssueChannelAll</method>
+			<method>getLevelOneChannel</method>
+		</methods>
+	</service>
+	<service id="c9">
+		<class>com.whir.service.parse.DealFileParse</class>
+		<methods>
+			<method>searchDealWithList</method>
+			<method>getDetailResult</method>
+            <method>saveForm</method>
+            <method>getSelectDataListByFieldId</method>
+            <method>getNewForm</method>
+			<method>getFormResult</method>
+		</methods>
+	</service>
+	<service id="c10">
+		<class>com.whir.service.parse.ForumParse</class>
+		<methods>
+			<method>getForumList</method>
+			<method>getForumClassList</method>
+			<method>getForumFollowList</method>
+			<method>addForumKits</method>
+			<method>replyForum</method>
+			<method>getForumNotFlow</method>
+			<method>saveAddForum</method>
+			<method>getNickNameByUserId</method>
+            <method>getForumListIpad</method>
+			<method>getForumClassPL</method>
+			<method>getForumCountPL</method>
+			<method>getForumImageList</method>
+			<method>getListMenu</method>
+			<method>newGetForumList</method>
+			<method>getSubForumClassList</method>
+			<method>hasRightToAddForum</method>
+			<method>replyForumWx</method>
+			<method>getContent</method>
+			<method>getForumModInfo</method>
+			<method>getSubForumInfoByID</method>
+		</methods>
+	</service>
+	<service id="c11">
+		<class>com.whir.service.parse.GovDocParse</class>
+		<methods>
+			<method>searchDocumentList</method>
+			<method>getSendDocument</method>
+			<method>getReceiveDocument</method>
+			<method>sendFileBrower</method>
+			<method>getReceiveFileBox</method>
+			<method>getMyIssue</method>
+			<method>getSendDocumentFile</method>
+            <method>saveSendDocumentById</method>
+            <method>saveReceiveDocumentById</method>
+            <method>getReceiveDocumentByWorkId</method>
+            <method>getSendDocumentByWorkId</method>
+            <method>getGovIssueUnitList</method>
+            <method>getReceiveSeq</method>
+            <method>getAreaTypeAndSortTopicalList</method>
+            <method>getGovIssueUnitList</method>
+            <method>getReceiveUnitList</method>
+            <method>getUnReadReceiveFileBox</method>
+			<method>getSendfileCheck</method>
+			<method>getReceiveDocument_new</method>
+			<method>getSendDocument_new</method>
+		</methods>
+	</service>
+	<service id="c12">
+		<class>com.whir.service.parse.LookIntoParse</class>
+		<methods>
+			<method>getNetSurveys</method>
+			<method>getNetSurveyItems</method>
+			<method>addNetVote</method>
+			<method>iNetItemStatis</method>
+			<method>iGetNetSurveyItems</method>
+			<method>androidGetNetSurveyItems</method>
+			<method>androidItemStatis</method>
+			<method>getNetSurveysByPage</method>
+		</methods>
+	</service>
+	<service id="c13">
+		<class>com.whir.service.parse.DossierParse</class>
+		<methods>
+			<method>getDossiers</method>
+		</methods>
+	</service>
+	<service id="c14">
+		<class>com.whir.service.parse.PersonSettingParse</class>
+		<methods>
+			<method>updateMyPass</method>
+			<method>getMyInfo</method>
+			<method>saveMyinfo</method>
+			<method>saveOrUpdateRemind</method>
+			<method>getRemindInfo</method>
+		</methods>
+	</service>
+	<service id="c15">
+		<class>com.whir.service.parse.AttendanceParse</class>
+		<methods>
+			<method>sign</method>
+			<method>checkSignIn</method>
+			<method>getLocationList</method>
+			<method>evoCheckSignIn</method>
+			<method>evoSign</method>
+			<method>evoGetLocationList</method>
+		</methods>
+	</service>
+	<service id="c16">
+		<class>com.whir.service.parse.QuestionnaireParse</class>
+		<methods>
+			<method>getAnswerQuestionnaireList</method>
+			<method>questionnaireAnswer</method>
+			<method>addQuestionnaireAnswer</method>
+			<method>isRepeatName</method>			
+		</methods>
+	</service>
+
+    <service id="c17">
+        <class>com.whir.service.parse.transcenter.SystemParse</class>
+        <methods>
+            <method>getToken</method>
+            <method>getSSOUrl</method>
+            <method>getSysInfo</method>
+            <method>getUserInfoByIdentityNo</method>
+            <method>getSubFolder</method>
+            <method>getTransSidelineOrgList</method>
+            <method>getTransMailNum</method>
+            <method>getTransWaitFileNum</method>
+            <method>addUserTrans</method>
+            <method>updateUserTrans</method>
+            <method>deleteUserTrans</method>
+            <method>disableUserTrans</method>
+            <method>sleepUserTrans</method>
+            <method>enableUserTrans</method>
+            <method>enableSleepUserTrans</method>
+            <method>addOrgTrans</method>
+            <method>updateOrgTrans</method>
+            <method>deleteOrgTrans</method>            
+        </methods>
+    </service>
+
+    <service id="c18">
+		<class>com.whir.service.parse.transcenter.GovTransitionParse</class>
+		<methods>
+			<method>getGovTransSendList</method>
+			<method>getGovTransReceiveList</method>
+			<method>getUserOrgId</method>
+		</methods>
+	</service>
+	<service id="c19">
+		<class>com.whir.service.parse.EventParse</class>
+		<methods>
+			<method>getEventList</method>
+			<method>getLeaderEventList</method>
+			<method>getEventListByDay</method>
+			<method>getEventStaticInfo</method>
+			<method>getLeaderEventStaticInfo</method>
+			<method>saveEvent</method>
+			<method>updateEvent</method>
+			<method>loadEvent</method>
+			<method>deleteEvent</method>
+			<method>loadLeaderEvent</method>
+			<method>deleteLeaderEvent</method>
+			<method>getUnderlingEmpList</method>
+			<method>getLeaderList</method>
+			<method>getLeaderEventListByDay</method>
+		</methods>
+	</service>
+	<service id="c20">
+		<class>com.whir.service.parse.BoardroomParse</class>
+		<methods>
+			<method>selectImpropriateTime</method>
+			<method>saveBoardroomApply</method>
+			<method>addBoardroomApply</method>
+			<method>selectWorkFlow</method>
+			<method>boardroomNameIsRepeat</method>
+			<method>getUserProcess</method>
+			<method>saveBoardroom</method>
+			<method>getDefaultProcessId</method>
+		</methods>
+	</service>
+
+	<service id="c21">
+		<class>com.whir.service.parse.EzFLOWParse</class>
+		<methods>
+			<method>ezflow_getCanStartList</method>
+			<method>ezflow_findNextActivityWithStart</method>
+			<method>ezflow_start</method> 
+			<method>ezflow_getAllPackage</method> 
+			<method>ezflow_getCanStartPackage</method>
+			<method>ezFLOWAutoRunAll</method>
+		</methods>
+	</service>
+	<service id="c22">
+		<class>com.whir.service.parse.BPMParse</class>
+		<methods>
+			<method>bpm_updateProcess</method> 
+			<method>bpm_undo</method> 
+			<method>bpm_getAddSignInfo</method> 
+			<method>bpm_addSign</method> 
+	        <method>bpm_getTranInfo</method> 
+		    <method>bpm_tran</method> 
+			<method>bpm_getPressInfo</method>
+			<method>bpm_press</method>
+			<method>bpm_getUserPackage</method>
+			<method>bpm_getUserProcessByModuleIds</method>
+			<method>bpm_getUserProcessByModuleIds_new</method>
+			<method>bpm_completeRead</method>
+		</methods>
+	</service>
+
+
+	<service id="c23">
+		<class>com.whir.service.parse.microblog.CommentParse</class>
+		<methods>
+			<method>getCommentByWeiboId</method>
+			<method>listComment</method>
+			<method>addComment</method>
+			<method>deleteComment</method> 
+		</methods>
+	</service>
+
+    <service id="c24">
+		<class>com.whir.service.parse.microblog.FavoriteParse</class>
+		<methods>
+			<method>addOrDeleteFavorite</method>
+			<method>listFavorite</method>
+		</methods>
+	</service>
+
+
+	<service id="c25">
+		<class>com.whir.service.parse.microblog.IndexParse</class>
+		<methods>
+			<method>upload</method>
+			<method>saveSig</method>
+			<method>weibo_detail</method>
+			<method>forwardWeibo</method>
+			<method>user_card</method>
+			<method>listWeibo</method>
+			<method>addWeibo</method>
+			<method>weibo_forward_list_ajax</method>
+			<method>getLatestWeiboCount</method>
+			<method>getLatestWeibo</method>
+			<method>deleteWeibo</method>
+			<method>getWeiboPOString</method>
+			<method>getForwardWeiboPOString</method>
+			<method>getWeiboCommentPOString</method>
+			<method>getWeiboUserPOString</method>
+			<method>getSourceWeiboCommentPOString</method>
+			<method>getWeiboFavoritePOString</method>
+			<method>getListUtilString</method>
+			<method>weibo_searchuser</method>
+		</methods>
+	</service>
+    
+
+	 <service id="c26">
+		<class>com.whir.service.parse.microblog.MyConcernOrFansParse</class>
+		<methods>
+			<method>listMyConcernOrFansParse</method>
+			<method>addOrDeleteAttention</method>
+			<method>searchMyConcernUser</method>
+		</methods>
+	</service>
+
+
+	<service id="c27">
+		<class>com.whir.service.parse.microblog.ReferMeParse</class>
+		<methods>
+			<method>searchReferWeiboList</method>
+			<method>searchReferCommentList</method> 
+		</methods>
+	</service>
+
+	<service id="c28">
+		<class>com.whir.service.parse.ProjectParse</class>
+		<methods>
+			<method>getMineProjectList</method>
+			<method>getProjectTaskList</method> 
+		</methods>
+	</service>
+
+	<service id="c29">
+		<class>com.whir.service.parse.WorkLogParse</class>
+		<methods>
+			<method>getWorkLogStaticInfo</method>
+			<method>getWorkLogList</method>
+			<method>saveWorkLog</method>
+			<method>updateWorkLog</method>
+			<method>loadWorkLog</method>
+		</methods>
+	</service>
+
+	<service id="c30">
+		<class>com.whir.service.parse.CustomizeParse</class>
+		<methods>
+			<method>getMobileCustMenuList</method>
+			<method>getMobileCustChannelById</method>
+			<method>getCustMenuDataList</method>
+			<method>getCustMenuDataSearchList</method>
+		</methods>
+	</service>
+
+	<service id="c31">
+		<class>com.whir.service.parse.WXLocationParse</class>
+		<methods>
+			<method>saveWxLocation</method>
+			<method>myAttendance</method>
+			<method>myAttendanceDetail</method>
+		</methods>
+	</service>
+</services>
