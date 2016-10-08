@@ -66,7 +66,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 							<c:set var="mustfilled"><x:out select="$fd/mustfilled/text()"/></c:set>
 							<c:set var="sysname">,<x:out select="$fd/sysname/text()"/>,</c:set>
 							<tr>
-								<th><x:out select="$fd/name/text()"/><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+								<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if><x:out select="$fd/name/text()"/>：</th>
 								<td>
 								<c:choose>
 									<%--附件上传 115--%>
@@ -249,10 +249,10 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 						<c:set var="passRoundCommFieldType" ><x:out select="$doc//workInfo/passRoundCommFieldType/text()"/></c:set>
 						<c:if test="${passRoundCommField == 'autoCommentField'}">
 						<tr>
-							<th>审批意见：
-								<c:if test="${commentmustnonull eq true}">
+							<th><c:if test="${commentmustnonull eq true}">
 									<i class="fa fa-asterisk"></i>
 								</c:if>
+								审批意见：
 							</th>
 							<td>
 	                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="300"></textarea>

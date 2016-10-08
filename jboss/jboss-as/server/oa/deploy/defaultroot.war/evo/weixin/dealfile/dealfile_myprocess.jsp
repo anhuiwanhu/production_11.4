@@ -60,7 +60,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 							<c:set var="fieldtype"><x:out select="$fd/fieldtype/text()"/></c:set>
 							<c:set var="mustfilled"><x:out select="$fd/mustfilled/text()"/></c:set>
 							<tr>
-								<th><x:out select="$fd/name/text()"/><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+								<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if><x:out select="$fd/name/text()"/>：</th>
 								<td>
 									<c:choose>
 										<%--附件上传 115--%>

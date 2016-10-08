@@ -39,7 +39,7 @@ body {
   font-family: @font-family-sans-serif;
   .text-size-adjust(@text-size-adjust-value: none;
   );
-  color: #333;
+  color: @text-color-d;
   height: 100%;
 }
 
@@ -67,6 +67,7 @@ select,
 textarea {
   outline: none;
 }
+
 
 
 /*head title*/
@@ -456,7 +457,7 @@ strong.document-icon {
         line-height: 1.5rem;
         >a {
           margin-right: .2rem;
-          font-size: 1.2rem;
+          font-size: 1.3rem;
           color: #000;
           >em {
             margin-right: .5rem;
@@ -810,14 +811,16 @@ article {
       padding: 0;
       margin: 0;
       min-height: 2rem;
-      text-align: right;
+      text-align: left;
+      font-family:"Helvetica Neue",Helvetica,Arial,Sans-serif;
       .box-sizing(border-box);
       .appearance(none);
     }
     .edit-ipt-r {
       border: 1px solid #fff;
       background-color: #fff;
-      .placeholder(@text-color, right, 1.4rem);
+      font-size:1.3rem;
+      color:@text-color-d;
     }
     .edit-ipt-r.edit-ipt-arrow {
       &::-moz-placeholder {
@@ -858,7 +861,7 @@ article {
         line-height: 2.2rem;
         border: 1px solid #fff;
         top: 0;
-        right: 0;
+        left:5.8rem;
         .box-sizing(border-box);
         &:after {
           font-family: FontAwesome;
@@ -897,23 +900,24 @@ article {
       min-height: 6rem;
       line-height: 2rem;
       border: 1px solid #fff;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       .box-sizing(border-box);
       .appearance(none);
-      .placeholder(@text-color, left, 1.4rem);
+      /* .placeholder(@text-color-d, left, 1.4rem); */
+      
       resize: none;
       &.edit-txta-r {
-        .placeholder(@text-color, right, 1.4rem);
       }
       &.edit-txta-l {
-        .placeholder(@text-color, left, 1.4rem);
+        /* .placeholder(@text-color-d, left, 1.4rem); */
       }
     }
     a.edit-slt-r {
       display: block;
       width: 100%;
-      text-align: right;
-      color: @text-color;
+      text-align: left;
+      color: @text-color-d;
+      font-size:1.3rem;
       &:after {
         margin-left: 1rem;
         font-family: FontAwesome;
@@ -926,7 +930,8 @@ article {
       }
     }
     span.edit-radio-l {
-      color: @text-color;
+      font-size:1.3rem;
+      color:@text-color-d;
       &:before {
         margin-right: .5rem;
         font-family: FontAwesome;
@@ -1006,10 +1011,18 @@ article {
       }
       th {
         font-size: 1.3rem;
-        width: 10rem;
+        width: 9rem;
+        background:#f9f9f9;
+        color:#000;
+        padding-left:0.5rem;
+        &.no-bg{
+          background:0 none;
+        }
       }
       td {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+         padding: 1rem 0 1rem 1rem;
+
         .wh-article-atta {
           text-align: left;
         }
@@ -1108,9 +1121,10 @@ article {
       margin-bottom: 1rem;
       .edit-txta-num {
         position: absolute;
-        right: 0;
+        left: 0;
         bottom: 0;
-        color: @text-color;
+        color: @text-color-d;
+        font-size: 1.3rem;
       }
     }
     div.edit-txta-reslut {
@@ -1122,6 +1136,34 @@ article {
       }
     }
   }
+input.edit-ipt-r::-webkit-input-placeholder,textarea.edit-ipt-r::-webkit-input-placeholder { 
+color:@text-color-d; 
+} 
+
+textarea.edit-txta::-webkit-input-placeholder,textarea.edit-txta::-webkit-input-placeholder { 
+color:@text-color-d;
+font-size:1.3rem;
+}
+
+input::-webkit-input-placeholder,   
+textarea.edit-txta::-webkit-input-placeholder {   
+    color:@text-color-d;
+font-size:1.3rem;   
+}
+input:-moz-placeholder,   
+textarea.edit-txta:-moz-placeholder {   
+    color: red;   
+}   
+  
+input:-ms-input-placeholder,   
+textarea:-ms-input-placeholder {   
+    color: red;   
+}  
+.wh-container.no-padding{padding:0;}
+.edit-txta-box ul li{font-size:1.3rem; color:@text-color-d;}
+.wh-edit table.wh-table-edit a{font-size:1.3rem;color:@text-color-d;}
+article.wh-edit table.wh-table-edit th.no-bg{ background:none;}
+  /* Edit end */
   /* Global Article Dom */
   .fa {
     &.fa-asterisk {
@@ -1252,7 +1294,7 @@ aside {
         left: 50%;
         text-align: center;
         color: #fff;
-        text-shadow: 0 .1rem .4rem #333;
+        text-shadow: 0 .1rem .4rem @text-color-d;
         .translate(-50%, -50%);
         h1 {
           img {
@@ -1433,6 +1475,7 @@ aside {
     }
     span {
       margin-right: .2rem;
+      font-size: 1.4rem;
     }
     em {
       display: inline-block;
@@ -1625,9 +1668,12 @@ i.fa.fa-check-circle {
   width: 100%;
   color: #646464;
   .edit-sel-show {
-    text-align: right;
+    text-align: left;
+
     span {
       display: block;
+      font-size:1.3rem;
+    color:@text-color-d;
       &:after {
         margin-left: 1rem;
         font-family: FontAwesome;
@@ -1651,6 +1697,8 @@ select.btn-bottom-pop {
   border: none;
   opacity: 0;
   filter: alpha(opacity=0);
+  font-size:1.3rem;
+  color:@text-color-d;
 }
 
 
@@ -2893,7 +2941,7 @@ article.wh-edit table.wh-table-edit td div.wh-iframe {
     }
     .color-no {
       background: none;
-      color: #333;
+      color: @text-color-d;
     }
   }
 

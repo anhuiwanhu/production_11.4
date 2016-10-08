@@ -107,13 +107,13 @@ String userId = session.getAttribute("userId").toString();
 								<c:set var="scopeIdLength" value="<%=scopeIdLength %>"></c:set>
 								<%--处理办理人只有一个人的情况--%>
 								<tr>
-				            		<th>下一办理环节<i class="fa fa-asterisk"></i>：</th>
+				            		<th><i class="fa fa-asterisk"></i>下一办理环节：</th>
 				            		<td style="text-align:right">
 				            			<input type="checkbox" name="activity" id='activity<x:out select="$n/id/text()"/>' value='<x:out select="$n/id/text()"/>' checked="true" /><x:out select="$n/name/text()"/>
 				            		</td>
 				            	</tr>
 				            	<tr <c:if test="${id eq '-2'}">style="display : none;"</c:if>>
-				            		<th>下一办理人<i class="fa fa-asterisk"></i>：</th>
+				            		<th><i class="fa fa-asterisk"></i>下一办理人：</th>
 				            		<td>
 										<x:if select="$n/scopeType/text() = 'default_users' ">
 											<input type="hidden" id="scopeId" name="scopeId" value='<x:out select="$n/scopeId/text()"/>'/>
@@ -175,13 +175,13 @@ String userId = session.getAttribute("userId").toString();
 								<c:set var="scopeIdLength" value="<%=scopeIdLength %>"></c:set>
 								<%--处理办理人只有一个人的情况--%>
 								<tr>
-									<th>下一办理环节<i class="fa fa-asterisk"></i>：</th>
+									<th><i class="fa fa-asterisk"></i>下一办理环节：</th>
 									<td style="text-align:right">
 										<input onclick="return false;" type="checkbox" name="activity" id='activity<x:out select="$n/id/text()"/>' value='<x:out select="$n/id/text()"/>' checked="true" /><x:out select="$n/name/text()"/>
 									</td>
 								</tr>
 								<tr <c:if test="${id eq '-2'}">style="display : none;"</c:if>>
-				            		<th>下一办理人<i class="fa fa-asterisk"></i>：</th>
+				            		<th><i class="fa fa-asterisk"></i>下一办理人：</th>
 				            		<td>
 										<x:if select="$n/scopeType/text() = 'default_users' ">
 											<input type="hidden" id="scopeId" name="scopeId" value='<x:out select="$n/scopeId/text()"/>'/>
@@ -220,7 +220,7 @@ String userId = session.getAttribute("userId").toString();
 						<c:otherwise>
 							<c:set var="isdefaultusers" value="0"/>
 							<tr>
-								<th>下一办理环节<i class="fa fa-asterisk"></i>：</th>
+								<th><i class="fa fa-asterisk"></i>下一办理环节：</th>
 								<td style="text-align:right">
 									<!-- <select class="selt" name="activity"  id="activity" prompt="请选择下一办理环节" onchange="hiddenEnd();">
 										<option value="">--请选择--</option>
@@ -290,7 +290,7 @@ String userId = session.getAttribute("userId").toString();
 								</td>
 							</tr>
 							<tr id="person" style="display:none;">
-								<th>下一办理人<i class="fa fa-asterisk"></i>：</th>
+								<th><i class="fa fa-asterisk"></i>下一办理人：</th>
 								<td>
 									<input type="hidden" id='scopeId' name='scopeId' value='' />
 									<input type="hidden" id="userId"  name="userId"  value=""/>
@@ -326,7 +326,7 @@ String userId = session.getAttribute("userId").toString();
 						<c:set var="scopeIdLength" value="<%=scopeIdLength %>"></c:set>
 						<%--处理办理人只有一个人的情况--%>
 					<tr>
-						<th>下一办理人<i class="fa fa-asterisk"></i>：</th>
+						<th><i class="fa fa-asterisk"></i>下一办理人：</th>
 						<td>
 							<c:set var="scopeType"><x:out select="$n//scopeType/text()"/></c:set>
 							<x:if select="$n//scopeType/text() = 'default_users' ">

@@ -50,23 +50,23 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 						<c:set var="id">$<x:out select="$fd/sysname/text()"/>$</c:set>
 						<tr>
 						    <c:if test="${not empty docXml1}">
-							<th><x:out select="$fd/name/text()"/><c:if test="${mustfilled == 1 && fn:indexOf(hideField, id) == -1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+							<th><c:if test="${mustfilled == 1 && fn:indexOf(hideField, id) == -1}"><i class="fa fa-asterisk"></i></c:if><x:out select="$fd/name/text()"/>：</th>
 							</c:if>
 							<c:if test="${empty docXml1}">
-							<th><x:out select="$fd/name/text()"/><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+							<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if><x:out select="$fd/name/text()"/>：</th>
 							</c:if>
 							<td style="text-align: right;">
 								<c:choose>
 									<%--单行文本 101--%>
 									<c:when test="${showtype =='101' && readwrite =='1'}">
 										<c:if test="${ fieldtype == '1000000'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);/>
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 										</c:if>
 										<c:if test="${ fieldtype == '1000001'   }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="18" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);/>
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="18" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 										</c:if>
 										<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text"  name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);/>
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text"  name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
 										</c:if>
 									</c:when>
 	
@@ -310,10 +310,10 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 									<%--金额 301--%>
 									<c:when test="${showtype =='301' && readwrite =='1'}">
 										<c:if test="${fieldtype == '1000000' || fieldtype == '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>';mainMath(this);)"  value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>');mainMath(this);"  value='<x:out select="$fd/value/text()"/>' />
 										</c:if>
 										<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>';mainMath(this);)" value='<x:out select="$fd/value/text()"/>' />
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' onkeyup="changeMoney('<x:out select='$fd/sysname/text()'/>');mainMath(this);" value='<x:out select="$fd/value/text()"/>' />
 										</c:if>
 									</c:when>
 									<%--批示意见 401--%>
@@ -421,7 +421,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 							<c:set var="subTable" >${xh.index+1}</c:set>
 						</x:forEach>
 						<c:if test="${ not empty subTable}">
-							<th>子表填写<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></c:if>：</th>
+							<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></c:if>子表填写：</th>
 							<td>
 								<input type="text" class="edit-ipt-r" value="" readonly="readonly" onclick="" placeholder=""/>
 							</td>
@@ -758,11 +758,11 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 	function mainMath(obj){
 		var id=obj.id;
 		var objval =document.getElementById(id).value;
-        //if(isNaN(objval)){
-			//document.getElementById(id).value="";
-			//alert("请输入数字");
-			//return false;
-		//}
+        if(isNaN(objval)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
 		var val = $('.edit-ipt-r.mainmath').attr("mainmathfun");//合计字段的公式
 		var mathId = $('.edit-ipt-r.mainmath').attr("id");
 		var str = val.replace(/\*/g, '|').replace(/\+/g, '|').replace(/\-/g, '|').replace(/\//g, '|').replace(/\(/g, '|').replace(/\)/g, '|');

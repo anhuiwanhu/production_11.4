@@ -23,18 +23,18 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
         <div class="wh-container">
             <table class="wh-table-edit">
                 <tr>
-                    <th>所属版块<i class="fa fa-asterisk"></i>：</th>
+                    <th><i class="fa fa-asterisk"></i>所属版块：</th>
                     <td>
                         <input onclick="selectColumn()" class="edit-ipt-r edit-ipt-arrow" type="text" readonly name="className" id="className" placeholder="请选择" />
                         <input type="hidden" name="classId" id="classId"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>帖子标题<i class="fa fa-asterisk"></i>：</th>
+                    <th><i class="fa fa-asterisk"></i>帖子标题：</th>
                     <td><input class="edit-ipt-r" type="text" placeholder="请输入" name="title" id="title"/></td>
                 </tr>
                 <tr>
-                    <th>署名方式<i class="fa fa-asterisk"></i>：</th>
+                    <th><i class="fa fa-asterisk"></i>署名方式：</th>
                     <td>
                         <ul class="edit-radio">
                             <li data-val="0"><span class="edit-radio-l">实名</span></li>

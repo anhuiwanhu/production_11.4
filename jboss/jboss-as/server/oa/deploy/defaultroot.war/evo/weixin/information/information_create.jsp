@@ -23,14 +23,14 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
         <div class="wh-container">
             <table class="wh-table-edit">
                 <tr>
-                    <th>所属栏目<i class="fa fa-asterisk"></i>：</th>
+                    <th><i class="fa fa-asterisk"></i>所属栏目：</th>
                     <td>
                         <input onclick="selectChannel()" class="edit-ipt-r edit-ipt-arrow" type="text" readonly name="channelName" id="channelName" placeholder="请选择" />
                         <input type="hidden" name="channelId" id="channelId"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>信息标题<i class="fa fa-asterisk"></i>：</th>
+                    <th><i class="fa fa-asterisk"></i>信息标题：</th>
                     <td><input class="edit-ipt-r" type="text" placeholder="请输入" name="title" id="title"/></td>
                 </tr>
                 <tr>
@@ -58,7 +58,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
                     </td>
                 </tr>
                 <tr>
-                    <th>正文<i class="fa fa-asterisk"></i>：</th>
+                    <th><i class="fa fa-asterisk"></i>正文：</th>
                     <td>
                         <div class="edit-txta-box">
                             <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="content" id="content" maxlength="300"

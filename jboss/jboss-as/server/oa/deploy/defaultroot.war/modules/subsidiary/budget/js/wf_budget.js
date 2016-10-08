@@ -335,7 +335,7 @@ function beforeSubmitBudgetEvent(){
 			}
 			
 			if(tip !=''){
-				/**if(tip.indexOf('没') >= 0){////2016-09-14 王建总说要改的
+				/**if(tip.indexOf('没') >= 0){////2016-09-14 王建总说要改的 超预算和没预算一样对待
 					result = false;
 					whir_alert('您提交的:' + tip + '请申请预算!',null,null);					 
 				}**/
@@ -346,7 +346,7 @@ function beforeSubmitBudgetEvent(){
 					//outSubjectids = subjectids;
 					//outCurAmounts = curAmounts;
 					if(result){
-						$("#callBackTips").val("您提交的:" + tip + "请申请预算!");
+						$("#callBackTips").val('您提交的:' + tip + '请申请预算! 点击"确定"继续提交。');
 					}else{
 						whir_alert('您提交的:' + tip + '请申请预算!',null,null);
 					}

@@ -86,7 +86,7 @@ if(sysMap != null && sysMap.get("附件上传") != null){
 							<c:choose>
 				            	<c:when test="${informationType =='0' || informationType =='1'}">
 									<%
-			                        String newcontent = StringUtils.replace(informationContent,"&nbsp;","");
+			                        String newcontent = StringUtils.replace(informationContent,"amp;","");
 			                        newcontent = newcontent.replaceAll("<STYLE>(.*?)</STYLE>","");
 			                        newcontent = StringUtils.replace(newcontent,"<br>","<br/>").replaceAll("<.*?>", "");
 									%>
@@ -271,10 +271,11 @@ if(sysMap != null && sysMap.get("附件上传") != null){
 							<c:set var="actiCommFieldType" ><x:out select="$workInfoDoc//workInfo/actiCommFieldType/text()"/></c:set>
 							<c:if test="${actiCommFieldType != '-1' && (commentField == '-1' || commentField == 'nullCommentField' || commentField == 'autoCommentField' || commentField == 'null') }">
 							<tr>
-								<th>审批意见：
-									<c:if test="${commentmustnonull eq true}">
+								<th>
+								<c:if test="${commentmustnonull eq true}">
 										<i class="fa fa-asterisk"></i>
 									</c:if>
+								审批意见：
 								</th>
 								<td>
 		                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="50"></textarea>
@@ -301,10 +302,12 @@ if(sysMap != null && sysMap.get("附件上传") != null){
 							<c:set var="passRoundCommFieldType" ><x:out select="$workInfoDoc//workInfo/passRoundCommFieldType/text()"/></c:set>
 							<c:if test="${passRoundCommField == 'autoCommentField'}">
 							<tr>
-								<th>审批意见：
-									<c:if test="${commentmustnonull eq true}">
+								<th>
+								<c:if test="${commentmustnonull eq true}">
 										<i class="fa fa-asterisk"></i>
 									</c:if>
+								审批意见：
+									
 								</th>
 								<td>
 		                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="50"></textarea>

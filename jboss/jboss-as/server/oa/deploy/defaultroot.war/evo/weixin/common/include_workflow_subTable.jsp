@@ -70,7 +70,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 											<c:set var="name"><x:out select="$field/name/text()"/></c:set>
 											<c:set var="totfield"><x:out select="$field/totfield/text()"/></c:set>
 					                        <tr>
-					                            <th>${name}<c:if test="${mustfilled == '1' && readwrite == '1'}"><i class="fa fa-asterisk"></i></c:if>：</th>
+					                            <th><c:if test="${mustfilled == '1' && readwrite == '1'}"><i class="fa fa-asterisk"></i></c:if>${name}：</th>
 					                            <td>                             
 													<c:choose>
 														<%--单行文本 101--%>
@@ -82,7 +82,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="18" name='_sub_<x:out select="$field/sysname/text()"/>'  onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');math(this)"  value='<x:out select="$field/value/text()"/>' />
 															</c:if>
 															<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text"  name='_sub_<x:out select="$field/sysname/text()"/>'  onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');math(this)" value='<x:out select="$field/value/text()"/>'/>
+																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text"  name='_sub_<x:out select="$field/sysname/text()"/>'  onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');" value='<x:out select="$field/value/text()"/>'/>
 															</c:if>
 															<input type="hidden"  name="keyv" value="${name},${totfield},_sub_<x:out select='$field/sysname/text()'/>"/>
 														</c:when>
@@ -1066,11 +1066,11 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
     function math(obj){
 		var id = obj.id;
 		var objval =document.getElementById(id).value;
-       // if(isNaN(objval)){
-			//document.getElementById(id).value="";
-			//alert("请输入数字");
-			//return false;
-		//}
+        if(isNaN(objval)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
 		var val = $('.edit-ipt-r.whmath').attr("mathfun");//合计字段的公式
 		var mathId = $('.edit-ipt-r.whmath').attr("id");
 		var arr=id.split("_");

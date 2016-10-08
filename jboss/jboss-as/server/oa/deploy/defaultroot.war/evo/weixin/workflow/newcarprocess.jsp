@@ -52,7 +52,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		            			<!-- 申请车辆名称 -->
 		            			<c:if test="${voitureName !='null' && voitureName !=''}">
 			            			<tr>
-			            				<th>${voitureName }<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+			            				<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${voitureName }：</th>
 			            				<td>
 			            					<div class="examine">
 												<a class="edit-select edit-ipt-r">
@@ -76,7 +76,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		            			<!-- 申请部门名称 -->
 		            			<c:if test="${orgName !='null' && orgName !=''}">
 		            				<tr>
-		            					<th>${orgName}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+		            					<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${orgName}：</th>
 		            					<td>
 		            						<input type="hidden" readonly="readonly" id='orgId' name='orgId' value='<x:out select="$fd/hiddenval/text()"/>' />
 			           						<input type="text"   readonly="readonly" id='orgName'  name='orgName' value='<x:out select="$fd/value/text()"/>' class="edit-ipt-r edit-ipt-arrow" onclick='selectUser("0","orgName","orgId","*0*","org");' placeholder="请选择"/> 
@@ -86,7 +86,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		            			<!-- 申请人名称 -->
 								<c:if test="${empName !='null' && empName !=''}">
 									<tr>
-										<th>${empName}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${empName}：</th>
 										<td>
 										<input type="hidden" readonly="readonly" id='empId' name='empId' value='<x:out select="$fd/hiddenval/text()"/>' />
 			           					<input type="text"   readonly="readonly" id='empName' name='empName' value='<x:out select="$fd/value/text()"/>' class="edit-ipt-r edit-ipt-arrow" onclick='selectUser("0","empName","empId","*0*","user")' placeholder="请选择"/>
@@ -96,35 +96,35 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 								<!-- 目的地 -->
 								<c:if test="${destination !='null' && destination !=''}">
 									<tr>
-										<th>${destination}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${destination}：</th>
 										<td><input class="edit-ipt-r" placeholder="请输入" id="destination"  type="text" maxlength="30" name='destination'/></td>
 									</tr>
 							    </c:if>
 							    <!-- 跟车人数 -->
 							    <c:if test="${personNum !='null' && personNum !=''}">
 									<tr>
-									  	<th>${personNum}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+									  	<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${personNum}：</th>
 										<td><input class="edit-ipt-r" placeholder="请输入"  type="text" maxlength="3" name='personNum' id='personNum'  oninput="value=value.replace(/[^\d]/g,'')"/></td>
 									</tr>
 							    </c:if>
 							    <!-- 跟车人 -->
 							    <c:if test="${genchePerson !='null' && genchePerson !=''}">
 									<tr>
-										<th>${genchePerson}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${genchePerson}：</th>
 										<td><input class="edit-ipt-r" placeholder="请输入"  type="text" maxlength="100" name='genchePerson' id="genchePerson"/></td>
 									</tr>
 							    </c:if>
 							    <!-- 司机 -->
 							    <c:if test="${motorMan !='null' && motorMan !=''}">
 									<tr>
-										<th>${motorMan}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${motorMan}：</th>
 										<td><input class="edit-ipt-r" placeholder="请输入"  type="text" maxlength="20" name='motorMan' id='motorMan'/></td>
 									</tr>
 							    </c:if>
 							    <!-- 预计用车开始时间 -->
 							    <c:if test="${startDate !='null' && startDate !=''}">
 									<tr>
-										<th>${startDate}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${startDate}：</th>
 										<td>
 											<div class="edit-ipt-a-arrow">
 												<input data-dateType="datetime" class="edit-ipt-r edit-ipt-arrow" type="text" id='startDateTime' name='startDateTime' placeholder="选择日期时间"/>
@@ -136,7 +136,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 							    <!-- 预计用车结束时间 -->
 								<c:if test="${endDate !='null' && endDate !=''}">
 									<tr>
-										<th>${endDate}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${endDate}：</th>
 										<td>
 											<div class="edit-ipt-a-arrow">
 												<input data-dateType="datetime" class="edit-ipt-r edit-ipt-arrow" type="text" id='endDateTime' name='endDateTime' placeholder="选择日期时间"/>
@@ -148,7 +148,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 								<!-- 用车类型 -->
 								<c:if test="${voitureStyle !='null' && voitureStyle !=''}">
 									<tr>
-										<th>${voitureStyle}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${voitureStyle}：</th>
 										<td>
 											<div class="examine">
 												<a class="edit-select edit-ipt-r">
@@ -169,7 +169,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 								<!-- 事由 -->
 								<c:if test="${reason !='null' && reason !=''}">
 									<tr>
-										<th>${reason}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${reason}：</th>
 										<td>
 											<textarea name='reason' id='reason' onkeyup="$(this).next('.edit-txta-num').html($(this).attr('maxlength')-$(this).val().length );"   class="edit-txta edit-txta-l" maxlength="300"></textarea>
 											<span class="edit-txta-num">300</span>
@@ -179,7 +179,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 								<!-- 备注 -->
 								<c:if test="${remark !='null' && remark !=''}">
 									<tr>
-										<th>${remark}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+										<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${remark}：</th>
 										<td>
 											<textarea name='remark' id='remark' onkeyup="$(this).next('.edit-txta-num').html($(this).attr('maxlength')-$(this).val().length );"   class="edit-txta edit-txta-l" maxlength="300"></textarea>
 											<span class="edit-txta-num">300</span>

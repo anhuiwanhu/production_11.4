@@ -42,7 +42,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	        <div class="wh-container">
 	            <table class="wh-table-edit">
 	                <tr>
-	                    <th>收件人<i class="fa fa-asterisk"></i>：</th>
+	                    <th><i class="fa fa-asterisk"></i>收件人：</th>
 	                    <td>
 	                    	<span class="fr" onclick="$(this).next('input').click()"></span>
 	                    	<input onclick="selectUser('1','empName','empId','*0*');"  class="edit-ipt-r edit-ipt-arrow" readonly type="text" 
@@ -68,7 +68,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	                    </td>
 	                </tr>
 	                <tr>
-	                    <th>主题<i class="fa fa-asterisk"></i>：</th>
+	                    <th><i class="fa fa-asterisk"></i>主题：</th>
 	                    <td><input placeholder="请输入" class="edit-ipt-r" type="text" id="mailsubject" name="mailsubject" value="${empty mailreplySub ? title : mailreplySub}"/></td>
 	                </tr>
 	                <tr>

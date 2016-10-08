@@ -69,7 +69,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 会议室 -->
 				<c:if test="${boardroomName != 'null' && boardroomName !=''}">
                 <tr>				
-                    <th>${boardroomName}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${boardroomName}：</th>
                     <td>					
                         <div class="examine">
 							<a class="edit-select edit-ipt-r">
@@ -97,7 +97,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 地点 -->
 				<c:if test="${addr != 'null' && addr !=''}">
                 <tr id="addrTr">				
-                    <th>${addr}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${addr}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input class="edit-ipt-r" type="text" id="addr" name="addr"  placeholder="请输入" />                         
@@ -105,7 +105,7 @@ String nowDate = df.format(ndate).toString();
                     </td>
                 </tr>
 				<tr id="pointNumTr">				
-                    <th>点数<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>点数：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input class="edit-ipt-r" type="text" id="pointNum" name="pointNum"  placeholder="请输入" />                         
@@ -116,7 +116,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 出席人数 -->
 				<c:if test="${personNum != 'null' && personNum !=''}">
                 <tr>				
-                    <th>${personNum}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${personNum}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input class="edit-ipt-r" type="text" name="personNum" value="${attendNum}" placeholder="请输入" />                           
@@ -127,7 +127,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 会议主题 -->
 				<c:if test="${motif != 'null' && motif !=''}">
                 <tr>				
-                    <th>${motif}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${motif}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input class="edit-ipt-r" type="text" name="motif" placeholder="请输入" /> 
@@ -138,7 +138,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 主持人 -->
 				<c:if test="${emceeName != 'null' && emceeName !=''}">
                 <tr>				
-                    <th>${emceeName}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${emceeName}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow">
                             <input type="hidden" readonly="readonly" id="empId" name="empId"  />
@@ -156,7 +156,7 @@ String nowDate = df.format(ndate).toString();
 					   <c:set var="endMint">${endMin}</c:set>
 					  <!--日期-->
 					  <div class="timetr clearfix">
-						<span id="td1">${destineDate}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</span> 
+						<span id="td1"><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${destineDate}：</span> 
 						<div class="edit-ipt-a-arrow time-r">
 							<input data-datetype="date" class="edit-ipt-r edit-ipt-arrow" type="text" name="destineDate" placeholder="" value="${startTime}"/>
 							<label class="edit-ipt-label" for="scroller"></label>
@@ -164,7 +164,7 @@ String nowDate = df.format(ndate).toString();
 					  </div>
 					  <!--开始时间-->
 					  <div class="timetr clearfix">
-						<span id="td2">${startMinute}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</span>
+						<span id="td2"><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${startMinute}：</span>
 						 
 						  <div class="edit-ipt-a-arrow time-r">
 							 <input data-datetype="time" class="edit-ipt-r edit-ipt-arrow" type="text" name="startMinutes" placeholder="" value="${startMint}"/>   
@@ -174,7 +174,7 @@ String nowDate = df.format(ndate).toString();
 					  </div>
 					   <!--结束时间-->
 					  <div class="timetr timetr-over clearfix">
-						<span id="td3">${endMinute}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</span>
+						<span id="td3"><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${endMinute}：</span>
 						
 						<div class="edit-ipt-a-arrow time-r">
 							<input data-datetype="time" class="edit-ipt-r edit-ipt-arrow" type="text" name="endMinutes" placeholder="" value="${endMint}" />  
@@ -195,7 +195,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 会议内容 -->
 				<c:if test="${depict != 'null' && depict !=''}">
                 <tr>				
-                    <th>${depict}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${depict}：</th>
                     <td>		                     
 						<textarea name="depict"  class="edit-txta edit-txta-l" maxlength="300" placeholder="请输入"></textarea>
                     </td>
@@ -223,7 +223,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 会议室编号 -->
 				<c:if test="${boardroomCode != 'null' && boardroomCode !=''}">
                 <tr>				
-                    <th>${boardroomCode}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${boardroomCode}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input class="edit-ipt-r edit-ipt-arrow" type="text" name="boardroomCode" placeholder="请输入" />                    
@@ -234,7 +234,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 会议类型 -->
 				<c:if test="${boardroomApplyType != 'null' && boardroomApplyType !=''}">
                 <tr>				
-                    <th>${boardroomApplyType}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${boardroomApplyType}：</th>
                     <td>					
                          <div class="examine">
 							<a class="edit-select edit-ipt-r">
@@ -256,7 +256,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 出席领导 -->
 				<c:if test="${attendeeLeader != 'null' && attendeeLeader !=''}">
                 <tr>				
-                    <th>${attendeeLeader}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${attendeeLeader}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow">
                             <input type="hidden" readonly="readonly" id="attendeeLeaderId" name="attendeeLeaderId"  />
@@ -269,7 +269,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 会议记录人 -->
 				<c:if test="${notePersonName != 'null' && notePersonName !=''}">
                 <tr>				
-                    <th>${notePersonName}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${notePersonName}：</th>
                     <td>					
                        <div class="edit-ipt-a-arrow">
                             <input type="hidden" readonly="readonly" id="noteEmpId" name="noteEmpId"  />
@@ -282,7 +282,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 会议出席人 -->
 				<c:if test="${attendee != 'null' && attendee !=''}">
                 <tr>				
-                    <th>${attendee}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${attendee}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow">
                             <input type="hidden" readonly="readonly" id="attendeeEmpId" name="attendeeEmpId"  />
@@ -295,7 +295,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 其它参会人 -->
 				<c:if test="${otherAttendeePerson != 'null' && otherAttendeePerson !=''}">
                 <tr>				
-                    <th>${otherAttendeePerson}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${otherAttendeePerson}：</th>
                     <td>					
                         <textarea class="edit-txta edit-txta-l" name="otherAttendeePerson" maxlength="300"></textarea>
                     </td>
@@ -304,7 +304,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 预定者 -->
 				<c:if test="${applyEmpName != 'null' && applyEmpName !=''}">
                 <tr>				
-                    <th>${applyEmpName}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${applyEmpName}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input class="edit-ipt-r edit-ipt-arrow" type="text" name="applyEmpName" placeholder="" value="<%=userName%>"  readonly="readonly"/>                        
@@ -315,7 +315,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 预定部门 -->
 				<c:if test="${applyOrgName != 'null' && applyOrgName !=''}">
                 <tr>				
-                    <th>${applyOrgName}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${applyOrgName}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input class="edit-ipt-r edit-ipt-arrow" type="text" name="applyOrgName" placeholder="" value="<%=orgName%>" readonly="readonly" />                      
@@ -326,7 +326,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 预定日期 -->
 				<c:if test="${applyDate != 'null' && applyDate !=''}">
                 <tr>				
-                    <th>${applyDate}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${applyDate}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input  class="edit-ipt-r edit-ipt-arrow" type="text" name="applyDate" value="<%=nowDate%>" placeholder="" /> 
@@ -337,7 +337,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 联系电话 -->
 				<c:if test="${linkTelephone != 'null' && linkTelephone !=''}">
                 <tr>				
-                    <th>${linkTelephone}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${linkTelephone}：</th>
                     <td>					
                         <div class="edit-ipt-a-arrow edit-ipt-r">
                             <input class="edit-ipt-r edit-ipt-arrow" type="text" name="linkTelephone" placeholder="请输入" />                          
@@ -348,7 +348,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 席卡 -->
 				<c:if test="${seatcard != 'null' && seatcard !=''}">
                 <tr>				
-                    <th>${seatcard}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${seatcard}：</th>
                     <td>					
                         <textarea name="seatcard"  class="edit-txta edit-txta-l" maxlength="300" placeholder="请输入"></textarea>
                     </td>
@@ -357,7 +357,7 @@ String nowDate = df.format(ndate).toString();
 				<!-- 备注 -->
 				<c:if test="${remark != 'null' && remark !=''}">
                 <tr>				
-                    <th>${remark}<c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+                    <th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>${remark}：</th>
                     <td>					
                          <textarea name="remark"  class="edit-txta edit-txta-l" maxlength="300" placeholder="请输入"></textarea>
                     </td>

@@ -542,6 +542,13 @@ if(whir_agent.indexOf("Firefox/4")>0){
 													    </table>  
 													 </td>
 												</tr> 
+												<!--所有经办人-->
+												<tr>
+													<td>
+														<input onClick="clickParticipantType(this);" value="allDealUser" type="radio" name="participantType">
+														所有经办人  
+													</td>
+												</tr>
 											</table>  
 									</td>
 									<td>&nbsp;</td>

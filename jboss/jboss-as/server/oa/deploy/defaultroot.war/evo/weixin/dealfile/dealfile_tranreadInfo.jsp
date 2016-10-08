@@ -54,7 +54,7 @@ String userId = session.getAttribute("userId").toString();
 				<input type="hidden" value="${param.workId}" name="workId"/>
 				<table class="wh-table-edit">
 					<tr>
-						<th>选择办理人<i class="fa fa-asterisk"></i>：</th>
+						<th><i class="fa fa-asterisk"></i>选择办理人：</th>
 						<td>
 							<c:set var="scopeType"><x:out select="$doc//scopeType/text()"/></c:set>
 							<x:if select="$doc//scopeType/text() = 'default_users' ">
@@ -72,7 +72,7 @@ String userId = session.getAttribute("userId").toString();
 						</td>
 					</tr>
 					<tr>
-						<th>当前办理环节<i class="fa fa-asterisk"></i>：</th>
+						<th><i class="fa fa-asterisk"></i>当前办理环节：</th>
 						<td style="text-align:right">
 							<%=workcurstep%>
 						</td>

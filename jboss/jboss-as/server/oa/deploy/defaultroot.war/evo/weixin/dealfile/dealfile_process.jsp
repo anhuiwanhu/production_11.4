@@ -69,19 +69,19 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 						<c:set var="mustfilled"><x:out select="$fd/mustfilled/text()"/></c:set>
 							<tr>
 			                    <th>
-				                    <x:out select="$fd/name/text()"/>
-				                    <c:choose>
+			                    	<c:choose>
 										<c:when test="${showtype != '401' }">
 											<c:if test="${mustfilled == '1' && readwrite == '1'}">
 												<i class="fa fa-asterisk"></i>
-											    </c:if>：
+											    </c:if>
 										</c:when>
 										<c:otherwise>
 											<c:if test="${commentmustnonull == 'true' && readwrite == '1'}">
 												<i class="fa fa-asterisk"></i>
-											</c:if>：
+											</c:if>
 										</c:otherwise>
 									</c:choose>
+				                    <x:out select="$fd/name/text()"/>：
 			                    </th>
 							<td style="text-align:right">
 							<c:choose>
@@ -94,7 +94,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										<input placeholder="请输入" class="edit-ipt-r" type="number" maxlength="18" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 									</c:if>
 									<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-										<input placeholder="请输入" class="edit-ipt-r" type="text" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
+										<input placeholder="请输入" class="edit-ipt-r" type="text" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
 									</c:if>
 								</c:when>
 								<%--密码输入 102--%>
@@ -485,10 +485,10 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 						<c:set var="actiCommFieldType" ><x:out select="$doc//workInfo/actiCommFieldType/text()"/></c:set>
 						<c:if test="${actiCommFieldType != '-1' && (commentField == '-1' || commentField == 'nullCommentField' || commentField == 'autoCommentField' || commentField == 'null') }">
 						<tr>
-							<th>审批意见：
-								<c:if test="${commentmustnonull eq true}">
+							<th><c:if test="${commentmustnonull eq true}">
 									<i class="fa fa-asterisk"></i>
 								</c:if>
+								审批意见：
 							</th>
 							<td>
 	                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="300"></textarea>
@@ -573,7 +573,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 						<!--退回意见begin-->
 						<c:set var="dealTipsContent" ><x:out select="$doc//dealTipsContent/text()" escapeXml="false" /></c:set>
 						<c:if test="${not empty dealTipsContent}">
-							<c:if test="${fn:indexOf(dealTipsContent,'加签提示') == -1">
+							<c:if test="${fn:indexOf(dealTipsContent,'加签提示') == -1 && fn:indexOf(dealTipsContent,'退回原因') != -1}">
 								<tr>
 									<th>退回意见：</th>
 									<td id="dealTipsContent">${dealTipsContent}</td>
@@ -638,7 +638,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
                 <div class="fbtn-more-nav">
                     <div class="fbtn-more-nav-inner">
                     	<c:if test="${fn:indexOf(modibutton,'Tran') >0}">
-                        	<a href="javascript:$('#tranInfoForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-share"></i>转办</a>
+                        	<a href="javascript:$('#tranInfoForm').submit();" onclick="getComment();" class="fbtn-matter col-xs-12"><i class="fa fa-share"></i>转办</a>
                         </c:if>
                         <c:if test="${fn:indexOf(modibutton,'AddSign') >0}">
                         	<a href="javascript:$('#addSignForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-plus"></i>加签</a>
@@ -697,6 +697,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 	<input type="hidden" name="worksubmittime" value="${worksubmittime}">
 	<input type="hidden" name="trantype" value="${trantype}">
 	<input type="hidden" name="workStatus" value="0">
+	<input type="hidden" name="comment_tran" id="comment_tran" value="">
 </form>
 <!----------转办结束---------->
 <!----------加签开始---------->
@@ -739,6 +740,13 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 <script type="text/javascript" src="/defaultroot/evo/weixin/js/common.js"></script>
 <%--<script type="text/javascript" src="/defaultroot/evo/weixin/template/js/mobiscroll/mobiscroll.scroller.ios7.js"></script>--%>
 <script type="text/javascript">
+
+	//给转办准备批示意见内容
+	function getComment(){
+		var comment = $('#comment_input').val();
+		$('#comment_tran').val(comment);
+	}
+
     var dialog = null;
     var flag = 1;//防止重复提交
     var backFlag = 1//防止退回重复提交
@@ -1136,11 +1144,11 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 	function mainMath(obj){
 		var id=obj.id;
 		var objval =document.getElementById(id).value;
-        //if(isNaN(objval)){
-			//document.getElementById(id).value="";
-			//alert("请输入数字");
-			//return false;
-		//}
+        if(isNaN(objval)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
 		var val = $('.edit-ipt-r.mainmath').attr("mainmathfun");//合计字段的公式
 		var mathId = $('.edit-ipt-r.mainmath').attr("id");
 		var str = val.replace(/\*/g, '|').replace(/\+/g, '|').replace(/\-/g, '|').replace(/\//g, '|').replace(/\(/g, '|').replace(/\)/g, '|');

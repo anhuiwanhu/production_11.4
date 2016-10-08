@@ -1326,6 +1326,9 @@ function save(type){
 				extension.set("dutyLevelOperateAnd",$("select[name='prevTraLAnd']")[0].value);
 				extension.set("dutyLevelOperate",$("select[name='prevDutyLevelOperate']")[0].value);
 				extension.set("dutyLevel",$("select[name='prevDutyLevel']")[0].value); 
+			}else if(extension.get("code") == "allDealUser"){
+				//所有经办人 
+				extension.set("type","allDealUser");
 			}
 		}
 	}

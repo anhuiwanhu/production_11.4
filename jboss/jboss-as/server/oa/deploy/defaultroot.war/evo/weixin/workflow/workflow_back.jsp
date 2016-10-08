@@ -58,7 +58,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 				            <c:when test="${not empty docXml}">
 								<x:parse xml="${docXml}" var="doc"/>
 								<tr>
-									<th>退回环节<i class="fa fa-asterisk"></i>：</th>
+									<th><i class="fa fa-asterisk"></i>退回环节：</th>
 									<td>
 										<select class="selt" name="activity" id="activity" prompt="请选择下一环节" onclick="getDealwithEmpName(this);">
 											<option value="0">退回发起人</option>
@@ -69,7 +69,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 									</td>
 								</tr>
 								<tr>
-									<th>退回人<i class="fa fa-asterisk"></i>：</th>
+									<th><i class="fa fa-asterisk"></i>退回人：</th>
 									<td>
 										<x:forEach select="$doc//backWorkFlow" var="n" varStatus="status">
 											<c:if test="${status.count==1}"><x:out select="$n/dealwithEmpName/text()"/></c:if>
@@ -79,7 +79,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<th>退回环节<i class="fa fa-asterisk"></i>：</th>
+									<th><i class="fa fa-asterisk"></i>退回环节：</th>
 									<td>
 										<select class="selt" name="activity" id="activity">
 											<option value="0">退回发起人</option>
@@ -89,7 +89,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 							</c:otherwise>
 						</c:choose>
 						<tr>
-							<th>退回意见<i class="fa fa-asterisk"></i>：</th>
+							<th><i class="fa fa-asterisk"></i>退回意见：</th>
 							<td>
 								<textarea name='comment' placeholder="请输入" onkeyup="$(this).next('.edit-txta-num').html($(this).attr('maxlength')-$(this).val().length );" class="edit-txta edit-txta-l" maxlength="300" id="backcomment"></textarea>
 								<span class="edit-txta-num">300</span>

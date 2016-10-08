@@ -38,7 +38,7 @@
 				<c:set var="docTitle" value="${docTitle }"></c:set>
 				<table class="wh-table-edit">
 					<tr>
-	            		<th>下一环节<i class="fa fa-asterisk"></i>：</th>
+	            		<th><i class="fa fa-asterisk"></i>下一环节：</th>
 	            		<td>
 	            			<!-- <select name="activity"  id="activity" onchange="hiddenEnd();">
 								<option value="">--请选择--</option>

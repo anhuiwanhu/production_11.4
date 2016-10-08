@@ -30,7 +30,7 @@ SysSetupReader sysRed = SysSetupReader.getInstance();
 //sysRed.init(domainId);
 String vkey = sysRed.getOa_vkey(domainId);
 String zz1="[^a-zA-Z0-9]";
-String zz2="[^`~!@#$%^&*()+=|{}':;',//[//].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+String zz2="[^`~!@#$%^&*()+=|{}':;',//[//].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？_-]";
 
 //true 表示密码符合规则
 boolean b = vkey.replaceAll(zz1, "").length()!=0&&vkey.length()>6&&vkey.replaceAll(zz2, "").length()!=0;
@@ -162,7 +162,7 @@ function savePassword(form){
 	var err="";
     var reChars = /[a-zA-Z]+/i;
     var reNums = /[0-9]+/i;
-    var reSpecialChars = /[\!\@\#\$\%|^\&\*\(\)\+\|\\|?\/\>\<\.\,\~]+/i;//验证是否包含了特殊字符
+    var reSpecialChars = /[\!\@\#\$\%|^\&\*\(\)\+\|\\|?\/\>\<\.\,\~\-\_]+/i;//验证是否包含了特殊字符
    // alert(isChangePwd_admin+isChangePwd_sys+isChangePwd_security+isChangePwd_webservice);
     var datastr={};
 	if(isChangePwd_admin==0){

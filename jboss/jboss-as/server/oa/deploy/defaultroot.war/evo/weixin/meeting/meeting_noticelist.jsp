@@ -183,16 +183,9 @@
     	}
     }
     
-	function  openNotice(val){
-		$.ajax({
-			url : "meetingNoticeAddUser.controller",
-			type : "post",
-			data : {"boardroomApplyId":val},
-			success : function(){
-				var detailUrl="/defaultroot/meeting/meetingNoticeDetail.controller";
-				window.location = detailUrl+"?boardroomApplyId="+val;
-			}
-		 });
+	function  openNotice(val){		
+		var detailUrl="/defaultroot/meeting/meetingNoticeDetail.controller";
+		window.location = detailUrl+"?boardroomApplyId="+val;		
 	}
 	
 </script>

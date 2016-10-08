@@ -173,10 +173,11 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<c:set var="actiCommFieldType" ><x:out select="$workInfoDoc//workInfo/actiCommFieldType/text()"/></c:set>
 								<c:if test="${actiCommFieldType != '-1' && (commentField == '-1' || commentField == 'nullCommentField' || commentField == 'autoCommentField' || commentField == 'null') }">
 									<tr>
-										<th>审批意见：
-											<c:if test="${commentmustnonull eq true}">
+										<th>
+										<c:if test="${commentmustnonull eq true}">
 												<i class="fa fa-asterisk"></i>
 											</c:if>
+										审批意见：
 										</th>
 										<td>
 				                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="50"></textarea>
@@ -203,10 +204,11 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<c:set var="passRoundCommFieldType" ><x:out select="$workInfoDoc//workInfo/passRoundCommFieldType/text()"/></c:set>
 								<c:if test="${passRoundCommField == 'autoCommentField'}">
 									<tr>
-										<th>审批意见：
-											<c:if test="${commentmustnonull eq true}">
+										<th>
+										<c:if test="${commentmustnonull eq true}">
 												<i class="fa fa-asterisk"></i>
 											</c:if>
+										审批意见：
 										</th>
 										<td>
 				                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="50"></textarea>
@@ -399,14 +401,6 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/mobiscroll/mobiscroll.scroller.ios7.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/js/subClick.js"></script>
 <script type="text/javascript">
-    var dialog = null;
-    function pageLoading(){
-        dialog = $.dialog({
-            content:"页面加载中...",
-            title: 'load'
-        });
-    }
-
     $(function(){
     	//更多菜单展开
         var fbtnMore = $("#fbtnMore");

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="com.whir.ezoffice.personalwork.setup.actionsupport" extends="whir">
+        <action name="OfficalDictionAction!*" method="{1}" class="com.whir.ezoffice.personalwork.setup.actionsupport.OfficalDictionAction">
+            <result name="OfficalDictionList">/modules/personal/setup/personal_CommonUseDiction_list.jsp</result>
+            <result name="addOfficalDiction">/modules/personal/setup/personal_CommonUseDiction_add.jsp</result>
+            <result name="modiOfficalDiction">/modules/personal/setup/personal_CommonUseDiction_modi.jsp</result>
+            <result name="viewOfficalDiction">/modules/personal/setup/personal_CommonUseDiction_view.jsp</result>
+        </action>
+        <action name="MyInfoAction!*" method="{1}" class="com.whir.ezoffice.personalwork.setup.actionsupport.MyInfoAction">
+            <result name="modiMyInfo">/modules/personal/setup/personal_myInfo_modi.jsp</result>
+            <result name="modiMyPhoto">/modules/personal/setup/personal_myPhoto_modi.jsp</result>
+            <result name="modiMyPassword">/modules/personal/setup/personal_myPassword_modi.jsp</result>
+            <result name="modiMyOtherSetup">/modules/personal/setup/personal_myOtherSetup_modi.jsp</result>
+            <result name="modiMySkin">/modules/personal/setup/personal_mySkin_modi.jsp</result>
+            <result name="modiMySkinSC">/modules/personal/setup/personal_mySkinSC_modi.jsp</result>
+            <result name="modiSuperAccountPassword">/modules/personal/setup/modiSuperAccountPassword.jsp</result>
+			<result name="modiSuperPassword">/modules/personal/setup/modiSuperPassword.jsp</result>
+        </action>
+        <action name="StatusAction!*" method="{1}" class="com.whir.ezoffice.personalwork.setup.actionsupport.StatusAction">
+            <result name="statusList">/modules/personal/setup/personal_status_list.jsp</result>
+            <result name="addStatus">/modules/personal/setup/personal_status_add.jsp</result>
+            <result name="modiStatus">/modules/personal/setup/personal_status_modi.jsp</result>
+            <result name="viewStatus">/modules/personal/setup/personal_status_view.jsp</result>
+			
+            <result name="statusSearchList">/modules/personal/setup/personal_statusSearch_list.jsp</result>
+			
+            <result name="addStatusError">/modules/personal/personal_error.jsp</result>
+        </action>
+        <action name="StatusSetupAction!*" method="{1}" class="com.whir.ezoffice.personalwork.setup.actionsupport.StatusSetupAction">
+            <result name="statusClassList">/modules/personal/setup/personal_statusClass_list.jsp</result>
+            <result name="addStatusClass">/modules/personal/setup/personal_statusClass_add.jsp</result>
+            <result name="modiStatusClass">/modules/personal/setup/personal_statusClass_modi.jsp</result>
+            <result name="viewStatusClass">/modules/personal/setup/personal_statusClass_view.jsp</result>
+        </action>
+        <action name="PromptSoundAction!*" method="{1}" class="com.whir.ezoffice.personalwork.setup.actionsupport.PromptSoundAction">
+            <result name="promptSoundList">/modules/personal/setup/personal_promptSound_list.jsp</result>
+            <result name="addPromptSound">/modules/personal/setup/personal_promptSound_add.jsp</result>
+            <result name="modiPromptSound">/modules/personal/setup/personal_promptSound_modi.jsp</result>
+        </action>
+		
+        <action name="PersonClassAction!*" method="{1}" class="com.whir.ezoffice.personalwork.person.actionsupport.PersonClassAction">			
+            <result name="personClassList">/modules/personal/linkman/personal_personClass_list.jsp</result>
+            <result name="addPersonClass">/modules/personal/linkman/personal_personClass_add.jsp</result>
+            <result name="modiPersonClass">/modules/personal/linkman/personal_personClass_modi.jsp</result>
+            <result name="viewPersonClass">/modules/personal/linkman/personal_personClass_view.jsp</result>
+        </action>
+		
+        <action name="PersonOwnAction!*" method="{1}" class="com.whir.ezoffice.personalwork.person.actionsupport.PersonOwnAction">			
+            <result name="personList">/modules/personal/linkman/personal_person_list.jsp</result>
+            <result name="addPerson">/modules/personal/linkman/personal_person_add.jsp</result>
+            <result name="modiPerson">/modules/personal/linkman/personal_person_modi.jsp</result>
+            <result name="viewPerson">/modules/personal/linkman/personal_person_view.jsp</result>
+        </action>
+		
+        <action name="PersonSetupAction!*" method="{1}" class="com.whir.ezoffice.personalwork.person.actionsupport.PersonSetupAction">			
+            <result name="setupList">/modules/personal/linkman/personal_setup_list.jsp</result>
+            <result name="addSetup">/modules/personal/linkman/personal_setup_add.jsp</result>
+            <result name="modiSetup">/modules/personal/linkman/personal_setup_modi.jsp</result>
+            <result name="viewSetup">/modules/personal/linkman/personal_setup_view.jsp</result>
+        </action>
+		
+        <action name="PersonInnerAction!*" method="{1}" class="com.whir.ezoffice.personalwork.person.actionsupport.PersonInnerAction">
+            <result name="innerPersonList">/modules/personal/linkman/personal_innerPerson_list.jsp</result>
+            <result name="modiInnerPerson">/modules/personal/linkman/personal_innerPerson_modi.jsp</result>
+            <result name="viewInnerPerson">/modules/personal/linkman/personal_innerPerson_view.jsp</result>
+        </action>
+		
+        <action name="OrgWrapAction*" method="{1}" class="com.whir.ezoffice.personalwork.setup.actionsupport.OrgWrapAction">
+            <result name="modiOrgWrap">/modules/personal/setup/personal_orgWrap_modi.jsp</result>
+        </action>
+    </package>
+
+</struts>

@@ -35,6 +35,7 @@ String orgId = session.getAttribute("orgId").toString();
 <c:set var="worktitle"><x:out select="$doc//workInfo/worktitle/text()"/></c:set>
 <c:set var="worksubmittime"><x:out select="$doc//workInfo/worksubmittime/text()"/></c:set>
 <c:set var="EmpLivingPhoto"><x:out select="$doc//workInfo/empLivingPhoto/text()"/></c:set>
+<c:set var="trantype"><x:out select="$doc//workInfo/trantype/text()"/></c:set>
 <c:if test="${not empty EmpLivingPhoto}"><c:set var="EmpLivingPhoto">/defaultroot/upload/peopleinfo/${EmpLivingPhoto}</c:set></c:if>
 <section class="wh-section wh-section-bottomfixed">
     <article class="wh-edit wh-edit-document">
@@ -306,15 +307,30 @@ String orgId = session.getAttribute("orgId").toString();
 		    <div class="wh-wrapper">
 	        <div class="wh-container">
             <div class="wh-footer-btn">
+            	<div class="fbtn-more-nav">
+                    <div class="fbtn-more-nav-inner">
+                    	<c:if test="${fn:indexOf(modibutton,'Tran') >0}">
+                        	<a href="javascript:$('#tranInfoForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-share"></i>转办</a>
+                        </c:if>
+                        <c:if test="${fn:indexOf(modibutton,'AddSign') >0}">
+                        	<a href="javascript:$('#addSignForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-plus"></i>加签</a>
+                        </c:if>
+                        <c:if test="${fn:indexOf(modibutton,'Selfsend') >0}">
+                        	<a href="javascript:$('#selfsendForm').submit();" class="fbtn-matter col-xs-12"><i class="fa fa-plus"></i>阅件</a>
+                        </c:if>
+                    </div>
+                    <div class="fbtn-more-nav-arrow"></div>
+                </div>
                <c:choose>
                 <c:when test="${hasbackbutton == 'true' }">
-	               	<a href="javascript:subBackForm();" class="fbtn-cancel col-xs-6"><i class="fa fa-arrow-left"></i>退回</a>
-	                <a href="javascript:subForm();" class="fbtn-matter col-xs-6"><i class="fa fa-check-square"></i>发送</a>
+	               	<a href="javascript:subBackForm();" class="fbtn-cancel col-xs-5"><i class="fa fa-arrow-left"></i>退回</a>
+	                <a href="javascript:subForm();" class="fbtn-matter col-xs-5"><i class="fa fa-check-square"></i>发送</a>
                 </c:when>
                 <c:otherwise>
-	                <a href="javascript:subForm();" class="fbtn-matter col-xs-12"><i class="fa fa-check-square"></i>发送</a>
+	                <a href="javascript:subForm();" class="fbtn-matter col-xs-10"><i class="fa fa-check-square"></i>发送</a>
                 </c:otherwise>
                </c:choose>
+               <span id="fbtnMore" class="fbtn-matter col-xs-2"><i class="fa fa-bars"></i></span>
             </div>
 	        </div>
 		    </div>
@@ -392,6 +408,34 @@ String orgId = session.getAttribute("orgId").toString();
 	<input type="hidden" name="isForkTask" value='<x:out select="$doc//workInfo/isForkTask/text()"/>'>
 	<input type="hidden" name="curCommField" value='<x:out select="$doc//workInfo/commentField/text()"/>' />
 </form>
+<!----------阅件开始---------->
+<form id="selfsendForm" class="dialog" action="/defaultroot/dealfile/selfSend.controller?workId=${wfworkId}" method="post">
+	<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
+	<input type="hidden" name="worktitle" value="${worktitle}">
+	<input type="hidden" name="workcurstep" value="${workcurstep}">
+	<input type="hidden" name="worksubmittime" value="${worksubmittime}">
+	<input type="hidden" name="workStatus" value="0">
+</form>
+<!----------阅件结束---------->
+<!----------转办开始---------->
+<form id="tranInfoForm" class="dialog" action="/defaultroot/dealfile/tranInfo.controller?workId=${wfworkId}" method="post">
+	<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
+	<input type="hidden" name="worktitle" value="${worktitle}">
+	<input type="hidden" name="workcurstep" value="${workcurstep}">
+	<input type="hidden" name="worksubmittime" value="${worksubmittime}">
+	<input type="hidden" name="trantype" value="${trantype}">
+	<input type="hidden" name="workStatus" value="0">
+</form>
+<!----------转办结束---------->
+<!----------加签开始---------->
+<form id="addSignForm" class="dialog" action="/defaultroot/dealfile/addSign.controller?workId=${wfworkId}" method="post">
+	<input type="hidden" name="empLivingPhoto" value="${EmpLivingPhoto}">
+	<input type="hidden" name="worktitle" value="${worktitle}">
+	<input type="hidden" name="workcurstep" value="${workcurstep}">
+	<input type="hidden" name="worksubmittime" value="${worksubmittime}">
+	<input type="hidden" name="workStatus" value="0">
+</form>
+<!----------加签结束---------->
 </body>
 </html>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/zepto.js"></script>
@@ -400,6 +444,7 @@ String orgId = session.getAttribute("orgId").toString();
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/selector.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/alert/zepto.alert.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/js/subClick.js"></script>
+<script type="text/javascript" src="/defaultroot/evo/weixin/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
     var dialog = null;
     var flag = 1;//防止重复提交
@@ -424,6 +469,22 @@ String orgId = session.getAttribute("orgId").toString();
             title: 'load'
         });
     }
+    
+     $(function(){
+        //更多菜单展开
+        var fbtnMore = $("#fbtnMore");
+        var fbtnMoreCon = $(".fbtn-more-nav");
+        if(fbtnMoreCon.is(':visible')){
+            fbtnMoreCon.hide();
+            $(".wh-section").click(function(){
+                fbtnMoreCon.hide();
+            })
+        }
+        fbtnMoreCon.hide();
+        fbtnMore.click(function(){
+            fbtnMoreCon.toggle();
+        });
+    });
     
    	function workfolwSend(workId){
 		//发送流程

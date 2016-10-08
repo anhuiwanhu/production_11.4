@@ -49,10 +49,10 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 						<c:set var="id">$<x:out select="$fd/sysname/text()"/>$</c:set>
 						<tr>
 							<c:if test="${not empty docXml1}">
-							<th><x:out select="$fd/name/text()"/><c:if test="${mustfilled == 1 && fn:indexOf(hideField, id) == -1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+							<th><c:if test="${mustfilled == 1 && fn:indexOf(hideField, id) == -1}"><i class="fa fa-asterisk"></i></c:if><x:out select="$fd/name/text()"/>：</th>
 							</c:if>
 							<c:if test="${empty docXml1}">
-							<th><x:out select="$fd/name/text()"/><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if>：</th>
+							<th><c:if test="${mustfilled == 1}"><i class="fa fa-asterisk"></i></c:if><x:out select="$fd/name/text()"/>：</th>
 							</c:if>
 							<td style="text-align: right;">
 								<c:choose>
@@ -65,7 +65,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text" maxlength="18" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
 										</c:if>
 										<c:if test="${fieldtype != '1000000' && fieldtype != '1000001'  }">
-											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text"  name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' onkeyup="mainMath(this);"/>
+											<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$fd/sysname/text()"/>' type="text"  name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
 										</c:if>
 									</c:when>
 	
@@ -751,11 +751,11 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 	function mainMath(obj){
 		var id=obj.id;
 		var objval =document.getElementById(id).value;
-        //if(isNaN(objval)){
-			//document.getElementById(id).value="";
-			//alert("请输入数字");
-			//return false;
-		//}
+        if(isNaN(objval)){
+			document.getElementById(id).value="";
+			alert("请输入数字");
+			return false;
+		}
 		var val = $('.edit-ipt-r.mainmath').attr("mainmathfun");//合计字段的公式
 		var mathId = $('.edit-ipt-r.mainmath').attr("id");
 		var str = val.replace(/\*/g, '|').replace(/\+/g, '|').replace(/\-/g, '|').replace(/\//g, '|').replace(/\(/g, '|').replace(/\)/g, '|');

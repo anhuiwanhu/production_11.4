@@ -71,7 +71,7 @@
 								<c:set var="scopeIdLength" value="<%=scopeIdLength %>"></c:set>
 								<%--处理办理人只有一个人的情况--%>
 								<tr>
-				            		<th>下一环节<i class="fa fa-asterisk"></i>：</th>
+				            		<th><i class="fa fa-asterisk"></i>下一环节：</th>
 				            		<td style="text-align:right">
 				            			<input type="checkbox" name="activity" id='activity<x:out select="$n/activityId/text()"/>' value='<x:out select="$n/activityId/text()"/>' checked="true" /><x:out select="$n/activityName/text()"/>
 				            			<input type="hidden" id='activityName<x:out select="$n/activityId/text()"/>' name='activityName<x:out select="$n/activityId/text()"/>' value='<x:out select="$n/activityName/text()"/>'/>
@@ -79,7 +79,7 @@
 				            		</td>
 				            	</tr>
 				            	<tr <c:if test="${activityId eq '-2'}">style="display : none;"</c:if>>
-				            		<th>办理人<i class="fa fa-asterisk"></i>：</th>
+				            		<th><i class="fa fa-asterisk"></i>办理人：</th>
 				            		<td>
 										<x:if select="$n/scopeType/text() = 'default_users' ">
 											<input type="hidden" id="scopeId" name="scopeId" value='<x:out select="$n/scopeId/text()"/>'/>
@@ -141,7 +141,7 @@
 								<c:set var="scopeIdLength" value="<%=scopeIdLength %>"></c:set>
 								<%--处理办理人只有一个人的情况--%>
 								<tr>
-									<th>下一环节<i class="fa fa-asterisk"></i>：</th>
+									<th><i class="fa fa-asterisk"></i>下一环节：</th>
 									<td style="text-align:right">
 										<input onclick="return false;" type="checkbox" name="activity" id='activity<x:out select="$n/activityId/text()"/>' value='<x:out select="$n/activityId/text()"/>' checked="true" /><x:out select="$n/activityName/text()"/>
 										<input type="hidden" id='activityName<x:out select="$n/activityId/text()"/>' name='activityName<x:out select="$n/activityId/text()"/>' value='<x:out select="$n/activityName/text()"/>'/>
@@ -149,7 +149,7 @@
 									</td>
 								</tr>
 								<tr <c:if test="${activityId eq '-2'}">style="display : none;"</c:if>>
-				            		<th>办理人<i class="fa fa-asterisk"></i>：</th>
+				            		<th><i class="fa fa-asterisk"></i>办理人：</th>
 				            		<td>
 										<x:if select="$n/scopeType/text() = 'default_users' ">
 											<input type="hidden" id="scopeId" name="scopeId" value='<x:out select="$n/scopeId/text()"/>'/>
@@ -188,7 +188,7 @@
 						<c:otherwise>
 							<c:set var="isdefaultusers" value="0"/>
 							<tr>
-								<th>下一环节<i class="fa fa-asterisk"></i>：</th>
+								<th><i class="fa fa-asterisk"></i>下一环节：</th>
 								<td style="text-align:right">
 								<!-- 
 									<select class="selt" name="activity"  id="activity" prompt="请选择下一办理环节" onchange="hiddenEnd();">
@@ -261,7 +261,7 @@
 								</td>
 							</tr>
 							<tr id="person" style="display:none;">
-								<th>办理人<i class="fa fa-asterisk"></i>：</th>
+								<th><i class="fa fa-asterisk"></i>办理人：</th>
 								<td>
 
 									<input type="hidden" id='scopeId' name='scopeId' value='' />

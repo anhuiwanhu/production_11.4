@@ -35,6 +35,7 @@ String worktitle = request.getParameter("worktitle")==null?"":request.getParamet
 String workcurstep = request.getParameter("workcurstep")==null?"":request.getParameter("workcurstep");
 String worksubmittime = request.getParameter("worksubmittime")==null?"":request.getParameter("worksubmittime");
 String workStatus = request.getParameter("workStatus")==null?"":request.getParameter("workStatus");
+String comment_tran = request.getParameter("comment_tran")==null?"":request.getParameter("comment_tran");
 %>
 <body>
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
@@ -61,7 +62,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 				<input type="hidden" value="${isMustBack}" name="isMustBack"/>
 				<table class="wh-table-edit">
 					<tr>
-						<th>选择办理人<i class="fa fa-asterisk"></i>：</th>
+						<th><i class="fa fa-asterisk"></i>选择办理人：</th>
 						<td>
 							<c:set var="scopeType"><x:out select="$doc//scopeType/text()"/></c:set>
 							<x:if select="$doc//scopeType/text() = 'default_users' ">
@@ -79,7 +80,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 						</td>
 					</tr>
 					<tr>
-						<th>当前办理环节<i class="fa fa-asterisk"></i>：</th>
+						<th><i class="fa fa-asterisk"></i>当前办理环节：</th>
 						<td style="text-align:right">
 							<%=workcurstep%>
 						</td>
@@ -119,6 +120,8 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 	}
 	
 	function onSubmit(){ 
+		//批示意见内容
+		var comment_input = '<%=comment_tran%>';
 	    var userId = '<%=userId%>';
 	    var isMustBack='${isMustBack}';
 		var cbUserId =$("#chooseUserId").val();
@@ -131,7 +134,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 			return false;
 		}
 		loadPage();
-		var url ='/defaultroot/workflow/workflowTran.controller';
+		var url ='/defaultroot/workflow/workflowTran.controller?comment_input='+comment_input;
 		var openUrl ='/defaultroot/dealfile/list.controller?workStatus=<%=workStatus%>';
 		$.ajax({
 			type: 'POST',

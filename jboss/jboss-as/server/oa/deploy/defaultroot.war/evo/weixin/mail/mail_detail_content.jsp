@@ -15,6 +15,7 @@
 	<c:set var="infoId">${infoId}</c:set>
 	<c:set var="infoType">${infoType}</c:set>
 	<c:set var="channelId">${channelId}</c:set>
+	<c:set var="boardroomApplyId">${boardroomApplyId}</c:set>
 	<%
 	    String content = (String)pageContext.getAttribute("mailcontent");
 	    content = com.whir.component.util.StringUtils.resizeImgSize(content, "240", "50%");
@@ -24,7 +25,13 @@
 	    String infoId = (String)pageContext.getAttribute("infoId");
 	    String infoType = (String)pageContext.getAttribute("infoType");
 	    String channelId = (String)pageContext.getAttribute("channelId");
-	    String rep = "<a href='/defaultroot/mail/mailInfo.controller?infoId="+infoId+"&informationType="+infoType+"&channelId="+channelId+"'>";
+	    String boardroomApplyId = (String)pageContext.getAttribute("boardroomApplyId");
+		String rep ="";
+		if(infoId != null && !"".equals(infoId)){
+			rep = "<a target='_top' href='/defaultroot/mail/mailInfo.controller?infoId="+infoId+"&informationType="+infoType+"&channelId="+channelId+"'>";
+		}else if(boardroomApplyId != null && !"".equals(boardroomApplyId)){
+		    rep = "<a target='_top' href='/defaultroot/meeting/meetingNoticeDetail.controller?boardroomApplyId="+boardroomApplyId+"'>";
+		}
     	content = content.replaceAll("<a href[^>]*>",rep);
     	String gnome = HtmlUtils.htmlUnescape((String)pageContext.getAttribute("gnome"));
 	%>

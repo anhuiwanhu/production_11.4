@@ -56,7 +56,7 @@ String userId = session.getAttribute("userId").toString();
 				<input type="hidden" id="isEzflow" value='<x:out select="$doc//isezflow/text()"/>'/>
 				<table class="wh-table-edit">
 					<tr>
-						<th>选择办理人<i class="fa fa-asterisk"></i>：</th>
+						<th><i class="fa fa-asterisk"></i>选择办理人：</th>
 						<td>
 							<c:set var="scopeType"><x:out select="$doc//scopeType/text()"/></c:set>
 							<x:if select="$doc//scopeType/text() = 'default_users' ">
@@ -74,7 +74,7 @@ String userId = session.getAttribute("userId").toString();
 						</td>
 					</tr>
 					<tr>
-						<th>当前办理环节<i class="fa fa-asterisk"></i>：</th>
+						<th><i class="fa fa-asterisk"></i>当前办理环节：</th>
 						<td style="text-align:right">
 							<%=workcurstep%>
 						</td>
@@ -124,7 +124,7 @@ String userId = session.getAttribute("userId").toString();
 		var hasReceive = $('#hasReceiveWf').val();
 		var hasArr = hasReceive.split(',');
 		for(var i=0; i<hasArr.length;i++){
-		if(isEzFlow == 1){
+		if(isEzFlow == '1' || isEzFlow == 1){
 			if(cbUserName.indexOf(hasArr[i]+',')>-1 || cbUserName.indexOf(userId+',')>-1){
 				alert('加签办理人不能包含当前活动办理人！');
 				return false;
