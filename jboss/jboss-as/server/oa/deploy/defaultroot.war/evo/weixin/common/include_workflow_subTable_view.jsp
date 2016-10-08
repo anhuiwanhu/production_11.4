@@ -171,7 +171,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
         </div>
     </article>
 </section>
-<footer class="wh-ofooter">
+<footer class="wh-ofooter" id="subFooter_totname" style="display:none">
     <div class="wh-wrapper">
         <div class="wh-container">
             <div class="s-table-count">
@@ -254,13 +254,15 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
     function finishSubTableForm(){
     	$('#mainContent').show();
 		$('#footerButton').show();
+		$('#subFooter_totname').hide();
 		$('[id="subHeader_'+subTableName+'"]').hide();
 		$('[id="subSection_'+subTableName+'"]').hide();
 		$('[id="subFooter_'+subTableName+'"]').hide();
-		initTot();
+		
+		initTot(1);
     }
 
-	function initTot(){
+	function initTot(flag){
 		//子表合计字段相关
 		$("#totname").html("合计项：");
 		var arr = $("input[name=keyv]");
@@ -296,6 +298,10 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 				for(var prop in map){
 					content += map[prop];
 				}
+				if(content !="" && flag != 1){
+					$('#subFooter_totname').show();
+				}
+				
 				$("#tot").html(content+"&nbsp;");
 			}
 		}

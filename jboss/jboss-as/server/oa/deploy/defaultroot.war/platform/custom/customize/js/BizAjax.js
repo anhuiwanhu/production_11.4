@@ -27,8 +27,8 @@ function showoperate(po,i){
 	 
 	 //查询方案
 	 if(json.length>0){
-		 
-		 for(var i = 0; i < json.length-1; i++) {
+		 //for(var i = 0; i < json.length-1; i++) { //11.4.0.19修改 2016/07/04
+		 for(var i = 0; i < json.length; i++) {
 			var obj = json[i];
 			html += "<img  style=\"cursor:pointer\" border=\"0\" src=\""+rootPath+"/images/py.gif\" title=\""+obj.name+"\" onclick=\"goBatch('"+obj.linkurl+"','" +po.id+"')\">";
 			//html += "<input type=\"button\" class=\""+obj.css+"\" onclick=\"goBatch('"+obj.linkurl+"','" +po.id+"')\" value=\""+obj.name+"\" />";

@@ -239,11 +239,11 @@
 				 </td>
             </tr>
 
-			 <tr>
+			 <tr <%if(moduleId.equals("50") || moduleId.equals("52")){%>style="display:none;"<%}%>>
 				 <td class="td_lefttitle"><s:text name="workflow.processMobileStatus"/>：</td>
 				 <td colspan="3">
 				    <s:checkbox  name="bool_mobilePhoneStatus"  id="bool_mobilePhoneStatus"></s:checkbox><s:text name="workflow.processCanMobilePhoneStatus"/><!-- 同步到手机端 -->&nbsp;
-                    <s:checkbox  name="bool_padStatus"  id="bool_padStatus"></s:checkbox><s:text name="workflow.processCanPADStatus"/><!-- 同步到PAD端 -->&nbsp; 					 
+                    <s:checkbox  name="bool_padStatus"  id="bool_padStatus"></s:checkbox><s:text name="workflow.processCanPADStatus"/><!-- 同步到PAD端 -->
 				 </td>
             </tr>
               

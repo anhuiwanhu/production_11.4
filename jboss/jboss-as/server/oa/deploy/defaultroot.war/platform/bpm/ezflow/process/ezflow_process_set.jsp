@@ -663,7 +663,7 @@ if(whir_agent.indexOf("Firefox/4")>0){
 									 </td>
 									 <td>&nbsp;</td>
 								</tr> 
-								<tr>
+								<tr <%if(moduleId.equals("50") || moduleId.equals("52")){%>style="display:none;"<%}%>>
 									  <td  class="td_lefttitle" for='<s:text name="workflow.workflowname"/>'><s:text name="workflow.processMobileStatus"/>：</td>
 									  <td>
 									      <!-- -->

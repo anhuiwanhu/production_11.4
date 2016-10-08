@@ -813,10 +813,20 @@ function cmdWordWindowDue(){
 	// underwriteTime.replaceAll("/","-");
 
 	 if(underwriteTime!=""){
-	   //underwriteTime=baodate2chinese(underwriteTime);
-	   	underwriteTime=underwriteTime.replace("/","年");underwriteTime=underwriteTime.replace("-","年");
-		underwriteTime=underwriteTime.replace("/","月");underwriteTime=underwriteTime.replace("-","月");
-		underwriteTime=underwriteTime+"日"; 
+         var  dtEndsign="";
+		underwriteTime=$("*[name='signsendTime']").val();
+        if (typeof underwriteTime == 'string' && underwriteTime!="" )//如果是字符串转换为日期型
+        {
+             dtEndsign = StringToDate(underwriteTime);
+            underwriteTime=dtEndsign.getFullYear()+'年'+(dtEndsign.getMonth()+1)+'月'+dtEndsign.getDate()+'日'
+        }else{
+            if( underwriteTime != "" ){
+                underwriteTime=underwriteTime.replace("/","年");underwriteTime=underwriteTime.replace("-","年");
+                underwriteTime=underwriteTime.replace("/","月");underwriteTime=underwriteTime.replace("-","月");
+                underwriteTime=underwriteTime+"日";
+            }
+        }
+	
 	 }
 
 	 //underwritePerson="";
@@ -839,12 +849,20 @@ function cmdWordWindowDue(){
 	//document.all.RecordID.value = document.all.content.value;
 	var rr ='';
 	if($("*[name='documentSendFileSendTime']").length > 0){
+        var  dtEnd="";
 		rr=$("*[name='documentSendFileSendTime']").val();
-		if( rr != "" ){
-			rr=rr.replace("/","年");rr=rr.replace("-","年");
-			rr=rr.replace("/","月");rr=rr.replace("-","月");
-			rr=rr+"日"; 
-		}
+        if (typeof rr == 'string' && rr!="" )//如果是字符串转换为日期型
+        {
+             dtEnd = StringToDate(rr);
+            rr=dtEnd.getFullYear()+'年'+(dtEnd.getMonth()+1)+'月'+dtEnd.getDate()+'日'
+        }else{
+            if( rr != "" ){
+                rr=rr.replace("/","年");rr=rr.replace("-","年");
+                rr=rr.replace("/","月");rr=rr.replace("-","月");
+                rr=rr+"日";
+            }
+        }
+
 	}
 	
 	//document.all.documentSendFileSendTime_1.value=rr;
@@ -1053,6 +1071,23 @@ function cmdWordWindowDue(){
 	}
 }
 
+//+---------------------------------------------------
+//| 字符串转成日期类型
+//| 格式 MM/dd/YYYY MM-dd-YYYY YYYY/MM/dd YYYY-MM-dd
+//+---------------------------------------------------
+function StringToDate(DateStr)
+{
+
+    var converted = Date.parse(DateStr);
+    var myDate = new Date(converted);
+    if (isNaN(myDate))
+    {
+        //var delimCahar = DateStr.indexOf('/')!=-1?'/':'-';
+        var arys= DateStr.split('-');
+        myDate = new Date(arys[0],--arys[1],arys[2]);
+    }
+    return myDate;
+}
 
 
 //再次套红

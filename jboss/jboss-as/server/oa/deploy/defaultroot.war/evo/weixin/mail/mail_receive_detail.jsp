@@ -132,7 +132,8 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	            <div class="wh-footer-btn">
 	            	 <div class="fbtn-more-nav">
 	                    <div class="fbtn-more-nav-inner">
-	                        <a href="javascript:replyAll();" class="fbtn-matter col-xs-12"><i class="fa fa-reply-all"></i>回复全部</a>
+	                        <a href="javascript:replyAll();" class="fbtn-matter col-xs-12"><i class="fa fa-reply-all"></i>回复全部</a><br>
+	                        <a href="javascript:replyAllandAccessory();" class="fbtn-matter col-xs-12"><i class="fa fa-reply-all"></i>回复全部（带附件）</a><br>
 	                    </div>
 	                    <div class="fbtn-more-nav-arrow"></div>
 	                </div>
@@ -195,7 +196,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
         });
 	});
 	
-	//回复
+	//回复全部
 	function replyAll(){
 		var replySub = "Re:" + "${mailsubject}";
 		var replyContent = "\r\n\r\n\r\n\r\n\r\n---------- 来源信息 ----------" + "\r\n";
@@ -210,6 +211,25 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 		$("#mailreplyContent").val(replyContent);
 		$('#openType').val('replyAll');
 		$("#readForm").attr("action","replyAll.controller?openType=replyAll&homePage="+<%=homePage%>);
+		$("#readForm").submit();
+	}
+	
+	//回复全部（带附件）
+	function replyAllandAccessory(){
+		var replySub = "Re:" + "${mailsubject}";
+		var replyContent = "\r\n\r\n\r\n\r\n\r\n---------- 来源信息 ----------" + "\r\n";
+		replyContent += "来自: " + "${mailpostername}" + "\r\n";
+		replyContent += "给: " + "${mailtosimple}" + "${mailto}" + "\r\n";
+		replyContent += "抄送:" + "${mailcc}" + "\r\n";
+		replyContent += "发送时间:  " + "${mailposttime}" + "\r\n";
+		replyContent += "主题:  " + "${mailsubject}" + "\r\n";
+		//replyContent += "相关附件:"
+		replyContent += "内容: " + "${newContent}" + "\r\n";
+		replyContent += "-----------  End  ------------" + "\r\n";
+		$("#mailreplySub").val(replySub);
+		$("#mailreplyContent").val(replyContent);
+		$('#openType').val('replyAllandAccessory');
+		$("#readForm").attr("action","replyAllandAccessory.controller?openType=replyAllandAccessory&homePage="+<%=homePage%>);
 		$("#readForm").submit();
 	}
 	

@@ -23,6 +23,9 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
   		<c:when test="${param.openType eq 'replyAll'}">
   			回复全部
   		</c:when>
+  		<c:when test="${param.openType eq 'replyAllandAccessory'}">
+  			回复全部(带附件)
+  		</c:when>
   		<c:otherwise>写邮件</c:otherwise>
   	</c:choose>  
     </title>
@@ -40,17 +43,20 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	            <table class="wh-table-edit">
 	                <tr>
 	                    <th>收件人<i class="fa fa-asterisk"></i>：</th>
-	                    <td><span class="fr" onclick="$(this).next('input').click()"></span>
+	                    <td>
+	                    	<span class="fr" onclick="$(this).next('input').click()"></span>
 	                    	<input onclick="selectUser('1','empName','empId','*0*');"  class="edit-ipt-r edit-ipt-arrow" readonly type="text" 
 	                    	id="empName" name="mailto" <c:if test="${param.openType eq 'reply'}">value="${requestScope.userName}"</c:if>
 	                    	<c:if test="${param.openType eq 'personSend'}">value="${param.empName},"</c:if>
 	                    	<c:if test="${param.openType eq 'sendAgain'}">value="${mailTo}"</c:if>  
 	                    	<c:if test="${param.openType eq 'replyAll'}">value="${requestScope.userName}"</c:if>
+	                    	<c:if test="${param.openType eq 'replyAllandAccessory'}">value="${requestScope.userName}"</c:if>
 	                    	placeholder="请选择"/>
 	                    	<input type="hidden" name="mailtoid" <c:if test="${param.openType eq 'reply'}">value="${requestScope.userId}"</c:if> 
 	                    	<c:if test="${param.openType eq 'personSend'}">value="${param.personId}"</c:if>
 	                    	<c:if test="${param.openType eq 'sendAgain'}">value="${mailToId}"</c:if> 
 	                    	<c:if test="${param.openType eq 'replyAll'}">value="${requestScope.userId}"</c:if>
+	                    	<c:if test="${param.openType eq 'replyAllandAccessory'}">value="${requestScope.userId}"</c:if>
 	                    	id="empId"/>
 	                    </td>
 	                </tr>
@@ -85,7 +91,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	                        <input type="hidden" id="fileSizeCount" name="fileSizeCount" value="0"/>
 	                    </td>
 	                </tr>
-                    <c:if test="${(param.openType eq 'forward' || param.openType eq 'sendAgain') && not empty realFileNames}">
+                    <c:if test="${(param.openType eq 'forward' || param.openType eq 'sendAgain' || param.openType eq 'replyAllandAccessory') && not empty realFileNames}">
 		                <tr>
 		                	<td colspan="2">
 			                        <c:set var="realFileNames">${realFileNames}</c:set> 

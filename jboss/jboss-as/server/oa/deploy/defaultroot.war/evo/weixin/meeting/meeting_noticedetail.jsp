@@ -175,7 +175,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
           <tr>
             <th>出席人数：</th>
             <td>
-               <span class="edit-ipt-reslut-l" ><x:out select="$doc//attendee/text()" /></span>
+               <span class="edit-ipt-reslut-l" ><x:out select="$doc//personNum/text()" /></span>
             </td>
           </tr>
           <tr>

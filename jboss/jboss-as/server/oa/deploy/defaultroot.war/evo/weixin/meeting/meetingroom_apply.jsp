@@ -207,6 +207,18 @@
 			    alert("出席人数只能为数字！");
 				return false;
 			}
+
+			var startDate=$("#startDate").val(); 
+		    var now = new Date();
+            var nowDate = now.getFullYear()+"-"+((now.getMonth()+1)<10?"0":"")+(now.getMonth()+1)+"-"+(now.getDate()<10?"0":"")+now.getDate();
+		    var d1 = new Date(startDate.replace(/\-/g, "\/")); 
+		    var d2 = new Date(nowDate.replace(/\-/g, "\/")); 
+
+		    if(d1 < d2) 
+		    { 
+				alert("开始日期不能早于当前日期！"); 
+				return false; 
+		    }
 		}
         return true;
 	}

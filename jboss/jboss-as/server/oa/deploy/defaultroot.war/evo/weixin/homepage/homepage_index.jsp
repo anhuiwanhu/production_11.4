@@ -54,6 +54,7 @@
                     <li class="wh-mail"><a href="javascript:openMail();"><i class="fa fa-envelope-o"></i><c:if test="${not empty newMail && '0' ne newMail}"><em>${newMail}</em></c:if></a><p>邮件</p></li>
                     <li class="wh-link"><a href="javascript:openPersons();"><i class="fa fa-user"></i></a><p>通讯录</p></li>
                     <li class="wh-forum"><a href="javascript:openForum();"><i class="fa fa-comments"></i></a><p>论坛</p></li>
+                    <li class="wh-forum"><a href="javascript:openMeeting();"><i class="fa fa-comments"></i></a><p>会议</p></li>
                     <!--<li class="wh-add"><a href=""><i class="fa fa-plus"></i></a><p>订阅信息栏目</p></li>-->
                 </ul>
             </section>
@@ -102,4 +103,9 @@
 	function openWorkFlow(num){
 		window.location = "/defaultroot/homePage/homepageWorkFlow.controller?numDBRecordCount="+num;
 	}
+	//打开会议
+	function openMeeting(){
+		window.location = "/defaultroot/meeting/meetingNoticeList.controller?homePage=1";
+	}
+	
 </script>

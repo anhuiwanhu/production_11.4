@@ -408,3 +408,13 @@ alter table oa_boardroomapply add  unsignuser nvarchar(4000) ;
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.18_SP_20160703','11.4.0.18',getdate());
 go
+
+
+
+
+
+
+INSERT INTO EZ_SECU_PAGELIST(SECU_URL,LIST_TYPE) VALUES ('/officeserverservlet',3);
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.19_SP_20160715','11.4.0.19',getdate());
+go

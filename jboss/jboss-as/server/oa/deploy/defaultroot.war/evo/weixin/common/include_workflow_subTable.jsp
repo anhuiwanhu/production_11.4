@@ -50,10 +50,13 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 				            <div <c:if test="${subFieldsNum eq 1}">class="wh-edit-lists wh-edit-list-d wh-edit-list-d-fst"</c:if>
 				            <c:if test="${subFieldsNum ne 1}">class="wh-edit-lists wh-edit-list-d"</c:if>  
 				            id="subTableTemplate_${tableName}">
-				            <input name="${tableName}_subdataId" value="${dataId}" type="hidden"/>                
+				            <!----------- 子表表单开始 ------------->
+				            <input name="${tableName}_subdataId" value="${dataId}" type="hidden"/>
+				            	<!-- 复选框 -->                
 				                <div class="wh-l-ckbox">
 				                    <i class="fa fa-check-circle"></i>
 				                </div>
+				                <!-- 表单建立 -->
 				                <div class="wh-r-tbbox">        
 				                    <table class="wh-table-edit">
 				                    	<c:set var="index" value="0" />
@@ -73,7 +76,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 														<%--单行文本 101--%>
 														<c:when test="${showtype =='101' && readwrite =='1'}">
 															<c:if test="${ fieldtype == '1000000'  }">
-																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sub_<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');" value='<x:out select="$field/value/text()"/>' />
+																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sub_<x:out select="$field/sysname/text()"/>' onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');" value='<x:out select="$field/value/text()"/>'   />
 															</c:if>
 															<c:if test="${ fieldtype == '1000001'   }">
 																<input class="edit-ipt-r" placeholder="请输入" id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="18" name='_sub_<x:out select="$field/sysname/text()"/>'  onkeyup="addtot('${name}','${totfield}','_sub_<x:out select='$field/sysname/text()'/>');"  value='<x:out select="$field/value/text()"/>' />
@@ -477,7 +480,8 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 														<c:otherwise>
 															<c:set var="index" value="${index+1}"/>
 															<input type="hidden"  name="keyv" value="${name},${totfield},_sub_<x:out select='$field/sysname/text()'/>"/>
-															<input class="edit-ipt-r"  id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' readonly="readonly" />
+															<input class="edit-ipt-r" id='<x:out select="$field/sysname/text()"/>' type="hidden" maxlength="50" name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>'  />
+															<x:out select="$field/value/text()"/>
 														</c:otherwise>
 													</c:choose>
 												</td>
@@ -492,6 +496,8 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
         </div>
     </article>
 </section>
+
+<!-- 底部白条部分 -->
 <footer class="wh-ofooter" id="subFooter_totname" style="display:none">
     <div class="wh-wrapper">
         <div class="wh-container">
@@ -501,6 +507,8 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
         </div>
     </div>
 </footer>
+
+<!-- 按钮完成部分 -->
 <footer class="wh-footer wh-footer-forum" id="subFooter_${tableName}" style="display:none">
     <c:choose>
     	<c:when test="${index lt subFieldCount}">
@@ -530,6 +538,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 </x:forEach>
 </c:if>
 <script type="text/javascript">
+	
 	var map={};
     function showSubOperate(){
     	//水平滑动
