@@ -96,7 +96,12 @@
      	<table>
      		<tr>
              <td class="td_lefttitle" valign="top" style="padding: 13px 0 3px 0; font-weight:blod; " colspan="3">安卓系统：</td>           
-            </tr>          
+            </tr>   
+            <tr>
+             <td class="td_lefttitle" valign="top" style="padding: 13px 0 3px 0; font-weight:blod; color:#AAAAAA;">对应安卓分辨率1080X1920</td> 
+              <td class="td_lefttitle" valign="top" style="padding: 13px 0 3px 0; font-weight:blod; color:#AAAAAA;">对应安卓分辨率720X1280</td> 
+               <td class="td_lefttitle" valign="top" style="padding: 13px 0 3px 0; font-weight:blod; color:#AAAAAA;">对应安卓分辨率480X854</td>           
+            </tr>        
             <tr valign="top">               
                 <td width=33.3% height=50>
                     <input type="hidden" name="unitImgName1080" id="unitImgName1080"  value="<%=uploadImg1080.getImgUploadShowName()==null||"null".equals(uploadImg1080.getImgUploadShowName())?uploadImg1080.getImgDefaultName():uploadImg1080.getImgUploadShowName()%>"/>   
@@ -119,7 +124,7 @@
 					        <jsp:param name="height"       value="20" /> 
 				            <jsp:param name="multi"        value="false" />
 				            <jsp:param name="buttonClass" value="upload_btn" />
-				            <jsp:param name="buttonText"       value="489*52" />
+				            <jsp:param name="buttonText"       value="489*52(默认)" />
 					        <jsp:param name="fileSizeLimit"        value="10KB" />
 					        <jsp:param name="fileTypeExts"		 value="*.png" />
 					        <jsp:param name="uploadLimit"      value="1"/>
@@ -202,7 +207,12 @@
             </tr>
              <tr>
              <td class="td_lefttitle" valign="top" style="padding: 13px 0 3px 0 ; " colspan="3">苹果系统：</td>            
-             </tr>    
+             </tr>
+             <tr>
+             <td class="td_lefttitle" valign="top" style="padding: 13px 0 3px 0 ; color:#AAAAAA;" >对应苹果分辨率750X1334</td> 
+             <td class="td_lefttitle" valign="top" style="padding: 13px 0 3px 0 ; color:#AAAAAA;" colspan="2">对应苹果分辨率1242X2208</td> 
+                        
+             </tr>   
              <tr valign="top">               
                 <td width=33.3% height=50>
                     <input type="hidden" name="unitImgName750" id="unitImgName750" value="<%=uploadImg750.getImgUploadShowName()==null||"null".equals(uploadImg750.getImgUploadShowName())?uploadImg750.getImgDefaultName():uploadImg750.getImgUploadShowName()%>"/>   
@@ -225,7 +235,7 @@
 					        <jsp:param name="height"       value="20" /> 
 				            <jsp:param name="multi"        value="false" />
 				            <jsp:param name="buttonClass" value="upload_btn" />
-				            <jsp:param name="buttonText"       value="328*33" />
+				            <jsp:param name="buttonText"       value="328*33(默认)" />
 					        <jsp:param name="fileSizeLimit"        value="10KB" />
 					        <jsp:param name="fileTypeExts"		 value="*.png" />
 					        <jsp:param name="uploadLimit"      value="1" />
@@ -451,11 +461,12 @@ function setDefault(){
 		    	    alert("恢复默认到移动端失败!");
 			        return false;		   		    	 
 		    	 }else if(d.result=="1"){
-		    	    alert("恢复默认到移动端成功!");			         
+		    	    alert("恢复默认到移动端成功!");
+		    	    location_href("<%=rootPath%>/mobilecustmenu!mobCustMenu.action");				         
 		    	 } 	      	 
 		    }
 		});
-		location_href("<%=rootPath%>/mobilecustmenu!mobCustMenu.action");		
+			
 }
 
 function saveset(){
@@ -467,11 +478,6 @@ function saveset(){
 	
 	if(unitImgName1==""||unitImgName2==""||unitImgName3==""||unitImgName4==""||unitImgName5==""){
 		whir_alert("图片没有上传完！");
-		return false;
-	}
-     
-	if(unitImgName1.length>30||unitImgName2.length>30||unitImgName3.length>30||unitImgName4.length>30||unitImgName5.length>30){
-		whir_alert("图片名称长度超出30，请重新上传！");
 		return false;
 	}else{
 	   
@@ -510,11 +516,12 @@ function saveset(){
 		    	    alert("图片同步到移动端失败!");
 			        return false;		   		    	 
 		    	 }else if(d.result=="1"){
-		    	    alert("图片同步到移动端成功!");			         
+		    	    alert("图片同步到移动端成功!");
+		    	    location_href("<%=rootPath%>/mobilecustmenu!mobCustMenu.action");			         
 		    	 } 	      	 
 		    }
 		});
-	 location_href("<%=rootPath%>/mobilecustmenu!mobCustMenu.action");
+	 
 	}
 	 
 }

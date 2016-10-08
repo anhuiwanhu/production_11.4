@@ -90,3 +90,49 @@
 8、清服务端缓存，启动OA服务
 
 9、验证系统功能
+
+
+
+
+
+1、停OA服务
+
+2、备份生产环境程序、数据库
+
+3、覆盖产品补丁包到OA安装目录d:\jboss
+
+4、修改文件/oa/deploy/defaultroot.war/WEB-INF/classes/Serviceparse.xml
+在"c10"标签中添加以下内容（不要重复）： 
+   
+	<method>getForumModInfo</method>
+	<method>getSubForumInfoByID</method>
+
+在<service id="c21">里，加入以下代码：
+
+	 <method>ezFLOWAutoRunAll</method>
+
+
+5、修改文件..\oa\deploy\defaultroot.war\WEB-INF\classes\quartz_job.xml,添加如下内容（注意位置）：
+
+ <job>
+    <job-detail>
+      <name>AdminSecruityJob</name>
+      <group>group11</group>
+      <job-class>com.whir.plugins.job.AdminSecruityJob</job-class>
+    </job-detail>
+    <trigger>
+      <cron>
+        <name>AdminSecruityJob</name>
+        <group>group11</group>
+        <job-name>recorveAdmin</job-name>
+        <job-group>group11</job-group>
+        <cron-expression>0 0 0 * * ?</cron-expression>
+     </cron>
+    </trigger>
+  </job>
+
+6、执行数据库升级脚本（分oralce、sqlserver两种类型库）
+
+7、清服务端缓存，启动OA服务
+
+8、验证系统功能
