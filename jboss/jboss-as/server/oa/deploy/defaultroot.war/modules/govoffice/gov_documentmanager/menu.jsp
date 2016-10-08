@@ -68,11 +68,11 @@ String expNodeCode = request.getParameter("expNodeCode");
 				long id=1000000012;
 			%>
 			<c:if test="${fn:contains(canShowMenus,'documentmanager_mydocument')}">
-			{ id:1, pId:-1, name:"我的收文", open:true,iconSkin:"fa fa-cog fa"},
+			{ id:-11, pId:-1, name:"我的收文", open:true,iconSkin:"fa fa-cog fa"},
 			
-			{ id:1000000000, pId:1, name:"未读收文", expNodeCode:"notRead", url:"<%=rootPath%>/GovRecvDocSet!notRead.action", target:'mainFrame',iconSkin:"fa fa"}
-			,{ id:1000000001, pId:1, name:"所有收文", url:"<%=rootPath%>/GovRecvDocSet!myReceive.action", target:'mainFrame',iconSkin:"fa fa"}
-			,{ id:1000000002, pId:1, name:"按文号分类显示", url:"", target:'mainFrame',iconSkin:"fa fa"}
+			{ id:1000000000, pId:-11, name:"未读收文", expNodeCode:"notRead", url:"<%=rootPath%>/GovRecvDocSet!notRead.action", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000001, pId:-11, name:"所有收文", url:"<%=rootPath%>/GovRecvDocSet!myReceive.action", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000002, pId:-11, name:"按文号分类显示", url:"", target:'mainFrame',iconSkin:"fa fa"}
 			
 			<%
 			for( int i = 0;i< numTypeStrArray.length;i++){
@@ -101,13 +101,13 @@ String expNodeCode = request.getParameter("expNodeCode");
 			%>
 			<c:if test="${fn:contains(canShowMenus,'documentmanager_sendfile')}">
 				<c:if test="${fn:contains(canShowMenus,'documentmanager_mydocument')}">
-			        ,{ id:2, pId:-1, name:"发文管理",iconSkin:"fa fa-cog fa"}
+			        ,{ id:-12, pId:-1, name:"发文管理",iconSkin:"fa fa-cog fa"}
 			        <%displaysw = false;%>
 			    </c:if>
 			 <%if(displaysw){%>
-			 	{ id:2, pId:-1, name:"发文管理",iconSkin:"fa fa-cog fa"}
+			 	{ id:-12, pId:-1, name:"发文管理",iconSkin:"fa fa-cog fa"}
 			 <%}%>
-			,{ id:1000000004, pId:2, name:"新建发文", click:"", target:'_blank',iconSkin:"fa fa"}
+			,{ id:1000000004, pId:-12, name:"新建发文", click:"", target:'_blank',iconSkin:"fa fa"}
 			<%
 			 tmp = procbd.getUserProcessListWithNoPackage(curUserId,orgIdString,null,"2",null);
 			 if (null != tmp) {
@@ -131,11 +131,11 @@ String expNodeCode = request.getParameter("expNodeCode");
 				 }
 			}
 			%>
-		    ,{ id:1000000005, pId:2, name:"草稿箱", url:"<%=rootPath%>/GovDocSend!listDraft.action", target:'mainFrame',iconSkin:"fa fa"}
-			,{ id:1000000006, pId:2, name:"经办文件查阅", expNodeCode:"sendFile", url:"<%=rootPath%>/GovDocSend!handlingFileList.action", target:'mainFrame',iconSkin:"fa fa"}
-			,{ id:1000000007, pId:2, name:"分发文件查阅", expNodeCode:"ffFile", url:"<%=rootPath%>/GovDocSend!handoutFileList.action?toMe=1", target:'mainFrame',iconSkin:"fa fa"}
+		    ,{ id:1000000005, pId:-12, name:"草稿箱", url:"<%=rootPath%>/GovDocSend!listDraft.action", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000006, pId:-12, name:"经办文件查阅", expNodeCode:"sendFile", url:"<%=rootPath%>/GovDocSend!handlingFileList.action", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000007, pId:-12, name:"分发文件查阅", expNodeCode:"ffFile", url:"<%=rootPath%>/GovDocSend!handoutFileList.action?toMe=1", target:'mainFrame',iconSkin:"fa fa"}
 			<%if(null != request.getAttribute("sendFileSee") && "1".equals(request.getAttribute("sendFileSee")+"")){%>
-				,{ id:1000000008, pId:2, name:"办理查阅", url:"<%=rootPath%>/GovDocSend!sendFileList.action", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000008, pId:-12, name:"办理查阅", url:"<%=rootPath%>/GovDocSend!sendFileList.action", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000081, pId:1000000008, name:"所有文件", url:"<%=rootPath%>/GovDocSend!sendFileList.action", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000082, pId:1000000008, name:"在办文件", url:"<%=rootPath%>/GovDocSend!sendFileList.action?queryStatus=0", target:'mainFrame',iconSkin:"fa fa"}
 			    ,{ id:10000000083, pId:1000000008, name:"办结文件", url:"<%=rootPath%>/GovDocSend!sendFileList.action?queryStatus=1", target:'mainFrame',iconSkin:"fa fa"}
@@ -158,7 +158,7 @@ String expNodeCode = request.getParameter("expNodeCode");
 			 }
 			%>
 			<%if(null !=request.getAttribute("sendFileFlowSetting") && "1".equals(request.getAttribute("sendFileFlowSetting") + "")){%>
-				,{ id:1000000009, pId:2, name:"发文设置", url:"", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000009, pId:-12, name:"发文设置", url:"", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000091, pId:1000000009, name:"机关代字设置", url:"<%=rootPath%>/GovDocSet!sendFileWordList.action", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000092, pId:1000000009, name:"文号设置", url:"<%=rootPath%>/GovDocSet!sendFileNumList.action", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000093, pId:1000000009, name:"流水号设置", url:"<%=rootPath%>/GovDocSet!sendFileSeqList.action", target:'mainFrame',iconSkin:"fa fa"}
@@ -177,7 +177,7 @@ String expNodeCode = request.getParameter("expNodeCode");
 				,{ id:100000000912, pId:1000000009, name:"组织公文员", url:"<%=rootPath%>/GovDocSet!sendFileDocAssistantList.action", target:'mainFrame',iconSkin:"fa fa"}
 			<%}%>
 			<%	if(mbd.hasRight(session.getAttribute("userId").toString(),"03*15*86")){%>	
-				,{ id:1000000011, pId:2, name:"基础设置", url:"", target:'mainFrame',iconSkin:"fa fa-cog fa"}
+				,{ id:1000000011, pId:-12, name:"基础设置", url:"", target:'mainFrame',iconSkin:"fa fa-cog fa"}
 				,{ id:10000000111, pId:1000000011, name:"主题词设置", url:"<%=rootPath%>/GovDocSet!topicList.action", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000112, pId:1000000011, name:"标签设置", url:"<%=rootPath%>/public/iWebOfficeSign/BookMark/BookMarkList.jsp?haveRight=yes&moduleType=govdocument", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000113, pId:1000000011, name:"参数设置", url:"<%=rootPath%>/GovDocSet!listBaseInfo.action", target:'mainFrame',iconSkin:"fa fa"}
@@ -219,9 +219,9 @@ String expNodeCode = request.getParameter("expNodeCode");
 			%>
 			<%menuIndex++;if(com.whir.common.util.CommonUtils.isForbiddenPad(request)){%>
 			<c:if test="${fn:contains(canShowMenus,'documentmanager_recievefile')}">
-				,{ id:3, pId:-1, name:"收文管理",iconSkin:"fa fa-cog fa"}
+				,{ id:-13, pId:-1, name:"收文管理",iconSkin:"fa fa-cog fa"}
 			
-			,{ id:1000000012, pId:3, name:"新建收文", url:"", target:'_blank',iconSkin:"fa fa"}
+			,{ id:1000000012, pId:-13, name:"新建收文", url:"", target:'_blank',iconSkin:"fa fa"}
 			<%
 				 tmp = procbd.getUserProcessListWithNoPackage(curUserId,orgIdString,null,"3",null);
 				 if (null != tmp) {
@@ -240,10 +240,10 @@ String expNodeCode = request.getParameter("expNodeCode");
 				 }
 			%>
 					
-					,{ id:1000000013, pId:3, expNodeCode:"receiveFile",name:"经办文件查阅", url:"<%=rootPath%>/GovDocReceiveProcess!handlingFileList.action", target:'mainFrame',iconSkin:"fa fa"}
+					,{ id:1000000013, pId:-13, expNodeCode:"receiveFile",name:"经办文件查阅", url:"<%=rootPath%>/GovDocReceiveProcess!handlingFileList.action", target:'mainFrame',iconSkin:"fa fa"}
 				
 				 <%if(null != request.getAttribute("receiveFileSee") && "1".equals(request.getAttribute("receiveFileSee")+"")){%>
-					,{ id:1000000014, pId:3, name:"办理查阅", url:"<%=rootPath%>/GovDocReceiveProcess!receiveFileList.action", target:'mainFrame',iconSkin:"fa fa"}
+					,{ id:1000000014, pId:-13, name:"办理查阅", url:"<%=rootPath%>/GovDocReceiveProcess!receiveFileList.action", target:'mainFrame',iconSkin:"fa fa"}
 					,{ id:10000000141, pId:1000000014, name:"所有文件", url:"<%=rootPath%>/GovDocReceiveProcess!receiveFileList.action", target:'mainFrame',iconSkin:"fa fa"}
 					,{ id:10000000142, pId:1000000014, name:"在办文件", url:"<%=rootPath%>/GovDocReceiveProcess!receiveFileList.action?receiveType=noend&queryStatus=0", target:'mainFrame',iconSkin:"fa fa"}
 				    ,{ id:10000000143, pId:1000000014, name:"办结文件", url:"<%=rootPath%>/GovDocReceiveProcess!receiveFileList.action?receiveType=end&queryStatus=1", target:'mainFrame',iconSkin:"fa fa"}
@@ -267,7 +267,7 @@ String expNodeCode = request.getParameter("expNodeCode");
 				}
 				%>
 				  <%if(null !=request.getAttribute("receiveFileSetting") && "1".equals(request.getAttribute("receiveFileSetting")+"")){%>
-					   ,{ id:1000000015, pId:3, name:"收文设置", url:"", target:'mainFrame',iconSkin:"fa fa"}
+					   ,{ id:1000000015, pId:-13, name:"收文设置", url:"", target:'mainFrame',iconSkin:"fa fa"}
 					   ,{ id:10000000151, pId:1000000015, name:"单位设置", url:"<%=rootPath%>/GovRecvDocSet!unitlist.action", target:'mainFrame',iconSkin:"fa fa"}
 					   ,{ id:10000000152, pId:1000000015, name:"流水号设置", url:"<%=rootPath%>/GovRecvDocSet!receiveSeqList.action", target:'mainFrame',iconSkin:"fa fa"}
 						<%if("2".equals(workflowType) ||  "1".equals(workflowType) || "".equals(workflowType) ){%>
@@ -281,7 +281,7 @@ String expNodeCode = request.getParameter("expNodeCode");
 				<%}%>
 				<% if(mbd.hasRight(session.getAttribute("userId").toString(),"03*16*01")){%>
 					 ,{ id:10000000161, pId:1000000016, name:"参数设置", url:"<%=rootPath%>/GovRecvDocSet!receiveBase.action", target:'mainFrame',iconSkin:"fa fa"}
-					 ,{ id:1000000016, pId:3, name:"基础设置", url:"", target:'mainFrame',iconSkin:"fa fa"}
+					 ,{ id:1000000016, pId:-13, name:"基础设置", url:"", target:'mainFrame',iconSkin:"fa fa"}
 
 				<%}%>
 			<%}%>
@@ -289,9 +289,9 @@ String expNodeCode = request.getParameter("expNodeCode");
 			<%}%>
 			<%menuIndex++;if(com.whir.common.util.CommonUtils.isForbiddenPad(request)){%>
 			<c:if test="${fn:contains(canShowMenus,'documentmanager_filecheckwith')}">
-			,{ id:4, pId:-1, name:"文件送审签",iconSkin:"fa fa-cog fa"}
+			,{ id:-14, pId:-1, name:"文件送审签",iconSkin:"fa fa-cog fa"}
 			
-			,{ id:1000000017, pId:4, name:"新建送审签", url:"", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000017, pId:-14, name:"新建送审签", url:"", target:'mainFrame',iconSkin:"fa fa"}
 				<%
 				 tmp = procbd.getUserProcessListWithNoPackage(curUserId,orgIdString,null,"34",null);
 				 if (null != tmp) {
@@ -311,9 +311,9 @@ String expNodeCode = request.getParameter("expNodeCode");
 					 }
 				%>
 			 <%if(null != request.getAttribute("fileSendCheckSee") && "1".equals(request.getAttribute("fileSendCheckSee")+"")){%>
-				,{ id:1000000018, pId:4, name:"办理查阅", url:"<%=rootPath%>/GovDocSendCheckProcess!list.action", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000018, pId:-14, name:"办理查阅", url:"<%=rootPath%>/GovDocSendCheckProcess!list.action", target:'mainFrame',iconSkin:"fa fa"}
 			 <%}if(null !=request.getAttribute("fileSendCheckSetting") && "1".equals(request.getAttribute("fileSendCheckSetting")+"")){%>
-				,{ id:1000000019, pId:4, name:"文件送审签设置", url:"", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000019, pId:-14, name:"文件送审签设置", url:"", target:'mainFrame',iconSkin:"fa fa"}
 				<%if("2".equals(workflowType) || "1".equals(workflowType)  || "".equals(workflowType) ){%>
 				,{ id:10000000191, pId:1000000019, name:"流程设置", url:"<%=rootPath%>/wfprocess!processList.action?moduleId=34", target:'mainFrame',iconSkin:"fa fa"}
 				 <%}%>
@@ -328,36 +328,36 @@ String expNodeCode = request.getParameter("expNodeCode");
 			<%}%>
 			<%menuIndex++;if(com.whir.common.util.CommonUtils.isForbiddenPad(request)){%>
 			<c:if test="${fn:contains(canShowMenus,'documentmanager_exchange')}">
-			,{ id:5, pId:-1, name:"公文交换",iconSkin:"fa fa-cog fa"}
+			,{ id:-15, pId:-1, name:"公文交换",iconSkin:"fa fa-cog fa"}
 			
 			<% if(null !=request.getAttribute("govExchange") && "1".equals(request.getAttribute("govExchange")+"")){%>
-				,{ id:1000000021, pId:5, name:"收文", url:"<%=rootPath%>/GovExchange!exchangeReceive.action", target:'mainFrame',iconSkin:"fa fa"}
-				,{ id:1000000022, pId:5, name:"发文", url:"<%=rootPath%>/GovExchange!exchangeSend.action", target:'mainFrame',iconSkin:"fa fa"}
-				,{ id:1000000023, pId:5, name:"公文撤回", url:"", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000021, pId:-15, name:"收文", url:"<%=rootPath%>/GovExchange!exchangeReceive.action", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000022, pId:-15, name:"发文", url:"<%=rootPath%>/GovExchange!exchangeSend.action", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000023, pId:-15, name:"公文撤回", url:"", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000231, pId:1000000023, name:"被撤回", url:"<%=rootPath%>/GovExchange!cancel.action", target:'mainFrame',iconSkin:"fa fa"}
 				,{ id:10000000232, pId:1000000023, name:"我的撤回", url:"<%=rootPath%>/GovExchange!mycancel.action", target:'mainFrame',iconSkin:"fa fa"}
 			<%	}
 				if(null != request.getAttribute("govExchangeUnit") && "1".equals(request.getAttribute("govExchangeUnit")+"") ){
 			%>
-				,{ id:1000000024, pId:5, name:"单位设置", url:"<%=rootPath%>/GovExchange!unitlist.action", target:'mainFrame',iconSkin:"fa fa"}
-				,{ id:1000000025, pId:5, name:"群组设置", url:"<%=rootPath%>/GovExchange!grouplist.action", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000024, pId:-15, name:"单位设置", url:"<%=rootPath%>/GovExchange!unitlist.action", target:'mainFrame',iconSkin:"fa fa"}
+				,{ id:1000000025, pId:-15, name:"群组设置", url:"<%=rootPath%>/GovExchange!grouplist.action", target:'mainFrame',iconSkin:"fa fa"}
 			<%}%>
 			</c:if>
 			<%}%>
 			<%menuIndex++;if(com.whir.common.util.CommonUtils.isForbiddenPad(request)){%>
 			<% if(mbd.hasRight(session.getAttribute("userId").toString(),"GOVDOCUMENT*02*01")){%>
-			,{ id:6, pId:-1, name:"公文统计",iconSkin:"fa fa-cog fa"}
-			,{ id:1000000026, pId:6, name:"发文量统计", url:"<%=rootPath%>/GovDocSet!statisticsDoc.action?govtype=sendfile", target:'mainFrame',iconSkin:"fa fa"}
-			,{ id:1000000027, pId:6, name:"收文量统计", url:"<%=rootPath%>/GovDocSet!statisticsDoc.action?govtype=receivefile", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:-16, pId:-1, name:"公文统计",iconSkin:"fa fa-cog fa"}
+			,{ id:1000000026, pId:-16, name:"发文量统计", url:"<%=rootPath%>/GovDocSet!statisticsDoc.action?govtype=sendfile", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000027, pId:-16, name:"收文量统计", url:"<%=rootPath%>/GovDocSet!statisticsDoc.action?govtype=receivefile", target:'mainFrame',iconSkin:"fa fa"}
 			<%} }%>
 			<%menuIndex++;if(com.whir.common.util.CommonUtils.isForbiddenPad(request)){%>
 			<% if(mbd.hasRight(session.getAttribute("userId").toString(),"GOVDOCUMENT*01*03")){%>
-			,{ id:7, pId:-1, name:"领导文件查阅",iconSkin:"fa fa"}
-			,{ id:1000000028, pId:7, name:"发文", url:"<%=rootPath%>/GovDocSend!leaderHandlingFileList.action?isLeader=1", target:'mainFrame',iconSkin:"fa fa"}
-			,{ id:1000000029, pId:7, name:"收文", url:"<%=rootPath%>/GovDocReceiveProcess!leaderHandlingFileList.action", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:-17, pId:-1, name:"领导文件查阅",iconSkin:"fa fa"}
+			,{ id:1000000028, pId:-17, name:"发文", url:"<%=rootPath%>/GovDocSend!leaderHandlingFileList.action?isLeader=1", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000029, pId:-17, name:"收文", url:"<%=rootPath%>/GovDocReceiveProcess!leaderHandlingFileList.action", target:'mainFrame',iconSkin:"fa fa"}
 			
 			<% if(mbd.hasRight(session.getAttribute("userId").toString(),"GOVDOCUMENT*01*02")){%>
-			,{ id:1000000031, pId:7, name:"设置", url:"<%=rootPath%>/GovDocSet!leaderSetting.action?govtype=receivefile", target:'mainFrame',iconSkin:"fa fa"}
+			,{ id:1000000031, pId:-17, name:"设置", url:"<%=rootPath%>/GovDocSet!leaderSetting.action?govtype=receivefile", target:'mainFrame',iconSkin:"fa fa"}
 			<%}%>
 			<%} }%>
 			<%

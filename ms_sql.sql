@@ -304,3 +304,10 @@ go
 
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.10_SP_20160427','11.4.0.10',getdate());
 go
+
+
+
+
+
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.11_SP_20160429','11.4.0.11',getdate());
+go

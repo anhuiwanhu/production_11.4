@@ -28,6 +28,7 @@ String worktitle = request.getParameter("worktitle")==null?"":request.getParamet
 String workcurstep = request.getParameter("workcurstep")==null?"":request.getParameter("workcurstep");
 String worksubmittime = request.getParameter("worksubmittime")==null?"":request.getParameter("worksubmittime");
 String workStatus = request.getParameter("workStatus")==null?"":request.getParameter("workStatus");
+String userId = session.getAttribute("userId").toString();
 %>
 <body>
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
@@ -52,6 +53,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 				<c:set var="scopeType"><x:out select="$doc//scopeType/text()"/></c:set>
 				<input type="hidden" value="${param.workId}" name="workId"/>
 				<input type="hidden" id="hasReceiveWf" value='<x:out select="$doc//sendedUser/text()"/>'/>
+				<input type="hidden" id="isEzflow" value='<x:out select="$doc//isezflow/text()"/>'/>
 				<table class="wh-table-edit">
 					<tr>
 						<th>选择办理人<i class="fa fa-asterisk"></i>：</th>
@@ -111,8 +113,10 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 	    });
 	}
 	function onSubmit(){
+	    var userId = '<%=userId%>';
 	  	var cbUserId =$("#chooseUserId").val();
 		var cbUserName = $("#chooseUserName").val();
+		var isEzFlow = $("#isEzFlow").val();
 		if(cbUserId == ""){
 			alert("办理人不能为空！");
 			return false;
@@ -120,10 +124,17 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 		var hasReceive = $('#hasReceiveWf').val();
 		var hasArr = hasReceive.split(',');
 		for(var i=0; i<hasArr.length;i++){
-			if(cbUserName.indexOf(hasArr[i]+',')>-1){
+		if(isEzFlow == 1){
+			if(cbUserName.indexOf(hasArr[i]+',')>-1 || cbUserName.indexOf(userId+',')>-1){
 				alert('加签办理人不能包含当前活动办理人！');
 				return false;
 			}
+		}else{
+			if(cbUserId.indexOf(hasArr[i]+',')>-1 || cbUserId.indexOf(userId+',')>-1){
+				alert('加签办理人不能包含当前活动办理人！');
+				return false;
+			}
+		}	
 		}
 		loadPage();
 		var url ='/defaultroot/workflow/workflowAddSign.controller';

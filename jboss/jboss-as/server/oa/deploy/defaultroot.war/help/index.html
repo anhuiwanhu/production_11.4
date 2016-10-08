@@ -1,0 +1,750 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心</title>
+<link href="css/css_help.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script language=javascript id=clientEventHandlersJS>
+<!--
+var number=2;
+
+function LMYC() {
+var lbmc;
+var treePic;
+    for (i=1;i<=number;i++) {
+        lbmc = eval('LM' + i);
+       treePic = eval('treePic'+i);
+       treePic.src = 'img/menu_a_h.png';
+      lbmc.style.display = 'none';
+		
+    }
+}
+ 
+function ShowFLT(i) {
+    lbmc = eval('LM' + i);
+   treePic = eval('treePic' + i)
+    if (lbmc.style.display == 'none') {
+        LMYC();
+       treePic.src = 'img/menu_a_h_t.png';
+      lbmc.style.display = '';
+	
+    }
+    else {
+      treePic.src = 'img/menu_a_h.png';
+        lbmc.style.display = 'none';
+    }
+}
+//-->
+      </script>
+      
+      
+            
+<script type="text/javascript">
+	function isShowIndex(tab_id,div_id,who,aId,num){
+   for(var i = 0;i < num;i++){
+    document.getElementById("dt"+who+i).style.display="none";
+      document.getElementById("sp"+who+i).className="aoff";
+   }
+ document.getElementById(div_id).style.display="block";
+   document.getElementById(tab_id).className="aon";
+}
+
+</script>
+            
+            		
+</head>
+
+<body>
+<div class="help_bg">
+<div class="help_box">
+<div class="help_head">
+<a href="index.html" title="万户--帮助中心" class="logo"><img src="img/logo.png" /></a>
+<ul class="nav_box">
+<li class="on_nav"><a href="index.html" class="user1">用户手册</a></li><li><a href="help_user.html" class="user2">管理员手册</a></li><li><a href="help_ask.html" class="user3">常见问题</a></li>
+</ul>
+<a href="javascript:void(0)" class="ico_kf" onclick="openWin({url:'http://bbs.whir.net',width:'1000',height:'600',isScroll:'yes',isFull:'yes',winName:'forum'});"></a>
+<a href="#" onclick="openWin({url:'../about/about.jsp',width:'530',height:'380',isScroll:'no',winName:'about'});" class="ico_sm"></a>
+<a href="#" onclick="window.close();" class="ico_tc"></a>
+
+</div>
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="220" valign="top" class="left_nr">
+        <div class="help_left">
+ 
+     
+     
+<div class="ask_list">
+<h1 id="spA_0" onclick="isShowIndex('spA_0','dtA_0','A_','','22')" class="aon"><a onClick="javascript:ShowFLT(1);" href="javascript:void(null)" target="_self">基础与公共部分<span><img src="img/menu_a_h.png"  id="treePic1" /></span></a></h1>
+<div id=LM1 style="DISPLAY: block">
+	<h2><a href="index.html" target="_self"  class="cur">ezOFFICE系统基础</a></h2>
+	<h2><a href="h12.html" target="_self">HTML编辑器</a></h2>
+    <h2><a href="h13.html" target="_self" >WORD控件</a></h2>
+    <h2><a href="h14.html" target="_self" >EXCEL控件</a></h2>
+</div>
+
+
+<h1 id="spA_1" onclick="isShowIndex('spA_1','dtA_1','A_','','22')"><a onClick="javascript:ShowFLT(2);" href="javascript:void(null)" target="_self">催办督办<span><img src="img/menu_a_h.png"  id="treePic2" /></span></a></h1>
+<div id=LM2 style="DISPLAY: none">
+    <h2><a href="h21.html" target="_self" >督办任务</a></h2>
+    <h2><a href="h22.html" target="_self">我接收的催办</a></h2>
+</div>
+
+
+<h1 id="spA_2" onclick="isShowIndex('spA_2','dtA_2','A_','','22')"><a onClick="javascript:ShowFLT(3);" href="javascript:void(null)" target="_self">信息管理<span><img src="img/menu_a_h.png"  id="treePic3" /></span></a></h1>
+<div id=LM3 style="DISPLAY: none">
+    <h2><a href="h31.html" target="_self" >如何查看信息</a></h2>
+    <h2><a href="h32.html" target="_self">如何新建信息</a></h2>
+    <h2><a href="h33.html" target="_self" >信息管理模块的权限模型</a></h2>
+    <h2><a href="h34.html" target="_self">如何修改信息</a></h2>
+    <h2><a href="h35.html" target="_self" >如何查询信息</a></h2>
+    <h2><a href="h36.html" target="_self">所有信息</a></h2>
+    <h2><a href="h37.html" target="_self" >精华信息</a></h2>
+    <h2><a href="h38.html" target="_self">全文检索</a></h2>
+</div>
+
+
+<h1 id="spA_3" onclick="isShowIndex('spA_3','dtA_3','A_','','22')"><a onClick="javascript:ShowFLT(4);" href="javascript:void(null)" target="_self">单位主页<span><img src="img/menu_a_h.png"  id="treePic4" /></span></a></h1>
+<div id=LM4 style="DISPLAY: none">
+    <h2><a href="h41.html" target="_self" >如何查看单位主页</a></h2>
+</div>
+
+
+<h1 id="spA_4" onclick="isShowIndex('spA_4','dtA_4','A_','','22')"><a onClick="javascript:ShowFLT(5);" href="javascript:void(null)" target="_self">工作流程<span><img src="img/menu_a_h.png"  id="treePic5" /></span></a></h1>
+<div id=LM5 style="DISPLAY: none">
+    <h2><a href="h51.html" target="_self" >如何发起一个流程</a></h2>
+    <h2><a href="h52.html" target="_self">如何监控流程</a></h2>
+    <h2><a href="h53.html" target="_self" >如何审批（办理）流程</a></h2>
+    <h2><a href="h54.html" target="_self">审批按钮说明</a></h2>
+    <h2><a href="h55.html" target="_self" >流程表单的页签</a></h2>
+    <h2><a href="h56.html" target="_self">流程转交</a></h2>
+    <h2><a href="h57.html" target="_self" >如何查找某个流程文件</a></h2>
+    <h2><a href="h58.html" target="_self">常用流程</a></h2>
+</div>
+
+
+<h1 id="spA_5" onclick="isShowIndex('spA_5','dtA_5','A_','','22')"><a onClick="javascript:ShowFLT(6);" href="javascript:void(null)" target="_self">工作流程(ezFLOW)<span><img src="img/menu_a_h.png"  id="treePic6" /></span></a></h1>
+<div id=LM6 style="DISPLAY: none">
+    <h2><a href="h61.html" target="_self" >如何发起一个流程</a></h2>
+    <h2><a href="h62.html" target="_self">如何监控流程</a></h2>
+    <h2><a href="h63.html" target="_self" >如何审批（办理）流程</a></h2>
+    <h2><a href="h64.html" target="_self">审批按钮说明</a></h2>
+    <h2><a href="h65.html" target="_self" >流程表单的页签</a></h2>
+    <h2><a href="h66.html" target="_self">流程转交</a></h2>
+    <h2><a href="h67.html" target="_self" >如何查找某个流程文件</a></h2>
+    <h2><a href="h68.html" target="_self">常用流程</a></h2>
+</div>
+
+
+<h1 id="spA_6" onclick="isShowIndex('spA_6','dtA_6','A_','','22')"><a onClick="javascript:ShowFLT(7);" href="javascript:void(null)" target="_self">文件办理<span><img src="img/menu_a_h.png"  id="treePic7" /></span></a></h1>
+<div id=LM7 style="DISPLAY: none">
+    <h2><a href="h71.html" target="_self" >待办文件</a></h2>
+    <h2><a href="h72.html" target="_self">待阅文件</a></h2>
+    <h2><a href="h73.html" target="_self" >已办文件</a></h2>
+    <h2><a href="h74.html" target="_self">已阅文件</a></h2>
+    <h2><a href="h75.html" target="_self" >我的文件</a></h2>
+    <h2><a href="h76.html" target="_self">我退回的文件</a></h2>
+    <h2><a href="h77.html" target="_self" >我退回的文件(ezFLOW)</a></h2>
+    <h2><a href="h78.html" target="_self">下属待办文件</a></h2>
+    <h2><a href="h79.html" target="_self">转交</a></h2>
+</div>
+
+
+<h1 id="spA_7" onclick="isShowIndex('spA_7','dtA_7','A_','','22')"><a onClick="javascript:ShowFLT(8);" href="javascript:void(null)" target="_self">公文管理<span><img src="img/menu_a_h.png"  id="treePic8" /></span></a></h1>
+<div id=LM8 style="DISPLAY: none">
+    <h2><a href="h81.html" target="_self" >概述</a></h2>
+    <h2><a href="h82.html" target="_self">我的收文</a></h2>
+    <h2><a href="h83.html" target="_self" >发文管理</a></h2>
+    <h2><a href="h84.html" target="_self">收文管理</a></h2>
+    <h2><a href="h85.html" target="_self" >文件送审签</a></h2>
+    <h2><a href="h86.html" target="_self">公文交换</a></h2>
+    <h2><a href="h87.html" target="_self" >领导文件查阅</a></h2>
+</div>
+
+
+<h1 id="spA_8" onclick="isShowIndex('spA_8','dtA_8','A_','','22')"><a onClick="javascript:ShowFLT(9);" href="javascript:void(null)" target="_self">信息报送<span><img src="img/menu_a_h.png"  id="treePic9" /></span></a></h1>
+<div id=LM9 style="DISPLAY: none">
+    <h2><a href="h91.html" target="_self" >权限说明</a></h2>
+    <h2><a href="h92.html" target="_self">信息报送</a></h2>
+    <h2><a href="h93.html" target="_self" >刊物管理</a></h2>
+    <h2><a href="h94.html" target="_self">统计报表</a></h2>
+</div>
+
+
+<h1 id="spA_9" onclick="isShowIndex('spA_9','dtA_9','A_','','22')"><a onClick="javascript:ShowFLT(10);" href="javascript:void(null)" target="_self">邮件<span><img src="img/menu_a_h.png"  id="treePic10" /></span></a></h1>
+<div id=LM10 style="DISPLAY: none">
+    <h2><a href="h101.html" target="_self" >如何查看邮件</a></h2>
+    <h2><a href="h102.html" target="_self">如何写邮件</a></h2>
+    <h2><a href="h103.html" target="_self" >如何回复邮件</a></h2>
+    <h2><a href="h104.html" target="_self">如何删除邮件</a></h2>
+    <h2><a href="h105.html" target="_self" >文件夹管理</a></h2>
+    <h2><a href="h106.html" target="_self">如何搜索邮件</a></h2>
+    <h2><a href="h107.html" target="_self" >设置</a></h2>
+    <h2><a href="h108.html" target="_self">历史邮件</a></h2>
+    <h2><a href="h109.html" target="_self">外部邮箱整合</a></h2>
+</div>
+
+
+<h1 id="spA_10" onclick="isShowIndex('spA_10','dtA_10','A_','','22')"><a onClick="javascript:ShowFLT(11);" href="javascript:void(null)" target="_self">短信<span><img src="img/menu_a_h.png"  id="treePic11" /></span></a></h1>
+<div id=LM11 style="DISPLAY: none">
+    <h2><a href="h111.html" target="_self" >查看短信</a></h2>
+    <h2><a href="h112.html" target="_self">写短信</a></h2>
+    <h2><a href="h113.html" target="_self" >如何搜索短信</a></h2>
+    <h2><a href="h114.html" target="_self">查看发信箱记录</a></h2>
+</div>
+
+
+<h1 id="spA_11" onclick="isShowIndex('spA_11','dtA_11','A_','','22')"><a onClick="javascript:ShowFLT(12);" href="javascript:void(null)" target="_self">论坛<span><img src="img/menu_a_h.png"  id="treePic12" /></span></a></h1>
+<div id=LM12 style="DISPLAY: none">
+    <h2><a href="h121.html" target="_self" >如何查看帖子</a></h2>
+    <h2><a href="h122.html" target="_self">如何回复帖子</a></h2>
+    <h2><a href="h123.html" target="_self" >如何引用帖子内容进行回帖</a></h2>
+    <h2><a href="h124.html" target="_self">如何发布新帖</a></h2>
+    <h2><a href="h125.html" target="_self" >我的帖子</a></h2>
+    <h2><a href="h126.html" target="_self">我的回复</a></h2>
+    <h2><a href="h127.html" target="_self" >精华帖子</a></h2>
+</div>
+
+
+<h1 id="spA_12" onclick="isShowIndex('spA_12','dtA_12','A_','','22')"><a onClick="javascript:ShowFLT(13);" href="javascript:void(null)" target="_self">个人办公<span><img src="img/menu_a_h.png"  id="treePic13" /></span></a></h1>
+<div id=LM13 style="DISPLAY: none">
+    <h2><a href="h131.html" target="_self" >全文检索</a></h2>
+    <h2><a href="h132.html" target="_self">我的文档</a></h2>
+    <h2><a href="h133.html" target="_self" >联系人</a></h2>
+    <h2><a href="h134.html" target="_self">日程</a></h2>
+    <h2><a href="h135.html" target="_self" >工作日志</a></h2>
+    <h2><a href="h136.html" target="_self">工作汇报</a></h2>
+    <h2><a href="h137.html" target="_self" >任务中心</a></h2>
+    <h2><a href="h138.html" target="_self">个人工具</a></h2>
+    <h2><a href="h139.html" target="_self">催办管理</a></h2>
+    <h2><a href="h1310.html" target="_self">人员去向</a></h2>
+    <h2><a href="h1311.html" target="_self">个人设置</a></h2>
+</div>
+
+
+<h1 id="spA_13" onclick="isShowIndex('spA_13','dtA_13','A_','','22')"><a onClick="javascript:ShowFLT(14);" href="javascript:void(null)" target="_self">综合办公<span><img src="img/menu_a_h.png"  id="treePic14" /></span></a></h1>
+<div id=LM14 style="DISPLAY: none">
+    <h2><a href="h141.html" target="_self" >资源使用</a></h2>
+    <h2><a href="h142.html" target="_self">车辆管理</a></h2>
+    <h2><a href="h143.html" target="_self" >资料管理</a></h2>
+    <h2><a href="h144.html" target="_self">物品管理</a></h2>
+    <h2><a href="h145.html" target="_self" >资产管理</a></h2>
+    <h2><a href="h146.html" target="_self">网上调查</a></h2>
+    <h2><a href="h147.html" target="_self" >问卷调查</a></h2>
+    <h2><a href="h148.html" target="_self">会务管</a></h2>
+    <h2><a href="h149.html" target="_self">设备管理</a></h2>
+    <h2><a href="h1410.html" target="_self">项目管理</a></h2>
+    <h2><a href="h1411.html" target="_self">名片订购</a></h2>
+    <h2><a href="h1412.html" target="_self">合同管理</a></h2>
+</div>
+
+
+<h1 id="spA_14" onclick="isShowIndex('spA_14','dtA_14','A_','','22')"><a onClick="javascript:ShowFLT(15);" href="javascript:void(null)" target="_self">人事管理<span><img src="img/menu_a_h.png"  id="treePic15" /></span></a></h1>
+<div id=LM15 style="DISPLAY: none">
+    <h2><a href="h151.html" target="_self" >人事管理</a></h2>
+    <h2><a href="h152.html" target="_self">培训管理</a></h2>
+    <h2><a href="h153.html" target="_self" >绩效管理</a></h2>
+</div>
+
+
+<h1 id="spA_15" onclick="isShowIndex('spA_15','dtA_15','A_','','22')"><a onClick="javascript:ShowFLT(16);" href="javascript:void(null)" target="_self">档案管理<span><img src="img/menu_a_h.png"  id="treePic16" /></span></a></h1>
+<div id=LM16 style="DISPLAY: none">
+    <h2><a href="h161.html" target="_self" >档案查询</a></h2>
+    <h2><a href="h162.html" target="_self">档案借阅</a></h2>
+</div>
+
+
+<h1 id="spA_16" onclick="isShowIndex('spA_16','dtA_16','A_','','22')"><a onClick="javascript:ShowFLT(17);" href="javascript:void(null)" target="_self">文档管理<span><img src="img/menu_a_h.png"  id="treePic17" /></span></a></h1>
+<div id=LM17 style="DISPLAY: none">
+    <h2><a href="h171.html" target="_self" >所有文档</a></h2>
+    <h2><a href="h172.html" target="_self">新建文档</a></h2>
+    <h2><a href="h173.html" target="_self" >我接收的文档</a></h2>
+</div>
+
+
+<h1 id="spA_17" onclick="isShowIndex('spA_17','dtA_17','A_','','22')"><a onClick="javascript:ShowFLT(18);" href="javascript:void(null)" target="_self">关系管理<span><img src="img/menu_a_h.png"  id="treePic18" /></span></a></h1>
+<div id=LM18 style="DISPLAY: none">
+    <h2><a href="h181.html" target="_self" >数据查看</a></h2>
+    <h2><a href="h182.html" target="_self">数据查询</a></h2>
+</div>
+
+
+<h1 id="spA_18" onclick="isShowIndex('spA_18','dtA_18','A_','','22')"><a onClick="javascript:ShowFLT(19);" href="javascript:void(null)" target="_self">微博<span><img src="img/menu_a_h.png"  id="treePic19" /></span></a></h1>
+<div id=LM19 style="DISPLAY: none">
+    <h2><a href="h191.html" target="_self" >首页动态</a></h2>
+    <h2><a href="h192.html" target="_self">@提到我的</a></h2>
+    <h2><a href="h193.html" target="_self" >评论</a></h2>
+    <h2><a href="h194.html" target="_self">收藏</a></h2>
+</div>
+
+
+<h1 id="spA_19" onclick="isShowIndex('spA_19','dtA_19','A_','','22')"><a onClick="javascript:ShowFLT(20);" href="javascript:void(null)" target="_self">定位服务<span><img src="img/menu_a_h.png"  id="treePic20" /></span></a></h1>
+<div id=LM20 style="DISPLAY: none">
+    <h2><a href="h201.html" target="_self" >人员轨迹</a></h2>
+    <h2><a href="h202.html" target="_self">人员位置</a></h2>
+    <h2><a href="h203.html" target="_self" >考勤信息</a></h2>
+</div>
+
+
+<h1 id="spA_20" onclick="isShowIndex('spA_20','dtA_20','A_','','22')"><a onClick="javascript:ShowFLT(21);" href="javascript:void(null)" target="_self">知道<span><img src="img/menu_a_h.png"  id="treePic21" /></span></a></h1>
+<div id=LM21 style="DISPLAY: none">
+    <h2><a href="h211.html" target="_self" >知道首页</a></h2>
+    <h2><a href="h212.html" target="_self">如何提问</a></h2>
+    <h2><a href="h213.html" target="_self" >如何回答问题</a></h2>
+    <h2><a href="h214.html" target="_self">所有问题</a></h2>
+    <h2><a href="h215.html" target="_self" >精华问题</a></h2>
+    <h2><a href="h216.html" target="_self">个人问题管理</a></h2>
+    <h2><a href="h217.html" target="_self" >知道专家库</a></h2>
+</div>
+
+
+<h1 id="spA_21" onclick="isShowIndex('spA_21','dtA_21','A_','','22')"><a onClick="javascript:ShowFLT(22);" href="javascript:void(null)" target="_self">知识文库<span><img src="img/menu_a_h.png"  id="treePic22" /></span></a></h1>
+<div id=LM22 style="DISPLAY: none">
+    <h2><a href="h221.html" target="_self" >知识文库首页</a></h2>
+    <h2><a href="h222.html" target="_self">如何上传文档</a></h2>
+    <h2><a href="h223.html" target="_self" >我的文档</a></h2>
+    <h2><a href="h224.html" target="_self">所有文档</a></h2>
+</div>
+
+
+</div>
+
+     
+    </div> 
+    
+    
+  
+       </td>
+    <td valign="top" class="right_nr">
+<div class="right_bg">
+<span id="dtA_0"  class="ask_blank" style="display:block"></span>
+<span id="dtA_1"  class="ask_blank"></span>
+<span id="dtA_2"  class="ask_blank"></span>
+<span id="dtA_3"  class="ask_blank"></span>
+<span id="dtA_4"  class="ask_blank"></span>
+<span id="dtA_5"  class="ask_blank"></span>
+<span id="dtA_6"  class="ask_blank"></span>
+<span id="dtA_7"  class="ask_blank"></span>
+<span id="dtA_8"  class="ask_blank"></span>
+<span id="dtA_9"  class="ask_blank"></span>
+<span id="dtA_10"  class="ask_blank"></span>
+<span id="dtA_11"  class="ask_blank"></span>
+<span id="dtA_12"  class="ask_blank"></span>
+<span id="dtA_13"  class="ask_blank"></span>
+<span id="dtA_14"  class="ask_blank"></span>
+<span id="dtA_15"  class="ask_blank"></span>
+<span id="dtA_16"  class="ask_blank"></span>
+<span id="dtA_17"  class="ask_blank"></span>
+<span id="dtA_18"  class="ask_blank"></span>
+<span id="dtA_19"  class="ask_blank"></span>
+<span id="dtA_20"  class="ask_blank"></span>
+<span id="dtA_21"  class="ask_blank"></span>
+
+
+<div  class="right_img">
+<div style="width:95%; margin:0px auto;">
+<div class="ifm" id="ifm">
+
+<div class="warp">
+<h2 class="help_tit">ezOFFICE系统基础</h2>
+
+<div class="linkChild clear" id="linkChild">
+<ul class="hd clear">
+	<li>如何登录ezOFFICE系统<b>&gt;</b></li>
+    <li>首页结构介绍<b>&gt;</b></li>
+    <li>整个系统的风格<b>&gt;</b></li>
+    <li>如何切换部门<b>&gt;</b></li>
+    <li>如何修改密码<b>&gt;</b></li>
+    <li>选择组织用户<b>&gt;</b></li>
+    <li>上传附件<b>&gt;</b></li>
+    <li>附件在线预览<b>&gt;</b></li>
+    <li>附件在线编辑<b>&gt;</b></li>
+    <li>即时通讯反向登录</li>
+    
+	<div class="clearfix"></div>
+</ul>
+
+<div class="bd">
+
+<div class="subDiv">
+	<h3>1.1.1如何登录ezOFFICE系统</h3>
+    <p>打开操作系统的浏览器，在地址栏输入ezOFFICE协同办公系统的地址后回车。（具体登陆地址可向单位系统管理员咨询）。在出现ezOFFICE登录界面后，输入用户账号和密码（用户账号和初始密码由系统管理员分配），回车或点击“登录”按钮即可进入ezOFFICE系统。</p>
+    <p><img src="pic/p_1.1.1.01.jpg" /></p>
+    <p><b>登录页元素介绍：</b></p>
+    <p>1）“控件安装”，OA系统内集成的第三方系统需要安装好控件后才可以正常使用，如上传附件、在线编辑等，点击安装链接后在弹出的对话框中点击“运行”即可。</p>
+    <p><img src="pic/p_1.1.1.02.jpg" /></p>
+    <p>2）语言选择：提供中文简体、中文繁体、英文、韩文和日文供选择，选择后进入OA内，则使用语境切换为相应语言。</p>
+    <p>3）收藏地址：点击可以将当前OA系统的访问地址收藏到浏览器中方便下次快捷访问。</p>
+    <p>4）设置帮助：基于浏览器的OA系统在使用过程中需要设置的浏览器的某些属性，均可在此找到对应设置方案。</p>
+</div>
+
+
+<div class="subDiv">
+	<h3>1.1.2首页结构介绍</h3>
+	<p>点击登录后，就进入ezOFFICE系统的首页。</p>
+    <p><img src="pic/p_1.1.2.01.jpg" /></p>
+	<p class="center">首页布局示例</p>
+	<p class="bg">1、首页顶部通栏的快捷方式及提醒</p>
+	<p>首页顶部通栏放置的快捷按钮，如首页切换、待办文件、新公文、新邮件等</p>
+    <p>1）首页切换：点击首页名称后向下箭头可切换当前正在使用的首页到其他首页。</p>
+    <p><img src="pic/p_1.1.2.02.jpg" /></p>
+    <p>2）文件待办：点击按钮可以打开文件办理模块的待办文件列表，方便的对文件进行处理。待办文件的数量以右上角的提醒数字显示。</p>
+    <p><img src="pic/p_1.1.2.03.jpg" /></p>
+    <p>3）新收文：点击按钮可以打开公文管理中的新收文列表，方便的查看未读收文，未读数量以右上角的提醒数字显示</p>
+    <p><img src="pic/p_1.1.2.04.png" /></p>
+    <p>4）新邮件：根据系统设置中“邮件提醒方式”的设置来显示对应邮箱的未读邮件数量，如果系统设置的是“内部邮件”，则显示内部邮件中未读邮件数；如果系统设置的是“外部邮件”为exchange，则显示当前用户exchange中未读邮件数。点击图标可以打开内部邮件的收件箱。</p>
+    <p><img src="pic/p_1.1.2.05.png" /></p>
+    <p>5）更多：点击按钮可以展开更多快捷按钮，如全文检索、新建信息、新建邮件、新建日程、新建汇报、密码设置、个人设置等快捷链接。</p>
+    <p>将光标放在新建信息上，显示如下图所示：</p>
+    <p><img src="pic/p_1.1.2.06.png" /></p>
+    <p>6）其他操作：换肤、帮助中心、注销系统、退出系统的操作按钮。</p>
+    <p><img src="pic/p_1.1.2.07.png" /></p>
+    <p>在通栏下面为OA系统的LOGO区和个人信息区，个人信息区显示当前时间、当前登陆人姓名、状态、所属组织和头像，点击头像可进行更换。</p>
+    <p><img src="pic/p_1.1.2.08.png" /></p>
+    <p>最右侧为向上收起按钮，点击可收起顶部区域，使信息区域展示的面积最大化，如下图为收起的效果，收起后可点击展开按钮再次展开。</p>
+    <p><img src="pic/p_1.1.2.09.png" /></p>
+    <p class="bg">2、功能菜单栏及“菜单盒子”</p>
+    <p>菜单栏包括：信息管理、单位主页、工作流程、公文管理、邮件、论坛、个人办公、综合办公等是系统内置的常用功能模块。</p>
+    <p><img src="pic/p_1.1.2.10.png" /></p>
+    <p>因为菜单较多，超过屏幕显示的菜单会被自动放入“菜单盒子”中，点击“菜单盒子”可以显示余下的部分菜单，也可以将菜单栏上已有的菜单关闭收入到“菜单盒子”中。已收入的菜单同样可以再次点击添加，重新回到菜单栏上。</p>
+    <p><img src="pic/p_1.1.2.11.png" /></p>
+    <p>菜单栏最右侧为在线人数模块，点击可查看当前OA系统中共有多少人同时在线。</p>
+    <p><img src="pic/p_1.1.2.12.png" /></p>
+    <p>系统常用菜单模块简介：</p>
+    <p><b>首页：</b>即登陆OA的门户，在门户中集成各个模块即时更新的信息PORTAL、待办提醒、工作汇报、日志、单点登录甚至第三方系统的更新信息或互联网信息等等。</p>
+    <p><b>信息管理：</b>又叫“知识管理”，主要完成两大任务：1、可以完成组织内的信息的快速传播；2、可以完成组织内知识的沉淀和共享。通俗一点说，可以对本单位所有信息和知识进行分门别类的管理，如“通知通告”、“公司新闻”、“规章制度”等。这些栏目是由系统管理员根据本单位实际情况建立的，并赋予特定用户群查看、发布信息的权限。在上图看到的“领导办公”是在“信息管理”功能基础上派生出来的模块，可以用来管理某一大类的信息，在它下面也可以建立很多栏目，和“信息管理”的功能完全一样。</p>
+    <p><b>单位主页：</b>给每个部门或下级单位一个知识管理的空间。和信息管理模块的主要区别是，信息管理中的信息主要是面向全局的，而单位主页主要是管理部门或下级单位的信息的。</p>
+    <p><b>工作流程：</b>我们知道，日常工作中有很多需要审批或者需要部门之间协作的事情，比如请假需要领导审批，比如给生产部门下工作单，等等。在传统办公模式下，我们会拿着一张表格，一个部门、一个部门的找相关领导审批签字，有时候领导出差了，我们就在等，好不容易十天半个月之后领导回来了，这个表格却找不到了……这是我们传统办公模式下常见的情景。如何规避这些弊端呢？工作流程模块就是使用网络化和电子化的手段来解决这些问题的。工作流程的表单、流转步骤、每一步由谁来做，等等，系统管理员都可以去设置。</p>
+    <p >
+	<strong>公文管理：</strong>主要实现发文、收文、文件送审签的网上自动流转，从而提供了更加规范化、制度化、科学化、流程化的办理方式，简化了纸质办理方式的繁琐性，使工作效率得到了大大的提高。
+</p>
+<p >
+	<strong>内部邮件：</strong>可以和组织内的所有用户互发邮件。不需要记那些难记的邮件地址，只需要找到姓名即可！方便快捷，没有延迟。
+</p>
+<p >
+	<strong>论坛：</strong>用户可以就某些共同话题进行沟通交流，集思广益。系统管理员可以建立若干个讨论区，赋予特定用户群可以查看、发布某个讨论区的帖子。
+</p>
+<p >
+	<strong>短信：</strong>可以在这里发送手机短信。不过前提是，协同办公系统整合了短信提供商的短信服务。此模块默认隐藏。
+</p>
+<p >
+	<strong>个人办公：</strong>在这里有一些为个人办公设计的功能，如填写日程安排、工作日志、工作汇报，安排任务并接收任务进展情况的汇报，我的文档等等。
+</p>
+<p >
+	<strong>综合办公：</strong>在这里有一些具体业务功能，如人事信息管理、车辆<span>/</span><span>资料管理、会务管理、物品</span><span>/</span><span>设备管理、贺卡管理、问卷调查、档案管理等等。系统管理员可以为相应业务管理人员分配各种管理维护的权限。</span> 
+</p>
+<p >
+	<strong>人事管理：</strong>主要是人事部门用来管理人事信息，以及贺卡管理、培训管理等功能。
+</p>
+<p >
+	<strong>档案管理：</strong>按国家档案管理规范进行档案的管理。此模块默认隐藏。
+</p>
+<p >
+	<strong>文档管理：</strong>文档管理解决方案是专门针对企业<span>ISO</span><span>文件管理而设计，用于</span><span>ISO</span><span>文件的建立、审核、发行、借阅、变更、作废的全程管理和控制。此模块默认隐藏。</span> 
+</p>
+<p >
+	<strong>关系管理：</strong>通过关系管理，可以定义出和客户、伙伴以及供应商相关的各种数据库。客户关系管理系统核心功能是对客户、伙伴以及供应商相关的各种数据的管理，针对不同层次的用户在系统里有不同的管理权限和管理范围。此模块默认隐藏。
+</p>
+<p >
+	<strong>系统管理：</strong>只有管理员才可以看见这个菜单。用于对系统底层的维护和管理。
+</p>
+    
+  <p class="bg">
+<strong>	3<span>、自定义的首页布局</span></strong>
+</p>
+<p>
+	在“首页布局示例”截图中，我们可以看到ezOFFICE系统的首页可以定义得很丰富。系统管理员可以将系统中的重要数据设置在首页显示，并采用“拖拽”的方式灵活自如的完成首页布局，还可以给不同用户群定义不同的首页，比如给公司领导定义单独的首页。
+</p>
+<p>
+	首页的精神就是将一些模块的最新数据显示出来，以至于我们每次登录系统，就能看到这些最新数据。
+</p>
+<p>
+	首页的数据主要分为以下几类：
+</p>
+<p>
+	<strong>信息：</strong>来自信息管理、单位主页，以及从信息管理模块派生出来的信息模块的最新信息。如“通知通告”、“新闻中心”。信息栏目是很多的，如果都将它们放在首页，会显得很杂乱、无重点，那么除了“通知通告”、“新闻中心”等重要栏目独立显示外，其他栏目的最新信息在“最近更新”下显示。
+</p>
+<p>
+	<strong>具体功能模块下的数据：</strong>如“我的邮件”、“我的论坛”显示我最新的几封邮件或论坛帖子。
+</p>
+<p>
+	<strong>业务提醒：</strong>如“我的日程”提前提醒我的日程安排。
+</p>
+<p>
+	<strong>文件办理快捷入口：</strong>待办文件、待阅文件、在办文件、办结文件、已阅文件、我的在办文件、我的办结文件、我的退回文件、我退回的文件、我的取消文件。下文会逐一描述。
+</p>
+<p>
+	<strong>重要业务链接：</strong>如“网上调查”、“问卷调查”等。
+</p>
+<p>
+	<strong>来源于互联网的数据：</strong>如“天气预报”，适时更新所在城市的天气预报。如果你在香港出差，就会显示香港的天气。
+</p>
+<p>
+	<strong>来源于互联网的分类信息：</strong>如“数字音乐新闻”，这是采用内容聚合技术（<span>RSS</span><span>），从互联网上订阅的、很多网站提供的、即时更新的分类信息的一个例子。如果您的单位是电子类企业，可以订阅国内国际电子行业的最新动态。</span>
+</p>
+<p>
+	<strong>通过“<span>HTML</span><span>编辑器”编辑显示的内容：</span></strong>通过插入代码，或插入文字<span>/</span><span>图片</span><span>/</span><span>表格</span><span>/FLASH/</span><span>音频</span><span>/</span><span>视频文件等方法显示在首页的内容。如左侧的时间，右侧的</span><span>FLASH</span><span>宣传框。</span>
+</p>
+<p>
+	用户可以发挥无止境的创造力，将这些功能和本单位实际业务需求相结合，以定义出更为丰富的首页布局。
+</p>  
+    </div>
+
+
+<div class="subDiv">
+<h3>1.1.3  整个系统的风格</h3>
+<p>
+	ezOFFICE的界面结构沿用了微软经验的<span>T</span><span>型结构，</span>在微软的很多产品里经常会用到，上面是一级菜单和快捷方式功能键，左边是二级菜单，右边是功能区。
+</p>
+<p>
+	例如邮件模块，点击“内部邮件”模块，在左侧显示属于邮件模块的所有二级菜单，在这里点击“收件箱”，点右边显示已经收到的全部邮件。其他的模块的结构也与此相似。
+</p>
+<p>
+	
+</p>
+<p>
+	<img src="pic/p_1.1.3.01.png" />
+</p>
+
+</div>
+
+
+<div class="subDiv">
+<h3>1.1.4如何切换部门</h3>
+
+<p>
+	如用户在其他部门兼职，则在个人信息区的组织后有向下的箭头，点击会显示你所有兼职组织。默认以所属组织的身份进入系统，如果需要切换，点击下拉框中的某个部门，点击确认后，进入相应组织，继承该组织在系统中所具有的权限。例如在发起流程、审批文件等操作的时候，就显示用户当前所属部门的信息。
+</p>
+<p>
+	<img src="pic/p_1.1.4.01.png" />
+</p>
+
+</div>
+
+<div class="subDiv">
+<h3>1.1.5如何修改密码</h3>
+<p>
+	在ezOFFICE系统基本配置下，用户账号和密码是用户进入系统的身份识别方式。为了您的数据安全，请及时修改初始密码，并间隔适当时间更换密码。
+</p>
+<p>
+	进入“个人办公”→“个人设置”→“修改密码”，进入下图显示页面。也可以通过顶部通栏的更多快捷方式进入。
+</p>
+<p>
+	输入旧密码，再输入新密码，再次输入新密码，最后保存即可。
+</p>
+<p>
+	<img src="pic/p_1.1.5.01.png"/>
+</p>
+
+</div>
+
+<div class="subDiv">
+<h3>1.1.6选择组织用户</h3>
+<p>
+	选择对象页面是系统中用得最多的一个页面。在这里，您可以选择用户、组织和群组。
+</p>
+<p>
+	在左侧显示所有组织和群组。点击左侧组织后，如果有下级组织则扩展开来，同时在右侧的“组织列表”中显示下级组织，在“用户列表”中显示直属一级组织的用户（一般情况下是组织领导）。
+</p>
+<p>
+	<img src="pic/p_1.1.6.01.png"/>
+</p>
+<p>
+	可以在“组织”页签下方搜索框中输入需要查询的组织。如果检索的名称是二级组织，则会显示一级和二级组织的树形结构，如下图所示：
+</p>
+<p style="text-align:center;">
+	<img src="pic/p_1.1.6.02.png"/>
+</p>
+<p>
+	群组页签显示效果如下图所示，按群组分类，默认展开分类显示，同样，可以在群组页签下方搜索框中输入要查询的群组执行查询操作。
+</p>
+<p style="text-align:center;">
+	<img src="pic/p_1.1.6.03.png"/>
+</p>
+<p>
+	1<span>）单选人：直接输入用户的中文名、账号、英文名或者简码后，点击立即查找，勾选出现的列表中的复选框，被选中的人会出现在下面的方框中，点击确定即可。</span>
+</p>
+<p>
+	<img src="pic/p_1.1.6.04.png"/>
+</p>
+<p>
+	2<span>）多选人：可通过依次输入用户中文名、账号、英文名或简码，实现人员多选。</span>
+</p>
+<p>
+	<img src="pic/p_1.1.6.05.png"/>
+</p>
+<p>
+	3<span>）全选组织下用户：如果需要以组织为单位进行选择，可以在组织页签中，直接点击相应组织，该组织名称和组织内全部人员将出现，点击组织后</span><img src="pic/xk.png" style="margin:0; display:inline-block"/>即可将组织内全部人员选中。如果组织内有人员不需要被选择，可以点击人员名字前面的<img src="pic/xk.png" style="margin:0; display:inline-block"/>取消选择。注：可进行多个组织的选择。
+</p>
+<p>
+	<img src="pic/p_1.1.6.06.png"/>
+</p>
+<p>
+	4<span>）多选同组织人员：如果需要选择特定组织的个别人员，可以在组织页签中点击相应组织，点击右侧全部人员按钮，则该组织全部人员将列表显示，勾选人员名字前</span><img src="pic/xk.png" style="margin:0; display:inline-block"/>即可进行人员选择。
+</p>
+<p>
+	<img src="pic/p_1.1.6.07.png"/>
+</p>
+<p>
+	
+</p>
+<p>
+	5<span>）单选或多选组织：选择组织页面包含组织、快捷两个页签，如下图所示，同样可以在组织页签下搜索框中输入内容执行查询。勾选组织名字前</span><img src="pic/xk.png" style="margin:0; display:inline-block"/>即可进行选择。
+</p>
+<p>
+	<img src="pic/p_1.1.6.08.png"/>
+</p>
+<p>
+	或在上方查询项组织文本框中输入内容查询。查询的组织以全称的方式显示。
+</p>
+<p>
+	<img src="pic/p_1.1.6.09.png"/>
+</p>
+<p>
+	
+</p>
+<p>
+	6<span>）从群组中选人：管理员在设置时，已经设置了一些相应的群组，您可以在群组页签中，根据需要进行人员选择。可通过点击群组名称和用户列表后面的</span><img src="pic/xk.png" style="margin:0; display:inline-block"/>进行全选，也可以点击用户名称前面的<img src="pic/xk.png" style="margin:0; display:inline-block"/>取消选择。
+</p>
+<p>    <img src="pic/p_1.1.6.10.png"/>
+</p>
+<p>
+	7<span>）快捷选人：为方便您的操作，系统提供了快捷选人页面。通过快捷操作，可以直接选取您所在的组织（包括兼职组织及将您设置为部门</span><span>/</span><span>分管领导的组织）和您的自定义群组。（自定义群组的设置详见个人办公模块）</span>
+</p>
+<p>
+	<img src="pic/p_1.1.6.11.png"/>
+</p>
+<p>
+	8<span>）查找人：如果只是知道想要选择的用户的模糊信息，则可以通过中文名、职务级别、账号、组织、组名称、英文名、简码等条件进行模糊查找。如：在中文名中输入李，点击立即查看，相应用户就会列表显示。</span>
+</p>
+<p>
+	<img src="pic/p_1.1.6.12.png"/>
+</p>
+<p>
+	9<span>）取消选择：如果想要取消选择，可以直接点击要取消的人员前面的</span><img src="pic/xk.png" style="margin:0; display:inline-block"/>进行反选；如果要全部取消，可以点击清除按钮。系统中同时有重置按钮，该按钮功能为，当您对已保存的人员选择进行修改时，如新增或者是取消了几位人员，希望清除修改痕迹，点击重置按钮即可。
+</p>
+<p style="text-align:center;">
+	<img src="pic/p_1.1.6.13.png"/>
+</p>
+<p style="text-align:center;">
+	原有选择人员
+</p>
+<p>
+	
+</p>
+<p style="text-align:center;">
+	<img src="pic/p_1.1.6.14.png"/>
+</p>
+<p style="text-align:center;">
+	新添加选择人员
+</p>
+<p style="text-align:center;">
+	<img src="pic/p_1.1.6.15.png"/>
+</p>
+<p style="text-align:center;">
+	点击重置按钮
+</p>
+<p>
+	
+</p>
+</div>
+
+
+
+<div class="subDiv">
+<h3>1.1.7上传附件</h3>
+<p>
+	您在发布信息、提报流程、发送邮件时都会看到“上传附件”按钮。
+</p>
+<p>
+	点击，将弹出页面，提示“请选择要上传的文件”。点击“浏览”，打开“选择文件”窗口。
+</p>
+<p>
+	ezOFFICE<span>系统支持同时上传多个文件，按住</span><span>Ctrl</span><span>键即可选择多个文件，您也可以按住鼠标不放，用拖拉的方式选择文件。选中想要上传的文件后，点击“打开”按钮，即可看到文件上传进度。点击文件后×可将附件删除。</span>
+</p>
+<p>
+	<img src="pic/p_1.1.7.01.png"/>
+</p>
+<p>
+	<img src="pic/p_1.1.7.02.png"/>
+</p>
+
+</div>
+
+<div class="subDiv">
+<h3>1.1.8附件在线预览</h3>
+<p>
+	如果系统开启了在线预览功能，所有有附件的地方，均有预览按钮，点击“预览”按钮弹出页面如下，直接显示可以预览的内容，支持<span>office</span><span>格式、</span><span>txt</span><span>文件、图片（</span><span>jpg</span><span>、</span><span>gif</span><span>、</span><span>png</span><span>、</span><span>bmp</span><span>格式）的直接预览。</span>
+</p>
+<p>
+	<img src="pic/p_1.1.8.01.png"/>
+</p>
+</div>
+
+<div class="subDiv">
+<h3>1.1.9附件在线编辑</h3>
+<p>
+	如果系统开启了在线预览功能，且附件字段为可写时，之前上传的<span>W</span>ord、excel、ppt格式文件后显示“在线编辑”按钮，可以使用“在线编辑”功能。
+</p>
+<p>
+<img src="pic/p_1.1.9.01.png"/></p>
+<p>
+	
+</p>
+</div>
+
+<div class="subDiv">
+<h3>1.1.10即时通讯反向登录</h3>
+<p>
+	新邮件、待办文件、待阅文件、信息推送接收到的即时通讯提醒，都可以通过点击提醒的内容链接，显示具体的信息页面，并可以对待办、待阅进行办理，对邮件进行回复、转发，对信息进行评论等操作。
+</p>
+<p>
+<img src="pic/p_1.1.10.01.png"/></p>
+</p>
+</div>
+
+
+</div>
+
+
+
+<div class="clearfix"></div>
+</div>
+
+</div>
+
+
+
+
+</div>
+ 
+</div>
+
+</div>
+
+</div>
+  
+
+
+</td>
+    
+  </tr>
+  
+</table>
+</div>
+</div>
+
+ 
+
+</td>
+    
+  </tr>
+</table>
+</div>
+</body>
+</html>
+<SCRIPT language="javascript" src="js/js.js"></SCRIPT>

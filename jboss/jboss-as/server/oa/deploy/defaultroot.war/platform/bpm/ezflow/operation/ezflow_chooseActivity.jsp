@@ -938,7 +938,7 @@ function  autoOk(){
 				   if($("#"+id+"_deal_userAccount").val()==null||$("#"+id+"_deal_userAccount").val()==undefined||$("#"+id+"_deal_userAccount").val()==""){
 					  
 				   }else{ 
-					  ok(0,$("#psendbutton0"));
+					  //ok(0,$("#psendbutton0"));
 				   } 
 			  }    
 		} 
@@ -990,7 +990,7 @@ function  dealAfterTreeAuto(){
 			   if($("#"+id+"_deal_userAccount").val()==null||$("#"+id+"_deal_userAccount").val()==undefined||$("#"+id+"_deal_userAccount").val()==""){
 				  
 			   }else{ 
-				  ok(0,$("#psendbutton0"));
+				  //ok(0,$("#psendbutton0"));
 			   } 
 		  } 
 
@@ -1005,7 +1005,7 @@ function  dealAfterTreeAuto(){
 					var idsArr=ids.split(",");
 					
 					 if(idsArr.length==1){
-						 ok(0,$("#psendbutton0"));
+						 //ok(0,$("#psendbutton0"));
 					 } 
 			   } 
 		  }   
