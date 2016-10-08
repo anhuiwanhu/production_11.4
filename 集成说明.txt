@@ -1,0 +1,15 @@
+1、停OA服务
+
+2、备份生产环境程序、数据库
+
+3、覆盖产品补丁包到OA安装目录d:\jboss
+
+4、修改文件/oa/deploy/defaultroot.war/WEB-INF/classes/Serviceparse.xml,在"c14"标签中添加以下内容（不要重复）：
+<method>saveOrUpdateRemind</method>
+<method>getRemindInfo</method>
+
+5、执行数据库升级脚本（分oralce、sqlserver两种类型库）
+
+6、清服务端缓存，启动OA服务
+
+7、验证系统功能
