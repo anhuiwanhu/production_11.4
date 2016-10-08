@@ -19,7 +19,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 			        		<c:set var="liNum">${xhli.index+1}</c:set>
 	                    	<li <c:if test="${liNum eq 1}">class="col-xs-2 swiper-slide nav-active"</c:if>
 	                    	<c:if test="${liNum ne 1}">class="col-xs-2 swiper-slide"</c:if> data-checkbox="check">
-	                    		<a href="#stp${liNum}">${liNum}</a><em><i class="fa fa-check-circle"></i></em>
+	                    		<a href="#stp${liNum}" id="clickA_${liNum}">${liNum}</a><em><i class="fa fa-check-circle"></i></em>
                     		</li>
 	                	</x:forEach>
                		</c:if>
@@ -130,6 +130,10 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		showSubOperate();
 		initTot();
     	bindLiClick();
+    	var htmlA='${liNum}';
+	    if(htmlA > 0){
+	    	document.getElementById("clickA_1").click();
+		 }
     }
  	 //初始化子表表单
     function bindLiClick(){

@@ -25,7 +25,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 			        		<c:set var="liNum">${xhli.index+1}</c:set>
 	                    	<li <c:if test="${liNum eq 1}">class="col-xs-2 swiper-slide nav-active"</c:if>
 	                    	<c:if test="${liNum ne 1}">class="col-xs-2 swiper-slide"</c:if> data-checkbox="check">
-	                    		<a href="#stp${liNum}_${tableName}">${liNum}</a><em><i class="fa fa-check-circle"></i></em>
+	                    		<a href="#stp${liNum}_${tableName}" id="clickA_${liNum}">${liNum}</a><em><i class="fa fa-check-circle"></i></em>
                     		</li>
 	                	</x:forEach>
 	                </x:if>
@@ -124,7 +124,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 															</ul>
 															<input type="hidden" name='_sub_<x:out select="$field/sysname/text()"/>' id='checkIput<x:out select="$field/id/text()"/>${selectedvalue}' value='<x:out select="$field/hiddenval/text()"/>' />
 														</c:when>
-						
+														
 														<%--下拉框 105--%>
 														<c:when test="${showtype =='105' && readwrite =='1'}">
 															<c:set var="selectedvalue"><x:out select="$field/hiddenval/text()"/></c:set>
@@ -190,16 +190,11 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 														</c:when>
 						
 														<%--附件上传 115--%>
-														<c:when test="${showtype =='115'}">
-															<c:if test="${readwrite =='1'}">
-																<ul class="edit-upload">
-										                            <li class="edit-upload-in" onclick="addSubTableImg('<x:out select="$field/sysname/text()"/>',this);"><span><i class="fa fa-plus"></i></span></li>
-											                        <input name="_sub_file_<x:out select="$field/sysname/text()"/>" id="_subfile_<x:out select="$field/sysname/text()"/>" type="hidden"/>
-										                        </ul>
-															</c:if>
-															<c:if test="${readwrite == '0'}">
-																<c:set var="index" value="${index+1}"/>
-															</c:if>
+														<c:when test="${showtype =='115' && readwrite =='1'}">
+															<ul class="edit-upload">
+									                            <li class="edit-upload-in" onclick="addSubTableImg('<x:out select="$field/sysname/text()"/>',this);"><span><i class="fa fa-plus"></i></span></li>
+										                        <input name="_sub_file_<x:out select="$field/sysname/text()"/>" id="_subfile_<x:out select="$field/sysname/text()"/>" type="hidden"/>
+									                        </ul>
 															<c:set var="values"><x:out select="$field/value/text()"/></c:set>
 															<c:if test="${not empty values}">
 																<%
@@ -227,7 +222,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 																<input name="fileNames<x:out select="$field/sysname/text()"/>" value="${values}" type="hidden"/>
 															</c:if>
 														</c:when>
-						
+														
 														<%--Word编辑 116--%>
 														<c:when test="${showtype =='116'}">
 															<c:set var="index" value="${index+1}"/>
@@ -401,10 +396,87 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 															<c:set var="index" value="${index+1}"/>
 															该字段暂不支持手机办理，请于电脑端操作。
 														</c:when>
+														<c:when test="${showtype =='105' && readwrite !='1'}">
+														    <c:set var="index" value="${index+1}"/>
+															<input class="edit-ipt-r"  id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sel_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' readonly="readonly" />
+															<input type="hidden"  name="keyv" value="${name},${totfield},_sel_<x:out select='$field/sysname/text()'/>"/>
+															<input type="hidden"  name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/hiddenval/text()"/>'/>
+														</c:when>
+														<c:when test="${showtype =='212' && readwrite !='1'}">
+														    <c:set var="index" value="${index+1}"/>
+															<input type="hidden" readonly="readonly" id='_sub_<x:out select="$field/sysname/text()"/>_${subFieldsNum}' name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/hiddenval/text()"/>' />
+								           					<input type="text"   readonly="readonly" id='_mainShow_<x:out select="$field/sysname/text()"/>_${subFieldsNum}'  name='_mainShow_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' class="edit-ipt-r edit-ipt-arrow"  placeholder="请选择"/> 
+														</c:when>
+														<c:when test="${showtype =='214' && readwrite !='1'}">
+														 	<c:set var="index" value="${index+1}"/>
+															<input type="hidden" readonly="readonly" id='_sub_<x:out select="$field/sysname/text()"/>_${subFieldsNum}' name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/hiddenval/text()"/>' />
+								           					<input type="text"   readonly="readonly" id='_mainShow_<x:out select="$field/sysname/text()"/>_${subFieldsNum}'  name='_mainShow_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' class="edit-ipt-r edit-ipt-arrow"  placeholder="请选择"/>
+														</c:when>
+														<c:when test="${showtype =='704' && readwrite !='1'}">
+															<c:set var="index" value="${index+1}"/>
+															<input type="hidden" readonly="readonly" id='_sub_<x:out select="$field/sysname/text()"/>_${subFieldsNum}' name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/hiddenval/text()"/>' />
+															<input type="text"   readonly="readonly" id='_mainShow_<x:out select="$field/sysname/text()"/>_${subFieldsNum}' name='_mainShow_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' class="edit-ipt-r edit-ipt-arrow" placeholder="请选择" />
+														</c:when>
+														<%--多选人 本组织 705--%>
+														<c:when test="${showtype =='705' && readwrite !='1'}">
+															<c:set var="index" value="${index+1}"/>
+															<input type="hidden" readonly="readonly" id='_sub_<x:out select="$field/sysname/text()"/>_${subFieldsNum}' name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/hiddenval/text()"/>' />
+															<input type="text"   readonly="readonly" id='_mainShow_<x:out select="$field/sysname/text()"/>_${subFieldsNum}'  name='_mainShow_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' class="edit-ipt-r edit-ipt-arrow" placeholder="请选择" />
+														</c:when>
+														<c:when test="${showtype =='210' && readwrite !='1'}">
+															<c:set var="index" value="${index+1}"/>
+															<input type="hidden" readonly="readonly" id='_sub_<x:out select="$field/sysname/text()"/>_${subFieldsNum}' name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/hiddenval/text()"/>' />
+								           					<input type="text"   readonly="readonly" id='_mainShow_<x:out select="$field/sysname/text()"/>_${subFieldsNum}' name='_mainShow_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' class="edit-ipt-r edit-ipt-arrow"  placeholder="请选择"/>
+														</c:when>
+														<c:when test="${showtype =='211' && readwrite !='1'}">
+															<c:set var="index" value="${index+1}"/>
+															<input type="hidden" readonly="readonly" id='_sub_<x:out select="$field/sysname/text()"/>_${subFieldsNum}' name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/hiddenval/text()"/>' />
+								           					<input type="text"   readonly="readonly" id='_mainShow_<x:out select="$field/sysname/text()"/>_${subFieldsNum}'  name='_mainShow_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' class="edit-ipt-r edit-ipt-arrow"  placeholder="请选择"/>
+														</c:when>
+														
+														<c:when test="${showtype =='103' && readwrite !='1'}">
+														    <c:set var="index" value="${index+1}"/>
+															<input class="edit-ipt-r"  id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sel_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' readonly="readonly" />
+															<input type="hidden"  name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/hiddenval/text()"/>'/>
+														</c:when>
+														<c:when test="${showtype =='104' && readwrite !='1'}">
+															<c:set var="index" value="${index+1}"/>
+															<input class="edit-ipt-r"  id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sel_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' readonly="readonly" />
+															<input type="hidden" name='_sub_<x:out select="$field/sysname/text()"/>' id='checkIput<x:out select="$field/id/text()"/>${selectedvalue}' value='<x:out select="$field/hiddenval/text()"/>' />
+														</c:when>
+														<c:when test="${showtype =='115' && readwrite !='1'}">
+															<c:set var="index" value="${index+1}"/>
+															<c:set var="values"><x:out select="$field/value/text()"/></c:set>
+															<c:if test="${not empty values}">
+																<%
+																String realFileNames ="";
+																String saveFileNames ="";
+																String moduleName ="customform";
+																String aValues =(String)pageContext.getAttribute("values");
+																String[] aval  = aValues.split(";");
+																String[] aval0=new String[0];
+																String[] aval1=new String[0];
+																if(aval[0] != null && aval[0].endsWith(",")) {
+																	saveFileNames =aval[0].substring(0, aval[0].length() -1);
+																	saveFileNames =saveFileNames.replaceAll(",","|");
+																}
+																if(aval[1] != null && aval[1].endsWith(",")) {
+																	realFileNames =aval[1].substring(0, aval[1].length() -1);
+																	realFileNames =realFileNames.replaceAll(",","|");
+																}
+																%>
+																<jsp:include page="../common/include_download.jsp" flush="true">
+																	<jsp:param name="realFileNames"	value="<%=realFileNames%>" />
+																	<jsp:param name="saveFileNames" value="<%=saveFileNames%>" />
+																	<jsp:param name="moduleName" value="<%=moduleName%>" />
+																</jsp:include>
+																<c:set var="fileValues" value="${fn:replace(values,',;', '|')}" />
+																<input name="_sub_file_<x:out select="$field/sysname/text()"/>" type="hidden" value="${fileValues }">
+															</c:if>
+														</c:when>
 														<c:otherwise>
 															<c:set var="index" value="${index+1}"/>
 															<input class="edit-ipt-r"  id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' readonly="readonly" />
-															<input type="hidden"  name="keyv" value="${name},${totfield},_sub_<x:out select='$field/sysname/text()'/>"/>
 														</c:otherwise>
 													</c:choose>
 												</td>
@@ -509,17 +581,21 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		var dataIdVal = $firstDataId.val();        
 		$firstDataId.val('');
 		//添加新子表表单置空
-		var sub = $('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).html();
-		//alert(sub);
-        $('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).find('input,select,textarea').each(function(){
+		subTableTemplate = $('[id="subTableTemplate_'+subTableNameParam+'"]').html();
+		/*var sub = $('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).html();
+       $('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).find('input,select,textarea').each(function(){
 			if($(this).attr("readonly") != 'readonly'){
 				$(this).attr("value","");
 			}
 	    });
 		subTableTemplate = $('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).html();
-		$('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).html(sub);
+		$('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).html(sub);*/
 		$firstDataId.val(dataIdVal);
 	    initTot();
+	    var htmlA='${liNum}';
+	    if(htmlA > 0){
+	    	document.getElementById("clickA_1").click();
+		 }
     }
     
     //添加子表表单

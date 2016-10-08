@@ -10,6 +10,8 @@
 <%@ page isELIgnored ="false" %>
 <%@ taglib uri="/WEB-INF/tag-lib/gov.tld" prefix="gov" %>
 <%
+whir_custom_str="tagit";
+
 String local = session.getAttribute("org.apache.struts.action.LOCALE").toString();
 //SendToMyRange
 //request.setAttribute("p_wf_modiButton",",Saveclose,Writetext,ReadHistorytext,Readtext,Wait,Print,SendToMyOther,SendToMyRange,GovRead,Back,GovExchange");

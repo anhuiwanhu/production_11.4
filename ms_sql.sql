@@ -366,3 +366,12 @@ alter table oa_boardroom_meetingtime add  createdate nvarchar(20);
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.16_SP_20160606','11.4.0.16',getdate());
 go
+
+
+
+
+
+alter table oa_boardroomapply add  signstate nvarchar(1);
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.17_SP_20160620','11.4.0.17',getdate());
+go

@@ -100,6 +100,11 @@
 	    </article>
 	</section>
 </c:if>
+<c:if test="${selVoiture =='1'}">
+	<script language="javascript" type="text/javascript">
+		alert("没有可以使用的车辆!");
+	</script>
+</c:if>
 </body>
 </html>
 <script type="text/javascript" src="/defaultroot/evo/weixin/js/jquery-1.8.2.min.js"></script>

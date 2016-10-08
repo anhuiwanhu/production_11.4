@@ -56,6 +56,7 @@
 		<property name="meetingAttendance" column="MEETINGATTENDANCE" />
 		<property name="attendancetype" column="ATTENDANCETYPE" />
 		<property name="qrCode" column="QRCODE" />
+		<property name="signState" column="SIGNSTATE" />
 		
 		<many-to-one name="boardroom" class="com.whir.ezoffice.boardroom.po.BoardRoomPO" not-null="true">
 			<column name="BOARDROOMID"/>

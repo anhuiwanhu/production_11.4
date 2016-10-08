@@ -353,9 +353,9 @@ function synAll(){
 					url: "/defaultroot/MoveOAmanager!savecorpsetapp.action",
 					cache: false,
 					async: true,
-					success: function(dataForm) {
 					data:datastr,
 					type:"POST",
+					success: function(dataForm) {
 						var data = eval('('+dataForm+')');
 						var res = data.result;
 						if(data.result=="true"){

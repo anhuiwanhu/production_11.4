@@ -329,3 +329,14 @@ comment on column oa_boardroom_meetingtime.createdate
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.16_SP_20160606','11.4.0.16',sysdate);
 commit;
+
+
+
+
+
+alter table oa_boardroomapply add signstate varchar2(1);
+commit;
+comment on column oa_boardroomapply.signstate   is '参会状态  0参会 1不参会 2待选择';
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.17_SP_20160620','11.4.0.17',sysdate);
+commit;

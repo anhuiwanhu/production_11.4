@@ -212,14 +212,16 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 							<c:set var="subTableName" ><x:out select="$st/tableName/text()"/></c:set>
 							<input name="subTableName" value="${subTableName}" type="hidden" />
 							<input name="subName" value="${subName}" type="hidden" />
-							<tr>
-								<th>子表填写：</th>
-								<td>
-									<input id="subTableInput" placeholder="添加子表" type="text" class="edit-ipt-r edit-ipt-arrow" 
-									<c:if test="${not empty subTable}">value="${subTable}条子表数据"</c:if>
-									 readonly="readonly" onclick="addSubTable('${subTableName}');"/>
-								</td>
-							</tr>
+							<c:if test="${not empty subName}">
+								<tr>
+									<th>子表填写：</th>
+									<td>
+										<input id="subTableInput" placeholder="添加子表" type="text" class="edit-ipt-r edit-ipt-arrow" 
+										<c:if test="${not empty subTable}">value="${subTable}条子表数据"</c:if>
+										 readonly="readonly" onclick="addSubTable('${subTableName}');"/>
+									</td>
+								</tr>
+							</c:if>
 						</x:forEach>
 						<!--子表信息end-->
 						<!--批示意见begin-->

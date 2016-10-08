@@ -230,6 +230,11 @@ function savePassword(form){
 	}
 	if(isChangePwd_webservice==0){
 		 webservicePassword = $.trim($('#webservicePassword').val());
+		  if(webservicePassword.indexOf("&")>-1){
+			 whir_poshytip($('#webservicePassword'), "web service账号密码不可包含&符号！");
+			  return false;
+		 }
+		 
 		   if(webservicePassword.length<6){
 		 	err=err+"位数不够    ";
 		 }

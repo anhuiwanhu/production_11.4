@@ -301,6 +301,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 	//提交表单
 	var flag = 1;
 	function sendFlow(){
+		//防止重复提交
 		if(flag == 0){
     		return;
     	}

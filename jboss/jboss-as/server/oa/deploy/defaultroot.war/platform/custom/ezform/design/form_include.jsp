@@ -16,6 +16,7 @@
 <s:hidden name="formType" id="formType"/>
 <s:hidden name="wfModuleId" id="wfModuleId"/>
 <input type="hidden" name="mainFields" id="mainFields" value="<s:property value="mainFields"/>" tableName="<s:property value="mainTable"/>"/>
+<input type="hidden" name="boardroomField" id="boardroomField" value="<%=request.getAttribute("boardroomFieldJson")%>" />
 <s:hidden name="subTable" id="subTable"/>
 <s:hidden name="selectedSubField" id="selectedSubField"/>
 <s:property value="subTable_fields" escape="false"/>

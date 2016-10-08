@@ -40,7 +40,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
                         <ul class="edit-radio">
                             <li>
                             	<span class="edit-radio-l">细览不显示</span>
-                            	<input type="hidden" name="displayTitle"/>
+                            	<input type="hidden" name="displayTitle" value="1"/>
                             </li>
                             <li>
                             	<span class="edit-radio-l">首页显示为红色</span>
