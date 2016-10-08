@@ -1,0 +1,212 @@
+.ui-autocomplete {
+    background-color: #fff;
+    position: absolute;
+    cursor: default;
+    list-style: none;
+    margin: 25px 0 0;
+    padding: 0;
+    border: 1px solid #E5E5E5;
+    border-top: none;
+    -moz-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+    -moz-box-shadow: 0 3px 5px #888;
+    -webkit-box-shadow: 0 3px 5px #888;
+    box-shadow: 0 3px 5px #888;
+    font-size: 12px;
+}
+
+.ui-autocomplete .ui-menu-item {
+    padding: 0;
+    margin: 0;
+}
+
+.ui-autocomplete  .ui-menu-item a {
+    display: block;
+    padding: 4px 6px;
+    margin: 0;
+    text-decoration: none;
+    line-height: 12px;
+    border-bottom: 1px; /*solid #E5E5E5;*/
+    border-top: 1px; /*solid #fff;*/
+    /*color: #78959D;*/
+    
+}
+
+.ui-autocomplete .ui-menu-item a.ui-state-hover,
+.ui-autocomplete .ui-menu-item a.ui-state-active,
+.ui-autocomplete .ui-menu-item a.ui-state-focus {
+    background-color: #e3e3e3;
+    color: #555;
+    border-color: #f7f7f7;
+}
+
+.ui-autocomplete-loading {
+    /*background: white url(ui-anim_basic_16x16.gif) right center no-repeat;*/
+}
+
+ul.tagit {
+    cursor: text;
+    overflow: auto;
+    font-size: 12px;
+    /*width: 97%;*/
+    padding: 1px 1px 0 1px;/*1px;*//*3px;*/
+    /*margin-top: 2px;
+    margin-bottom: 16px;*/
+    margin-right: 6px;
+    border: 1px solid #E5E5E5;
+    background: #fff;
+    color: #555;
+    margin: 0 3px 1px 3px;
+}
+
+ul.tagit li {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: block;
+    float: left;
+    /*margin: 2px 5px 2px 0;*/
+    position: relative;
+}
+
+ul.tagit.ui-sortable li.tagit-choice a.ui-icon.ui-icon-grip-dotted-vertical{
+    float: left;
+    width: 12px;
+    margin-left: -5px;
+    cursor: move;
+}
+
+ul.tagit li.tagit-choice {
+    /*background-color: #f7f7f7;
+    border: 1px solid #f2f2f2;*/
+    padding: 2px 13px 3px 4px;
+}
+
+ul.tagit li.tagit-choice.selected {
+    background-color: #4ca5d8;/*#f5b0b0;*/
+    border-color: #4ca5d8;/*#f76464;*/
+}
+
+ul.tagit li.tagit-choice:hover {
+    background-color: #f2f2f2;
+    border-color: #e0e0e0;
+}
+
+ul.tagit li.tagit-new {
+    padding: 2px 4px 3px;
+    padding: 2px 4px 1px;
+    padding: 2px 4px 1px 0;
+}
+
+ul.tagit li.tagit-choice input {
+    display: block;
+    float: left;
+    margin: 0 5px 0 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+ul.tagit li.tagit-choice a.tagit-close {
+    color: #777777;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    outline: medium none;
+    padding: 2px 0 2px 3px;
+    text-decoration: none;
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 3px;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+ul.tagit li.tagit-choice a.tagit-close:hover {
+    color: #535353;
+}
+
+ul.tagit input[type="text"] {
+    -moz-box-sizing: border-box;
+    border: none !important;
+    margin: 1px !important;/*0 !important;*/
+    padding: 3px !important;/*0 !important;*/
+    width: 40px;/*inherit !important;*/
+    outline: none;
+}
+
+.tagit-hiddenSelect {
+    display:none;
+}
+
+ul.tagit li.tagit-choice-readonly {
+    padding: 2px 2px 3px 0px;/*2px 5px 3px 4px;*/
+}
+
+/*
+ * jQuery UI Autocomplete 1.8.16
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Autocomplete#theming
+ */
+.ui-autocomplete { position: absolute; cursor: default; }
+
+/* workarounds */
+* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+
+/*
+ * jQuery UI Menu 1.8.16
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Menu#theming
+ */
+.ui-menu {
+	list-style:none;
+	padding: 2px;
+	margin: 0;
+	display:block;
+	float: left;
+    z-index:99999;
+}
+.ui-menu .ui-menu {
+	margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+	margin:0;
+	padding: 0;
+	zoom: 1;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.ui-menu .ui-menu-item a {
+	text-decoration:none;
+	display:block;
+	padding:.2em .4em;
+	line-height:1.5;
+	zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active,
+.ui-menu .ui-menu-item a.ui-state-focus {
+	font-weight: normal;
+    background:#0064CD;
+    color:#fff
+}
+
+.ui-autocomplete-input,
+.uneditable-input {
+  display: inline-block;
+  padding: 4px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #808080;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+<class name="com.whir.ezoffice.personalwork.innermailbox.po.InnerMailinteriorPO" table="OA_MAILINTERIOR" schema="EZOFFICE">
+<id name="mailid" column="MAIL_ID" type="java.lang.Long">
+<generator class="native" />
+</id>
+<property name="mailsubject" column="MAILSUBJECT" type="string" length="100"/>
+<property name="mailcontenttype" column="MAILCONTENTTYPE" type="java.lang.Integer" length="1"/>
+<property name="mailneedrevert" column="MAILNEEDREVERT" type="java.lang.Integer" length="1"/>
+<property name="mailanonymous" column="ANONYMOUS" type="java.lang.Integer" length="1"/>
+<property name="mailcontent" column="MAILCONTENT" type="net.sf.hibernate.type.TextType"/>
+<!--property name="mailcontentClob" column="MAILCONTENT" type="java.sql.Clob"/-->
+<property name="mailhasaccessory" column="MAILHASACCESSORY" type="java.lang.Integer" length="1"/>
+<property name="maillevel" column="MAILLEVEL" type="java.lang.Long" length="20"/>
+<property name="mailisdraft" column="MAILISDRAFT" type="java.lang.Integer" length="1"/>
+<property name="mailposttime" column="MAILPOSTTIME" type="timestamp" length="7"/>
+<property name="mailreceivetime" column="MAILRECEIVETIME" type="timestamp" length="7"/>
+<property name="mailto" column="MAILTO_C" type="net.sf.hibernate.type.TextType"/>
+<property name="mailtoid" column="MAILTOID_C" type="net.sf.hibernate.type.TextType"/>
+<property name="mailcc" column="MAILCC_C" type="net.sf.hibernate.type.TextType"/>
+<property name="mailccid" column="MAILCCID_C" type="net.sf.hibernate.type.TextType"/>
+<property name="mailbcc" column="MAILBCC_C" type="net.sf.hibernate.type.TextType"/>
+<property name="mailbccid" column="MAILBCCID_C" type="net.sf.hibernate.type.TextType"/>
+<property name="mailpostername" column="MAILPOSTERNAME" type="string" length="20"/>
+<property name="mailposterid" column="MAILPOSTERID" type="java.lang.Long" length="20"/>
+<property name="mailtosimple" column="MAILTOSIMPLE" type="string" length="4000"/>
+<property name="mailccsimple" column="MAILCCSIMPLE" type="string" length="4000"/>
+<property name="mailbccsimple" column="MAILBCCSIMPLE" type="string" length="4000"/>
+<property name="mailSign" column="MAILSIGN"/>
+<property name="encrypt" column="ENCRYPT"/>
+<property name="domainId" column="DOMAIN_ID"/>
+<property name="accessorySize" column="accessorySize"/>
+<property name="mailRTMessage" column="mailRTMessage"/>
+<property name="codeType" column="CODETYPE"/>
+<property name="sendSms" column="sendSms"/>
+<property name="waitsends" column="waitsends"/>
+<property name="savesended" column="savesended"/>
+<property name="cloudcontrol" column="cloudcontrol"/>
+<set name="mailUser"
+    table="OA_MAIL_USER"
+
+    lazy="true"
+    inverse="false"
+    cascade="none"
+    sort="unsorted">
+    <key column="Mail_id"/>
+    <one-to-many class="com.whir.ezoffice.personalwork.innermailbox.po.InnerMailUserPO"/>
+</set>
+
+<set name="mailAccessory"
+    table="OA_MAILACCESSORY"
+
+    lazy="true"
+    inverse="false"
+    cascade="none"
+    sort="unsorted">
+    <key column="Mail_id"/>
+    <one-to-many class="com.whir.ezoffice.personalwork.innermailbox.po.InnerMailaccessoryPO"/>
+</set>
+</class>
+</hibernate-mapping>

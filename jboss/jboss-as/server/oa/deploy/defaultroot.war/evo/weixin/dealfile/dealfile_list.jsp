@@ -216,10 +216,14 @@
     		return '/defaultroot/doc/receiveGovProcess.controller';
     	}else if(workMainLinkFile.indexOf('/defaultroot/voitureApply!modi.action') > -1){
 		    return '/defaultroot/dealfile/voitureProcess.controller';
-		}else if(workMainLinkFile.indexOf("/defaultroot/outStockAction!modifyFlow.action") > -1){
-			return "/defaultroot/dealfile/getOutStockResult.controller";
-		}else if(workMainLinkFile.indexOf("/defaultroot/intoStockAction!modifyFlow.action") > -1){
-			return "/defaultroot/dealfile/getIntoStockResult.controller";
+		}else if(workMainLinkFile.indexOf('/defaultroot/outStockAction!modifyFlow.action') > -1){
+			return '/defaultroot/dealfile/getOutStockResult.controller';
+		}else if(workMainLinkFile.indexOf('/defaultroot/intoStockAction!modifyFlow.action') > -1){
+			return '/defaultroot/dealfile/getIntoStockResult.controller';
+		}else if(workMainLinkFile.indexOf('/defaultroot/ezcardAction!modify.action') > -1){
+			return '/defaultroot/ezcard/getEzCardForm.controller';
+		}else if(workMainLinkFile.indexOf('/defaultroot/GovDocSendCheckProcess!') > -1){
+			return '/defaultroot/doc/sendfileCheckProcess.controller';
 		}else{
     		return '/defaultroot/dealfile/process.controller';
     	}

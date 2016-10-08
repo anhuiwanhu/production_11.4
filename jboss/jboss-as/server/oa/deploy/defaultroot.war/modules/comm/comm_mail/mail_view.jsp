@@ -334,6 +334,8 @@
 			  //是否加密
 			  String encrypt=request.getAttribute("encrypt")==null?"":request.getAttribute("encrypt").toString();
 			  
+			   //公有云控制 0 不选中 1-选中
+			  String cloudcontrol=request.getAttribute("cloudcontrol")==null?"":request.getAttribute("cloudcontrol").toString();
 		   %>
 		   <tr>    
 			   <td class="td_lefttitle">    
@@ -355,6 +357,7 @@
 			  <%if("JC_".equals(cert)){%>
 				<input type="checkbox" name="encrypt" id="encrypt" value="1" disabled="true" <%if("1".equals(encrypt)){out.print("checked");}%>/><%=Resource.getValue(whir_locale,"mail","mail.encrypt")%>  
 			  <%}%>
+			   <input type="checkbox" name="cloudcontrol" id="cloudcontrol" value="1" disabled="true" <%if("1".equals(cloudcontrol)){out.print("checked");}%>/>公有云控制
 			   </td>    
 		   </tr>
 		   <tr>    

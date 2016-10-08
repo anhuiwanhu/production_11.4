@@ -298,7 +298,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 							<%
 								String realFileNames =(String)pageContext.getAttribute("rfn");
 								String saveFileNames =(String)pageContext.getAttribute("sfn");
-								String moduleName ="boardroom";
+								String moduleName ="customform";
 								
 								realFileNames =realFileNames.substring(0,realFileNames.length() -1);
 								saveFileNames =saveFileNames.substring(0,saveFileNames.length() -1);

@@ -590,7 +590,7 @@ if(relaSet!=null && relaSet.size()>0){
 	            _setFieldReadonly(_d_oldFieldName, false);
         	//} 
         }
-    }else{
+    }else if(obj_id=='<%=s_oldFieldName%>' && obj_val!='<%=srcFieldVal%>'){
 		var d_showId = '<%=d_showId%>';
 	    var _d_oldFieldName = '<%=d_oldFieldName%>';
 		//101 单行文本   102  密码输入   110 多行文本  301金额    406 账号

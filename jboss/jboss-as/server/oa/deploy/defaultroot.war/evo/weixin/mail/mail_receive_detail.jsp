@@ -24,6 +24,14 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 </head>
 <body>
 <c:choose>
+<c:when test="${cloudcontrol == '1' }">
+	<script>
+ 		wx.ready(function(){
+	 		alert('该邮件不允许公有云查看，请与PC端查看！');
+	 		wx.closeWindow();
+ 		});
+ 	</script>
+</c:when>
 <c:when test="${not empty docXml}">
 	<form action="" method="post" id="readForm">
 		<section class="wh-section wh-section-bottomfixed">

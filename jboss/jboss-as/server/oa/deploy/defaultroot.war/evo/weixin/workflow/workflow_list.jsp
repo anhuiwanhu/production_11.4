@@ -21,10 +21,20 @@
 	<section id="sectionScroll" class="wh-section">
 	    <header class="wh-search">
 	        <div class="wh-container">
-	            <form id="sendForm" class="dialog" action="/defaultroot/workflow/listflow.controller" method="post">
-	                <input type="search" placeholder="搜索流程标题" name="processName" value="${processName}" />
-	                <i class="fa fa-search"></i>
-	            </form>
+	        	<c:choose>
+	        		<c:when test="${flag == '1'}">
+	            		<form id="sendForm" class="dialog" action="/defaultroot/ezcard/listflow.controller" method="post">
+	                		<input type="search" placeholder="搜索流程标题" name="processName" value="${processName}" />
+	                		<i class="fa fa-search"></i>
+	            		</form>
+	            	</c:when>
+	            	<c:otherwise>
+	            		<form id="sendForm" class="dialog" action="/defaultroot/workflow/listflow.controller" method="post">
+	                		<input type="search" placeholder="搜索流程标题" name="processName" value="${processName}" />
+	                		<i class="fa fa-search"></i>
+	            		</form>
+	            	</c:otherwise>
+	            </c:choose>
 	        </div>
 	    </header>
 	    <article class="wh-article wh-article-receive">
@@ -55,8 +65,11 @@
 										<c:when test="${moduleId == 11}">
 											<li onclick="newCarForm('${oldprocess_formid}','${oldprocess_id}','${processName}','${process_type }');">
 										</c:when>
+										<c:when test="${moduleId == 666}">
+											<li onclick="newEzCardForm('${oldprocess_formid}','${oldprocess_id}','${processName}','${process_type }');">
+										</c:when>
 										<c:otherwise>
-											<li onclick="newform('${oldprocess_formid}','${oldprocess_id}','${processName}');">
+											<li onclick="newform('${oldprocess_formid}','${oldprocess_id}','${processName}','${moduleId}');">
 										</c:otherwise>
 									</c:choose>
 								</c:when>
@@ -65,8 +78,11 @@
 										<c:when test="${moduleId == 11}">
 											<li onclick="newCarEzForm('${ezflowprocess_formKey}','${ezflowprocess_id}','${processName}','${process_type }');">
 										</c:when>
+										<c:when test="${moduleId == 666}">
+											<li onclick="newEzCardEzForm('${ezflowprocess_formKey}','${ezflowprocess_id}','${processName}','${process_type }');">
+										</c:when>
 										<c:otherwise>
-											<li onclick="newezform('${ezflowprocess_formKey}','${ezflowprocess_id}','${processName}');">
+											<li onclick="newezform('${ezflowprocess_formKey}','${ezflowprocess_id}','${processName}','${moduleId}');">
 										</c:otherwise>
 									</c:choose>
 								</c:when>
@@ -134,13 +150,13 @@
     }
     
     //新建老流程
-    function newform(pageId,processId,processName){
-		window.location = '/defaultroot/workflow/newform.controller?pageId='+pageId+'&processId='+processId+'&processName='+processName;
+    function newform(pageId,processId,processName,moduleId){
+		window.location = '/defaultroot/workflow/newform.controller?pageId='+pageId+'&processId='+processId+'&processName='+processName+'&moduleId='+moduleId;
 	}
 
     //新建新流程
-	function newezform(pageId,processId,processName){
-		window.location = '/defaultroot/workflow/newezform.controller?pageId='+pageId+'&processId='+processId+'&processName='+processName;
+	function newezform(pageId,processId,processName,moduleId){
+		window.location = '/defaultroot/workflow/newezform.controller?pageId='+pageId+'&processId='+processId+'&processName='+processName+'&moduleId='+moduleId;
 	}
 
 	//新建车辆老流程
@@ -152,4 +168,17 @@
 	function newCarEzForm(pageId,processId,processName,process_type){
 		window.location = '/defaultroot/workflow/getVoitureNewInfo.controller?pageId='+pageId+'&processId='+processId+'&processName='+processName+'&process_type='+process_type;
 	}
+	
+	//新建EzCard老流程
+	function newEzCardForm(pageId,processId,processName,process_type){
+		window.location = '/defaultroot/ezcard/employeeOrder.controller?pageId='+pageId+'&processId='+processId+'&processName='+processName+'&process_type='+process_type;
+	}
+	
+	//新建EzCard新流程
+	function newEzCardEzForm(pageId,processId,processName,process_type){
+		window.location = '/defaultroot/ezcard/employeeOrder.controller?pageId='+pageId+'&processId='+processId+'&processName='+processName+'&process_type='+process_type;
+	}
+	
+	
+	
 </script>

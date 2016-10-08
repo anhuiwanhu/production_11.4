@@ -141,6 +141,7 @@ String local = session.getAttribute("org.apache.struts.action.LOCALE").toString(
 </head>
 <body  class="docBodyStyle"   style="position:relative; height:100%;"     onload="initBody();">
 <s:hidden name="pdfnum"/>
+<s:hidden name="receivenum"/>
 <input type="hidden" name="from" value="<%=request.getParameter("from")%>">
 <%
 	//System.out.println("[[[[[[[[[[[[[[[[[[[["+request.getAttribute("p_wf_modiButton"));;
@@ -188,7 +189,7 @@ if(request.getParameter("isEdit")!=null&&"1".equals(request.getParameter("isEdit
  }
  
 }else if(request.getParameter("viewOnly")!=null&&"1".equals(request.getParameter("viewOnly").toString())){
-	modiButton="";
+	modiButton=",Print";
 }
 
 if(!"waitingRead".equals(  request.getParameter("p_wf_openType")   ) && (request.getAttribute("p_wf_processId")==null||request.getAttribute("p_wf_processId").toString().equals("")||request.getAttribute("p_wf_processId").toString().equals("null"))){
@@ -264,7 +265,7 @@ if(modiButton == null){
 							  <%if( !"1".equals( request.getAttribute("p_wf_pool_processType") ) ){%>
 							  <li id="Panle4" ><a href="#" onClick="changePanle(4);">相关附件<span class="redBold" id="viewaccnum"></span></a></li>
 							  <%}%>
-							  <li id="Panle5" ><a href="#" onClick="changePanle(5);">相关发文</a></li>
+							  <li id="Panle5" ><a href="#" onClick="changePanle(5);">相关发文</a><span class="redBold" id="viewReceivenum"></span></li>
 							  <li id="Panle6" ><a href="#" onClick="changePanle(6);">PDF批注</a><span class="redBold" id="viewpdfnum"></span></li>
 						 </ul>
 					   </div>  
@@ -424,8 +425,12 @@ $(document).ready(function() {
 	//初始话信息
     ezFlowinit();
     var pdfnum=$("#pdfnum").val();
+    var receiveNum=$("#receivenum").val();
     if(pdfnum>0){
         $("#viewpdfnum").html("("+pdfnum+")");
+    }
+    if(receiveNum>0){
+        $("#viewReceivenum").html("("+receiveNum+")");
     }
 });
 function gd(){

@@ -147,7 +147,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 							<c:set var="newContent"><%=newContent %></c:set> 
 							<c:choose>
 							<c:when test="${param.openType eq 'reply'}">
-					  			<textarea id="mailcontent" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">
+					  			<textarea onmousedown="cursorReset(event,this)" id="mailcontent" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">
 								
 								
 								
@@ -156,7 +156,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 								</textarea>	
 					  		</c:when>					  		
 							<c:when test="${param.openType eq 'forward'}">
-					  		    <textarea id="mailcontent" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">
+					  		    <textarea id="mailcontent" onmousedown="cursorReset(event,this)" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">
 								
 								
 								
@@ -165,7 +165,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 								</textarea>	
 					  		</c:when>
 						  	<c:when test="${param.openType eq 'replyAll'}">
-						  		<textarea id="mailcontent" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">
+						  		<textarea id="mailcontent" onmousedown="cursorReset(event,this)" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">
 								
 								
 								
@@ -174,7 +174,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 								</textarea>		
 						  	</c:when>
 						  	<c:when test="${param.openType eq 'sendAgain'}">
-						  		<textarea id="mailcontent" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">
+						  		<textarea id="mailcontent" onmousedown="cursorReset(event,this)" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">
 								
 								
 								
@@ -183,7 +183,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 								</textarea>		
 						  	</c:when>
 					  		<c:otherwise>
-				                <textarea id="mailcontent" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">${newContent}</textarea>	
+				                <textarea id="mailcontent" onmousedown="cursorReset(event,this)" name="mailcontent" class="edit-txta edit-txta-l" placeholder="请输入文字" style="min-height:20rem">${newContent}</textarea>	
 							</c:otherwise>
 					  		</c:choose>
 	                        </div>
@@ -245,6 +245,14 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	    }
 		ajaxSendMail();
     }
+    //正文光标定位
+    function cursorReset(e,a){
+		if ( e && e.preventDefault )
+		e.preventDefault();
+		else 
+		window.event.returnValue=false;
+		a.focus();
+	}
     
     //ajax方式发送邮件
     function ajaxSendMail(){
@@ -260,7 +268,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	    	data : $('#sendForm').serialize(),
 	    	type : 'post',
 	    	success : function(data){
-		   		loadingDialog.close();
+	    		loadingDialog.close();
 	    		if(!data){
 	    			//openTipsDialog('邮件发送失败！','',1000);
 	    			alert('邮件发送失败！');
@@ -270,8 +278,8 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	     			//openTipsDialog('邮件发送失败！','',1000);
 	    			alert('邮件发送失败！');
 	    		}else if(json.result == 'success'){
-	     			//openTipsDialog('邮件发送成功！','',1000);
-	    			alert('邮件发送成功！');
+	     			openTipsDialog('邮件发送成功！','',1000);
+	    			//alert('邮件发送成功！');
 	     			window.location = 'mailBox.controller?homePage='+<%=homePage%>;
 	    		}
 	    	},

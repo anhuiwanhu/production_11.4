@@ -425,3 +425,28 @@ comment on column ez_form.editorType   is '编辑器种类 0 uEditor 1 eWebEdito
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.20_SP_20160730','11.4.0.20',sysdate);
 commit;
+
+
+
+
+
+update ez_form set editorType=1 where editorType is null or editorType='';
+commit;
+
+alter table OA_THEMEOPTION add OPTIONSCORE_BACK NUMBER(7,3);
+commit;
+UPDATE OA_THEMEOPTION SET OPTIONSCORE_BACK = CAST(OPTIONSCORE AS NUMBER(7,3));
+commit;
+update OA_THEMEOPTION set OPTIONSCORE = null;
+commit;
+alter table OA_THEMEOPTION modify(OPTIONSCORE NUMBER(7,3));
+commit;
+UPDATE OA_THEMEOPTION SET OPTIONSCORE = CAST(OPTIONSCORE_BACK AS NUMBER(7,3));
+commit;
+alter table OA_THEMEOPTION drop column OPTIONSCORE_BACK;
+commit;
+
+alter table oa_mailinterior add cloudcontrol number(1);
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.21_SP_20160813','11.4.0.21',sysdate);
+commit;

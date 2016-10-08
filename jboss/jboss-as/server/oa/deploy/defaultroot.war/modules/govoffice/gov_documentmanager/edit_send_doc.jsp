@@ -17,8 +17,8 @@ String local = session.getAttribute("org.apache.struts.action.LOCALE").toString(
 	<link rel="stylesheet" type="text/css" href="/defaultroot/platform/custom/ezform/css/ezform.css">
 	<link rel="stylesheet" type="text/css" href="/defaultroot/platform/custom/ezform/css/ezform_ext.css">
 	<!--这里可以追加导入模块内私有的js文件或css文件-->
-    <!--工作流包含页 js文件-->  
-    <%@ include file="/public/include/meta_base_bpm.jsp"%>  
+    <!--工作流包含页 js文件-->
+    <%@ include file="/public/include/meta_base_bpm.jsp"%>
 	<script src="<%=rootPath%>/modules/govoffice/gov_documentmanager/js/send.js"   type="text/javascript"></script>
 	<script language="javascript" src="/defaultroot/scripts/i18n/zh_CN/WorkflowResource.js" type="text/javascript"></script>
 	<script language="javascript" src="/defaultroot/platform/custom/ezform/js/ezform.js"></script>
@@ -97,11 +97,11 @@ String local = session.getAttribute("org.apache.struts.action.LOCALE").toString(
 		line-height:20px;
 		cursor:default;
 		padding-left:5px;
-		
+
 		white-space:nowrap
 	}
 	.STYLE1,.STYLE1 font,.STYLE1 text,.STYLE1 textarea{font-size: 14px; font-family:"宋体"}
-	
+
 	-->
 	</style>
 	<style type="text/css">
@@ -150,7 +150,7 @@ String local = session.getAttribute("org.apache.struts.action.LOCALE").toString(
 </head>
 <%
 //System.out.println("-------------"+request.getAttribute("p_wf_modiButton"));
-/// 控制按纽出现 
+/// 控制按纽出现
 //String workStatus = request.getAttribute("p_wf_workStatus")==null?"":(String)request.getAttribute("p_wf_workStatus").toString();
 
 String workStatus = request.getParameter("workStatus")==null?"":(String)request.getParameter("workStatus").toString();
@@ -160,7 +160,7 @@ System.out.println("isEdit::"+request.getParameter("isEdit")+",,,workStatus"+wor
 
 if(request.getParameter("isEdit")!=null&&"1".equals(request.getParameter("isEdit").toString())){
  modiButton=",Viewtext,ReadHistorytext,Downtext,Print,SendToMyOther,SendToMyRange,GovRead";
- 
+
  if(sendStatus.equals("1")){
  	modiButton=",Viewtext,ReadHistorytext,Downtext,Print,SendToMyOther,SendToMyRange,GovRead";
  }else{
@@ -172,12 +172,12 @@ if(request.getParameter("isEdit")!=null&&"1".equals(request.getParameter("isEdit
 		//新流程 办理完毕 不需要退回按钮
 		if( "2".equals(request.getAttribute("sendStatus")) || "-1".equals(request.getAttribute("p_wf_workStatus")) ||  ("100".equals(request.getAttribute("p_wf_workStatus")) && "1".equals(request.getAttribute("p_wf_pool_processType")))  ){//"1".equals(request.getAttribute("p_wf_pool_processType"))  &&
 			modiButton=",Saveclose,Viewtext,ReadHistorytext,Readtext,Wait,Print,SendToMyOther,SendToMyRange,GovRead,GovExchange";
-		} 
+		}
 		//老流程 办理完毕 需要退回按钮
 		if( "1".equals(request.getAttribute("sendStatus")) && "0".equals(request.getAttribute("p_wf_pool_processType"))  ){
 			modiButton=",Saveclose,Viewtext,ReadHistorytext,Readtext,Wait,Print,SendToMyOther,SendToMyRange,GovRead,Back,GovExchange";
 		}
-		
+
  	}else{
  		modiButton=",Saveclose,Viewtext,ReadHistorytext,Readtext,Wait,Print,SendToMyOther,SendToMyRange,GovRead,GovExchange";
  	}
@@ -187,7 +187,7 @@ if(request.getParameter("isEdit")!=null&&"1".equals(request.getParameter("isEdit
 		//新流程 办理完毕 不需要退回按钮
 		if( "2".equals(request.getAttribute("sendStatus")) || "-1".equals(request.getAttribute("p_wf_workStatus")) ||  ("100".equals(request.getAttribute("p_wf_workStatus")) && "1".equals(request.getAttribute("p_wf_pool_processType")))  ){//"1".equals(request.getAttribute("p_wf_pool_processType"))  &&
 			modiButton=",Saveclose,Viewtext,ReadHistorytext,Readtext,Wait,Print,SendToMyOther,SendToMyRange,GovRead,GovExchange";
-		} 
+		}
 		//老流程 办理完毕 需要退回按钮
 		if( "1".equals(request.getAttribute("sendStatus")) && "0".equals(request.getAttribute("p_wf_pool_processType"))  ){
 			modiButton=",Saveclose,Viewtext,ReadHistorytext,Readtext,Wait,Print,SendToMyOther,SendToMyRange,GovRead,Back,GovExchange";
@@ -204,7 +204,7 @@ if(request.getParameter("isEdit")!=null&&"1".equals(request.getParameter("isEdit
 
 //System.out.println("workStatus::"+workStatus);
 if(workStatus.equals("102")){
-  modiButton=",Viewtext,ReadHistorytext,Print";	 
+  modiButton=",Viewtext,ReadHistorytext,Print";
 }
 
 if(workStatus.equals("100")){
@@ -213,7 +213,7 @@ if(workStatus.equals("100")){
 		modiButton=",Viewtext,EmailSend,AddNew,ReadHistorytext,SendToMyOther,Print";
 	}else{
   		modiButton=",Viewtext,EmailSend,AddNew,ReadHistorytext,SendToMyOther";
-  	}	 
+  	}
 }
 
 
@@ -243,12 +243,17 @@ if( "waitingView".equals(  request.getAttribute("p_wf_openType") ) ){
 	modiButton=",Viewtext,ReadHistorytext,Print,Downtext,Toreceive,Tocheck,EmailSend";
 
 }//查看正文、查看历史痕迹、打印、下载文件
-	
+
 
 if( "startAgain".equals(  request.getAttribute("p_wf_openType") ) || "reStart".equals(  request.getAttribute("p_wf_openType") ) ){
 	modiButton=",Send,Relation,WritetextModi";
 
 }
+    //用于关联新流程的判断加查看正文按钮
+    if( "relation".equals( request.getAttribute("p_wf_openType")) && "1".equals(request.getAttribute("p_wf_pool_processType"))   ){
+        modiButton=",Viewtext";
+
+    }
 //领导查阅文件中，不需要补发按钮，此处加入控制，isLeader=1的时候代表是领导文件查阅
 String isLeader = request.getParameter("isLeader")==null?"0":(String)request.getParameter("isLeader").toString();
 
@@ -259,21 +264,21 @@ if( "blcyview".equals( request.getParameter("from"))  && !isLeader.equals("1")){
 
 if(!com.whir.common.util.CommonUtils.isForbiddenPad(request) && modiButton != null){
 	 modiButton = modiButton.replaceAll(",Downtext","");
-	 
+
 	 modiButton = modiButton.replaceAll(",Readtext",",Downtext");
 	 modiButton = modiButton.replaceAll(",Viewtext",",Downtext");
 	 modiButton = modiButton.replaceAll(",SeeWord",",Downtext");
-	 
+
 }
 if(!com.whir.common.util.CommonUtils.isForbiddenPad(request) && modiButton == null && request.getAttribute("p_wf_modiButton") != null){
 	 modiButton =  (String)request.getAttribute("p_wf_modiButton");
 	 modiButton = modiButton.replaceAll(",Downtext","");
-	 
+
 	 modiButton = modiButton.replaceAll(",Readtext",",Downtext");
 	 modiButton = modiButton.replaceAll(",Viewtext",",Downtext");
 	 modiButton = modiButton.replaceAll(",SeeWord",",Downtext");
 	 //邮件转发增加查看正文2015-4-22 15号补丁
-	
+
 }
     //屏蔽Linux客户端的查阅正文等按钮
     if(com.whir.common.util.CommonUtils.isLinuxClient(request) && modiButton != null){
@@ -321,7 +326,7 @@ if("notsend".equals( request.getParameter("fromex") ) ){
 }
 boolean isCOSClient = com.whir.component.util.SystemUtils.isCOS4Firefox4(request);
 if(isCOSClient){
-	//屏蔽 起草正文 批阅正文 查看正文  编辑正文 生成正式文件  查看历史记录 再次套红 
+	//屏蔽 起草正文 批阅正文 查看正文  编辑正文 生成正式文件  查看历史记录 再次套红
 	/*if( modiButton ==null) modiButton=(String) request.getAttribute("p_wf_modiButton");
 	modiButton = modiButton.replaceAll(",Writetext",",");
 	modiButton = modiButton.replaceAll(",WritetextModi",",");
@@ -339,7 +344,7 @@ if(modiButton != null){
 	request.setAttribute("p_wf_modiButton",modiButton);
 }else{
 	if( "mailView".equals(  request.getAttribute("p_wf_openType") ) ){
-		//邮件转发增加查看正文 
+		//邮件转发增加查看正文
 		modiButton="Viewtext," + request.getAttribute("p_wf_modiButton");
 		request.setAttribute("p_wf_modiButton",modiButton);//+",ReadHistorytext"
 	}else{
@@ -360,11 +365,11 @@ if(qianfaStr!=null&&qianfaStr.length>2){
        }
   }
 }
-	
+
 if( "blcyview".equals(  request.getParameter("from") ) || "blcyedit".equals(  request.getParameter("from") ) ){
 
 	request.removeAttribute("p_wf_concealField");
-	
+
 }
 
 //如果是退回发起人状态为退回，需要删除退回按钮
@@ -374,10 +379,11 @@ if( "blcyview".equals(  request.getParameter("from") ) || "blcyedit".equals(  re
 
 /////////////////////////////////////////////////////////////////////////////
 
- 
+
 %>
 <body  class="docBodyStyle"  style="position:relative; height:100%;"      onload="initBody();">
 <s:hidden name="pdfnum"/>
+<s:hidden name="receivenum"/>
 <%
 //System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::"+request.getAttribute("p_wf_modiButton"));
 if((""+request.getAttribute("p_wf_modiButton")).indexOf("Code")>=0 ){
@@ -507,34 +513,34 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 					   <div class="doc_Movetitle">
 						 <ul>
 							  <li class="aon"  id="Panle0"><a href="javascript:void(0);" onClick="changePanle(0);" >基本信息</a></li>
-							  <li id="Panle1"><a href="javascript:void(0);" onClick="changePanle(1);">流程图</a></li> 
+							  <li id="Panle1"><a href="javascript:void(0);" onClick="changePanle(1);">流程图</a></li>
 							  <li id="Panle2" ><a href="#" onClick="changePanle(2);">流程记录</a></li>
 							  <li id="Panle3" ><a href="#" onClick="changePanle(3);">关联流程<span class="redBold" id="viewrelationnum"></span></a></li>
 							  <%if(! "1".equals( request.getAttribute("p_wf_pool_processType") ) ){%>
 							  <li id="Panle4" ><a href="#" onClick="changePanle(4);">相关附件<span class="redBold" id="viewaccnum"></span></a></li>
 							  <%}%>
 							  <li id="Panle5" ><a href="#" onClick="changePanle(5);">修改记录</a></li>
-							  <li id="Panle6" ><a href="#" onClick="changePanle(6);">相关收文</a></li>
+							  <li id="Panle6" ><a href="#" onClick="changePanle(6);">相关收文</a><span class="redBold" id="viewReceivenum"></span></li>
 							  <li id="Panle7" ><a href="#" onClick="changePanle(7);">PDF批注</a><span class="redBold" id="viewpdfnum"></span></li>
 
 						 </ul>
-					   </div>  
-                       <div class="clearboth"></div>  
+					   </div>
+                       <div class="clearboth"></div>
                        <div id="docinfo0" class="doc_Content"  align="center">
 							<!--表单包含页-->
-							<div  align="center" > 
-						
+							<div  align="center" >
+
 								<iframe id="ifrm" name="ifrm" src="" style="width:0;height:0;display:none"></iframe>
 								<iframe id="ifrm1" name="ifrm1" src="" style="width:0;height:0;display:none"></iframe>
 								<%
-								
+
 								com.whir.govezoffice.documentmanager.bd.SendFileBD sendFileBD = new com.whir.govezoffice.documentmanager.bd.SendFileBD();
 								String tableId_form = (String)request.getAttribute("p_wf_tableId");
 								List tableInfoList = sendFileBD.getWfTableInfoByTableId(tableId_form); // 根据tableId
 								// 找table
 								// 信息
 								String tableName = "";
-			
+
 
 								if (tableInfoList != null && tableInfoList.size() > 0) {
 									Object[] tableInfoObj = (Object[]) tableInfoList.get(0);
@@ -543,27 +549,27 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 								if (tableName.equals("发文表")) { //
 									tableId_form = "standard";
 								}
-								String add = "/modules/govoffice/gov_documentmanager/forms/edit_"+tableId_form+"_sendform_include.jsp"; 
+								String add = "/modules/govoffice/gov_documentmanager/forms/edit_"+tableId_form+"_sendform_include.jsp";
 								File file = new File(request.getRealPath("") +
                                         add);
 								if (!file.exists()) {
 									new com.whir.govezoffice.documentmanager.actionsupport.GovCustomAction().replayGovCustomPage(request,tableId_form,"0","0");
-							 
+
 								}
-								
-								%> 
-								<jsp:include page="<%=add %>"></jsp:include>  
-								
-							</div>	
+
+								%>
+								<jsp:include page="<%=add %>"></jsp:include>
+
+							</div>
 							<!--工作流包含页-->
 							 <div>  <%try{%>
 								   <%@ include file="/platform/bpm/pool/pool_include_form.jsp"%>
 								  <%}catch(Throwable ex){ex.printStackTrace();}%>
 						    </div>
-							 <!--批示意见包含页-->  
-                            <div>  
-                                 <%@ include file="/platform/bpm/pool/pool_include_comment.jsp"%> 
-                            </div>  
+							 <!--批示意见包含页-->
+                            <div>
+                                 <%@ include file="/platform/bpm/pool/pool_include_comment.jsp"%>
+                            </div>
 				      </div>
 					 <div id="docinfo1" class="doc_Content"  style="display:none;"></div>
 					 <div id="docinfo2" class="doc_Content"  style="display:none;"></div>
@@ -588,9 +594,9 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 	   for(int i=0;i<updatelist.size();i++){
 		Object [] updateObj=(Object[])updatelist.get(i);
         String empId=""+updateObj[7];
-	
+
 	    if(empId.equals("")){
-        if(updateObj[4].toString().equals("1")){           
+        if(updateObj[4].toString().equals("1")){
 			titleArr=new String[]{""+updateObj[3],""+updateObj[1],""+updateObj[6]};
 		}
 		if(updateObj[4].toString().equals("2")){
@@ -604,10 +610,10 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 		if(updateObj[4].toString().equals("4")){
 			innerArr=new String[]{""+updateObj[3],""+updateObj[1],""+updateObj[6]};
 		}
-			
+
 		}else{
-       
-	       if(updateObj[4].toString().equals("1")){           
+
+	       if(updateObj[4].toString().equals("1")){
 	         String titleObj []=new String[]{""+updateObj[3],""+updateObj[1],""+updateObj[6]};
 			titlelist.add(titleObj);
 		}
@@ -626,72 +632,72 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 			String  innerObj[]=new String[]{(updateObj[3]==null?"":updateObj[3].toString()),(updateObj[1]==null?"":updateObj[1].toString()),(updateObj[6]==null?"":updateObj[6].toString())};
 			innerlist.add(innerObj);
 		}
-		
-		
+
+
 		}
 	   }
-	
+
 	}
 
 
  %>
-      <TABLE width="100%" 
+      <TABLE width="100%"
      class="listTable">
-  
+
         <TR class="listTableHead">
           <TD width="60%" class="td_lefttitle">修改内容</TD>
           <TD width="15%">修改人</TD>
           <TD width="25%">修改时间</TD></TR>
- 
+
         <TR cellpadding="0" class="listTableLine2">
           <TD colSpan=3 class="td_lefttitle"><B>标题</B></TD></TR>
 
 		  <%if(titleArr!=null&&titleArr.length>0){%>
-		     
+
 		  <TD width="50%"><%=titleArr[0]%></TD>
           <TD width="20%"><%=titleArr[1]%></TD>
           <TD width="30%"><%=titleArr[2]%></TD></TR>
-		  
+
 		  <%}%>
 
          <%if(titlelist!=null&&titlelist.size()>0){
 		   for(int i=0;i<titlelist.size();i++){
-			 Object []titleObj=(Object[])titlelist.get(i); %>  
+			 Object []titleObj=(Object[])titlelist.get(i); %>
 
 
 		  <TR class="listTableLine1">
           <TD width="50%"><%=titleObj[0]%></TD>
           <TD width="20%"><%=titleObj[1]%></TD>
           <TD width="30%"><%=titleObj[2]%></TD></TR>
-			   
+
 		  <% }
-		 
-		 
-		 }%> 
-        
+
+
+		 }%>
+
 
         <TR cellpadding="0" class="listTableLine2">
           <TD colSpan=3 class="td_lefttitle"><B>主送</B></TD></TR>
 		   <%if(mainArr!=null&&mainArr.length>0){%>
-		     
+
 		  <TD width="50%"><%=mainArr[0]%></TD>
           <TD width="20%"><%=mainArr[1]%></TD>
           <TD width="30%"><%=mainArr[2]%></TD></TR>
-		  
+
 		  <%}%>
-           
+
 		   <%
 		    if(mainlist!=null&&mainlist.size()>0){
 			  for(int i=0;i<mainlist.size();i++){
 			   Object mainObj[]=(Object[])mainlist.get(i);
-				if( !(mainObj[0]==null||"0".equals(mainObj[0])) ){    
+				if( !(mainObj[0]==null||"0".equals(mainObj[0])) ){
 		   %>
-			   
+
 		  <TR class="listTableLine1">
           <TD width="60%"><%=(mainObj[0]==null||"0".equals(mainObj[0]))?"&nbsp;":mainObj[0]%></TD>
           <TD width="15%"><%=mainObj[1]%></TD>
           <TD width="25%"><%=mainObj[2]%></TD></TR>
-			  
+
 			 <% }
 			  }
 			}
@@ -700,64 +706,64 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
         <TR cellpadding="0" class="listTableLine2">
           <TD colSpan=3 class="td_lefttitle"><B>抄送</B></TD></TR>
 		  <%if(copyArr!=null&&copyArr.length>0){%>
-		     
+
 		  <TD width="50%"><%=copyArr[0]%></TD>
           <TD width="20%"><%=copyArr[1]%></TD>
           <TD width="30%"><%=copyArr[2]%></TD></TR>
-		  
+
 		  <%}%>
 
 		  <%
 		   if(copylist!=null&&copylist.size()>0){
 		      for(int i=0;i<copylist.size();i++){
 			   Object [] copyObj=(Object[])copylist.get(i);
-			   
+
 				if( ! (copyObj[0]==null||"0".equals(copyObj[0])) ){
 		   %>
-             
+
 			  <TR class="listTableLine1">
           <TD width="60%"><%=(copyObj[0]==null||"0".equals(copyObj[0]))?"&nbsp;":copyObj[0] %></TD>
           <TD width="15%"><%=copyObj[1]%></TD>
-          <TD width="25%"><%=copyObj[2]%></TD></TR>  
-			  
+          <TD width="25%"><%=copyObj[2]%></TD></TR>
+
 			 <%}
 		     }
 		   }
-		  %>		  
+		  %>
 		    <TR cellpadding="0" class="listTableLine2">
           <TD colSpan=3 class="td_lefttitle"><B>内部发送</B></TD></TR>
 		   <%if(innerArr!=null&&innerArr.length>0){%>
-		     
+
 		  <TD width="50%"><%=innerArr[0]==null?"":innerArr[0]%></TD>
           <TD width="20%"><%=innerArr[1]==null?"":innerArr[1]%></TD>
           <TD width="30%"><%=innerArr[2]==null?"":innerArr[2]%></TD></TR>
-		  
+
 		  <%}%>
-           
+
 		   <%
 		    if(innerlist!=null&&innerlist.size()>0){
 			  for(int i=0;i<innerlist.size();i++){
 			   Object innerObj[]=(Object[])innerlist.get(i);
-			    	if( ! (innerObj[0]==null||"0".equals(innerObj[0])) ){   
+			    	if( ! (innerObj[0]==null||"0".equals(innerObj[0])) ){
 		 	%>
-		  <!--   
+		  <!--
 		  <TR>
           <TD width="60%"><%=(innerObj[0]==null||"0".equals(innerObj[0])) ?"&nbsp;":innerObj[0]%></TD>
           <TD width="15%"><%=innerObj[1]==null?"":innerObj[1]%></TD>
-          <TD width="25%"><%=innerObj[2]==null?"":innerObj[2]%></TD></TR>	
-          -->	  
+          <TD width="25%"><%=innerObj[2]==null?"":innerObj[2]%></TD></TR>
+          -->
 		 <% }}} %>
 
  </TABLE>
- 
 
-					 
+
+
 					 </div>
 					 <div id="docinfo6" class="doc_Content"  style="display:none;"></div>
 					 <div id="docinfo7" class="doc_Content"  style="display:none;"></div>
 
                  </div>
-				
+
              </td>
          </tr>
      </table>
@@ -783,7 +789,7 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 		<input type="hidden" name="fileName2" value="<%=accessoryName2%>">
 		<input type="hidden" name="saveName2" value="<%=accessorySaveName2%>">
 		<input type="hidden" name="zwurl">
-		
+
 	</form>
 	</div>
     <div class="docbody_margin"></div>
@@ -802,13 +808,13 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 
 function  changePanle(flag){
 //if( flag == 3 ) flag= 2;
-	for(var i=0;i<7;i++){
+	for(var i=0;i<=7;i++){
 		$("#Panle"+i).removeClass("aon");
 	}
 	$("#Panle"+flag).addClass("aon");
 	$("div[id^='docinfo']").hide();
 	$("#docinfo"+flag).show();
-    
+
 	//显示流程图
 	if(flag=="1"){
 		//传流程图的div的id
@@ -822,7 +828,7 @@ function  changePanle(flag){
 	if(flag=="3"){
 	   showWorkFlowRelation("docinfo3");
 	}
- 
+
 	//显示相关附件
 	if(flag=="4"){
 	   showWorkFlowAcc("docinfo4");
@@ -846,7 +852,7 @@ function  changePanle(flag){
 初始话信息
 */
 function initBody(){
-	
+
 	var windowWidth = window.screen.availWidth;
 	var windowHeight = window.screen.availHeight;
 	window.moveTo(0,0);
@@ -856,12 +862,16 @@ function initBody(){
 	//hidfield();
 	changeSenddocumentWordOnload();
     var pdfnum=$("#pdfnum").val();
+    var receiveNum=$("#receivenum").val();
     if(pdfnum>0){
         $("#viewpdfnum").html("("+pdfnum+")");
     }
+    if(receiveNum>0){
+        $("#viewReceivenum").html("("+receiveNum+")");
+    }
 }
 
-function gd(){    
+function gd(){
 
 	//alert("归档");
 	//document.all.contentText.style.display='';
@@ -874,9 +884,9 @@ function gd(){
 //			toolbarObjs[k].parentNode.removeChild(toolbarObjs[k].nextSibling);
 //			toolbarObjs[k].parentNode.removeChild(toolbarObjs[k]);
 //		}
-//		
+//
 //	}
-    
+
    // gdform.fileTitle.value = GovSendFileActionForm.documentSendFileTitle.value;
    // gdform.fileId.value = GovSendFileActionForm.editId.value;
 	gdform.wh.value=document.all.documentSendFileByteNumber?document.all.documentSendFileByteNumber.value:'';
@@ -887,7 +897,7 @@ function gd(){
 	if(document.all.sendFileCheckTitle){
 		url+="&copyType=1";
 	}
-	
+
 	gdform.zwurl.value=url;//查看正文的url
 
 	//gdform.pageContent.value = document.body.innerHTML;
@@ -901,9 +911,9 @@ function gd(){
 gd();
 <%}%>
 
-function closeWin(){	
+function closeWin(){
 	$.dialog({id:'bufawindow111'}).close();
 }
 </script>
- 
-</html> 
+
+</html>

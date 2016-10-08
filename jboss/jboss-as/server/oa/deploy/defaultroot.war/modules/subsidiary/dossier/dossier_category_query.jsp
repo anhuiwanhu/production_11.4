@@ -191,7 +191,7 @@
 	
 	function show_checkbox(po,i){
 	    var html ='';
-	    if(po.borrow =='false' || po.isRigthRead =='true'){
+	    if(po.borrow =='false' || po.isRigthRead =='true' || (po.canRead=='true' && po.isRigthRead =='false')){
 	       html= 'disabled="true"';
 	    }
 	    return html;

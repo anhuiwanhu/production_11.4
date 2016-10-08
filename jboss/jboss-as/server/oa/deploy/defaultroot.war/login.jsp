@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
 String localeCode=request.getParameter("localeCode");
@@ -123,7 +123,8 @@ if("no".equals(validate)){
         localeCode = LocaleUtils.getLocale(localeCode);
 	}
 	//注销时，清除工作流当前用户的锁
-	String userAccount = session.getAttribute("userAccount")==null?"":session.getAttribute("userAccount").toString();
+	String userAccount = session.getAttribute("userAccount")==null?"":session.getAttribute("userAccount").toString(); 
+	userAccount=com.whir.component.security.crypto.EncryptUtil.htmlcode(userAccount);
 	if(!"".equals(userAccount)){
 		com.whir.ezoffice.workflow.newBD.WorkFlowButtonBD wfbd = new com.whir.ezoffice.workflow.newBD.WorkFlowButtonBD();
 		wfbd.logoutWFOnlineUser(userAccount);
@@ -148,6 +149,7 @@ int inputPwdErrorNum = Integer.parseInt(request.getAttribute("inputPwdErrorNum")
 int inputPwdErrorNumMax = Integer.parseInt(request.getAttribute("inputPwdErrorNumMax")!=null?(String)request.getAttribute("inputPwdErrorNumMax"):"6");
 String useCaptcha = com.whir.org.common.util.SysSetupReader.getInstance().getSysValueByName("captcha", "0");
 String userAccount = request.getAttribute("userAccount")==null?"":request.getAttribute("userAccount").toString();
+userAccount=com.whir.component.security.crypto.EncryptUtil.htmlcode(userAccount);
 String userPassword = request.getAttribute("userPassword")==null?"":request.getAttribute("userPassword").toString();
 
 //获取找回密码配置----开始
@@ -268,7 +270,7 @@ String userPassword = request.getAttribute("userPassword")==null?"":request.getA
                             	<%}else if("en_US".equals(localeCode)){%>
                             		<span>English</span><i class="fa fa-angle-right"></i>
                             	<%}else if("ko_KR".equals(localeCode)){%>
-                            		<span>대한민국</span>	<i class="fa fa-angle-right"></i>
+                            		<span>한국어</span>	<i class="fa fa-angle-right"></i>
                             	<%}else if("ja_JP".equals(localeCode)){%>
                             		<span>日本语</span><i class="fa fa-angle-right"></i>
                             	<%}%>
@@ -278,7 +280,7 @@ String userPassword = request.getAttribute("userPassword")==null?"":request.getA
 	                            <li <%if("zh_CN".equals(localeCode)){%> class="current"<% }%> id = "jtzw"><span class="sl1" value="zh_CN" onclick="selectLauguale(this)">简体中文</span><i class="fa fa-check-circle-o"></i></li>
                                 <li <%if("zh_TW".equals(localeCode)){%> class="current"<% }%> id = "ftzw"><span value="zh_TW" class="sl2" onclick="selectLauguale(this)">繁體中文</span><i class="fa fa-check-circle-o"></i></li>
                                 <li <%if("en_US".equals(localeCode)){%> class="current"<% }%> id = "yw"><span value="en_US" class="sl3" onclick="selectLauguale(this)">English</span><i class="fa fa-check-circle-o"></i></li>
-                                <li <%if("ko_KR".equals(localeCode)){%> class="current"<% }%> id = "hw"><span value="ko_KR" class="sl4" onclick="selectLauguale(this)">대한민국</span><i class="fa fa-check-circle-o"></i></li>
+                                <li <%if("ko_KR".equals(localeCode)){%> class="current"<% }%> id = "hw"><span value="ko_KR" class="sl4" onclick="selectLauguale(this)">한국어</span><i class="fa fa-check-circle-o"></i></li>
                                 <li <%if("ja_JP".equals(localeCode)){%> class="current"<% }%> id = "rw"><span value="ja_JP" class="sl5" onclick="selectLauguale(this)">日本语</span><i class="fa fa-check-circle-o"></i></li>
                             </ul>
 

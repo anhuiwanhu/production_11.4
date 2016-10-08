@@ -118,7 +118,7 @@
 	String mailRTMessage = request.getAttribute("mailRTMessage")+"";
 	String sendSms = request.getAttribute("sendSms")+"";
 	String encrypt = request.getAttribute("encrypt")+"";
-
+	String cloudcontrol = request.getAttribute("cloudcontrol")+"";
 	String mail_id = request.getParameter("mail_id")==null?"":request.getParameter("mail_id");
 	//当前草稿下标
    int index = 0;
@@ -425,6 +425,7 @@
 					<%if("JC_".equals(cert)){%>
 					<input type="checkbox" name="encrypt" id="encrypt" value="1" /><%=Resource.getValue(whir_locale,"mail","mail.encrypt")%>
 					<%}%>
+					<input type="checkbox" name="cloudcontrol" id="cloudcontrol" value="1"/>公有云控制
 			   </td>    
 		   </tr>
 		   <%
@@ -582,7 +583,7 @@ function click_selectto(){
  <%if("can".equals(canChooseOrg)){%>
     openSelect({allowId:'mailtoid', allowName:'mailto', select:'userorggroup', single:'no', show:'userorggroup', range:'*0*', tagitId:'mailtoUl'});
  <%}else{%>
-	openSelect({allowId:'mailtoid', allowName:'mailto', select:'user', single:'no', show:'user', range:'*0*', tagitId:'mailtoUl'});
+	openSelect({allowId:'mailtoid', allowName:'mailto', select:'user', single:'no', show:'userorggroup', range:'*0*', tagitId:'mailtoUl'});
  <%}%>  
    
 }
@@ -591,7 +592,7 @@ function click_selectcc(){
  <%if("can".equals(canChooseOrg)){%>
     openSelect({allowId:'mailccid', allowName:'mailcc', select:'userorggroup', single:'no', show:'userorggroup', range:'*0*', tagitId:'mailccUl'});
  <%}else{%>
-	openSelect({allowId:'mailccid', allowName:'mailcc', select:'user', single:'no', show:'user', range:'*0*', tagitId:'mailccUl'});
+	openSelect({allowId:'mailccid', allowName:'mailcc', select:'user', single:'no', show:'userorggroup', range:'*0*', tagitId:'mailccUl'});
  <%}%>  
    
 }
@@ -600,7 +601,7 @@ function click_selectbcc(){
  <%if("can".equals(canChooseOrg)){%>
     openSelect({allowId:'mailbccid', allowName:'mailbcc', select:'userorggroup', single:'no', show:'userorggroup', range:'*0*', tagitId:'mailbccUl'});
  <%}else{%>
-	openSelect({allowId:'mailbccid', allowName:'mailbcc', select:'user', single:'no', show:'user', range:'*0*', tagitId:'mailbccUl'});
+	openSelect({allowId:'mailbccid', allowName:'mailbcc', select:'user', single:'no', show:'userorggroup', range:'*0*', tagitId:'mailbccUl'});
  <%}%>  
    
 }
@@ -706,7 +707,15 @@ function InitData(){
 			  });
 		 }
 	  <%}%>
-	  
+	   <%if("1".equals(cloudcontrol)){%>
+		  if(document.getElementById("cloudcontrol")){
+			 $("input[name='cloudcontrol']").each(function(){
+				 if($(this).val()==1){
+					$(this).attr("checked","checked");
+				 }
+			  });
+		 }
+	  <%}%>
    <%}else{%>
       <%if("1".equals(mailneedrevert)){%>
 		 $("input[name='mailneedrevert']").each(function(){

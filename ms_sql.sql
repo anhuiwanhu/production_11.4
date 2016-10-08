@@ -427,3 +427,28 @@ alter table ez_form add  editorType nvarchar(50) ;
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.20_SP_20160730','11.4.0.20',getdate());
 go
+
+
+
+
+
+update ez_form set editorType=1 where editorType is null or editorType='';
+go
+
+alter table OA_THEMEOPTION add OPTIONSCORE_BACK Numeric(7,3);
+go
+UPDATE OA_THEMEOPTION SET OPTIONSCORE_BACK = OPTIONSCORE ;
+go
+update OA_THEMEOPTION set OPTIONSCORE = null;
+go
+alter table OA_THEMEOPTION alter COLUMN  OPTIONSCORE Numeric(7,3);
+go
+UPDATE OA_THEMEOPTION SET OPTIONSCORE = OPTIONSCORE_BACK ;
+go
+alter table OA_THEMEOPTION drop column OPTIONSCORE_BACK;
+go
+alter table oa_mailinterior add cloudcontrol numeric(1,0);
+go
+
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.21_SP_20160813','11.4.0.21',getdate());
+go

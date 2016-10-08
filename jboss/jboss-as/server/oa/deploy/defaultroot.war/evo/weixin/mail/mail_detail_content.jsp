@@ -9,7 +9,7 @@
     <meta name="viewport">
 	<link rel="stylesheet" href="/defaultroot/evo/weixin/template/css/template.reset.css" />
 </head>
-<body>
+<body style="word-wrap:break-word;">
 	<c:set var="mailcontent">${mailcontent}</c:set>
 	<c:set var="gnome">${gnome}</c:set>
 	<c:set var="infoId">${infoId}</c:set>

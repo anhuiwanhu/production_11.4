@@ -26,6 +26,8 @@
 			return "/defaultroot/dealfile/getOutStockResult.controller";
 		}else if(workMainLinkFile.indexOf("/defaultroot/intoStockAction!modifyFlow.action") > -1){
 			return "/defaultroot/dealfile/getIntoStockResult.controller";
+		}else if(workMainLinkFile.indexOf("/defaultroot/GovDocSendCheckProcess!") > -1){
+			return "/defaultroot/doc/sendfileCheckProcess.controller";
 		}else{
     		return "/defaultroot/dealfile/process.controller";
     	}
@@ -110,6 +112,11 @@
 	//收文
 	if(pcopenURL.indexOf("/GovDocReceiveProcess!editfile.action")!=-1){
 		openUrl = contextPath + "/doc/receiveGovProcess.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
+	}
+	
+	//送审批
+	if(pcopenURL.indexOf("/GovDocSendCheckProcess!")!=-1){
+		openUrl = contextPath + "/doc/sendfileCheckProcess.controller?workStatus="+workstatus+"&workId="+workId+"&empLivingPhoto="+empLivingPhoto;
 	}
 	
 	//信息

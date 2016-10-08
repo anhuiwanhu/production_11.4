@@ -223,15 +223,21 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								</td>
 							</tr>
 						</x:if> 
+						
 						<x:if select="$govDoc//doComment">
+							<c:set var="commentFieldName"><x:out select="$doc//workInfo/commentFieldName/text()"/></c:set>
+							<c:if test="${commentFieldName !='' }">
 							<tr>
 								<th>
-									<x:out select="$govDoc//doComment/@name" />
+									<!-- <x:out select="$govDoc//doComment/@name" /> -->
+									${commentFieldName }
 								</th>
 								<td>
-									<row><label style="color: #330000"><x:out select="$govDoc//doComment/text()" /> 
+									<!-- <row><label style="color: #330000"><x:out select="$govDoc//doComment/text()" /> -->
+									<row><textarea name='comment_input' class="edit-txta edit-txta-l" maxlength="300" placeholder="请输入文字"></textarea> 
 								</td>
 							</tr>
+							</c:if>
 						</x:if> 
 						<x:if select="$govDoc//createdTime">
 							<tr>
@@ -858,6 +864,22 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 							</tr>
 						</x:forEach>
 						-->
+						
+						<c:set var="commentField"><x:out select="$govDoc//commentList//text()"/></c:set>
+						<c:if test="${commentField == '' }">
+						<x:forEach select="$doc//commentList/comment" var="cm" >
+							<tr>
+								<th>
+									<x:out select="$cm//step/text()"/>
+								</th>
+								<td>
+									<c:set var="commentDate"><x:out select="$cm//date/text()"/></c:set>
+									<x:out select="$cm//content/text()"/>&nbsp;&nbsp;<x:out select="$cm//person/text()"/><c:if test="${not empty commentDate}">(${commentDate})</c:if></br>
+								</td>
+							</tr>
+						</x:forEach>
+						</c:if>
+						
 						<c:set var="commentField"><x:out select="$govDoc//curCommField/text()"/></c:set>
 						<x:forEach select="$govDoc//commentList/contentList" var="ct" >
 							<c:set var="isCurrent"><x:out select="$ct//current/text()" /></c:set>

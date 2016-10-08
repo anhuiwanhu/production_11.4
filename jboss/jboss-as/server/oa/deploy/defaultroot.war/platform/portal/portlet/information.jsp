@@ -148,13 +148,13 @@ if(isImage){
 	if(!"/defaultroot/images/nophoto.gif".equals(_images[0])){
 		String imageLink = "openWin({url:'"+_images[2]+"',winName:'info"+ivo.getId()+"', isFull:true});";
 		if(_outter_)
-			imageLink="openWin({url:'"+rootPath+"/PortalInformation!getInformation.action?title="+_images[1]+"&id="+ivo.getId()+"', isFull:true});";
+			imageLink="openWin({url:'"+rootPath+"/PortalInformation!getInformation.action?title="+java.net.URLEncoder.encode(_images[1],"utf-8")+"&id="+_images[3]+"', isFull:true});";
 %>
 		<div class="wh-portal-pic-box">
         	<a href="javascript:void(0)"><img src="<%=_images[0]%>" alt="<%=_images[1]%>" width="100%" height="188" onclick="<%=imageLink%>"/></a>
 		</div>
 	<%}%>
-	<div class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow wh-portal-info-content">
+	<div class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow">
 		<div id="wh-portal-iclist-<%=portletSettingId%>-<%=i0%>" class="wh-portal-iclist-<%=portletSettingId%>-<%=i0%> wh-protal-overflow">
 <%}%>
         <%

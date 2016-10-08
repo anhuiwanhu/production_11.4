@@ -25,6 +25,7 @@
 			 	<input type="hidden" id="activityType" name="activityType" value=""/>
 		     	<input type="hidden" id="businessId" name="businessId" value="${businessId}"/>
 			 	<input type="hidden" id="processId" name="processId" value="${param.processId}"/>
+				<input type="hidden" id="moduleId" name="moduleId" value="${moduleId}"/>
 			 	<c:set var="mainLinkFile">${param.mainLinkFile}</c:set>
 			 	<c:choose>
 			 		<c:when test="${not empty mainLinkFile}">
@@ -189,6 +190,7 @@
 							<tr>
 								<th>下一环节<i class="fa fa-asterisk"></i>：</th>
 								<td style="text-align:right">
+								<!-- 
 									<select class="selt" name="activity"  id="activity" prompt="请选择下一办理环节" onchange="hiddenEnd();">
 										<option value="">--请选择--</option>
 										<%--判断nextActivityList结点长度 开始--%>
@@ -216,6 +218,45 @@
 											</x:forEach>
 										</c:if>
 										<%--判断nextActivityList结点长度 结束--%>
+										-->
+										<div class="examine">
+										<a class="edit-select edit-ipt-r">
+											<div class="edit-sel-show" id="activitySpan">
+												<span>请选择</span>
+												<input type="hidden" id="activity" name="activity" value=""/>
+											</div>     
+										</a>
+										<div class="select-div">
+											<ul id="activityLi">
+												<%--判断nextActivityList结点长度 开始--%>
+												 <c:set var="nextActivityListNum" value="0"/>
+												 <x:forEach select="$doc//activityList/activity" var="n" varStatus="statusc">
+												 	<c:set var="nextActivityListNum" value="${nextActivityListNum+1}"/>
+												 </x:forEach>
+												<c:if test="${nextActivityListNum == 1}">
+													<x:forEach select="$doc//activityList/activity" var="n" varStatus="statusc">
+														<x:if select="$n/scopeType/text() = 'default_users' ">
+															<c:set var="isdefaultusers" value="1"/>
+														</x:if>
+														<c:set var="activitys"><x:out select="$n/activityId/text()"/></c:set>
+														<li onclick="hiddenEnd('<x:out select="$n/activityId/text()"/>')"><x:out select="$n/activityName/text()"/></li>
+													</x:forEach>
+												</c:if>
+												<c:if test="${nextActivityListNum != 1}">
+													<x:forEach select="$doc//activityList/activity" var="n" varStatus="statusc">
+														<c:set var="activityclass"><x:out select="$doc//activityClass/text()"/></c:set>
+														<li onclick="hiddenEnd('<x:out select="$n/activityId/text()"/>')"><x:out select="$n/activityName/text()"/></li>
+														<x:if select="$n/scopeType/text() = 'default_users' ">
+															<x:if select="$n/isDefaultActivity/text() = '1' ">
+																<c:set var="isdefaultusers" value="1"/>
+															</x:if>
+														</x:if>
+													</x:forEach>
+												</c:if>
+												<%--判断nextActivityList结点长度 结束--%>
+											</ul>
+										</div>
+									</div>
 									</select>
 								</td>
 							</tr>
@@ -256,10 +297,18 @@
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/alert/zepto.alert.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		hiddenEnd();
+		var optionLen = $('#activityLi li').length;
+		if(optionLen == 1){
+			var value = $('#activityLi li').html();
+			$('#activitySpan span').html(value);
+			hiddenEnd('${activitys}');
+		}else{
+			hiddenEnd();
+		}
 	});
 
-	function hiddenEnd(){
+	function hiddenEnd(activityId){
+		$('#activity').val(activityId);
 		<c:if test="${not empty docXml}">
 			<x:parse xml="${docXml}" var="doc"/>
 			if($('#activity')==null || $('#activity').val() == undefined){
@@ -514,5 +563,17 @@
 			}
 		});
 	}
+	// 请选择 
+	$(".examine>a").on("click", function(){
+		$(this).parent().find(".select-div").addClass("open"); 
+	})
+
+	$(".select-div").on("click", function(e){
+		var $target= $(e.target); 
+		if(!$target.is('li'))   return ; 
+		var value = $target.html(); 
+		$(this).parent().find(">a").find('span').html(value);
+		$(this).removeClass("open"); 
+	})
 </script>
 </html>

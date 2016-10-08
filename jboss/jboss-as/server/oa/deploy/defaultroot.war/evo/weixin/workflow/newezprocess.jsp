@@ -38,6 +38,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 				<input  id="__sys_pageId" type="hidden"  name="__sys_pageId" value="<%=pageId%>" />
 				<input  id="processId" type="hidden"  name="processId" value="<%=processId%>" />
 				<input  id="__main_tableName" type="hidden"  name="__main_tableName" value='<x:out select="$doc2//fieldList/tableName/text()"/>' />
+				<input  id="moduleId" type="hidden"  name="moduleId" value="${moduleId}" />
 	            <table class="wh-table-edit" id="table_form">
 	            	<!--主表信息begin-->
 	            	<x:forEach select="$doc2//fieldList/field" var="fd" >

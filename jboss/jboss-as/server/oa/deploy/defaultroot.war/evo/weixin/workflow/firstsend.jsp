@@ -23,6 +23,7 @@
 		     	<input type="hidden" id="scopeId" name="scopeId" value=""/>
 		     	<input type="hidden" id="businessId" name="businessId" value="${businessId}"/>
 			 	<input type="hidden" id="processId" name="processId" value="${param.processId}"/>
+				<input type="hidden" id="moduleId" name="moduleId" value="${moduleId}"/>
 		     	<c:set var="docTitle" value="${docTitle }"></c:set>
 				<input type="hidden"  name="docTitle" value="${docTitle }"/>
 				<c:set var="mainLinkFile">${param.mainLinkFile}</c:set>
@@ -39,7 +40,7 @@
 					<tr>
 	            		<th>下一环节<i class="fa fa-asterisk"></i>：</th>
 	            		<td>
-	            			<select name="activity"  id="activity" onchange="hiddenEnd();">
+	            			<!-- <select name="activity"  id="activity" onchange="hiddenEnd();">
 								<option value="">--请选择--</option>
 								<c:if test="${not empty docXml}">
 									<x:parse xml="${docXml}" var="doc"/> 
@@ -49,6 +50,28 @@
 									</x:forEach>
 								</c:if>
 							</select>
+							-->
+							<div class="examine">
+								<a class="edit-select edit-ipt-r">
+									<div class="edit-sel-show" id="activitySpan">
+										<span>请选择</span>
+										<input type="hidden" id="activity" name="activity" value=""/>
+									</div>     
+								</a>
+								<div class="select-div">
+									<ul id="activityLi">
+										<c:if test="${not empty docXml}">
+											<x:parse xml="${docXml}" var="doc"/>
+											<x:forEach select="$doc//activity" var="n" varStatus="statusc"> 
+												<c:set var="activitys"><x:out select="$n/activityId/text()"/></c:set>
+												<li onclick="hiddenEnd('<x:out select="$n/activityId/text()"/>')">
+													<x:out select="$n/activityName/text()"/>
+												</li>
+											</x:forEach>
+										</c:if>
+									</ul>
+								</div>
+							</div>
 	            		</td>
 	            	</tr>
 	            	<tr id="person">
@@ -82,14 +105,22 @@
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/alert/zepto.alert.js"></script>
 <script language="javascript">
 	$(document).ready(function(){
-		var optionLen = $('#activity option').length;
+		/*var optionLen = $('#activity option').length;
 		if(optionLen == 2){
 			$('#activity option:eq(1)').attr('selected','selected');			
+		}*/
+		var optionLen = $('#activityLi li').length;
+		if(optionLen == 1){
+			var value = $('#activityLi li').html();
+			$('#activitySpan span').html(value);
+			hiddenEnd('${activitys}');
+		}else{
+			hiddenEnd();
 		}
-		hiddenEnd();
 	});
 
-	function hiddenEnd(){
+	function hiddenEnd(activityId){
+		$('#activity').val(activityId);
 		if($('#activity').val() =='' || $('#activity').val() =='-2' || $('#activity').val() =='-100'){
 			$('#person').hide();
 		}else{
@@ -222,5 +253,18 @@
 			}
 		});
 	}
+	
+	// 请选择 
+	$(".examine>a").on("click", function(){
+		$(this).parent().find(".select-div").addClass("open"); 
+	})
+
+	$(".select-div").on("click", function(e){
+		var $target= $(e.target); 
+		if(!$target.is('li'))   return ; 
+		var value = $target.html(); 
+		$(this).parent().find(">a").find('span').html(value);
+		$(this).removeClass("open"); 
+	})
 </script>
 </html>

@@ -539,3 +539,25 @@
 7、清服务端缓存，启动OA服务
 
 8、验证系统功能
+
+
+
+
+
+1、停OA服务
+
+2、备份生产环境程序、数据库
+
+3、覆盖产品补丁包到OA安装目录d:\jboss
+
+4、修改配置文件..\oa\deploy\defaultroot.war\classes\ServiceParse.xml
+在标签"c34"（<class>com.whir.service.parse.EzCardParse</class>）中添加以下内容（不要重复）：
+	<method>getUserInfo</method>
+
+5、把文件夹..\deploy\defaultroot.war\WEB-INF\lib\com拖入whir_common.jar(不要解压)
+
+6、执行数据库升级脚本（分oralce、sqlserver两种类型库）
+
+7、清服务端缓存，启动OA服务
+
+8、验证系统功能

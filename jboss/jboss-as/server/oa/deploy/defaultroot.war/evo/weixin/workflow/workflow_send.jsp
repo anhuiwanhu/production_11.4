@@ -217,7 +217,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 							<tr>
 								<th>下一办理环节<i class="fa fa-asterisk"></i>：</th>
 								<td style="text-align:right">
-									<select class="selt" name="activity"  id="activity" prompt="请选择下一办理环节" onchange="hiddenEnd();">
+									<!-- <select class="selt" name="activity"  id="activity" prompt="请选择下一办理环节" onchange="hiddenEnd();">
 										<option value="">--请选择--</option>
 										<%--判断nextActivityList结点长度 开始--%>
 										<c:set var="nextActivityListNum" value="0"/>
@@ -244,6 +244,44 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 										</c:if>
 										<%--判断nextActivityList结点长度 结束--%>
 									</select>
+									-->
+									<div class="examine">
+										<a class="edit-select edit-ipt-r">
+											<div class="edit-sel-show" id="activitySpan">
+												<span>请选择</span>
+												<input type="hidden" id="activity" name="activity" value=""/>
+											</div>     
+										</a>
+										<div class="select-div">
+											<ul id="activityLi">
+												<%--判断nextActivityList结点长度 开始--%>
+												 <c:set var="nextActivityListNum" value="0"/>
+												 <x:forEach select="$doc//nextActivityList" var="n" varStatus="statusc">
+													<c:set var="nextActivityListNum" value="${nextActivityListNum+1}"/>
+												</x:forEach>
+												<c:if test="${nextActivityListNum == 1}">
+													<x:forEach select="$doc//nextActivityList" var="n" varStatus="statusc">
+														<x:if select="$n/scopeType/text() = 'default_users' ">
+															<c:set var="isdefaultusers" value="1"/>
+														</x:if>
+														<c:set var="activitys"><x:out select="$n/id/text()"/></c:set>
+														<li onclick="hiddenEnd('<x:out select="$n/id/text()"/>')"><x:out select="$n/name/text()"/></li>
+													</x:forEach>
+												</c:if>
+												<c:if test="${nextActivityListNum != 1}">
+													<x:forEach select="$doc//nextActivityList" var="n" varStatus="statusc">
+														<li onclick="hiddenEnd('<x:out select="$n/id/text()"/>')"><x:out select="$n/name/text()"/></li>
+														<x:if select="$n/scopeType/text() = 'default_users' ">
+															<x:if select="$n/isDefaultActivity/text() = '1' ">
+																<c:set var="isdefaultusers" value="1"/>
+															</x:if>
+														</x:if>
+													</x:forEach>
+												</c:if>
+												<%--判断nextActivityList结点长度 结束--%>
+											</ul>
+										</div>
+									</div>
 								</td>
 							</tr>
 							<tr id="person" style="display:none;">
@@ -284,7 +322,14 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/alert/zepto.alert.js"></script>
 <script type="text/javascript" language="javascript">
 	$(document).ready(function(){
-		hiddenEnd();
+		var optionLen = $('#activityLi li').length;
+		if(optionLen == 1){
+			var value = $('#activityLi li').html();
+			$('#activitySpan span').html(value);
+			hiddenEnd('${activitys}');
+		}else{
+			hiddenEnd();
+		}
 		//如果是并行下一活动办理完毕 在保存表单时候自动办理流程
 		var url ='/defaultroot/workflow/updateprocess2.controller';
 		<c:if test="${not empty docXml}">
@@ -299,7 +344,8 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 
 	});
 	
-	function hiddenEnd(){
+	function hiddenEnd(activityId){
+		$('#activity').val(activityId);
 		<c:if test="${not empty docXml}">
 			<x:parse xml="${docXml}" var="doc"/>
 			if($('#activity')==null || $('#activity').val() == undefined){
@@ -531,5 +577,16 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 			$("#selectContent").empty();
 		}
 	}
-	
+	// 请选择 
+	$(".examine>a").on("click", function(){
+		$(this).parent().find(".select-div").addClass("open"); 
+	})
+
+	$(".select-div").on("click", function(e){
+		var $target= $(e.target); 
+		if(!$target.is('li'))   return ; 
+		var value = $target.html(); 
+		$(this).parent().find(">a").find('span').html(value);
+		$(this).removeClass("open"); 
+	})
 </script>
