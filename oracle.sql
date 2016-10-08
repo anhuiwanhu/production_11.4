@@ -94,3 +94,47 @@ comment on column ORG_DOMAIN.oa_vkey
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.02_SP_20160301','11.4.0.02',sysdate);
 commit;
+
+
+
+
+
+create table EVO_WORK_ATTENDANCE
+(
+  id             NUMBER(20) primary key  not null,
+  domain         VARCHAR2(20),
+  empid          VARCHAR2(20),
+  empname        VARCHAR2(50),
+  createorgid    VARCHAR2(20),
+  sign_date      VARCHAR2(20),
+  map_position   VARCHAR2(200),
+  sign_status    VARCHAR2(1)
+);
+commit;
+
+comment on column EVO_WORK_ATTENDANCE.domain
+  is '域ID';
+commit;
+comment on column EVO_WORK_ATTENDANCE.empid
+  is '用户ID';
+commit;
+comment on column EVO_WORK_ATTENDANCE.empname
+  is '用户名';
+commit;
+comment on column EVO_WORK_ATTENDANCE.createorgid
+  is '组织ID';
+commit;
+comment on column EVO_WORK_ATTENDANCE.sign_date
+  is '签到日期';
+commit;
+comment on column EVO_WORK_ATTENDANCE.map_position
+  is '定位地址';
+commit;
+comment on column EVO_WORK_ATTENDANCE.sign_status
+  is '签到状态';
+commit;
+
+alter table EZ_FLOW_HI_PROCINST modify WHIR_DEALING_USERS varchar2(1000);
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.03_SP_20160314','11.4.0.03',sysdate);
+commit;

@@ -123,3 +123,19 @@ go
 
 
 
+create table EVO_WORK_ATTENDANCE
+(
+  id             NUMERIC(20) IDENTITY(1,1) primary key  not null,
+  domain         NVARCHAR(20),
+  empid          NVARCHAR(20),
+  empname        NVARCHAR(50),
+  createorgid    NVARCHAR(20),
+  sign_date      NVARCHAR(20),
+  map_position   NVARCHAR(200),
+  sign_status    NVARCHAR(1)
+);
+go
+alter table EZ_FLOW_HI_PROCINST alter column WHIR_DEALING_USERS nvarchar(1000);
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.03_SP_20160314','11.4.0.03',getdate());
+go

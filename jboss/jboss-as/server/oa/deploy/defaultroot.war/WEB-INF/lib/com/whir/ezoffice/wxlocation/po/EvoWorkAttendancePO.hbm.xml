@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+	<class name="com.whir.ezoffice.wxlocation.po.EvoWorkAttendancePO" table="EVO_WORK_ATTENDANCE" schema="EZOFFICE">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="domain" column="DOMAIN"/>
+		<property name="empId" column="EMPID"/>
+		<property name="empName" column="EMPNAME"/>
+		<property name="createOrgId" column="CREATEORGID"/>
+		<property name="signDate" column="SIGN_DATE"/>
+		<property name="mapPosition" column="MAP_POSITION"/>
+		<property name="signStatus" column="SIGN_STATUS"/>
+	</class>
+</hibernate-mapping>
