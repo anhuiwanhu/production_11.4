@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.whir.ezoffice.customize.customermenu.po.EVoInfoPO" table="OA_EVO_INFO" schema="EZOFFICE">
+        <id name="mobileId" column="mobileId" type="long">
+             <generator class="native"/>
+        </id>
+             
+		<property name="domainId" column="domainId"/>
+		<property name="createdEmp" column="createdEmp"/>
+		<property name="createdOrg" column="createdOrg"/>
+		<property name="uploadType" column="uploadType"/>
+		 
+		<property name="imgDefaultName" column="imgDefaultName" type="java.lang.String"/>				
+		<property name="imgUploadShowName" column="imgUploadShowName" type="java.lang.String"/>		 		
+		<property name="imgUploadSaveName" column="imgUploadSaveName" type="java.lang.String"/>
+		 		 
+	</class>
+</hibernate-mapping>

@@ -13,3 +13,45 @@
 6、清服务端缓存，启动OA服务
 
 7、验证系统功能
+
+
+
+
+
+1、停OA服务
+
+2、备份生产环境程序、数据库
+
+3、覆盖产品补丁包到OA安装目录d:\jboss
+
+4、修改文件/oa/deploy/defaultroot.war/WEB-INF/classes/Serviceparse.xml
+在"c9"标签中添加以下内容（不要重复）：
+                <method>getFormResult</method>
+   
+在"c28"标签中添加以下内容（不要重复）： 
+                <method>getMobileCustChannelById</method>
+		<method>getCustMenuDataList</method>
+		<method>getCustMenuDataSearchList</method>
+
+5、修改文件..\oa\deploy\defaultroot.war\WEB-INF\classes\struts2\struts-personal.xml
+在<action name="MyInfoAction!*" method="{1}" class="com.whir.ezoffice.personalwork.setup.actionsupport.MyInfoAction">内
+加入以下语句（不要重复）：
+	<result name="modiSuperAccountPassword">/modules/personal/setup/modiSuperAccountPassword.jsp</result>
+
+6、修改件路..\oa\deploy\defaultroot.war\WEB-INF\config\whconfig.xml 
+在<Evopath>标签内添加以下语句（不要重复）：
+	<Property name="serverPath" value="http://192.168.7.99:8080" />
+
+找到 <Dog>项，去掉里面的以下语句
+	<Property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	<Property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=11200"/
+	<Property name="user" value="ezoffice"/>
+	<Property name="password" value="13572468"/>
+ 
+7、把文件夹..\oa\deploy\defaultroot.war\WEB-INF\lib]\com拖入whir_common.jar中（不要解压）
+
+8、执行数据库升级脚本（分oralce、sqlserver两种类型库）
+
+9、清服务端缓存，启动OA服务
+
+10、验证系统功能

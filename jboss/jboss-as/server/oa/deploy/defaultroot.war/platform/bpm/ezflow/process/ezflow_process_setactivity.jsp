@@ -805,7 +805,7 @@ if(whir_agent.indexOf("Firefox/4")>0){
 															     <input 	type="text" class="inputText" 	name="participantInPavalues" id="participantInPavalues"  style="width:98%"  value="">
 															   </td>
 															    <td>
-																   <div style="margin-left:-1px;margin-top:10px;margin-bottom:9px">
+																   <%--<div style="margin-left:-1px;margin-top:10px;margin-bottom:9px">
 																	  <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true">
 																	   <jsp:param name="onInit"             value="" /> 
 																	   <jsp:param name="onSelect"             value="" />  
@@ -820,12 +820,12 @@ if(whir_agent.indexOf("Firefox/4")>0){
 																	   <jsp:param name="height"       value="20" /> 
 																	   <jsp:param name="multi"        value="true" /> 
 																	   <jsp:param name="buttonClass" value="upload_btn" /> 
-																	   <jsp:param name="buttonText"       value="<%=comm_upload%>" /> 
+																	   <jsp:param name="buttonText"       value="" /> 
 																	   <jsp:param name="fileSizeLimit"        value="0" /> 
 																	   <jsp:param name="fileTypeExts"         value="*.class" /> 
 																	   <jsp:param name="uploadLimit"      value="0" /> 
 																	 </jsp:include>
-																  </div>
+																  </div>--%>
 																</td>
 														    </tr>
 													    </table>  
@@ -1301,17 +1301,18 @@ if(whir_agent.indexOf("Firefox/4")>0){
 													   <td>&nbsp;</td>
 												  </tr>
 												   <tr>
-													   <td><s:text name="workflow.parameterName"/><!-- 接口参数名 -->：</td>
+													   <td nowrap><s:text name="workflow.parameterName"/><!-- 接口参数名 -->：</td>
 													   <td> 
 														 <input type="text" class="inputText" name="passRoundInpaNames" id="passRoundInpaNames"  style="width:98%" value="">
 													   </td>
-													   <td><s:text name="workflow.parameterValue"/><!-- 接口参数值 -->：</td>
+													   <td nowrap><s:text name="workflow.parameterValue"/><!-- 接口参数值 -->：</td>
 													   <td> 
 														 <input type="text" class="inputText" name="passRoundInpaValues" id="passRoundInpaValues" style="width:98%" value="">
 													   </td>
 														<td>
-															<div style="margin-left:-1px;margin-top:10px;margin-bottom:9px">
-															   <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true">     <jsp:param name="onInit"             value="" /> 
+															<%--<div style="margin-left:-1px;margin-top:10px;margin-bottom:9px">
+															   <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true">     
+																   <jsp:param name="onInit"             value="" /> 
 																   <jsp:param name="onSelect"             value="" />  
 																   <jsp:param name="onUploadProgress"     value="" /> 
 																   <jsp:param name="onUploadSuccess"      value="passRoundUserClassNameJs" />
@@ -1324,12 +1325,12 @@ if(whir_agent.indexOf("Firefox/4")>0){
 																   <jsp:param name="height"       value="20" /> 
 																   <jsp:param name="multi"        value="true" /> 
 																   <jsp:param name="buttonClass" value="upload_btn" /> 
-																   <jsp:param name="buttonText"       value="<%=comm_upload%>" /> 
+																   <jsp:param name="buttonText"       value="" /> 
 																   <jsp:param name="fileSizeLimit"        value="0" /> 
 																   <jsp:param name="fileTypeExts"         value="*.class" /> 
 																   <jsp:param name="uploadLimit"      value="0" /> 
 																</jsp:include>
-														  </div>  
+														  </div>  --%>
 														</td>
 													</tr>
 												</table> 
