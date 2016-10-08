@@ -347,3 +347,22 @@ delete from  ez_secu_pagelist  where    list_type=3  and   secu_url='/officeserv
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.15_SP_20160529','11.4.0.15',getdate());
 go
+
+
+
+
+
+alter table GJ_STOCK ADD tongBu varchar(20)  default '00';
+go
+ALTER  TABLE  OA_BOARDROOMAPPLY  ADD  MEETINGATTENDANCE  NUMERIC(2);
+GO
+ALTER  TABLE  OA_BOARDROOMAPPLY  ADD  ATTENDANCETYPE  NUMERIC(2);
+GO
+ALTER  TABLE  OA_BOARDROOMAPPLY  ADD  QRCODE  NVARCHAR(200);
+GO
+ALTER  TABLE  OA_BOARDROOM_EXECUTESTATUS  ADD  ATTENDANCESTATUS  NUMERIC(2);
+GO
+alter table oa_boardroom_meetingtime add  createdate nvarchar(20);
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.16_SP_20160606','11.4.0.16',getdate());
+go

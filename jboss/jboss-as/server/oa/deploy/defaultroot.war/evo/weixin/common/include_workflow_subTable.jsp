@@ -506,9 +506,18 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
             $swiperLi.addClass('nav-active').data("checkbox","check");
     	});
 		var $firstDataId = $('[id="subTableTemplate_'+subTableNameParam+'"] input').eq(0);
-		var dataIdVal = $firstDataId.val();
+		var dataIdVal = $firstDataId.val();        
 		$firstDataId.val('');
-		subTableTemplate = $('[id="subTableTemplate_'+subTableNameParam+'"]').html();
+		//添加新子表表单置空
+		var sub = $('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).html();
+		//alert(sub);
+        $('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).find('input,select,textarea').each(function(){
+			if($(this).attr("readonly") != 'readonly'){
+				$(this).attr("value","");
+			}
+	    });
+		subTableTemplate = $('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).html();
+		$('[id="subTableTemplate_'+subTableNameParam+'"]').eq(0).html(sub);
 		$firstDataId.val(dataIdVal);
 	    initTot();
     }
@@ -745,6 +754,19 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 				content += map[prop];
 			}
 			$("#tot").html(content+"&nbsp;");
+			var subId = name.substring(5,name.length);
+			subId = subId.replace("$","");
+			var sumrmb = changeNumMoneyToChinese(sum);
+            var rmbId = $("#" + subId).attr("name");//大写金额
+			rmbId =rmbId.substring(6,rmbId.length);
+			rmbId = rmbId.replace("$","");
+			if($("#" + subId).val() != 'undefined'){
+				$("#" + subId).val(sum);				
+			}
+            if($("#" + rmbId).val() != 'undefined'){
+				$("#" + rmbId).val(sumrmb);				
+			}
+
 		}
        
 	}
@@ -790,6 +812,154 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		}
 	
 	}
+
+	//将数字转换成大写的人民币
+
+　　function changeNumMoneyToChinese(money) {
+
+　　var cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"); //汉字的数字
+
+　　var cnIntRadice = new Array("", "拾", "佰", "仟"); //基本单位
+
+　　var cnIntUnits = new Array("", "万", "亿", "兆"); //对应整数部分扩展单位
+
+　　var cnDecUnits = new Array("角", "分", "毫", "厘"); //对应小数部分单位
+
+　　var cnInteger = "整"; //整数金额时后面跟的字符
+
+　　var cnIntLast = "元"; //整型完以后的单位
+
+　　var maxNum = 999999999999999.9999; //最大处理的数字
+
+　　var IntegerNum; //金额整数部分
+
+　　var DecimalNum; //金额小数部分
+
+　　var ChineseStr = ""; //输出的中文金额字符串
+
+　　var parts; //分离金额后用的数组，预定义
+
+　　if (money == "") {
+
+　　return "";
+
+　　}
+
+　　money = parseFloat(money);
+
+　　if (money >= maxNum) {
+
+　　alert('超出最大处理数字');
+
+　　return "";
+
+　　}
+
+　　if (money == 0) {
+
+　　ChineseStr = cnNums[0] + cnIntLast + cnInteger;
+
+　　return ChineseStr;
+
+　　}
+
+　　money = money.toString(); //转换为字符串
+
+　　if (money.indexOf(".") == -1) {
+
+　　IntegerNum = money;
+
+　　DecimalNum = '';
+
+　　} else {
+
+　　parts = money.split(".");
+
+　　IntegerNum = parts[0];
+
+　　DecimalNum = parts[1].substr(0, 4);
+
+　　}
+
+　　if (parseInt(IntegerNum, 10) > 0) { //获取整型部分转换
+
+　　var zeroCount = 0;
+
+　　var IntLen = IntegerNum.length;
+
+　　for (var i = 0; i < IntLen; i++) {
+
+　　var n = IntegerNum.substr(i, 1);
+
+　　var p = IntLen - i - 1;
+
+　　var q = p / 4;
+
+　　var m = p % 4;
+
+　　if (n == "0") {
+
+　　zeroCount++;
+
+　　} else {
+
+　　if (zeroCount > 0) {
+
+　　ChineseStr += cnNums[0];
+
+　　}
+
+　　zeroCount = 0; //归零
+
+　　ChineseStr += cnNums[parseInt(n)] + cnIntRadice[m];
+
+　　}
+
+　　if (m == 0 && zeroCount < 4) {
+
+　　ChineseStr += cnIntUnits[q];
+
+　　}
+
+　　}
+
+　　ChineseStr += cnIntLast;
+
+　　//整型部分处理完毕
+
+　　}
+
+　　if (DecimalNum != '') { //小数部分
+
+　　var decLen = DecimalNum.length;
+
+　　for (var i = 0; i < decLen; i++) {
+
+　　var n = DecimalNum.substr(i, 1);
+
+　　if (n != '0') {
+
+　　ChineseStr += cnNums[Number(n)] + cnDecUnits[i];
+
+　　}
+
+　　}
+
+　　}
+
+　　if (ChineseStr == '') {
+
+　　ChineseStr += cnNums[0] + cnIntLast + cnInteger;
+
+　　} else if (DecimalNum == '') {
+
+　　ChineseStr += cnInteger;
+
+　　}
+
+　　return ChineseStr;
+
+　　}
 </script>
 
 

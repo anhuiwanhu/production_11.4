@@ -152,7 +152,33 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										<%--批示意见 401--%>
 										<c:when test="${showtype =='401' }">
 											<x:forEach select="$fd//dataList/comment" var="ct" >
-												<x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)
+												<x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)<br/>
+												<c:set var="rfn">
+												<x:forEach select="$ct/attachments/file" var="fe" >
+													<x:out select="$fe//showName/text()"/>|
+												</x:forEach>
+												</c:set>
+												<c:set var="sfn">
+												<x:forEach select="$ct/attachments/file" var="ffe" >
+													<x:out select="$ffe//saveName/text()"/>|
+												</x:forEach>
+													</c:set>
+												<c:if test="${not empty sfn}">
+												<%
+													String realFileNames =(String)pageContext.getAttribute("rfn");
+													String saveFileNames =(String)pageContext.getAttribute("sfn");
+													String moduleName ="workflow_acc";
+													
+													realFileNames =realFileNames.substring(0,realFileNames.length() -1);
+													saveFileNames =saveFileNames.substring(0,saveFileNames.length() -1);
+													
+												%>
+												<jsp:include page="../common/include_download.jsp" flush="true">
+														<jsp:param name="realFileNames"	value="<%=realFileNames%>" />
+														<jsp:param name="saveFileNames" value="<%=saveFileNames%>" />
+														<jsp:param name="moduleName" value="<%=moduleName%>" />
+												</jsp:include>
+												</c:if>				
 											</x:forEach>
 										</c:when>
 										<c:otherwise>

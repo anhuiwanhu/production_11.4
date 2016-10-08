@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.whir.ezoffice.boardroom.po.BoardroomExecuteStatusPO" table="oa_boardroom_executestatus" schema="EZOFFICE">
+        <id name="id" column="id">
+             <generator class="native"/>
+        </id>
+
+		<property name="applyId" column="apply_id"/>
+		<property name="meetingId" column="meeting_id"/>
+		<property name="empId" column="emp_id"/>
+		<property name="empName" column="emp_name"/>
+		<property name="orgId" column="org_id"/>
+		<property name="orgName" column="org_name"/>
+		<property name="sortNum" column="sort_num"/>
+		<property name="isJoined" column="is_joined"/>
+		<property name="memos" column="memos"/>
+		<property name="attendanceStatus" column="ATTENDANCESTATUS"/>
+	</class>
+</hibernate-mapping>

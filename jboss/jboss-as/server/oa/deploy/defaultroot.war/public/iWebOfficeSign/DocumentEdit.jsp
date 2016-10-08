@@ -717,7 +717,7 @@ H  “1” 是否允许手写批注  “0” 不可以批注， “1” 可以�
  webform.WebOffice.AppendTools("105","套打",4);
 <%}%>
 //"<%=mFileType%>";   //FileType:文档类型  .doc  .xls
-<%if(b_but_formalPrint&&!mFileType.equals(".xls")&&!mFileType.equals(".xls")){%>
+<%if(b_but_formalPrint){%>
  webform.WebOffice.AppendTools("106","正式打印",5);
 <%}%>
 
@@ -1429,12 +1429,14 @@ function WebOpenPrintOfCover(){
 //作用：正式打印文档
 function WebOpenPrintOfFormal(){
   try{
+  <%if(!mFileType.equals(".xls")&&!mFileType.equals(".xlsx")){%>
 	  var SignStatus = isShowPicture('TempSign');
+      if(SignStatus){
+	    //showPicture('TempSign');
+	  }
+   <%}%>
 	//hidePicture('TempSign');
     webform.WebOffice.WebOpenPrint();
-	if(SignStatus){
-	//showPicture('TempSign');
-	}
     StatusMsg(webform.WebOffice.Status);
   }catch(e){}
 }

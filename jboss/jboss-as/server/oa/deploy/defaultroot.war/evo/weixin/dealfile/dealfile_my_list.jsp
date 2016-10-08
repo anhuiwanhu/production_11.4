@@ -184,7 +184,13 @@
     		return '/defaultroot/doc/receiveGovProcess.controller';
     	}else if(workMainLinkFile.indexOf('/defaultroot/GovReceiveFileLoadAction.do') > -1){
     		return '/defaultroot/doc/receiveGovProcess.controller';
-    	}else{
+    	}else if(workMainLinkFile.indexOf('/defaultroot/voitureApply!modi.action') > -1){
+		    return '/defaultroot/dealfile/voitureProcess.controller';
+		}else if(workMainLinkFile.indexOf("/defaultroot/outStockAction!modifyFlow.action") > -1){
+			return "/defaultroot/dealfile/getOutStockResult.controller";
+		}else if(workMainLinkFile.indexOf("/defaultroot/intoStockAction!modifyFlow.action") > -1){
+			return "/defaultroot/dealfile/getIntoStockResult.controller";
+		}else{
     		return '/defaultroot/dealfile/process.controller';
     	}
     }

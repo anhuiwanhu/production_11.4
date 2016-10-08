@@ -37,6 +37,8 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 <c:set var="worksubmittime"><x:out select="$doc//workInfo/worksubmittime/text()"/></c:set>
 <c:set var="commentmustnonull"><x:out select="$doc//workInfo/commentmustnonull/text()"/></c:set>
 <c:set var="EmpLivingPhoto"><x:out select="$doc//workInfo/empLivingPhoto/text()"/></c:set>
+<c:set var="isEzFlow"><x:out select="$doc//workInfo/isEzFlow/text()"/></c:set>
+<c:set var="processCommentAcc"><x:out select="$doc//workInfo/processCommentAcc/text()"/></c:set>
 <c:if test="${not empty EmpLivingPhoto}"><c:set var="EmpLivingPhoto">/defaultroot/upload/peopleinfo/${EmpLivingPhoto}</c:set></c:if>
 <form id="sendForm" class="dialog" action="/defaultroot/workflow/sendnew.controller" method="post">
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
@@ -301,14 +303,36 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										<input class="edit-ipt-r" id='<x:out select="$fd/sysname/text()"/>' type="text" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
 									</c:if>
 								</c:when>
-								<%--金额大写 302--%>
-								<c:when test="${showtype =='302' && readwrite =='1'}">
-									<input class="edit-ipt-r" type="text" readonly maxlength="18" id='<x:out select="$fd/sysname/text()"/>' name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' />
-								</c:when>
 								<%--批示意见 401--%>
 								<c:when test="${showtype =='401' }">
 									<x:forEach select="$fd//dataList/comment" var="ct" >
 										<x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)<br/>
+										<c:set var="rfn">
+										<x:forEach select="$ct/attachments/file" var="fe" >
+											<x:out select="$fe//showName/text()"/>|
+										</x:forEach>
+										</c:set>
+										<c:set var="sfn">
+										<x:forEach select="$ct/attachments/file" var="ffe" >
+											<x:out select="$ffe//saveName/text()"/>|
+										</x:forEach>
+											</c:set>
+										<c:if test="${not empty sfn}">
+											<%
+												String realFileNames =(String)pageContext.getAttribute("rfn");
+												String saveFileNames =(String)pageContext.getAttribute("sfn");
+												String moduleName ="workflow_acc";
+												
+												realFileNames =realFileNames.substring(0,realFileNames.length() -1);
+												saveFileNames =saveFileNames.substring(0,saveFileNames.length() -1);
+												
+											%>
+											<jsp:include page="../common/include_download.jsp" flush="true">
+													<jsp:param name="realFileNames"	value="<%=realFileNames%>" />
+													<jsp:param name="saveFileNames" value="<%=saveFileNames%>" />
+													<jsp:param name="moduleName" value="<%=moduleName%>" />
+											</jsp:include>
+										</c:if>
 									</x:forEach>
 									<c:if test="${readwrite =='1' }">
 										<textarea class="edit-txta edit-txta-l" placeholder="请输入" name="comment_input" id="comment_input" maxlength="50"></textarea>
@@ -324,7 +348,12 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 												     </x:forEach>
 												</select>
 											</a>
-										</div>
+										</div>		
+										<c:if test="${isEzFlow !='1' || processCommentAcc == 'true' }">
+											<ul class="edit-upload">
+												<li class="edit-upload-in" onclick="addImg('commentacc');"><span><i class="fa fa-plus"></i></span></li>
+											</ul>
+										</c:if>
 									</c:if>
 								</c:when>
 								<%--单选人 本组织 704--%>
@@ -341,6 +370,39 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								<%--流程发起人 708--%>
 								<c:when test="${showtype =='708' && readwrite =='1'}">
 									<x:out select="$fd/value/text()"/><input id='<x:out select="$fd/sysname/text()"/>' type="hidden" name='_main_<x:out select="$fd/sysname/text()"/>'  value='<x:out select="$fd/value/text()"/>' />
+								</c:when>
+								<%--合计字段 606--%>            
+									<c:when test="${showtype =='606'}">
+									    <c:set var="expressionval"><x:out select="$fd/expressionval/text()"/></c:set>
+										<%
+										String exp =(String)pageContext.getAttribute("expressionval");
+										String[] newexpArr = exp.split("\\.");
+										String  newxp = newexpArr[2];
+										String nexp = (String)newxp.substring(0,newxp.length()-1);
+										nexp = nexp.replace("$","");
+                                        pageContext.setAttribute("expressionval",nexp);
+										%>
+										<c:if test="${readwrite == '1'}">
+											<input class="edit-ipt-r" placeholder="请输入" id="${expressionval}" type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>'/>
+										</c:if>
+										<c:if test="${readwrite != '1'}">
+											<input class="edit-ipt-r" placeholder="请输入" id="${expressionval}" type="text" maxlength="9" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' readonly="readonly"/>
+										</c:if>
+									</c:when>
+								<%--大写字段 302--%>
+								<c:when test="${showtype =='302'}">
+									<c:set var="expressionval"><x:out select="$fd/expressionval/text()"/></c:set>
+									<%
+									String exp =(String)pageContext.getAttribute("expressionval");
+									String nexp = exp.replace("$","");
+									pageContext.setAttribute("expressionval",nexp);
+									%>
+									<c:if test="${readwrite == '1'}">
+										<input class="edit-ipt-r" placeholder="请输入" id="${expressionval}" type="text" maxlength="18" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>'/>	
+									</c:if>
+									<c:if test="${readwrite != '1'}">
+										<input class="edit-ipt-r" placeholder="请输入" id="${expressionval}" type="text" maxlength="18" name='_main_<x:out select="$fd/sysname/text()"/>' value='<x:out select="$fd/value/text()"/>' readonly="readonly"/>	
+									</c:if>
 								</c:when>
 								<%--日期时间计算 808--%>
 								<c:when test="${showtype =='808' && readwrite =='1'}">
@@ -400,6 +462,11 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										</select>
 									</a>
 								</div>
+								<c:if test="${isEzFlow !='1' || processCommentAcc == 'true' }">
+									<ul class="edit-upload">
+										<li class="edit-upload-in" onclick="addImg('commentacc');"><span><i class="fa fa-plus"></i></span></li>
+									</ul>
+								</c:if>
 		                    </td>
 						</tr>
 						</c:if>
@@ -408,17 +475,46 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 							<c:set var="commentContent"><x:out select="$ct//content/text()"/></c:set>
 							<tr>
 								<th><x:out select="$ct//step/text()"/>：</th>
-								<td><x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)</td>
+								<td><x:out select="$ct//content/text()"/>&nbsp;&nbsp;<x:out select="$ct//person/text()"/>(<x:out select="$ct//date/text()"/>)<br/>
+								<c:set var="rfn">
+								<x:forEach select="$ct/attachments/file" var="fe" >
+									<x:out select="$fe//showName/text()"/>|
+								</x:forEach>
+								</c:set>
+								<c:set var="sfn">
+								<x:forEach select="$ct/attachments/file" var="ffe" >
+									<x:out select="$ffe//saveName/text()"/>|
+								</x:forEach>
+									</c:set>
+								<c:if test="${not empty sfn}">
+								<%
+									String realFileNames =(String)pageContext.getAttribute("rfn");
+									String saveFileNames =(String)pageContext.getAttribute("sfn");
+									String moduleName ="workflow_acc";
+									
+									realFileNames =realFileNames.substring(0,realFileNames.length() -1);
+									saveFileNames =saveFileNames.substring(0,saveFileNames.length() -1);
+									
+								%>
+								<jsp:include page="../common/include_download.jsp" flush="true">
+										<jsp:param name="realFileNames"	value="<%=realFileNames%>" />
+										<jsp:param name="saveFileNames" value="<%=saveFileNames%>" />
+										<jsp:param name="moduleName" value="<%=moduleName%>" />
+								</jsp:include>
+								</c:if>						
+								</td>
 							</tr>
 						</x:forEach>
 						<!--批示意见end-->
 						<!--退回意见begin-->
-						<c:set var="backcomment" ><x:out select="$doc2//backComment/text()"/></c:set>
-						<c:if test="${not empty backcomment}">
-							<tr>
-								<th>退回意见：</th>
-								<td>${backcomment}</td>
-							</tr>
+						<c:set var="dealTipsContent" ><x:out select="$doc//dealTipsContent/text()" escapeXml="false" /></c:set>
+						<c:if test="${not empty dealTipsContent}">
+							<c:if test="${fn:indexOf(dealTipsContent,'加签提示') == -1}">
+								<tr>
+									<th>退回意见：</th>
+									<td id="dealTipsContent">${dealTipsContent}</td>
+								</tr>
+							</c:if>
 						</c:if>
 						<!--退回意见end-->
             		</table>
@@ -615,7 +711,6 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 		$('.active').mouseup(function(){
 			$(this).css('background','');
 		})
-
 	})
 
     $(function(){
@@ -853,20 +948,34 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
    
     //添加图片
     function addImg(name){
-	   $(".edit-upload-in").before(       
-		   '<li class="edit-upload-ed" id="imgli_'+index+'" style="display:none">'+
-		       '<span>'+
-		       	   '<img src="" id="imgShow_'+index+'"/>'+
-			       '<em>'+
-			       	 '<i onclick="removeImg('+index+');" class="fa fa-minus-circle"></i>'+
-			       '</em>'+
-		       '</span>'+
-		       '<input type="file" id="up_img_'+index+'" style="display:none" name="imgFile"/>'+
-		       '<input type="hidden" id="img_name_'+index+'" name="_mainfile_'+name+'"/>'+
-       	   '</li>');
+	   if(name != 'commentacc'){
+		   $(".edit-upload-in").before(       
+			   '<li class="edit-upload-ed" id="imgli_'+index+'" style="display:none">'+
+				   '<span>'+
+					   '<img src="" id="imgShow_'+index+'"/>'+
+					   '<em>'+
+						 '<i onclick="removeImg('+index+');" class="fa fa-minus-circle"></i>'+
+					   '</em>'+
+				   '</span>'+
+				   '<input type="file" id="up_img_'+index+'" style="display:none" name="imgFile"/>'+		        
+				   '<input type="hidden" id="img_name_'+index+'" name="_mainfile_'+name+'"/>'+				
+			   '</li>');
+	   }else{
+	     $(".edit-upload-in").before(       
+			   '<li class="edit-upload-ed" id="imgli_'+index+'" style="display:none">'+
+				   '<span>'+
+					   '<img src="" id="imgShow_'+index+'"/>'+
+					   '<em>'+
+						 '<i onclick="removeImg('+index+');" class="fa fa-minus-circle"></i>'+
+					   '</em>'+
+				   '</span>'+
+				   '<input type="file" id="up_img_'+index+'" style="display:none" name="imgFile"/>'+		        
+				   '<input type="hidden" id="img_name_'+index+'" name="'+name+'"/>'+				
+			   '</li>');
+	   }
 	   var img_li_id = "imgli_"+index;
 	   var up_img_id = "up_img_"+index;
-	   new uploadPreview({ UpBtn: up_img_id, DivShow: img_li_id, ImgShow: "imgShow_"+index, callback : function(){callBackFun(up_img_id,img_li_id)} });
+	   new uploadPreview({ UpBtn: up_img_id, DivShow: img_li_id, ImgShow: "imgShow_"+index, callback : function(){callBackFun(up_img_id,img_li_id,name)} });
 	   $("#up_img_"+index).click();
 	   index++;
     }
@@ -878,11 +987,15 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
     }
 	
 	//回调函数上传图片
-	function callBackFun(upImgId,imgliId){
+	function callBackFun(upImgId,imgliId,name){
 		var loadingDialog = openTipsDialog('正在上传...');
 		var fileShowName = $("#"+upImgId).val();
+		var module = 'customform';
+		if(name == 'commentacc'){
+		    module = 'workflow_acc';
+		}
 		$.ajaxFileUpload({
-			url: '/defaultroot/upload/fileUpload.controller?modelName=customform', //用于文件上传的服务器端请求地址
+			url: '/defaultroot/upload/fileUpload.controller?modelName='+module, //用于文件上传的服务器端请求地址
 			secureuri:false,
 			fileElementId: upImgId, //文件上传域的ID
 			dataType: 'json', //返回值类型 一般设置为json

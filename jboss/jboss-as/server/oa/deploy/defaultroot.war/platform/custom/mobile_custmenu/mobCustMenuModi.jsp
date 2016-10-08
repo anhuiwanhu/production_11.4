@@ -70,7 +70,7 @@
                 <input type="hidden" id="mobileMenuScopeIds" name="mobileMenuScopeIds" value="<%=po.getMobileMenuScopeIds()==null||"null".equals(po.getMobileMenuScopeIds())?"":po.getMobileMenuScopeIds()%>"/>
                 <textarea class="inputTextarea" style="width:444px;" id="mobileMenuScope" name="mobileMenuScope" readonly="readonly"><%=po.getMobileMenuScope()==null||"null".equals(po.getMobileMenuScope())?"":po.getMobileMenuScope()%></textarea>
                 <a href="javascript:void(0);" class="selectIco textareaIco"  onClick="openSelect({allowId:'mobileMenuScopeIds', allowName:'mobileMenuScope', select:'userorggroup', single:'no', show:'userorggroup', range:'*0*',limited:'1'});"></a>  
-                <div><span class="MustFillColor">“使用范围”为空时默认所有用户。</span></div>
+                <div><span class="MustFillColor">“适用范围”为空时默认所有用户。</span></div>
 				</td>  
             </tr> 
             <tr>  

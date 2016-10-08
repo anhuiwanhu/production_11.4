@@ -346,14 +346,16 @@ function synAll(){
 			}
 	 	jsonstr=jsonstr.substring(0,jsonstr.length-1);
 	 	json = json+jsonstr+']}';
+		var datastr = {"json":json};
   whir_confirm("确定同步设置？ ", function savecorpappset(){
 	 	$.dialog.tips("正在同步"+'....',1000,'loading.gif',function(){},true); 
 		 $.ajax({
-					url: "/defaultroot/MoveOAmanager!savecorpsetapp.action?json="+json,
+					url: "/defaultroot/MoveOAmanager!savecorpsetapp.action",
 					cache: false,
 					async: true,
 					success: function(dataForm) {
-					
+					data:datastr,
+					type:"POST",
 						var data = eval('('+dataForm+')');
 						var res = data.result;
 						if(data.result=="true"){
@@ -415,7 +417,7 @@ var corpsetappname_table = $('#corpsetappname_table tr').length;
  		
  	}
 
-	openWin({url:'MoveOAmanager!selectAPP.action?id='+id+'&appid='+appid,winName:'selectAPP',height:280,width:600});
+	openWin({url:'MoveOAmanager!selectAPP.action?id='+id+'&appid='+appid,winName:'selectAPP',height:280,width:800});
 	//popup({content: "url:"+whirRootPath+"/workaddress!workAddress_list_select.action",width:800,height:500,title:"閫夋嫨鍔炲叕鍦扮偣"});
 }
 

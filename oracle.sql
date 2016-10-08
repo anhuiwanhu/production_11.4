@@ -308,3 +308,24 @@ delete from  ez_secu_pagelist  where    list_type=3  and   secu_url='/officeserv
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.15_SP_20160529','11.4.0.15',sysdate);
 commit;
+
+
+
+
+
+alter table GJ_STOCK ADD tongBu varchar(20)  default '00';
+commit;
+ALTER  TABLE  OA_BOARDROOMAPPLY  ADD  MEETINGATTENDANCE  NUMBER(2);
+COMMIT;
+ALTER  TABLE  OA_BOARDROOMAPPLY  ADD  ATTENDANCETYPE  NUMBER(2);
+COMMIT;
+ALTER  TABLE  OA_BOARDROOMAPPLY  ADD  QRCODE  VARCHAR2(200);
+COMMIT;
+ALTER  TABLE  OA_BOARDROOM_EXECUTESTATUS  ADD  ATTENDANCESTATUS  NUMBER(2);
+COMMIT;
+alter table oa_boardroom_meetingtime add  createdate varchar2(20);
+comment on column oa_boardroom_meetingtime.createdate
+  is '送达时间';
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.16_SP_20160606','11.4.0.16',sysdate);
+commit;

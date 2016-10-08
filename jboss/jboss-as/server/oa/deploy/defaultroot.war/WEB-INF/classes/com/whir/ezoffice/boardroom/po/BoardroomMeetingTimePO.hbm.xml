@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.whir.ezoffice.boardroom.po.BoardroomMeetingTimePO" table="OA_BOARDROOM_MEETINGTIME" schema="EZOFFICE">
+        <id name="id" column="id">
+             <generator class="native"/>
+        </id>
+
+        <many-to-one name="apply" class="com.whir.ezoffice.boardroom.po.BoardRoomApplyPO" not-null="true">
+			<column name="APPLYID"/>
+		</many-to-one>
+
+		<property name="meetingDate" column="MEETINGTIME"/>
+		<property name="startTime" column="STARTTIME"/>
+		<property name="endTime" column="ENDTIME"/>
+		<property name="sortNum" column="SORTNUM"/>
+		<property name="status" column="STATUS"/>
+		<property name="descriptions" column="descriptions"/>
+		<property name="type" column="type"/>
+		<property name="createDate" column="CREATEDATE"/>
+		<property name="eventId" column="eventId"/>
+	</class>
+</hibernate-mapping>

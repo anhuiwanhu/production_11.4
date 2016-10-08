@@ -381,3 +381,37 @@
 8、清服务端缓存，启动OA服务
 
 9、验证系统功能
+
+
+
+
+
+1、停OA服务
+
+2、备份生产环境程序、数据库
+
+3、覆盖产品补丁包到OA安装目录d:\jboss
+
+4、修改配置文件..\oa\deploy\defaultroot.war\classes\ServiceParse.xml
+在"c22"标签中添加以下内容（不要重复）：
+	<method>bpm_getTranReadInfo</method>
+	<method>bpm_tranRead</method>
+
+增加如下标签c33（不要重复）：
+<service id="c33">
+	 <class>com.whir.service.parse.ResourceParse</class>
+	 <methods>
+	    <method>getIntoStockResult</method>
+            <method>getOutStockResult</method>            
+	 </methods>
+</service>  
+
+5、把文件夹..\oa\deploy\defaultroot\WEB-INF\lib\com拖入文件whir_common.jar(不要解压）
+
+6、删除文件夹..\oa\deploy\defaultroot.war\WEB-INF\classes\com\whir\component\config(如果存在就删除)
+
+7、执行数据库升级脚本（分oralce、sqlserver两种类型库）
+
+8、清服务端缓存，启动OA服务
+
+9、验证系统功能

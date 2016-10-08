@@ -211,7 +211,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 						<!--批示意见end-->
 	
 						<!--退回意见begin-->
-						<c:set var="backcomment" ><x:out select="$doc2//backComment/text()"/></c:set>
+						<c:set var="backcomment" ><x:out select="$doc//backComment/text()" escapeXml="false" /></c:set>
 						<c:if test="${not empty backcomment}">
 							<tr>
 								<th>退回意见：</th>

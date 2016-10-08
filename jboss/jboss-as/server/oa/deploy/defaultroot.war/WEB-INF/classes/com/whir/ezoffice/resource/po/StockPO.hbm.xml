@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.whir.ezoffice.resource.po.StockPO"
+        table="GJ_STOCK"
+        schema="EZOFFICE">
+        <id name="id" column="STOCK_ID">
+            <generator class="native" />
+        </id>
+        <property name="stockName" column="STOCK_NAME" />
+        <property name="stockDesci" column="STOCK_DESCI" />
+        <property name="stockPut" column="STOCK_PUT" />
+        <property name="remark" column="REMARK" />
+        <property name="createdEmp" column="CREATEDEMP" />
+        <property name="createdOrg" column="CREATEDORG" />
+	<property name="stockPutName" column="STOCK_PUTNAME" />
+        <property name="stockApplyExtension" column="STOCK_APPLY_EXTENSION" />
+        <property name="stockApplyExtensionId" column="STOCK_APPLY_EXTENSION_ID" />
+        <property name="chukuShenhe" column="CHUKUSHENHE"/>
+		<property name="domainid" column="DOMAIN_ID"/>
+		<property name="tongBu" column="tongBu"/>
+		
+	<property name="isKucun" column="ISKUCUN"/>
+        <set
+            name="goodsType"
+            table="GJ_STOCK_GOODSTYPE"
+            lazy="false"
+            inverse="false"
+            cascade="all"
+            sort="unsorted"
+        >
+          <key
+                  column="STOCK_ID"
+         />
+
+              <many-to-many
+                  class="com.whir.ezoffice.resource.po.GoodsTypePO"
+                  column="GOODSTYPE_ID"
+                  outer-join="auto"
+              />
+        </set>
+
+
+        <!--many-to-one name="goodsType"
+            class="com.whir.ezoffice.resource.po.GoodsTypePO"
+            cascade="save-update"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="GOODSTYPE_ID" />-->
+        <set name="drawDept"
+            schema="EZOFFICE"
+            table="GJ_DRAWDEPT"
+            lazy="true"
+            inverse="true"
+            cascade="save-update"
+            sort="unsorted">
+            <key column="STOCK_ID" />
+            <one-to-many class="com.whir.ezoffice.resource.po.DrawDeptPO" />
+        </set>
+        <set name="stockProcess"
+			schema="EZOFFICE"
+            table="WF_WORKFLOWSTOCK"
+            lazy="true"
+            inverse="true"
+            cascade="none"
+            sort="unsorted">
+            <key column="STOCKID" />
+            <one-to-many class="com.whir.ezoffice.resource.po.WorkFlowStockPO" />
+        </set>
+    </class>
+</hibernate-mapping>

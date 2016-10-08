@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.whir.ezoffice.boardroom.po.BoardRoomApplyPO" table="OA_BOARDROOMAPPLY" schema="EZOFFICE">
+        <id name="boardroomApplyId" column="BOARDROOMAPPLYID">
+             <generator class="native"/>
+        </id>
+        <property name="motif" column="MOTIF" type="java.lang.String"/>
+		<property name="emcee" column="EMCEE" type="java.lang.String"/>
+		<property name="emceeName" column="EMCEENAME" type="java.lang.String"/>
+		<property name="agenda" column="AGENDA" type="java.lang.String"/>
+		<property name="attendee" column="ATTENDEE" type="java.lang.String"/>
+		<property name="attendeeEmpId" column="ATTENDEEEMPID" type="java.lang.String"/>
+		<property name="startTime" column="STARTTIME" type="java.lang.String"/>
+		<property name="endTime" column="ENDTIME" type="java.lang.String"/>
+		<property name="destineDate" column="DESTINEDATE" type="timestamp"/>
+		<property name="applyEmp" column="APPLYEMP" type="java.lang.Long"/>
+		<property name="applyEmpName" column="APPLYEMPNAME" type="java.lang.String"/>
+		<property name="applyOrg" column="APPLYORG" type="java.lang.Long"/>
+		<property name="applyOrgName" column="APPLYORGNAME" type="java.lang.String"/>
+		<property name="status" column="STATUS" type="java.lang.Integer"/>
+		<property name="msg" column="MSG" type="java.lang.Integer"/>
+		<property name="depict" column="DEPICT" type="java.lang.String"/>
+
+		<property name="attendeeLeader" column="ATTENDEELEADER" type="java.lang.String"/>
+		<property name="attendeeLeaderId" column="ATTENDEELEADERID" type="java.lang.String"/>
+		<property name="nonvoting" column="NONVOTING" type="java.lang.String"/>
+		<property name="nonvotingEmpId" column="NONVOTINGEMPID" type="java.lang.String"/>
+		<property name="notePerson" column="NOTEPERSON" type="java.lang.String"/>
+		<property name="notePersonName" column="NOTEPERSONNAME" type="java.lang.String"/>
+
+		<property name="fileNumber" column="FILENUMBER" type="java.lang.String"/>
+		<property name="senderName" column="SENDERNAME" type="java.lang.String"/>
+		<property name="controlNumber" column="CONTROLNUMBER" type="java.lang.Long"/>
+		<property name="doorNumber" column="DOORNUMBER" type="java.lang.Long"/>
+		<property name="domainId" column="DOMAIN_ID"/>
+		<property name="boardEquipment" column="BOARDEQUIPMENT"/>
+
+		<property name="seatcard" column="SEATCARD"/>
+		<property name="remark" column="REMARK"/>
+        <property name="linkTelephone" column="LINKTELEPHONE"/>
+		<property name="points" column="POINTS"/>
+        <property name="applyDate" column="APPLYDATE"/>
+		<property name="personNum" column="personnum"/>
+		<property name="boardroomCode" column="boardroomcode"/>
+		<property name="addr" column="addr"/>
+		<property name="otherAttendeePerson" column="otherAttendeePerson"/>
+
+		<property name="swPerson" column="swperson"/>
+		<property name="swPersonId" column="swpersonid"/>
+		<property name="eventId" column="eventId" type="java.lang.String"/>
+		<property name="attachments" column="attachments" />
+		<property name="isNewOrOld" column="ISNEWOROLD" />
+		<property name="isNotRemind" column="ISNOTREMIND" />
+		
+		<property name="meetingAttendance" column="MEETINGATTENDANCE" />
+		<property name="attendancetype" column="ATTENDANCETYPE" />
+		<property name="qrCode" column="QRCODE" />
+		
+		<many-to-one name="boardroom" class="com.whir.ezoffice.boardroom.po.BoardRoomPO" not-null="true">
+			<column name="BOARDROOMID"/>
+		</many-to-one>
+
+		<many-to-one name="bdroomAppType" class="com.whir.ezoffice.boardroom.po.BoardRoomApplyTypePO" not-null="true">
+			<column name="BDROOMAPPTYPEID"/>
+		</many-to-one>
+
+        <set name="bdRoomAppAccessory"
+                table="OA_BDROOMAPPACCESSORY"
+   			lazy="true"
+            inverse="false"
+            cascade="none"
+    		sort="unsorted">
+    		<key column="BOARDROOMAPPLYID"/>
+    		<one-to-many class="com.whir.ezoffice.boardroom.po.BdroomAppAccessoryPO"/>
+		</set>
+
+		<set name="meetingTime"
+                table="OA_BOARDROOM_MEETINGTIME"
+   			lazy="true"
+            inverse="false"
+            cascade="all"
+    		sort="unsorted"
+			order-by="SORTNUM asc">
+    		<key column="APPLYID"/>
+    		<one-to-many class="com.whir.ezoffice.boardroom.po.BoardroomMeetingTimePO"/>
+		</set>
+
+		<set name="persons"
+                table="OA_BOARDROOM_PERSONS"
+   			lazy="true"
+            inverse="false"
+            cascade="all"
+    		sort="unsorted"
+			where="STATUS != '100000'"
+			order-by="id desc">
+    		<key column="APPLYID"/>
+    		<one-to-many class="com.whir.ezoffice.boardroom.po.BoardroomPersons"/>
+		</set>
+
+	</class>
+</hibernate-mapping>
