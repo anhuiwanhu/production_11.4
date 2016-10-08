@@ -93,35 +93,38 @@
             </div>
              <div class="evo-app-icon evo-fileup-div clearfix">             
                 <label>图标：</label>
-                <ul>114*114</ul>
-                <ul style="color:#AAAAAA;">对应安卓分辨率1080X1920</ul>               
-                <ul>                  
-                    <input type="hidden" name="Img4showName" id="Img4showName" style="width:800px;" value="<%=po.getImg4showName()==null?"":po.getImg4showName()%>"/>   
-					<input type="hidden" name="Img4saveName" id="Img4saveName" style="width:800px;" value="<%=po.getImg4saveName()==null?"":po.getImg4saveName()%>"/> 
-                       <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true"> 
-                       <jsp:param name="makeYMdir"  value="no" />                    					     
-					   <jsp:param name="dir"      value="mobileevoImg" />
-					   <jsp:param name="uniqueId"    value="formId4"/>
-					   <jsp:param name="realFileNameInputId"    value="Img4showName" />
-					   <jsp:param name="saveFileNameInputId"    value="Img4saveName" />
-					   <jsp:param name="canModify"   value="yes" />
-					   <jsp:param name="width"        value="70" />
-					   <jsp:param name="height"       value="10" /> 
-				       <jsp:param name="multi"        value="false" />
-				       <jsp:param name="buttonClass" value="upload_btn" />
-				       <jsp:param name="buttonText"       value="上传" />
-					   <jsp:param name="fileSizeLimit"        value="10KB" />
-					   <jsp:param name="fileTypeExts"		 value="*.png" />
-					   <jsp:param name="uploadLimit"      value="1" />
-			           </jsp:include>
-                          
-                </ul>
+                <div style="margin-left:90px;">
+                	
+	                <p>114*114</p>
+	                <p style="color:#AAAAAA;">对应安卓分辨率1080X1920</p>               
+	                <div style="padding-bottom:0">
+	                    <input type="hidden" name="Img4showName" id="Img4showName" style="width:800px;" value="<%=po.getImg4showName()==null?"":po.getImg4showName()%>"/>   
+						<input type="hidden" name="Img4saveName" id="Img4saveName" style="width:800px;" value="<%=po.getImg4saveName()==null?"":po.getImg4saveName()%>"/> 
+	                       <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true"> 
+	                       <jsp:param name="makeYMdir"  value="no" />                    					     
+						   <jsp:param name="dir"      value="mobileevoImg" />
+						   <jsp:param name="uniqueId"    value="formId4"/>
+						   <jsp:param name="realFileNameInputId"    value="Img4showName" />
+						   <jsp:param name="saveFileNameInputId"    value="Img4saveName" />
+						   <jsp:param name="canModify"   value="yes" />
+						   <jsp:param name="width"        value="70" />
+						   <jsp:param name="height"       value="10" /> 
+					       <jsp:param name="multi"        value="false" />
+					       <jsp:param name="buttonClass" value="upload_btn" />
+					       <jsp:param name="buttonText"       value="上传" />
+						   <jsp:param name="fileSizeLimit"        value="10KB" />
+						   <jsp:param name="fileTypeExts"		 value="*.png" />
+						   <jsp:param name="uploadLimit"      value="1" />
+				           </jsp:include>
+	                </div>
+                </div>
                 </div>
                 <div class="evo-app-icon evo-fileup-div clearfix">
                 <label></label>
-                <ul>57*57</ul>
-                <ul style="color:#AAAAAA;">对应安卓分辨率720X1280</ul>               
-                <ul>                  
+                <div style="margin-left:90px;">
+                <p>57*57</p>
+                <p style="color:#AAAAAA;">对应安卓分辨率720X1280</p>               
+                <div style="padding-bottom:0">                 
                     <input type="hidden" name="Img2showName" id="Img2showName" style="width:800px;" value="<%=po.getImg2showName()==null?"":po.getImg2showName()%>"/>   
 					<input type="hidden" name="Img2saveName" id="Img2saveName" style="width:800px;" value="<%=po.getImg2saveName()==null?"":po.getImg2saveName()%>"/> 
                        <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true">
@@ -140,14 +143,15 @@
 					   <jsp:param name="fileTypeExts"		 value="*.png" />
 					   <jsp:param name="uploadLimit"      value="1" />
 			           </jsp:include>
-                          
-                </ul>
+                    </div>       
+                </div>
             </div>  
            <div class="evo-app-icon evo-fileup-div clearfix">
-                <label></label>               
-                <ul>44*44</ul>
-                <ul style="color:#AAAAAA;">对应安卓分辨率480X854</ul>
-                <ul>                  
+                <label></label> 
+                <div style="margin-left:90px;">              
+                <p>44*44</p>
+                <p style="color:#AAAAAA;">对应安卓分辨率480X854</p>
+                 <div style="padding-bottom:0">                  
                     <input type="hidden" name="Img1showName" id="Img1showName" style="width:800px;" value="<%=po.getImg1showName()==null?"":po.getImg1showName()%>"/>   
 					<input type="hidden" name="Img1saveName" id="Img1saveName" style="width:800px;" value="<%=po.getImg1saveName()==null?"":po.getImg1saveName()%>"/> 
                        <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true"> 
@@ -166,15 +170,16 @@
 					   <jsp:param name="fileTypeExts"		 value="*.png" />
 					   <jsp:param name="uploadLimit"      value="1" />
 			           </jsp:include>
-                          
-                </ul>
+                    </div>      
+                </div>
                </div> 
                
             <div class="evo-app-icon evo-fileup-div clearfix">
                 <label></label>
-                <ul>96*96</ul>
-                <ul style="color:#AAAAAA;">对应苹果分辨率750X1334</ul>
-                <ul>                  
+                <div style="margin-left:90px;">
+                <p>96*96</p>
+                <p style="color:#AAAAAA;">对应苹果分辨率750X1334</p>
+                 <div style="padding-bottom:0">                 
                     <input type="hidden" name="Img3showName" id="Img3showName" style="width:800px;" value="<%=po.getImg3showName()==null?"":po.getImg3showName()%>"/>   
 					<input type="hidden" name="Img3saveName" id="Img3saveName" style="width:800px;" value="<%=po.getImg3saveName()==null?"":po.getImg3saveName()%>"/> 
                        <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true">
@@ -193,16 +198,16 @@
 					   <jsp:param name="fileTypeExts"		 value="*.png" />
 					   <jsp:param name="uploadLimit"      value="1" />
 			           </jsp:include>
-                          
-                </ul>
+                    </div>        
+                 </div> 
             </div>         
-           
-              
+                        
             <div class="evo-app-icon evo-fileup-div clearfix">
                 <label></label>
-                <ul>144*144</ul>
-                <ul style="color:#AAAAAA;">对应苹果分辨率1242X2208</ul>                 
-                <ul>                  
+                <div style="margin-left:90px;">
+                <p>144*144</p>
+                <p style="color:#AAAAAA;">对应苹果分辨率1242X2208</p>                 
+                 <div style="padding-bottom:0">                
                     <input type="hidden" name="Img5showName" id="Img5showName" style="width:800px;" value="<%=po.getImg5showName()==null?"":po.getImg5showName()%>"/>   
 					<input type="hidden" name="Img5saveName" id="Img5saveName" style="width:800px;" value="<%=po.getImg5saveName()==null?"":po.getImg5saveName()%>"/> 
                        <jsp:include page="/public/upload/uploadify/upload_include.jsp" flush="true">
@@ -222,9 +227,9 @@
 					   <jsp:param name="uploadLimit"      value="1" />
 			           </jsp:include>
                           
-                </ul>
                 </div>
-                                 
+                </div>
+               </div>                  
             </div>
             <div class="app-edit-btn"> 
                    <!-- <input type="button" class="btnButton4font" onclick="ok(0,this)" value='保存退出' name="option"/> --> 

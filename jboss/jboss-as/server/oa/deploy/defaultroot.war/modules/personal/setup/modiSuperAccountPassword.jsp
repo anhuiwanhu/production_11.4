@@ -154,6 +154,7 @@ function savePassword(form){
 	var isChangePwd_sys  = '<%=isChangePwd_sys%>';
 	var isChangePwd_security = '<%=isChangePwd_security%>';
 	var isChangePwd_webservice = '<%=isChangePwd_webservice%>';
+	
 	var adminPassword="";
 	var sysPassword="";
 	var securityPassword="";
@@ -163,7 +164,8 @@ function savePassword(form){
     var reNums = /[0-9]+/i;
     var reSpecialChars = /[\!\@\#\$\%|^\&\*\(\)\+\|\\|?\/\>\<\.\,\~]+/i;//验证是否包含了特殊字符
    // alert(isChangePwd_admin+isChangePwd_sys+isChangePwd_security+isChangePwd_webservice);
-	if(isChangePwd_admin!=1){
+    var datastr={};
+	if(isChangePwd_admin==0){
 		 adminPassword = $.trim($('#adminPassword').val());
 		 if(adminPassword.length<6){
 		 	err=err+"位数不够    ";
@@ -182,8 +184,9 @@ function savePassword(form){
          	 $('#adminPassword').focus();
          	 return false;
 		 }
+		 datastr["adminPassword"] = adminPassword; 
 	}
-	if(isChangePwd_sys!=1){
+	if(isChangePwd_sys==0){
 		 sysPassword = $.trim($('#sysPassword').val());
 		  if(sysPassword.length<6){
 		 	err=err+"位数不够    ";
@@ -202,8 +205,9 @@ function savePassword(form){
          	 $('#sysPassword').focus();
          	 return false;
 		 }
+		 datastr["sysPassword"] = sysPassword;
 	}
-	if(isChangePwd_security!=1){
+	if(isChangePwd_security==0){
 		 securityPassword = $.trim($('#securityPassword').val());
 		  if(securityPassword.length<6){
 		 	err=err+"位数不够    ";
@@ -222,8 +226,9 @@ function savePassword(form){
          	 $('#securityPassword').focus();
          	 return false;
 		 }
+		 datastr["securityPassword"] = securityPassword;
 	}
-	if(isChangePwd_webservice!=1){
+	if(isChangePwd_webservice==0){
 		 webservicePassword = $.trim($('#webservicePassword').val());
 		   if(webservicePassword.length<6){
 		 	err=err+"位数不够    ";
@@ -242,8 +247,10 @@ function savePassword(form){
          	 $('#webservicePassword').focus();
          	 return false;
 		 }
+		 datastr["webservicePassword"] = webservicePassword;
 	}
-	var datastr={"adminPassword":adminPassword,"sysPassword":sysPassword,"securityPassword":securityPassword,"webservicePassword":webservicePassword};
+	//var datastr={"adminPassword":adminPassword,"sysPassword":sysPassword,"securityPassword":securityPassword,"webservicePassword":webservicePassword};
+	
 	$.ajax({
 			url: "/defaultroot/MyInfoAction!updateSuperUserPassword.action",
 			cache: false,
