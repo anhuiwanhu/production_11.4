@@ -105,7 +105,7 @@ if(request.getAttribute("javax.servlet.forward.query_string")!=null)
       nonceStr: '<%=ret_weixin.get("nonceStr")%>',
       signature: '<%=ret_weixin.get("signature")%>',
       jsApiList: [
-        'hideMenuItems','closeWindow','getNetworkType','openEnterpriseChat','openLocation','getLocation'
+        'hideMenuItems','closeWindow','getNetworkType','openEnterpriseChat','openLocation','getLocation','scanQRCode'
       ]
 	});
 	

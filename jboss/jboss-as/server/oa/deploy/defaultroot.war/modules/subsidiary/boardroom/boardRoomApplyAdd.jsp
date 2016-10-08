@@ -653,6 +653,13 @@ function searchBoardroom(){
 	  $('#boardroomId').combobox('clear');
 
       $('#boardroomId').combobox('reload', url);
+
+	$('#boardroomId').combobox({
+		onLoadSuccess : function(){
+			changeBoardRoom(p_wf_pool_processId);
+		}
+	});
+	 //changeBoardRoom(p_wf_pool_processId);
 }
 function initPara() {
     var formId = $("#dataForm").attr("id");

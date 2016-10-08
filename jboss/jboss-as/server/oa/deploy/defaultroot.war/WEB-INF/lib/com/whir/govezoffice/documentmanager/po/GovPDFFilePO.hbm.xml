@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+	<class name="com.whir.govezoffice.documentmanager.po.GovPDFFilePO" schema="EZOFFICE" table="GOV_PDFFILENAME">
+
+		<id column="pdfid" name="pdfid" type="java.lang.Long">
+			<generator class="native"/>
+		</id>
+		<property name="workid" column="workid" type="long"/>
+		<property name="recordid" column="recordid" type="long"/>
+		<property name="pdfpzr" column="pdfpzr" />
+		<property name="pdfpzsj" column="pdfpzsj"/>
+		<property name="pdfpzhj" column="pdfpzhj"/>
+		<property name="pdfzhxgsj" column="pdfzhxgsj"/>
+		<property name="pdfrealname" column="pdfrealname"/>
+        <property name="pdfsavename" column="pdfsavename"/>
+        <property name="pdfgwlx" column="pdfgwlx"/>
+        <property name="pdfsfpz" column="pdfsfpz"/>
+        <property name="pdfwjjmc" column="pdfwjjmc"/>
+	</class>
+</hibernate-mapping>

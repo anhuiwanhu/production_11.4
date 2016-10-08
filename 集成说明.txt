@@ -444,3 +444,43 @@
 7、清服务端缓存，启动OA服务
 
 8、验证系统功能
+
+
+
+
+
+1、停OA服务
+
+2、备份生产环境程序、数据库
+
+3、覆盖产品补丁包到OA安装目录d:\jboss
+
+4、修改配置文件..\oa\deploy\defaultroot.war\classes\ServiceParse.xml
+在"c11"标签中添加以下内容（不要重复）：
+	<method>updatepdfjl</method>
+
+在"c20"标签中添加以下内容（不要重复）：
+	<method>addLookUser</method>
+
+5、修改配置文件..\oa\deploy\defaultroot.war\WEB-INF\config\hibernate\hibernate.cfg.xml
+增加以下语句(注意位置，勿重复）：
+ <mapping resource="com/whir/govezoffice/documentmanager/po/GovPDFFilePO.hbm.xml" />
+
+6、删除文件夹..\oa\deploy\defaultroot.war\WEB-INF\classes\com\whir\ezoffice\workflow\po、vo
+
+7、修改配置文件..\oa\deploy\defaultroot\WEB-INF\config\whconfig.xml
+增加以下内容(注意位置，勿重复），解决多应用portal修改更新问题：
+	<allServers>
+		<path>
+			<Property name="server" value="http://192.168.0.28:7114/defaultroot" />
+		</path>
+	</allServers>
+备注：配置每个path为共用数据库的其他服务器地址、本地服务不用配置
+
+8、把文件夹..\oa\deploy\defaultroot\WEB-INF\lib\com拖入文件whir_common.jar(不要解压）
+
+9、执行数据库升级脚本（分oralce、sqlserver两种类型库）
+
+10、清服务端缓存，启动OA服务
+
+11、验证系统功能

@@ -375,3 +375,36 @@ alter table oa_boardroomapply add  signstate nvarchar(1);
 go
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.17_SP_20160620','11.4.0.17',getdate());
 go
+
+
+
+
+
+update oa_custmenu_curmobile set domainid=-1 where mobilemenuname='日志';
+go
+
+alter table Org_domain add oa_PDF varchar(1) ;
+go
+
+create table gov_pdffilename (
+  pdfid       numeric(20) identity(1,1),
+  workid      numeric(20),
+  pdfpzr      nvarchar(200),
+  pdfpzsj     datetime,
+  pdfpzhj     nvarchar(200),
+  pdfzhxgsj   datetime,
+  pdfrealname nvarchar(500),
+  pdfsavename nvarchar(500),
+  pdfgwlx     nvarchar(5),
+  pdfsfpz     nvarchar(5),
+  pdfwjjmc    nvarchar(100),
+  recordid    numeric(20)
+);
+go
+
+alter table oa_boardroomapply add  signuser nvarchar(4000) ;
+go
+alter table oa_boardroomapply add  unsignuser nvarchar(4000) ;
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.18_SP_20160703','11.4.0.18',getdate());
+go

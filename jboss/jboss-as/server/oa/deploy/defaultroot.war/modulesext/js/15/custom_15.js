@@ -70,6 +70,7 @@ function searchBoardroom(){
 				document.getElementById("_boardrooms").innerHTML=data;
 			}
 	});
+	changeBoardRoom("");
 }
 //视频会议要显示点数，其他会议室要隐藏点数
 	$(document).ready(function(){
@@ -218,13 +219,17 @@ function changeBoardRoom(){
 						var points=arr[1].split("@@")[1];
 						if(document.getElementById('oa_boardroomapply-points')){
 							document.getElementById("oa_boardroomapply-points").innerHTML=points;
-							document.getElementById("oa_boardroomapply-addr").innerHTML="";
+							if(document.getElementById("oa_boardroomapply-addr")){
+								document.getElementById("oa_boardroomapply-addr").innerHTML="";
+							}
 						}
 					}else{
 						var addr=arr[1].split("@@")[1];
 						if(document.getElementById('oa_boardroomapply-addr')){
 							document.getElementById("oa_boardroomapply-addr").innerHTML=addr;
-							document.getElementById("oa_boardroomapply-points").innerHTML="";
+							if(document.getElementById("oa_boardroomapply-points")){
+								document.getElementById("oa_boardroomapply-points").innerHTML="";
+							}
 						}
 					}
 				}

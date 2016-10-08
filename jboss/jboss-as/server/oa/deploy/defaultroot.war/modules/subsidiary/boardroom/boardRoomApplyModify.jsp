@@ -563,11 +563,11 @@
 			<tr>
 				<td for="启用会议签到">&nbsp;&nbsp;启用会议签到：</td>
 				<td colspan="3">
-					<input type="radio" name="meetingAttendance"  value="0" <%if(meetingAttendance.equals("") || meetingAttendance.equals("0")){%>checked<%}%>>是
-					<input type="radio" name="meetingAttendance"  value="1" <%if(meetingAttendance.equals("1")){%>checked<%}%>>否
+					<input type="radio" name="meetingAttendance" onclick="openSign(this)" value="0" <%if(meetingAttendance.equals("0")){%>checked<%}%>>是
+					<input type="radio" name="meetingAttendance" onclick="openSign(this)" value="1" <%if(meetingAttendance.equals("") || meetingAttendance.equals("1")){%>checked<%}%>>否
 				</td>
 			</tr>
-			<tr>
+			<tr id="signType">
 				<td for="签到方式">&nbsp;&nbsp;签到方式：</td>
 				<td colspan="2">
 					<input type="radio" name="attendancetype" value="0" <%if(attendancetype.equals("") || attendancetype.equals("0")){%>checked<%}%>>主动扫码
@@ -597,6 +597,28 @@
 //设置表单为异步提交
 initDataFormToAjax({"dataForm":'dataForm',"queryForm":'queryForm',"tip":'保存'});
 
+var meetSign = $("input[name='meetingAttendance']:checked").val();
+if(meetSign=="1"){
+	$("#signType").css("display","none");
+}else{
+	$("#signType").css("display","");
+}
+
+var sign_type = $("input[name='attendancetype']:checked").val();
+if(sign_type=="1"){
+	$("#hiddenQrCode").css("display","none");
+}else{
+	$("#hiddenQrCode").css("display","");
+}
+
+function openSign(obj){
+	var value = $(obj).val();
+	if(value=="1"){
+		$("#signType").css("display","none");
+	}else{
+		$("#signType").css("display","");
+	}
+}
 /**
 初始话信息
 */

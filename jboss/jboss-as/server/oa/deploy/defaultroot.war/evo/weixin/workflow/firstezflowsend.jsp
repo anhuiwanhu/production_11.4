@@ -392,8 +392,11 @@
 			}
 		</c:if>
 	}
-	
+	var sendFlag = '1';
 	function ajaxSend(url){
+		if(sendFlag == '0'){
+			return false;
+		}
 		var openUrl ='/defaultroot/workflow/listflow.controller';
 		loadSend();
 		$.ajax({
@@ -404,6 +407,7 @@
 			dataType: 'text',
 			success: function(data){
 				var json = eval("("+data+")");
+				sendFlag = '0';
 				if(dialog){
 					dialog.close();
 				}

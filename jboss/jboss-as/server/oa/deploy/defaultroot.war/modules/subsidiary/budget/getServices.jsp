@@ -252,8 +252,8 @@ if("currentSectionOrderCode".equalsIgnoreCase(tag)){//预算部门排序
 	System.out.println("++==subjectperiodArray[k]:"+subjectperiodArray[k]);
 			Object[] data = bd.getBudgetCostBalance(userId,orgId,year,month,Long.valueOf(sectionArray[k]),Long.valueOf(subjectArray[k]),Double.valueOf(curAmountValue),p_wf_processId,p_wf_recordId);
 			result = data[3]==null?"0":data[3]+"";
-			java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("0.00");//格式化数字
-			result = decimalFormat.format(Double.parseDouble(result));
+			//java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("0.00");//格式化数字
+			//result = decimalFormat.format(Double.parseDouble(result));
 			double balanceAmount = Double.parseDouble(result);
 			System.out.println("++==data[5]:"+data[5]);
 			if("0".equals(data[5]+"")){

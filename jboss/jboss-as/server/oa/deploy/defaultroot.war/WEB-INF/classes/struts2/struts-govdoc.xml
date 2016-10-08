@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="com.whir.govezoffice.documentmanager.actionsupport" extends="whir">
+        <action name="GovDoc!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovDocumentMenuAction">
+            <result name="menu">/modules/govoffice/gov_documentmanager/menu.jsp</result>
+        </action>
+
+		<action name="GovDocSet!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovDocumentSettingAction">
+			   <result name="sendFileWordList">/modules/govoffice/gov_documentmanager/sendFileWordList.jsp</result>
+			   <result name="sendFileWordList">/modules/govoffice/gov_documentmanager/sendFileWordList.jsp</result>
+			   <result name="sendFileNumList">/modules/govoffice/gov_documentmanager/sendFileNumList.jsp</result>
+			   <result name="sendFileSeqList">/modules/govoffice/gov_documentmanager/sendFileSeqList.jsp</result>
+			   <result name="sendFileFileTypeList">/modules/govoffice/gov_documentmanager/sendFileFileTypeList.jsp</result>
+			   <result name="sendFileTemplateList">/modules/govoffice/gov_documentmanager/sendFileTemplateList.jsp</result>
+			   <result name="sendFileProcessList">/modules/govoffice/gov_documentmanager/sendFileProcessList.jsp</result>
+			  
+			   <result name="sendFileSignatureList">/modules/govoffice/gov_documentmanager/sendFileSignatureList.jsp</result>
+			   <result name="sendFileGovCustomList">/modules/govoffice/gov_documentmanager/sendFileGovCustomList.jsp</result>
+			   <result name="sendFileIssueUnitList">/modules/govoffice/gov_documentmanager/sendFileIssueUnitList.jsp</result>
+			   <result name="zjkytopical">/modules/govoffice/gov_documentmanager/zjkytopical.jsp</result>
+			   <result name="BookMarkList">/modules/govoffice/gov_documentmanager/BookMarkList.jsp</result>
+			   <result name="sendFileBaseinfoList">/modules/govoffice/gov_documentmanager/sendFileBaseinfoList.jsp</result>
+
+			   <result name="sendTempList">/modules/govoffice/gov_documentmanager/sendTempList.jsp</result>
+			
+
+			   <result name="sendProcessList">/modules/govoffice/gov_documentmanager/sendProcessList.jsp</result>
+
+			   <result name="wordListSelect">/modules/govoffice/gov_documentmanager/wordListSelect.jsp</result>
+				
+			
+			    
+			   <result name="faseDocSet">/modules/govoffice/gov_documentmanager/faseDocSet.jsp</result>
+				
+
+			   <!--基础设置 -->
+			   <result name="baseInfo">/modules/govoffice/gov_documentmanager/baseInfo.jsp</result>
+			   <!--增加编辑主题词 -->
+			   <result name="topicList">/modules/govoffice/gov_documentmanager/topicList.jsp</result>
+			   <result name="addTopic">/modules/govoffice/gov_documentmanager/addTopic.jsp</result>
+			   <result name="editTopic">/modules/govoffice/gov_documentmanager/editTopic.jsp</result>
+				
+			    <!--增加编辑流水号-->
+			   <result name="addSeq">/modules/govoffice/gov_documentmanager/addSeq.jsp</result>
+			   <result name="editSeq">/modules/govoffice/gov_documentmanager/editSeq.jsp</result>
+
+			   <!--增加编辑文号-->
+			   <result name="addNum">/modules/govoffice/gov_documentmanager/addNum.jsp</result>
+			   <result name="editNum">/modules/govoffice/gov_documentmanager/addNum.jsp</result>
+
+			   <!--增加修改字号-->
+			   <result name="addWord">/modules/govoffice/gov_documentmanager/addWord.jsp</result>
+			   <result name="editWord">/modules/govoffice/gov_documentmanager/addWord.jsp</result>
+
+			    <!--增加文件类型-->
+			   <result name="addType">/modules/govoffice/gov_documentmanager/addType.jsp</result>
+			   <result name="editType">/modules/govoffice/gov_documentmanager/addType.jsp</result>
+
+			     <!--增加文件类型-->
+			   <result name="addIssueUnit">/modules/govoffice/gov_documentmanager/addIssueUnit.jsp</result>
+			   <result name="editIssueUnit">/modules/govoffice/gov_documentmanager/addIssueUnit.jsp</result>
+
+			   <result name="statisticsDoc">/modules/govoffice/gov_documentmanager/govdocument_sendfile_count.jsp</result>
+			   <result name="statisticsDocExport">/modules/govoffice/gov_documentmanager/govdocument_sendfile_count_export.jsp</result>
+
+			   <!-- 阅读情况统计 -->
+			   <result name="readStatisticsDoc">/modules/govoffice/gov_documentmanager/govdocument_read_count.jsp</result>
+
+			   <!-- 阅读情况统计 -->
+			   <result name="readStatisticsDocExport">/modules/govoffice/gov_documentmanager/govdocument_read_statistics_export.jsp</result>
+
+			
+
+			   <!-- 领导经办查阅设置 -->
+			   <result name="leaderSetting">/modules/govoffice/gov_documentmanager/leader_setting.jsp</result>
+			   
+
+			   <result name="addLeaderSetting">/modules/govoffice/gov_documentmanager/add_leader_setting.jsp</result>
+
+
+			   <result name="sendFileDocAssistantList">/modules/govoffice/gov_documentmanager/doc_assistant.jsp</result>
+			   
+
+			   <result name="addDocAssistant">/modules/govoffice/gov_documentmanager/add_doc_assistant.jsp</result>
+			 
+
+        </action>
+
+		<!--发文流程-->
+		<action name="GovDocSendProcess!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovSendFileProcessAction">
+
+			<result name="addfile">/modules/govoffice/gov_documentmanager/newsend.jsp</result>
+			<result name="editfile">/modules/govoffice/gov_documentmanager/editsend.jsp</result>
+			<result name="viewfile">/modules/govoffice/gov_documentmanager/viewsend.jsp</result>
+			<result name="showfile">/modules/govoffice/gov_documentmanager/showsend.jsp</result>
+			
+			<result name="newDoc">/modules/govoffice/gov_documentmanager/new_send_doc.jsp</result>
+			<result name="editDoc">/modules/govoffice/gov_documentmanager/edit_send_doc.jsp</result>
+			<result name="viewDoc">/modules/govoffice/gov_documentmanager/view_send_doc.jsp</result>
+
+		 </action>
+
+		 
+		<!--收文流程-->
+		<action name="GovDocReceiveProcess!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovReceiveFileProcessAction">
+
+			<result name="addfile">/modules/govoffice/gov_documentmanager/newreceive.jsp</result>
+			<result name="editfile">/modules/govoffice/gov_documentmanager/editreceive.jsp</result>
+			<result name="viewfile">/modules/govoffice/gov_documentmanager/viewreceive.jsp</result>
+			<result name="showfile">/modules/govoffice/gov_documentmanager/showreceive.jsp</result>
+			<!-- 经办文件查阅 -->
+			<result name="handlingFileList">/modules/govoffice/gov_documentmanager/handlingReceiveFileList.jsp</result>
+			<!-- 办理查阅 -->
+			<result name="receiveFileList">/modules/govoffice/gov_documentmanager/receiveFileList.jsp</result>
+			<!-- 选择来文单位 -->
+			<result name="chooseUnit">/modules/govoffice/gov_documentmanager/senddocument_unit_choose.jsp</result>   
+
+			<result name="export">/modules/govoffice/gov_documentmanager/govdocumentmanager_receivefiledealwithsearch_export.jsp</result>
+
+			<result name="iniSeqNum">/modules/govoffice/gov_documentmanager/receive_changeSeq.jsp</result>
+			<!--相关收文 -->
+			<result name="receiveAssociate">/modules/govoffice/gov_documentmanager/receivedocument_AssociateList.jsp</result>
+            <!--相关PDF-->
+            <result name="pdflistbz">/modules/govoffice/gov_documentmanager/pdflistbz.jsp</result>
+			<!-- 领导经办查阅 -->
+		    <result name="leaderHandlingFileList">/modules/govoffice/gov_documentmanager/receive_leader_handlingFileList.jsp</result>
+
+
+				
+			<result name="newDoc">/modules/govoffice/gov_documentmanager/new_receive_doc.jsp</result>
+			<result name="editDoc">/modules/govoffice/gov_documentmanager/edit_receive_doc.jsp</result>
+			<result name="viewDoc">/modules/govoffice/gov_documentmanager/view_receive_doc.jsp</result>
+
+		 </action>
+
+		 <!--送审签流程-->
+		<action name="GovDocSendCheckProcess!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovSendFileCheckAction">
+			<result name="list">/modules/govoffice/gov_documentmanager/sendFileChecklist.jsp</result>
+			<result name="export">/modules/govoffice/gov_documentmanager/govdocumentmanager_filesendcheckwithworkflow_export.jsp</result>
+			
+			<result name="addfile">/modules/govoffice/gov_documentmanager/newSendFileCheck.jsp</result>
+			<result name="editfile">/modules/govoffice/gov_documentmanager/editSendFileCheck.jsp</result>
+			<result name="viewfile">/modules/govoffice/gov_documentmanager/viewSendFileCheck.jsp</result>
+			<result name="showfile">/modules/govoffice/gov_documentmanager/showSendFileCheck.jsp</result>
+			<!-- 经办文件查阅 -->
+			<result name="handlingFileList">/modules/govoffice/gov_documentmanager/handlingSendFileCheckList.jsp</result>
+			<!-- 办理查阅 -->
+			<result name="receiveFileList">/modules/govoffice/gov_documentmanager/receiveSendFileCheckList.jsp</result>
+		
+						
+			<result name="newDoc">/modules/govoffice/gov_documentmanager/new_sendfilecheck_doc.jsp</result>
+			<result name="editDoc">/modules/govoffice/gov_documentmanager/edit_sendfilecheck_doc.jsp</result>
+			<result name="viewDoc">/modules/govoffice/gov_documentmanager/view_sendfilecheck_doc.jsp</result>
+
+		 </action>
+
+
+		<!--发文-->
+		<action name="GovDocSend!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovSendFileAction">
+		   <result name="addfile">/modules/govoffice/gov_documentmanager/newsend.jsp</result>
+		   <result name="editfile">/modules/govoffice/gov_documentmanager/editsend.jsp</result>
+
+		   <result name="initnumber">/modules/govoffice/gov_documentmanager/govdocumentmanager_sendfile_addifrm.jsp</result>
+		   <result name="initZjkySendWord">/modules/govoffice/gov_documentmanager/senddocument_changeNum.jsp</result>
+
+           <result name="listDraft">/modules/govoffice/gov_documentmanager/listDraft.jsp</result>
+		   <result name="handlingFileList">/modules/govoffice/gov_documentmanager/handlingFileList.jsp</result>
+		   <result name="handoutFileList">/modules/govoffice/gov_documentmanager/handoutFileList.jsp</result>
+		   <result name="sendFileList">/modules/govoffice/gov_documentmanager/sendFileList.jsp</result>
+		   <result name="sendFileDoingList">/modules/govoffice/gov_documentmanager/sendFileDoingList.jsp</result>
+		   <result name="sendFileDoneList">/modules/govoffice/gov_documentmanager/sendFileDoneList.jsp</result>
+		   <result name="chooseSendTopical">/modules/govoffice/gov_documentmanager/topicalChoose.jsp</result>
+	
+		   <!--导出 -->
+		   <result name="listExcel">/modules/govoffice/gov_documentmanager/govdocumentmanager_sendfiledealwithsearch_export.jsp</result>
+			
+           <!--阅读情况 -->
+		   <result name="userinfo">/modules/govoffice/gov_documentmanager/govdocumentmanager_showuserinfo.jsp</result>
+		
+		   <!--相关收文 -->
+		   <result name="sendAssociate">/modules/govoffice/gov_documentmanager/senddocument_sendAssociateList.jsp</result>
+			
+		   <!-- 选择空闲编号 -->
+	 	   <result name="selectIdleNumber">/modules/govoffice/gov_documentmanager/govdocument_select_idlenumber.jsp</result>
+
+			
+		   <!-- 领导经办查阅 -->
+		   <result name="leaderHandlingFileList">/modules/govoffice/gov_documentmanager/send_leader_handlingFileList.jsp</result>
+        </action>
+
+		<!--收文-->
+		<action name="GovRecvDocSet!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovReceiveDocumentSettingAction">
+			   <!--增加单位 -->
+			   <result name="recvUnitList">/modules/govoffice/gov_documentmanager/recvUnitList.jsp</result>
+			   <!--增加文件类型-->
+			   <result name="addRecvUnit">/modules/govoffice/gov_documentmanager/addRecvUnit.jsp</result>
+			   <result name="editRecvUnit">/modules/govoffice/gov_documentmanager/addRecvUnit.jsp</result>
+
+			   <!--流水号设置-->
+			   <result name="receiveSeqList">/modules/govoffice/gov_documentmanager/receiveSeqList.jsp</result>
+			   <result name="addReceiveSeq">/modules/govoffice/gov_documentmanager/addReceiveSeq.jsp</result>
+			   <result name="editReceiveSeq">/modules/govoffice/gov_documentmanager/addReceiveSeq.jsp</result>
+
+			   <!--未读收文-->
+			   <result name="notRead">/modules/govoffice/gov_documentmanager/notRead.jsp</result>
+			   <!--已读收文-->
+			   <result name="myReceive">/modules/govoffice/gov_documentmanager/myReceive.jsp</result>
+			   <!--按状态分类收文-->
+			   <result name="editReceiveSeq">/modules/govoffice/gov_documentmanager/addReceiveSeq.jsp</result>
+				
+			   <!--未处理 -->
+			   <result name="isNotHandle">/modules/govoffice/gov_documentmanager/isNotHandle.jsp</result>
+
+			   <!--已处理-->
+			   <result name="isHandle">/modules/govoffice/gov_documentmanager/isHandle.jsp</result>
+
+			   <!--无需处理-->
+			   <result name="notHandle">/modules/govoffice/gov_documentmanager/notHandle.jsp</result>
+
+
+			   
+			   
+			   <!--按文号分类-->
+
+			   <!--基础设置 参数设置 -->
+			   <result name="receiveBaseList">/modules/govoffice/gov_documentmanager/receiveBaseList.jsp</result>
+			   <result name="addReceiveBase">/modules/govoffice/gov_documentmanager/addReceiveBase.jsp</result>
+			   <result name="editReceiveBase">/modules/govoffice/gov_documentmanager/addReceiveBase.jsp</result>
+
+
+			   <result name="receiveBase">/modules/govoffice/gov_documentmanager/receiveBase.jsp</result>
+
+			 
+			   
+        </action>
+
+
+
+		<!--公文交换-->
+		<action name="GovExchange!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovExchangeAction">
+
+
+			   <!--被撤回 -->
+			   <result name="cancel">/modules/govoffice/gov_exchange/cancel.jsp</result>
+			   <!--我的撤回 -->
+			   <result name="mycancel">/modules/govoffice/gov_exchange/mycancel.jsp</result>
+			   <!--单位设置 -->
+			   <result name="unitlist">/modules/govoffice/gov_exchange/unitlist.jsp</result>
+			   <!--群组设置 -->
+			   <result name="grouplist">/modules/govoffice/gov_exchange/grouplist.jsp</result>
+				
+			   <!--新增加单位-->
+			   <result name="addunit">/modules/govoffice/gov_exchange/addunit.jsp</result>
+			   
+			   <!--新增加群组-->
+			   <result name="addgroup">/modules/govoffice/gov_exchange/addgroup.jsp</result>
+			
+			   <!--发送选择组织-->
+			   <result name="chooseUnit">/modules/govoffice/gov_exchange/ExchangeChooseUnit.jsp</result>
+
+			   <!--选择群组-->
+			   <result name="groupselect">/modules/govoffice/gov_exchange/groupselect.jsp</result>
+
+			   <!--收文 -->
+			   <result name="exchangereceive">/modules/govoffice/gov_exchange/exchangeReceive.jsp</result>
+			   <!--未收公文 -->
+			   <result name="notreceive">/modules/govoffice/gov_exchange/notReceive.jsp</result>
+			   <!--已收公文 -->
+			   <result name="received">/modules/govoffice/gov_exchange/received.jsp</result>
+
+			   <!--发文 -->
+			   <result name="exchangesend">/modules/govoffice/gov_exchange/exchangeSend.jsp</result>
+			   <!--未发公文 -->
+			   <result name="notsend">/modules/govoffice/gov_exchange/notSend.jsp</result>
+			   <!--已发公文 -->
+			   <result name="hassend">/modules/govoffice/gov_exchange/hasSend.jsp</result>
+
+			   <!-- load-->
+			   <result name="load">/modules/govoffice/gov_exchange/ExchangeSendModi.jsp</result>
+			
+			   <!-- receive  -->
+			   <result name="receive">/modules/govoffice/gov_exchange/ExchangeReceiveModi.jsp</result>
+				
+			   <!-- 查看签收状态 -->
+			   <result name="receiveStatus">/modules/govoffice/gov_exchange/ExchangeGovReceiveStatus.jsp</result>
+        </action>
+
+
+		<!--表单定义-->
+		<action name="GovCustom!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovCustomAction">
+
+
+			   <!--表单列表 -->
+			   <result name="formlist">/modules/govoffice/custom_documentmanager/formList.jsp</result>
+
+			   <result name="form_edt">/modules/govoffice/custom_documentmanager/form_edt.jsp</result>
+
+			   <result name="loadForm">/modules/govoffice/custom_documentmanager/form_edt.jsp</result>
+
+			   <result name="addform">/modules/govoffice/custom_documentmanager/form_add.jsp</result>
+
+			   <result name="loadAllowField">/modules/govoffice/custom_documentmanager/gov_customFieldUpdate.jsp</result>
+
+			   <result name="updateField">/modules/govoffice/custom_documentmanager/gov_customFieldUpdate.jsp</result>
+
+			 
+        </action>
+
+		<!--电子公文-->
+		<action name="GovTrans!*" method="{1}" class="com.whir.govezoffice.documentmanager.actionsupport.GovTransAction">
+			   <!-- 菜单-->
+			   <result name="menu">/modules/govoffice/gov_transition/menu.jsp</result>
+
+			   <!--新建公文 -->
+			   <result name="newDoc">/modules/govoffice/gov_transition/newDoc.jsp</result>
+
+			   <result name="menu_transcenter">/modules/govoffice/gov_transition/menu_transcenter.jsp</result>
+				
+			   <!--发件箱 -->
+			   <result name="sendList">/modules/govoffice/gov_transition/sendList.jsp</result>
+				
+			   <!--待发送件箱 -->
+			   <result name="waitsendList">/modules/govoffice/gov_transition/waitsendList.jsp</result>
+
+			   <!--待发送件箱导出excel -->
+			   <result name="waitsendListExportExcel">/modules/govoffice/gov_transition/trans_wait_list_excel.jsp</result>
+			   
+			   <result name="sendoutListExportExcel">/modules/govoffice/gov_transition/trans_send_list_excel.jsp</result>
+
+			   <result name="senddelListExportExcel">/modules/govoffice/gov_transition/trans_send_del_list_excel.jsp</result>
+
+			   <result name="intoAddListExportExcel">/modules/govoffice/gov_transition/trans_add_list_excel.jsp</result>
+
+			   <!--已发送件箱 -->
+			   <result name="sendoutList">/modules/govoffice/gov_transition/sendoutList.jsp</result>
+
+			   <!--删除文件 -->
+			   <result name="senddelList">/modules/govoffice/gov_transition/senddelList.jsp</result>
+
+			   <!--补发文件 -->
+			   <result name="intoAddList">/modules/govoffice/gov_transition/intoAddList.jsp</result>
+
+			   <!--收件箱-->
+			   <result name="inboxList">/modules/govoffice/gov_transition/inboxList.jsp</result>
+				
+			   <!--待签收文件-->
+			   <result name="intoWaitWorkList">/modules/govoffice/gov_transition/intoWaitWorkList.jsp</result>
+			   <result name="intoWaitWorkListExcel">/modules/govoffice/gov_transition/trans_work_wait_list_excel.jsp</result>
+
+			   <!--已签收文件-->
+			   <result name="intoAgreeWorkList">/modules/govoffice/gov_transition/intoAgreeWorkList.jsp</result>
+			   <result name="intoAgreeWorkListExcel">/modules/govoffice/gov_transition/trans_work_agree_list_excel.jsp</result>
+
+			   <!--拒收文件-->
+			   <result name="intoRefuseWorkList">/modules/govoffice/gov_transition/intoRefuseWorkList.jsp</result>
+			   <result name="intoRefuseWorkListExcel">/modules/govoffice/gov_transition/trans_work_refuse_list_excel.jsp</result>
+
+			   <result name="gotoExportXML">/modules/govoffice/gov_transition/trans_export_xml.jsp</result>
+			   <!--发文查询 -->
+			   <result name="sendfileList">/modules/govoffice/gov_transition/sendfileList.jsp</result>
+			   <result name="sendfileListExcel">/modules/govoffice/gov_transition/trans_send_search_list_excel.jsp</result>
+
+
+			   <!--收文查询 -->
+			   <result name="receiveList">/modules/govoffice/gov_transition/receiveList.jsp</result>
+			   <result name="receiveListExcel">/modules/govoffice/gov_transition/trans_work_search_list_excel.jsp</result>
+
+			   <!--设置 -->
+			   <result name="set">/modules/govoffice/gov_transition/set.jsp</result>
+
+			   <!--新建地址簿 -->
+			   <result name="newAddress">/modules/govoffice/gov_transition/newAddress.jsp</result>
+
+			   <!--地址簿列表 -->
+			   <result name="addressList">/modules/govoffice/gov_transition/addressList.jsp</result>
+
+			   <result name="expAddrList">/modules/govoffice/gov_transition/expAddrList.jsp</result>
+
+			  <result name="gotoAdd">/modules/govoffice/gov_transition/expAddrList.jsp</result>
+			  <result name="gotoSaveAddShow">/modules/govoffice/gov_transition/expAddrList.jsp</result>
+			   
+			  <result name="gotoMonitor">/modules/govoffice/gov_transition/trans_monitor.jsp</result>
+			  <result name="gotoMonitorInfo">/modules/govoffice/gov_transition/trans_monitor_info.jsp</result>
+			  <result name="gotoWaitAdd">/modules/govoffice/gov_transition/trans_wait_add.jsp</result>
+			  <result name="gotoWaitAddAgain">/modules/govoffice/gov_transition/trans_wait_again_add.jsp</result>
+			  <result name="intoSendInfo">/modules/govoffice/gov_transition/trans_send_info.jsp</result>
+			  <result name="selectAddr">/modules/govoffice/gov_transition/selectAddrList.jsp</result>
+			  
+			  <result name="intoWork">/modules/govoffice/gov_transition/intoWork.jsp</result>
+			  
+        </action>
+
+    </package>
+
+</struts>

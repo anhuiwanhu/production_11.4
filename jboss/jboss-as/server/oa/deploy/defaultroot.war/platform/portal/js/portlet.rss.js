@@ -45,18 +45,21 @@ var rss = {
 			}
 
 			var charEncode = opts.charEncode;
-			var htmlContent = '<div class="wh-portal-info-content"><div class="wh-portal-slide04-'+opts.portletSettingId+'"><ul class="clearfix">';
+			
+			//2016-6-22 wanggl  解决 RSS 慢导致 首页加载慢的问题  
+			var rssContent=new RssContent(target, opts,datas.length); 
+			
 			var titleTop="";
 			for(var j=0;j<datas.length;j++){
 				$.getFeed({
 					url: whirRootPath+"/platform/portal/portlet/rssproxy.jsp?rssUrl="+datas[j].replace(/&/igm, '%26')+"&charEncode="+charEncode,//data,//
-					async: false,
-					success: function(feed) {//alert(feed);
-						titleTop += feed.title+",";
-						if(j==0){
-							htmlContent+='<li>';
+					async: true,
+					success: function(feed) {//alert(feed); 
+						var eachCotent=""; 
+						if(this.jindex==0){
+							eachCotent+='<li>';
 						}else{
-							htmlContent+='<li class="wh-portal-hidden">';
+							eachCotent+='<li class="wh-portal-hidden">';
 						}
 						for(var i = 0; i < feed.items.length && i < limitNum; i++) {
 							var item = feed.items[i];
@@ -66,38 +69,22 @@ var rss = {
 								_title = (_title.length>limitChar)?(_title.substring(0, limitChar)+'...'):_title;
 							}
 							
-							htmlContent += '<div class="wh-portal-i-item clearfix">'+
+							eachCotent += '<div class="wh-portal-i-item clearfix">'+
 										'<a href="javascript:void(0)" title="'+item.title+'" onclick="javascript:openWin({url:\''+item.link+'\',isFull:true,isPost:false})">'+
 										'<i class="fa fa-file-o"></i>'+
 										'<span>'+_title+'</span>'+
 										'</a>'+
 										'</div>';
 						}
-						htmlContent+='</li>';
-					}
+						eachCotent+='</li>';
+
+						rssContent.setEachContent(eachCotent,feed.title,this.jindex);
+					},
+					jindex:j
 				});
 			}
 			
-			htmlContent += '</ul></div></div>';
-			target.html(htmlContent);
-			Portlet.setPortletTitle(target, opts.title);
 			
-			titleTop = titleTop.substring(0,titleTop.length-1);
-			var top = titleTop.split(",");
-			var datas=new Array();
-			for(var i=0;i<top.length;i++){
-				if(top[i]!=null && top[i]!=""){
-					top[i] = $.trim(top[i]);
-					datas[i]={title:top[i],url:'#',onclick:'',defaultSelected:i==0?"on":"",liCss:''};
-				}
-			}
-			var jsonData=[{
-				ulCss:"wh-portal-title-slide04-"+opts.portletSettingId,
-				data:datas
-			}];
-			Portlet.setPortletDataTitle(opts.portletSettingId,jsonData);
-			
-			slideTab("slide04-"+opts.portletSettingId);
 		}
 	},
 	getSettingsXml: function(target, opts){
@@ -113,17 +100,73 @@ var rss = {
 		});
 		result += '<rssSource>'+rssSource+'</rssSource>';
 		
+		//var limitNum = $('select[name=limitNum]').val();
 		var limitChar = $('input[name=limitChar]').val();
+		//result += '<limitNum>'+limitNum+'</limitNum>';
 		result += '<limitChar>'+limitChar+'</limitChar>';
-		var limitNum = $('input[name=limitNum]').val();
-		result += '<limitNum>'+limitNum+'</limitNum>';
 
 		var charEncode = $('input[name=charEncode]:checked').val();
 		result += '<charEncode>'+charEncode+'</charEncode>';
 
-		opts = $.extend(opts, {rssSource:rssSource, limitChar:limitChar, limitNum:limitNum, charEncode:charEncode});
+		opts = $.extend(opts, {rssSource:rssSource, limitChar:limitChar, charEncode:charEncode});
 
 		return result;
 	}
 };
+
+
+function  RssContent(target, opts,length){
+	this.target=target;
+	this.opts=opts;
+	this.length=length;
+	this.hedSetCotentNum=0;
+	this.contentArr=new Array(length);
+	this.top=new Array(length);
+};
+
+RssContent.prototype.setEachContent = function (content,title,index) { 
+	this.contentArr[index]=content;
+	this.top[index]=title;
+	this.hedSetCotentNum++;
+	if(this.length==this.hedSetCotentNum){
+		this.SetAllContent();
+	}
+};
+
+
+RssContent.prototype.SetAllContent = function () { 
+	var htmlContent = '<div class="wh-portal-info-content"><div class="wh-portal-slide04-'+this.opts.portletSettingId+'"><ul class="clearfix">';
+
+	for(var i=0;i<this.length;i++){  
+		htmlContent+=this.contentArr[i];
+	}
+
+	htmlContent += '</ul></div></div>';
+	this.target.html(htmlContent);
+
+	Portlet.setPortletTitle(this.target, this.opts.title);
+ 
+ 
+	var datas=new Array();
+	for(var i=0;i<this.top.length;i++){
+		//datas[i]={title:this.top[i],url:'#',onclick:'',defaultSelected:i==0?"on":"",liCss:''};
+		if(top[i]!=null && top[i]!=""){
+			top[i] = $.trim(top[i]);
+			datas[i]={title:top[i],url:'#',onclick:'',defaultSelected:i==0?"on":"",liCss:''};
+		}
+	}
+	var jsonData=[{
+		ulCss:"wh-portal-title-slide04-"+this.opts.portletSettingId,
+		data:datas
+	}];
+	Portlet.setPortletDataTitle(this.opts.portletSettingId,jsonData);
+	
+	slideTab("slide04-"+this.opts.portletSettingId);
+	 
+};
+
+
+
+  
+
 /*--------------------portlet---------end--------------*/

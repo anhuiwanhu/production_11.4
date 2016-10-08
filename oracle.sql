@@ -340,3 +340,68 @@ comment on column oa_boardroomapply.signstate   is '参会状态  0参会 1不�
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.17_SP_20160620','11.4.0.17',sysdate);
 commit;
+
+
+
+
+
+
+update oa_custmenu_curmobile set domainid=-1 where mobilemenuname='日志';
+commit;
+
+alter table Org_domain add oa_PDF varchar2(1) ;
+comment on column ORG_DOMAIN.oa_PDF
+  is 'PDF批注：0-不使用，1-使用';
+commit;
+
+create table GOV_PDFFILENAME
+(
+  pdfid       NUMBER(20),
+  workid      NUMBER(20),
+  pdfpzr      NVARCHAR2(200),
+  pdfpzsj     DATE,
+  pdfpzhj     NVARCHAR2(2000),
+  pdfzhxgsj   DATE,
+  pdfrealname NVARCHAR2(500),
+  pdfsavename NVARCHAR2(500),
+  pdfgwlx     NVARCHAR2(5),
+  pdfsfpz     NVARCHAR2(5),
+  pdfwjjmc    NVARCHAR2(100),
+  recordid    NUMBER(20)
+);
+commit;
+
+comment on column GOV_PDFFILENAME.pdfid
+  is 'id';commit;
+comment on column GOV_PDFFILENAME.workid
+  is 'workid';commit;
+comment on column GOV_PDFFILENAME.pdfpzr
+  is 'pdf批注人';commit;
+comment on column GOV_PDFFILENAME.pdfpzsj
+  is 'pdf批注时间';commit;
+comment on column GOV_PDFFILENAME.pdfpzhj
+  is 'pdf批注环节';commit;
+comment on column GOV_PDFFILENAME.pdfzhxgsj
+  is 'pdf最后修改时间';commit;
+comment on column GOV_PDFFILENAME.pdfrealname
+  is 'pdf文件名';commit;
+comment on column GOV_PDFFILENAME.pdfsavename
+  is 'pdf保存名';commit;
+comment on column GOV_PDFFILENAME.pdfgwlx
+  is '公文类型0收文1发文';commit;
+comment on column GOV_PDFFILENAME.pdfsfpz
+  is 'pdf是否批注0否1是';commit;
+comment on column GOV_PDFFILENAME.pdfwjjmc
+  is 'pdf文件夹名称';commit;
+comment on column GOV_PDFFILENAME.recordid
+  is '收发文id';
+commit;
+
+alter table oa_boardroomapply add  signuser varchar2(4000) ;
+comment on column oa_boardroomapply.signuser   is '参会人员ID';
+commit;
+alter table oa_boardroomapply add  unsignuser varchar2(4000) ;
+comment on column oa_boardroomapply.unsignuser   is '不参会人员ID';
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.18_SP_20160703','11.4.0.18',sysdate);
+commit;

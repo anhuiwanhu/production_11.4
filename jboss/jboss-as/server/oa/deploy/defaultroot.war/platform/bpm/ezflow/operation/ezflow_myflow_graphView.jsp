@@ -18,12 +18,13 @@
 	String p_wf_whir_dealedActInfo=EncryptUtil.htmlcode(request,"p_wf_whir_dealedActInfo"); 
 	
 	List  dealingList=mainService.findDealingActivity(processInstanceId);
-  
+	
+	
 	//&dealedActivityIds="+dealedActivityIds+"&activity="+activity;
 	com.whir.ezflow.vo.ChoosedActivityVO  vo=null;
 	String dealedActivityIds="";
 	String nowActivityIds="";
-  
+	
 	String dealedActivityIds_="";
 	List  dealedList=mainService.findDealedActivity_real(processInstanceId);
 	if(dealedList!=null&&dealedList.size()>0){
@@ -32,9 +33,11 @@
 			dealedActivityIds_+="$"+vo.getActivityId()+"$";
 		}
 	} 
+	
 	dealedActivityIds=mainService.findDealedActivityStrs(processInstanceId,dealedActivityIds_);
-
+	
 	dealedActivityIds=dealedActivityIds+p_wf_whir_dealedActInfo;
+
 	if(whir_stauts.equals("100")){
 		dealedActivityIds+="$startevent1$";
 		dealedActivityIds+="$endevent1$";
@@ -46,7 +49,7 @@
 	
 	if(dealingList!=null&&dealingList.size()>0){
 		for(int i=0;i<dealingList.size();i++){
-			 vo=(com.whir.ezflow.vo.ChoosedActivityVO)dealingList.get(i);
+			vo=(com.whir.ezflow.vo.ChoosedActivityVO)dealingList.get(i);
 			nowActivityIds+="$"+vo.getActivityId()+"$";
  		}
 	}
@@ -58,7 +61,7 @@
 <body >
 <div>&nbsp;</div>
 <table width="100%" height="100%" border="0" cellpadding="3" cellspacing="0">
-  <tr><td>流程图节点颜色说明：<font color="blue">蓝色</font>（未经过的节点），<font color="#C0C0C0">灰色</font>（已经办理过的节点），<font color="#FF0000">红色</font>（当前所处节点），<font color="#FF6100">橙色</font>（已查看但尚未办理的节点）</td></tr>
+  <tr><td>流程图节点颜色说明：<font color="#0098FE">蓝色</font>（未经过的节点），<font color="#8F8F8F">灰色</font>（已经办理过的节点），<font color="#8DCE3C">绿色</font>（当前所处节点），<font color="#8DCE3C">绿色+ 眼睛图标</font>（已查看但尚未办理的节点）</td></tr>
   <tr>
      <td>
 	    <%

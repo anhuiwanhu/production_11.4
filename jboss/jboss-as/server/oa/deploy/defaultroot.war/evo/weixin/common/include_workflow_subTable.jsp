@@ -67,7 +67,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 											<c:set var="name"><x:out select="$field/name/text()"/></c:set>
 											<c:set var="totfield"><x:out select="$field/totfield/text()"/></c:set>
 					                        <tr>
-					                            <th>${name}<c:if test="${mustfilled eq '1'}"><i class="fa fa-asterisk"></i></c:if>：</th>
+					                            <th>${name}<c:if test="${mustfilled == '1' && readwrite == '1'}"><i class="fa fa-asterisk"></i></c:if>：</th>
 					                            <td>                             
 													<c:choose>
 														<%--单行文本 101--%>
@@ -476,6 +476,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 														</c:when>
 														<c:otherwise>
 															<c:set var="index" value="${index+1}"/>
+															<input type="hidden"  name="keyv" value="${name},${totfield},_sub_<x:out select='$field/sysname/text()'/>"/>
 															<input class="edit-ipt-r"  id='<x:out select="$field/sysname/text()"/>' type="text" maxlength="9" name='_sub_<x:out select="$field/sysname/text()"/>' value='<x:out select="$field/value/text()"/>' readonly="readonly" />
 														</c:otherwise>
 													</c:choose>
@@ -491,7 +492,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
         </div>
     </article>
 </section>
-<footer class="wh-ofooter">
+<footer class="wh-ofooter" id="subFooter_totname" style="display:none">
     <div class="wh-wrapper">
         <div class="wh-container">
             <div class="s-table-count">
@@ -684,6 +685,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		$('[id="subHeader_'+subTableName+'"]').hide();
 		$('[id="subSection_'+subTableName+'"]').hide();
 		$('[id="subFooter_'+subTableName+'"]').hide();
+		$('#subFooter_totname').hide();
 		$('[id="subTableInput_'+subTableName+'"]').val($('[id="swiper_ul_'+subTableName+'"] li').length+'条子表记录');
     }
         
@@ -691,6 +693,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
     	$('#mainContent').show();
 		$('#footerButton').show();
 		$('[id="subHeader_'+subTableName+'"]').hide();
+		$('#subFooter_totname').hide();
 		$('[id="subSection_'+subTableName+'"]').hide();
 		$('[id="subFooter_'+subTableName+'"]').hide();
     }
@@ -829,6 +832,9 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 			for(var prop in map){
 				content += map[prop];
 			}
+			if(content !=""){
+				$('#subFooter_totname').show();
+			}
 			$("#tot").html(content+"&nbsp;");
 			var subId = name.substring(5,name.length);
 			subId = subId.replace("$","");
@@ -882,6 +888,9 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 				map[arrV[0]]=arrV[0]+":"+sum;
 				for(var prop in map){
 					content += map[prop];
+				}
+				if(content !=""){
+					$('#subFooter_totname').show();
 				}
 				$("#tot").html(content+"&nbsp;");
 			}

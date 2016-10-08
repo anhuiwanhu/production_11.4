@@ -38,6 +38,7 @@ String resetPassword = (String)sysSetupMap.get("resetPassword");
 String location = (String)sysSetupMap.get("location");
 String wxlocation = (String)sysSetupMap.get("wxlocation");
 String yibo_flag = (String)sysSetupMap.get("yibo_flag");
+String oa_PDF = (String)sysSetupMap.get("oa_PDF");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -155,9 +156,16 @@ String yibo_flag = (String)sysSetupMap.get("yibo_flag");
                     <!--  <input type="checkbox" value="0" id="word0" name="word" checked onclick="chgWord(0);">不使用&nbsp;&nbsp;&nbsp;-->
                     <input type="checkbox" value="<%=options.charAt(5) %>" id="word1" name="word" <%if(options.charAt(5)=='1'){%>checked<%}%> 
                      onclick="chgWord1(this);"/>网页端&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" value="<%=options.charAt(16) %>" id="word0" name="evoword"  <%if(options.length()>16&&options.charAt(16)=='1'){%>checked<%}%>
-                     onclick="chgWord0(this);"/>EVO端
+                    <input type="checkbox" value="<%=options.charAt(16) %>" id="word0" name="evoword"  <%if(options.length()>16&&options.charAt(16)=='1'&&"0".equals(oa_PDF)){%>checked<%}%> onclick="chgWord0(this);"  <%if("1".equals(oa_PDF)){%>disabled<%}%> />EVO端
                     <span id="wordSizeSpan" <%if(options.charAt(5)!='1'&&options.charAt(16)!='1'){%>style="display:none"<%}%> >&nbsp;&nbsp;附件大小限制&nbsp;&nbsp;<input type="text" id="wordlimitsize" name="wordlimitsize" class="inputText" style="width:40px" value="<%=wordlimitsize%>" maxlength="3">&nbsp;M</span>
+                </td>
+            </tr>
+			<tr>
+                <td>&nbsp;</td>
+                <td>PDF批注：</td>
+                <td>
+                    <input type="radio" value="0" id="oa_PDF0" name="oa_PDF" onClick="chgPDF0(this)" <%if("0".equals(oa_PDF)){%>checked<%}%>>不使用&nbsp;&nbsp;&nbsp;
+                    <input type="radio" value="1" id="oa_PDF1" name="oa_PDF" onClick="chgPDF1(this)" <%if("1".equals(oa_PDF)){%>checked<%}%>>使用
                 </td>
             </tr>
             <tr>
@@ -815,7 +823,26 @@ function wxlocationaction(obj){
 	
 }
 
+function chgPDF1(obj){
+	if(obj.checked){
+		var word0 = $('#word0');
+		word0.attr("checked", false);
+		word0.attr("disabled",true);
+	}
+   
 
+}
+function chgPDF0(obj){
+	if(obj.checked){
+		var word0 = $('#word0');
+		word0.attr("disabled",false);
+		<%if(options.length()>16&&options.charAt(16)=='1'&&"0".equals(oa_PDF)){ %>
+		word0.attr("checked", true);
+		<%}%>
+	}
+   
+
+}
 
 //-->
 </script>

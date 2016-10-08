@@ -834,6 +834,7 @@ function getViewSize(){return {w: window['innerWidth'] || document.documentEleme
 //-----编辑页面中调转换PDF文档的接口--------------------------------------------------//
 function TestWebSavePDF(){
 	try{
+        webform.WebOffice.WebSetMsgByName("pdfpz","0");
 	if(webform.WebOffice.WebSavePDF()){
 		if( opener.document.getElementsByName("documentWordType").length > 0){
 			opener.document.getElementsByName("documentWordType")[0].value=".pdf";
@@ -852,7 +853,27 @@ function TestWebSavePDF(){
 	}
 }
 
-
+function TestWebSavePDFPZ(){
+    try{
+        //生成文件名字
+        <%
+            String myRandom=new com.whir.common.util.Random().getRandom();
+           String tempfilename=myRandom+".pdf";
+        %>
+        webform.WebOffice.WebSetMsgByName("tempfilename","<%=tempfilename%>");
+        webform.WebOffice.WebSetMsgByName("pdfpz","1");
+        if(webform.WebOffice.WebSavePDF()){
+            opener.document.getElementsByName("tempFilename")[0].value="<%=tempfilename%>";
+            alert("转换并保存成功");
+        }
+        else{
+            alert("转换并保存失败");
+        }
+    }
+    catch(e){
+        alert("11:"+e.description); //出现异常时提示错误信息
+    }
+}
 
 //隐藏签章 picType='TempSign' 签章, picType='TempHead' 红头
 function hidePicture(picType){
@@ -1076,8 +1097,18 @@ function SaveDocument(moduleType,isSaveHtmlImage,isSaveDocFile,isSaveHtml){
 	<%}else{%>	
 	   webform.WebOffice.WebSetMsgByName("isaddTemplate","false");//是否保存为DOC文件--zhuo  
 	<%}%>
-
-
+    <%
+     Map sysMap=com.whir.org.common.util.SysSetupReader.getInstance().getSysSetupMap(session.getAttribute("domainId").toString());
+     String oa_PDF=(String)sysMap.get("oa_PDF");
+     if(oa_PDF==null){
+         oa_PDF="0";
+      }
+     if(oa_PDF.equals("1")){
+    %>
+    if(".doc"==("<%=mFileType%>")){
+        TestWebSavePDFPZ();
+    }
+    <%}%>
 	if(".doc"==("<%=mFileType%>")||".wps"==("<%=mFileType%>")){
    //webform.WebOffice.WebSetMsgByName("MyDefine1","自定义变量值1");  //设置变量MyDefine1="自定义变量值1"，变量可以设置多个  在WebSave()时，一起提交到OfficeServer中
 
@@ -1139,6 +1170,7 @@ function SaveDocument(moduleType,isSaveHtmlImage,isSaveDocFile,isSaveHtml){
 		 }
 		 //恢复修改状态
 		 webform.WebOffice.WebObject.Saved = true;
+
 		 return true;
 	  }
 	}else if(".xls"==("<%=mFileType%>")){

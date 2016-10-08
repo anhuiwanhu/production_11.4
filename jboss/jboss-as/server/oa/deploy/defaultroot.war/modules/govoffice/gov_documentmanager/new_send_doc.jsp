@@ -341,6 +341,7 @@ if((""+request.getAttribute("p_wf_modiButton")).indexOf("Savefile")>=0 ){
 
 		 <s:form name="GovSendFileActionForm" id="dataForm" action="wfoperate!showSend.action" method="post" theme="simple" >
 		 <input type="hidden" name="documentWordType" value=".doc">
+         <s:hidden name="tempFilename" value="" id="tempFilename" />
 		 <table border="0"  cellpadding="0" cellspacing="0" height="100%" align="center" class="doc_width">
 			 <tr valign="top">
 				 <td height="100%">

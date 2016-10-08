@@ -162,7 +162,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										</x:forEach>
 											<c:if test="${readwrite =='1' }">
 <%--										<c:if test="${sysname == passRoundCommField}">--%>
-											<textarea class="edit-txta edit-txta-l" placeholder="请输入" name="comment_input" id="comment_input" maxlength="50"></textarea>
+											<textarea class="edit-txta edit-txta-l" placeholder="请输入" name="comment_input" id="comment_input" maxlength="300"></textarea>
 											<div class="examine" style="text-align:right;">
 												<a class="edit-select edit-ipt-r">
 													<div class="edit-sel-show">
@@ -233,7 +233,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 								</c:if>
 							</th>
 							<td>
-	                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="50"></textarea>
+	                            <textarea class="edit-txta edit-txta-l" placeholder="请输入文字" name="comment_input" id="comment_input" maxlength="300"></textarea>
 								<%--<a href="#" class="edit-slt-r">常用语审批</a>--%>
 								<div class="examine" style="text-align:right;">
 									<a class="edit-select edit-ipt-r">
