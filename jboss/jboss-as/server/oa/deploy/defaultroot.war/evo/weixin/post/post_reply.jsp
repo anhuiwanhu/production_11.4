@@ -28,7 +28,7 @@
 				<input type="hidden" name="forumFloor" value="${forumFloor }" />
 				<input type="hidden" name="forumUserName" value="${forumUserName }" />
 				<input type="hidden" name="forumIssueTime" value="${forumIssueTime }" />
-		        <div class="wh-container">
+		        <div>
 		            <table class="wh-table-edit">
 		                <tr>
 		                    <th>帖子标题<i class="fa fa-asterisk"></i>：</th>

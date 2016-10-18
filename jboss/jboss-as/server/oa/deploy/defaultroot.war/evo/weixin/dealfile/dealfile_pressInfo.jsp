@@ -30,7 +30,7 @@ DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 <body>
 	<section class="wh-section wh-section-bottomfixed">
 	    <article class="wh-edit wh-edit-document">
-	        <div class="wh-container">
+	        <div>
 	            <div class="wh-article-lists">
 	           		<ul>
 	                    <li>

@@ -36,7 +36,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 	<form action="" method="post" id="readForm">
 		<section class="wh-section wh-section-bottomfixed">
 		    <article class="wh-edit wh-edit-forum">
-		        <div class="wh-container">
+		        <div>
 					<x:parse xml="${docXml}" var="doc" />
 					<c:set var="mailto"><x:out select="$doc//mailto/text()" /></c:set> 
 					<c:set var="mailtosimple"><x:out select="$doc//mailtosimple/text()" /></c:set>

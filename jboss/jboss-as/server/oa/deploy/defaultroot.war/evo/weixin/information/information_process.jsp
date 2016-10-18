@@ -55,7 +55,7 @@ if(sysMap != null && sysMap.get("附件上传") != null){
 	    <form id="sendForm" action="/defaultroot/workflow/sendnew.controller" method="post">
 	    <section class="wh-section wh-section-bottomfixed">
     		<article class="wh-edit wh-edit-document">
-    			<div class="wh-container">
+    			<div>
 		            <div class="wh-article-lists">
 		                <ul>
 		                    <li>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@page import="com.whir.org.SysOrg"%>
 <%@ include file="../common/taglibs.jsp"%>
 <%
 String pageId = request.getParameter("pageId");
@@ -28,7 +29,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 <form id="sendForm" class="dialog" action="/defaultroot/workflow/firstezflowsend.controller" method="post">
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
     <article class="wh-edit wh-edit-document">
-        <div class="wh-container">
+        <div>
             <c:if test="${not empty docXml}">
 				<x:parse xml="${docXml}" var="doc2"/>
 				<c:if test="${not empty docXml1}">
@@ -43,6 +44,9 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 	            	<!--主表信息begin-->
 	            	<x:forEach select="$doc2//fieldList/field" var="fd" >
             			<c:set var="showtype"><x:out select="$fd/showtype/text()"/></c:set>
+            			<c:set var="value"><x:out select="$fd/value/text()"/></c:set>
+            			<c:set var="hiddenval"><x:out select="$fd/hiddenval/text()"/></c:set>
+            			<c:set var="expressionval"><x:out select="$fd/expressionval/text()"/></c:set>
 						<c:set var="readwrite"><x:out select="$fd/readwrite/text()"/></c:set>
 						<c:set var="fieldtype"><x:out select="$fd/fieldtype/text()"/></c:set>
 						<c:set var="mustfilled"><x:out select="$fd/mustfilled/text()"/></c:set>
@@ -279,7 +283,47 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 	 
 									<%--登录人信息 --%>
 									<c:when test="${( showtype =='213' || showtype =='215'|| showtype =='406'|| showtype =='601'|| showtype =='602'|| showtype =='603'|| showtype =='604'|| showtype =='605'|| showtype =='607'|| showtype =='701'|| showtype =='702'|| showtype =='201'|| showtype =='202' || showtype =='207'  ) && readwrite =='1'}">
-										<x:out select="$fd/value/text()"/><input id='<x:out select="$fd/sysname/text()"/>' type="hidden" name='_main_<x:out select="$fd/sysname/text()"/>'  value='<x:out select="$fd/value/text()"/>' />
+										
+										<c:choose>
+											<%--最末端组织 --%> 
+											<c:when test="${expressionval == 'self'}">
+												<%
+													String valuestr = org.apache.commons.lang.StringEscapeUtils.unescapeXml((String)pageContext.getAttribute("value"));
+													System.out.println("value2222222222------------->"+valuestr);
+													String[] values = valuestr.split("\\.");
+													String valueSelf = values[values.length-1];
+													System.out.println("valueSelf------------->"+valueSelf);
+												%>
+												<%=valueSelf %>
+												<input id='<x:out select="$fd/sysname/text()"/>' type="hidden" name='_main_<x:out select="$fd/sysname/text()"/>'  value='<x:out select="$fd/value/text()"/>' />
+											</c:when>
+											<%--组织长信息 --%>
+											<c:when test="${expressionval == 'full'}">
+												<x:out select="$fd/value/text()"/>
+												<input id='<x:out select="$fd/sysname/text()"/>' type="hidden" name='_main_<x:out select="$fd/sysname/text()"/>'  value='<x:out select="$fd/value/text()"/>' />
+											</c:when>
+											<%--从本单位开始至末端 --%>
+											<c:when test="${expressionval == 'unit'}">
+												<x:out select="$fd/value/text()"/>
+												<input id='<x:out select="$fd/sysname/text()"/>' type="hidden" name='_main_<x:out select="$fd/sysname/text()"/>'  value='<x:out select="$fd/value/text()"/>' />
+											</c:when>
+											<%--最末端组织向上一级 --%>
+											<c:when test="${expressionval == 'parent'}">
+												<%
+													String valuestr = org.apache.commons.lang.StringEscapeUtils.unescapeXml((String)pageContext.getAttribute("value"));
+													System.out.println("value2222222222------------->"+valuestr);
+													String[] values = valuestr.split("\\.");
+													String valueSelf = values[values.length-1];//最末端
+													String valueSelfUp = values[values.length-2];//最末端向上一个
+
+													String valueSelfUps = valueSelfUp + "." + valueSelfUp;
+													System.out.println("valueSelf------------->"+valueSelf);
+												%>
+												<%=valueSelfUps %>
+												<input id='<x:out select="$fd/sysname/text()"/>' type="hidden" name='_main_<x:out select="$fd/sysname/text()"/>'  value='<x:out select="$fd/value/text()"/>' />
+											</c:when>
+										</c:choose>
+										
 									</c:when>
 	
 									<%--单选人 全部 210--%>

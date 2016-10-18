@@ -47,7 +47,7 @@ String nowDate = df.format(ndate).toString();
 <input type="hidden" name="meetRoomId" value="${meetRoomId}">
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
     <article class="wh-edit wh-edit-forum">
-        <div class="wh-container">
+        <div>
 		    <c:if test="${not empty docXml}">
 			<x:parse xml="${docXml}" var="doc"/>
             <table class="wh-table-edit">

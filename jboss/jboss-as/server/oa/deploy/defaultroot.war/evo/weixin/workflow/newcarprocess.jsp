@@ -31,7 +31,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 		<input  id="processId" type="hidden"  name="processId" value="<%=processId%>" />
 		<section class="wh-section wh-section-bottomfixed" id="mainContent">
 			<article class="wh-edit wh-edit-document">
-				 <div class="wh-container">
+				 <div>
 				 	<c:if test="${not empty docXml}">
 				 		<x:parse xml="${docXml}" var="doc"/>
 		            	<table class="wh-table-edit" id="table_form">

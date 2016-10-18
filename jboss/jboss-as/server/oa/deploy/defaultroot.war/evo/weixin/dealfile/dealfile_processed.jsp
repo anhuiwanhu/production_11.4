@@ -38,7 +38,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 	</c:if>
 	<section class="wh-section wh-section-bottomfixed" id="mainContent">
 	    <article class="wh-edit wh-edit-document">
-	        <div class="wh-container">
+	        <div>
 	            <div class="wh-article-lists">
 	           		<ul>
 	                    <li>

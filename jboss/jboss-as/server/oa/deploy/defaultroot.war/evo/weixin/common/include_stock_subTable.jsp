@@ -10,7 +10,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 <header class="wh-header" id="subHeader" style="display:none" data-hide="0">
     <div class="wh-wrapper">
         <div class="wh-hd-op-left"></div>
-        <div class="wh-container">
+        <div>
             <nav class="wh-info-nav">
                 <ul class="wh-i-n-default swiper-wrapper" id="swiper_ul">
                 	<c:if test="${not empty docXml}">

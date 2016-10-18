@@ -98,6 +98,10 @@ h5 {
   padding: 0 1rem;
 }
 
+.wh-container-r{
+  padding-right: 1rem;
+}
+
 
 /* Main */
 
@@ -528,8 +532,7 @@ strong.document-icon {
 
 .wh-edit-document {
   .wh-article-lists {
-    background-color: #f7f7f7;
-    margin: 0 -1rem;
+    background-color: #f7f7f7; 
     padding: 0 1rem;
     ul {
       >li {
@@ -820,7 +823,8 @@ article {
       border: 1px solid #fff;
       background-color: #fff;
       font-size:1.3rem;
-      color:@text-color-d;
+      color:@text-color-l; 
+      &::-webkit-input-placeholder { color:#909090; } 
     }
     .edit-ipt-r.edit-ipt-arrow {
       &::-moz-placeholder {
@@ -831,7 +835,7 @@ article {
           color: @text-color-l;
         }
       }
-      &:-ms-input-placeholder {
+      &::-ms-input-placeholder {
         &:after {
           margin-left: 1rem;
           font-family: FontAwesome;
@@ -861,7 +865,7 @@ article {
         line-height: 2.2rem;
         border: 1px solid #fff;
         top: 0;
-        left:5.8rem;
+        right: 0;
         .box-sizing(border-box);
         &:after {
           font-family: FontAwesome;
@@ -893,6 +897,7 @@ article {
         }
       }
     }
+ 
     textarea.edit-txta {
       width: 100%;
       padding: 0;
@@ -904,7 +909,7 @@ article {
       .box-sizing(border-box);
       .appearance(none);
       /* .placeholder(@text-color-d, left, 1.4rem); */
-      
+      &::-webkit-input-placeholder { color:#909090; } 
       resize: none;
       &.edit-txta-r {
       }
@@ -916,13 +921,17 @@ article {
       display: block;
       width: 100%;
       text-align: left;
-      color: @text-color-d;
+      color: #909090;
       font-size:1.3rem;
+      position: relative;
       &:after {
         margin-left: 1rem;
         font-family: FontAwesome;
         content: "\f054";
         color: @text-color-l;
+        position: absolute;
+        top: 0;
+        right: 0;
       }
       &.edit-slt-r-b {
         font-size: 1.6rem;
@@ -931,7 +940,7 @@ article {
     }
     span.edit-radio-l {
       font-size:1.3rem;
-      color:@text-color-d;
+      color:#909090;
       &:before {
         margin-right: .5rem;
         font-family: FontAwesome;
@@ -950,6 +959,7 @@ article {
     .edit-ipt-reslut-r {
       display: block;
       text-align: right;
+      //padding-right: 1rem;
       &.blue {
         color: @link-hover-color;
       }
@@ -1021,8 +1031,7 @@ article {
       }
       td {
         font-size: 1.3rem;
-         padding: 1rem 0 1rem 1rem;
-
+        padding:1rem; 
         .wh-article-atta {
           text-align: left;
         }
@@ -1159,7 +1168,7 @@ input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {   
     color: red;   
 }  
-.wh-container.no-padding{padding:0;}
+ 
 .edit-txta-box ul li{font-size:1.3rem; color:@text-color-d;}
 .wh-edit table.wh-table-edit a{font-size:1.3rem;color:@text-color-d;}
 article.wh-edit table.wh-table-edit th.no-bg{ background:none;}
@@ -1668,17 +1677,20 @@ i.fa.fa-check-circle {
   width: 100%;
   color: #646464;
   .edit-sel-show {
-    text-align: left;
-
+    text-align: left; 
+    position: relative;
     span {
       display: block;
       font-size:1.3rem;
-    color:@text-color-d;
+      color:#909090;
       &:after {
         margin-left: 1rem;
         font-family: FontAwesome;
         content: "\f054";
         color: @text-color-l;
+        position: absolute;
+        top: 0;
+        right: 0;
       }
     }
   }
@@ -1765,8 +1777,7 @@ em.orange {
   margin-bottom: 1rem;
   .face-ico-btn,
   .face-ico-all {
-    display: block;
-    margin: 0 -1rem;
+    display: block; 
   }
   img {
     display: inline-block;
@@ -3005,6 +3016,8 @@ article.wh-edit table.wh-table-edit td div.wh-iframe {
   .log-notice,.log-notice-con{
     border-bottom: 1px solid #d6d6d6;
     padding-bottom: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
     p{
       font-size: 1.5rem; 
       line-height: 2rem; 
@@ -3026,7 +3039,7 @@ article.wh-edit table.wh-table-edit td div.wh-iframe {
   .log-notice-list{
     li{
       font-size: 1.2rem; 
-      padding: 0.5rem 0;
+      padding: 0.5rem 1rem;
       border-bottom: 1px solid #d6d6d6; 
       em{
         color: #d2d2d2; 

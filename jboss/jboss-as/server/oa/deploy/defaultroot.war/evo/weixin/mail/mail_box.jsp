@@ -60,15 +60,18 @@
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/fx.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/ajax.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/alert/zepto.alert.js"></script>
+<script type="text/javascript" src="/defaultroot/evo/weixin/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
+	window.$$=window.Zepto = Zepto;
+	
 	//区分收信和发信链接
 	 var urlType = "";
 	 var detailUrl = "";
 	 var detailType = 'receive';
 	 var firstLoad = true;
-     $(function () {
+     Zepto(function($)  {
          var cateListCK = $('div[name=cateListChek] i.fa-check-circle');
-         cateListCK.tap(function(){
+          cateListCK.tap(function(){
              cateListCK.not(this).removeClass('fa-check-circle-active');
              $(this).addClass('fa-check-circle-active');
          });
@@ -103,7 +106,7 @@
      var dialog = null;
      //数据加载提示
      function showLoding(){
-         dialog = $.dialog({
+         dialog = $$.dialog({
              content:"数据加载中...",
              title: 'load'
          });

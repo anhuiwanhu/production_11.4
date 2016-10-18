@@ -46,7 +46,7 @@ String userId = session.getAttribute("userId").toString();
 		<c:if test="${not empty docXml}">
 		<x:parse xml="${docXml}" var="doc"/>
 		<form id="sendForm" class="dialog" action="/defaultroot/workflow/updateprocess2.controller" method="post">
-			<div class="wh-container">
+			<div>
 	 			<div class="wh-article-lists">
 	                <ul>
 	                    <li>

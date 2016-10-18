@@ -125,7 +125,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 <body>
   <section class="wh-section wh-section-bottomfixed">
     <article class="wh-edit wh-edit-forum">
-      <div class="wh-container">
+      <div>
 	    <x:parse xml="${docXml}" var="doc" />
 		<c:set var="attendanceType"><x:out select="$doc//attendanceType/text()"/></c:set>
 		<c:set var="isAdmin"><x:out select="$doc//isAdmin/text()"/></c:set>

@@ -43,7 +43,7 @@
 <form id="sendForm" class="dialog" action="/defaultroot/meeting/meetingRoomList.controller" method="post">
   <section class="wh-section wh-section-bottomfixed">
     <article class="wh-edit wh-edit-forum">
-      <div class="wh-container">
+      <div>
 	  <c:if test="${not empty docXml}">
 	      <x:parse xml="${docXml}" var="doc"/>
 		  <c:set var="dateAttend">

@@ -32,7 +32,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 <body>
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
 	<article class="wh-edit wh-edit-document">
-		<div class="wh-container">
+		<div>
 			<div class="wh-article-lists">
                <ul>
                    <li>
@@ -60,7 +60,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 								<tr>
 									<th><i class="fa fa-asterisk"></i>退回环节：</th>
 									<td>
-										<select class="selt" name="activity" id="activity" prompt="请选择下一环节" onclick="getDealwithEmpName(this);">
+										<select class="selt" name="activity" id="activity" prompt="请选择下一环节" onchange="getDealwithEmpName(this);">
 											<option value="0">退回发起人</option>
 											<x:forEach select="$doc//backWorkFlow" var="n" varStatus="status">
 												<option value='<x:out select="$n/activityId/text()"/>;<x:out select="$n/activityName/text()"/>;<x:out select="$n/curstepcount/text()"/>;<x:out select="$n/dealwithEmpId/text()"/>;<x:out select="$n/dealwithEmpName/text()"/>;<x:out select="$n/forkStepCount/text()"/>' <c:if test="${status.count==1}">selected="true"</c:if> ><x:out select="$n/activityName/text()"/><x:if select="$n//dealwithEmpName/text() != 'null'">:<x:out select="$n/dealwithEmpName/text()"/></x:if></option>
@@ -68,7 +68,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 										</select>
 									</td>
 								</tr>
-								<tr>
+								<tr id="dealwithEmpName">
 									<th><i class="fa fa-asterisk"></i>退回人：</th>
 									<td>
 										<x:forEach select="$doc//backWorkFlow" var="n" varStatus="status">
@@ -132,7 +132,7 @@ String workStatus = request.getParameter("workStatus")==null?"":request.getParam
 		}else{
 			$("#dealwithEmpName").show();
 			var selectedValues_obj =selectedValues.split(";");
-			$("#dealwithEmpName").find("a").html(selectedValues_obj[4]);
+			$("#dealwithEmpName").find("td").html(selectedValues_obj[4]);
 		}
 	}
 

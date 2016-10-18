@@ -38,7 +38,7 @@ String orgId = session.getAttribute("orgId")==null?"":session.getAttribute("orgI
 </header>
 <section class="wh-section wh-section-topfixed wh-section-bottomfixed wh-section-morebtmfixed" id="subSection_${tableName}" style="display:none">
     <article class="wh-edit wh-edit-forum">
-        <div class="wh-container" id="subTableContent_${tableName}">
+        <div id="subTableContent_${tableName}">
         	<c:if test="${not empty docXml}">
         		<x:if select="$doc2//subTableList/subTable">
 		        	<c:set var="subFieldsNum"></c:set>

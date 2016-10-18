@@ -201,7 +201,7 @@ function clickSub(url,obj,saveFileName,moduleName,smartInUse){
 		}
 	}else{
 		// 暂时支持http上传方式的文件读取
-		if(smartInUse != '0'){
+		//if(smartInUse != '0'){
 			// android客户端环境
 			if(androidFileType.indexOf(fileType) != -1){
 				isOpenTip = false;
@@ -248,7 +248,7 @@ function clickSub(url,obj,saveFileName,moduleName,smartInUse){
 					window.open('/defaultroot/evo/weixin/common/img_view.jsp?saveFileName='+saveFileName+'&moduleName='+moduleName);
 				}
 			}
-		}
+		//}
 	}
 	// 显示打开浏览器提示
 	if(isOpenTip){

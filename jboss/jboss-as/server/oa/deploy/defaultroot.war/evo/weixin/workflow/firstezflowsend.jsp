@@ -17,7 +17,7 @@
 <body>
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
 	<article class="wh-edit wh-edit-document">
-		<div class="wh-container">
+		<div>
 			<form id="sendForm" action="/defaultroot/workflow/sendezflowprocess.controller" method="post">
 				<input type="hidden" id="userId" name="userId" value=""/>
 		     	<input type="hidden" id="scopeId" name="scopeId" value=""/>

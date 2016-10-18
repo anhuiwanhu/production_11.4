@@ -20,7 +20,7 @@ String homePage = request.getParameter("homePage")==null?"2":request.getParamete
 <form id="saveForm">
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
     <article class="wh-edit wh-edit-forum">
-        <div class="wh-container">
+        <div>
             <table class="wh-table-edit">
                 <tr>
                     <th><i class="fa fa-asterisk"></i>所属栏目：</th>

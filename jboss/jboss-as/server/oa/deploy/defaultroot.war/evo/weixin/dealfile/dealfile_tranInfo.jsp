@@ -40,7 +40,7 @@ String comment_tran = request.getParameter("comment_tran")==null?"":request.getP
 <body>
 <section class="wh-section wh-section-bottomfixed" id="mainContent">
 	<article class="wh-edit wh-edit-document">
-		<div class="wh-container">
+		<div>
 			<div class="wh-article-lists">
                <ul>
                    <li>
