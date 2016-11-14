@@ -1,11 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/public/include/init.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>标准列表页面结构</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <%@ include file="/public/include/meta_base.jsp"%>
     <%@ include file="/public/include/meta_list.jsp"%>
     <!--这里可以追加导入模块内私有的js文件或css文件-->
 </head>
