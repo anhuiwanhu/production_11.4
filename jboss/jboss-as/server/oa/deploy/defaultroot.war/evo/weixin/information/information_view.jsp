@@ -121,6 +121,7 @@
 					if(sysMap != null && sysMap.get("附件上传") != null){
 						smartInUse = sysMap.get("附件上传").toString();
 					}
+					String isYzOffice = com.whir.component.config.ConfigReader.getReader().getAttribute("Weixin", "isYzOffice");
 					com.whir.evo.weixin.util.UploadFile uploadFile = new com.whir.evo.weixin.util.UploadFile();
 					String fileServer = com.whir.component.config.ConfigReader.getFileServer(request.getRemoteAddr());
 				    %>
@@ -147,7 +148,7 @@
 						%>
 			            <div class="wh-article-atta">
 			                <i class="fa fa-paperclip"></i>
-			                <a href="javascript:void();" onclick="clickSub('<%=downloadFileLink%>',this,'${filename}','information','<%=smartInUse %>');">
+			                <a href="javascript:void();" onclick="clickSubyz('<%=downloadFileLink%>',this,'${filename}','information','<%=smartInUse %>','<%=isYzOffice %>');">
 			                    <strong class="atta-name">${appName}</strong>
 			                </a>
 			                <span class="atta-size"><%=fileSizeStr%></span>

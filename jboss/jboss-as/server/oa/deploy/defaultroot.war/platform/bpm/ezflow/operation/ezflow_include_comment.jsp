@@ -859,6 +859,10 @@ if(tt_commTD && tt_commTR) {
 }
 
 $(document).ready(function(){
+
+	 <%if(request.getParameter("mopendir")!=null&&request.getParameter("mopendir").toString().equals("1")){%>
+		$("#popToolbar").remove();
+    <%}%>
     $('#iHtmlSignature').each(function(){
         //alert($(this).attr('style').replace('static','absolute'));
         var newStyle= $(this).attr('style').replace('static','absolute');

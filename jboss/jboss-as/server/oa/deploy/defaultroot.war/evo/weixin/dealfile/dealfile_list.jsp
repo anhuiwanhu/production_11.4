@@ -164,7 +164,7 @@
 			                     +'</strong>'
 			                     +'<p>'
 				                     +'<a href="'+getDealFileDetailUrl(listData[i].workMainLinkFile)+'?workStatus='
-				                     +workStatus+'&workId='+listData[i].workId+'&empLivingPhoto='+empLivingPhoto+'">'
+				                     +workStatus+'&workId='+listData[i].workId+'&empLivingPhoto='+empLivingPhoto+'&fromFlag=1">'
 				                     +listData[i].workTitle+'</a>'                                                                
 				                     +'<span>（'+listData[i].workSubmitTime.substring(0,16)+'）</span>'
 			                     +'</p>'

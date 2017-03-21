@@ -82,15 +82,15 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 										docSaveFiles.append(pageContext.getAttribute("saveFile").toString()).append("|");
 										%>
 									</x:forEach>
-									<x:forEach select="$govDoc//docSaveFile/file" var="file" >
+									<x:forEach select="$govDoc//docRealFile/file" var="file" >
 										<c:set var="realFile" ><x:out select="$file/text()" /></c:set>
 										<%
 										docRealFiles.append(pageContext.getAttribute("realFile").toString()).append("|");
 										%>
 									</x:forEach>
 									<jsp:include page="../common/include_download.jsp" flush="true">
-										<jsp:param name="realFileNames"	value="<%=docSaveFiles.toString() %>" />
-										<jsp:param name="saveFileNames" value="<%=docRealFiles.toString() %>" />
+										<jsp:param name="realFileNames"	value="<%=docRealFiles.toString() %>" />
+										<jsp:param name="saveFileNames" value="<%=docSaveFiles.toString() %>" />
 										<jsp:param name="moduleName" value="govdocumentmanager" />
 									</jsp:include>
 		            			</td>
@@ -1260,13 +1260,13 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 <!----------加签结束---------->
 </body>
 </html>
+<script type="text/javascript" src="/defaultroot/evo/weixin/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/zepto.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/touch.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/fx.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/selector.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/alert/zepto.alert.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/js/subClick.js"></script>
-<script type="text/javascript" src="/defaultroot/evo/weixin/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
     var dialog = null;
     var flag = 1;//防止重复提交

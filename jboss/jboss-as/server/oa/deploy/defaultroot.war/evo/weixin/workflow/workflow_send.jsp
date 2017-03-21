@@ -71,7 +71,7 @@ String userId = session.getAttribute("userId").toString();
 				<input type="hidden" id="beginForkActivityName" name="beginForkActivityName" value='<x:out select="$doc//beginForkActivityName/text()"/>' />
 				<input type="hidden" id="toJoinActivityId" name="toJoinActivityId" value='<x:out select="$doc//toJoinActivityId/text()"/>' />
 				<input type="hidden" name="_mainfile_commentacc" id="_mainfile_commentacc" value="${commentAcc}" />
-
+				<input type="hidden" id="fromFlag" name="fromFlag"  value="${param.fromFlag}" />
 				<!--gateType  XOR或者空时：多个活动选一个  XAND：多个活动都选  XX：多个活动选择多个-->
 				<c:set var="gateType"><x:out select="$doc//gateType/text()"/></c:set>
 				<input type="hidden" id="gateType" name="gateType" value="${gateType}"/>
@@ -576,7 +576,13 @@ String userId = session.getAttribute("userId").toString();
 				if(json!=null){
 					if(json.result == 'success'){
 						alert("发送成功！");
-						window.location.href =openUrl;
+						//window.location.href =openUrl;
+						var fromFlag = $("#fromFlag").val();
+						if(fromFlag == '1'){
+							window.history.go(-2);
+						}else{
+							WeixinJSBridge.call('closeWindow');
+						}
 					}else{
 						alert("发送失败！");
 					}
@@ -677,7 +683,12 @@ String userId = session.getAttribute("userId").toString();
 				if(json!=null){
 					if(json.result == 'success'){
 						alert("发送成功！");
-						window.location.href =openUrl;
+						var fromFlag = $("#fromFlag").val();
+						if(fromFlag == '1'){
+							window.history.go(-2);
+						}else{
+							WeixinJSBridge.call('closeWindow');
+						}
 					}else{
 						alert("发送失败！");
 					}

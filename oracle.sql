@@ -516,3 +516,17 @@ commit;
 
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.29_SP_20161128','11.4.0.29',sysdate);
 commit;
+
+
+
+
+
+
+update wf_oa_relatefield set field_table_displayname = '人员表(系统)' where field_table_displayname='人员表(系统))';
+commit;
+insert into  EZ_SECU_PAGELIST(SECU_URL,LIST_TYPE)values('/OpenFromMobile',1);
+commit;
+insert into  EZ_SECU_PAGELIST(SECU_URL,LIST_TYPE)values('/OpenFromMobile',3);
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.30_SP_20170311','11.4.0.30',sysdate);
+commit;

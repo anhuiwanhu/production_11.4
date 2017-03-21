@@ -7,6 +7,7 @@ String workId = request.getParameter("workId");
 String orgId = session.getAttribute("orgId").toString();
 request.setAttribute("now",new java.util.Date());
 String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.getParameter("empLivingPhoto");
+String fromFlag = request.getParameter("fromFlag");
 %>
 <!DOCTYPE html>
 <html>
@@ -627,6 +628,7 @@ String empLivingPhoto = request.getParameter("empLivingPhoto")==null?"":request.
 					<input type="hidden" name="workStatus" value="0">
 					<input type="hidden" name="isDossier" value="${isDossier }">
 					<input type="hidden" name="worktype"  value='<x:out select="$doc2//worktype/text()"/>' />
+					<input type="hidden" name="fromFlag" value="<%=fromFlag%>">
             	</c:if>
         </div>
     </article>

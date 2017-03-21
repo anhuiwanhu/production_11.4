@@ -692,9 +692,16 @@ function checkFormElement(){
 	var destineDateBeginTime = 0;
 	var destineDateEndTime = 0;
     var _destineDate = $('input[name=destineDate]');
-	_flag = false;
+	_flag = false; 
 	for(var i=0; i<_destineDate.length; i++){
         if(i!=1){
+			//2017-3-1 luosong 添加会议时间验证
+            var destineDate = $('input[name=destineDate]')[i].value;
+			if(destineDate==''){
+				whir_alert("会议时间不能为空。");
+                return false;
+			}
+			//------------我是分割线---------------------
             //会议时间数组
             var destineDate = $('input[name=destineDate]')[i].value;
             $("#destineDateBeginTime").val($('select[name=startHour]')[i].value *3600 +$('select[name=startMinutes]')[i].value*60);

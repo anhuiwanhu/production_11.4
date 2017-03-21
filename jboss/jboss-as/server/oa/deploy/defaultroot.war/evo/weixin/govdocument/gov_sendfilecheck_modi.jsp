@@ -438,13 +438,13 @@ String orgId = session.getAttribute("orgId").toString();
 <!----------加签结束---------->
 </body>
 </html>
+<script type="text/javascript" src="/defaultroot/evo/weixin/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/zepto.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/touch.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/fx.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/selector.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/template/js/alert/zepto.alert.js"></script>
 <script type="text/javascript" src="/defaultroot/evo/weixin/js/subClick.js"></script>
-<script type="text/javascript" src="/defaultroot/evo/weixin/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
     var dialog = null;
     var flag = 1;//防止重复提交

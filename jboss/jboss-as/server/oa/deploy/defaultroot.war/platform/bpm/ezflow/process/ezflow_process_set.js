@@ -416,7 +416,21 @@ function initData() {
 		 if(processCanMobilePhoneCheck.length > 0) {
 			processCanMobilePhoneCheck[0].checked = true;
 		 }
+	}
+	
+	// 是否显示 原来的表单  
+	//手机端
+	var  processFormShowAtMobile=model.getAttribute("whir:processFormShowAtMobile");
+	if(processFormShowAtMobile==null||processFormShowAtMobile==""){
+	     processFormShowAtMobile="0";
+	}
+	if(processFormShowAtMobile=="1"){
+		 var processFormShowAtMobileCheck = $("input[name='processFormShowAtMobile'][value='1']");
+		 if(processFormShowAtMobileCheck.length > 0) {
+			processFormShowAtMobileCheck[0].checked = true;
+		 }
 	}  
+
 
 	/*
 	//
@@ -996,6 +1010,15 @@ function save(type){
 	}else{
 		model.setAttribute("whir:mobilePhoneStatus","0");
 	}
+
+		//手机端 
+	var processFormShowAtMobileCheck = $("input[name='processFormShowAtMobile']:checked");
+	if(processFormShowAtMobileCheck.length > 0) {
+		model.setAttribute("whir:processFormShowAtMobile", "1");
+	}else{
+		model.setAttribute("whir:processFormShowAtMobile","0");
+	}
+
 
 	//whir:processNeedDossier		是否需要归档，  true /false
 	var processNeedDossierRadio = $("input[name='processNeedDossier']:checked");

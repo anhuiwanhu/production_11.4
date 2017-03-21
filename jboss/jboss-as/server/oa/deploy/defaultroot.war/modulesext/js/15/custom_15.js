@@ -266,7 +266,13 @@ function checkFormElement(){
 		whir_alert("会议主题为表单上必须要的元素，请添加！",null,null);
 		result=false;
 	}
-	
+	//2017-3-01 luosong 
+	var boardroomId = document.getElementById('boardroomId').value;
+	if(boardroomId=="" || boardroomId=="null"){
+		whir_alert("会议室为表单上必须要的元素，请添加！",null,null);
+		return false;
+	}
+	//------------分割线---------------------
 	//function getObjectByName(name/*对象名称*/, index/*下标，默认为0*/, suffix/*后缀：1)选择组织用户：_Id,_Name; 2)附件：_fileName,_saveName; 3)其它无后缀，为空*/) {
 	//相对于 document.getElementsByName(name)[index];
 
@@ -280,6 +286,16 @@ function checkFormElement(){
 	if($('input[name=destineDate]:not(:disabled)').length<0){
 		whir_alert("时间为表单上必须要的元素，请添加！",null,null);
 		return false;
+	}else{
+	//2017-2-28 luosong 
+		var destineDateVal = $('input[name=destineDate]:not(:disabled)').length;
+		for(var i=0;i<destineDateVal;i=i+1){
+			if($('input[name=destineDate]:not(:disabled)')[i].value==""){
+			whir_alert("时间不能为空！",null,null);
+			return false;
+			}
+		}
+		
 	}
 	if(!document.getElementById('boardroomId')){
 		whir_alert("会议室名称为表单上必须要的元素，请添加！",null,null);

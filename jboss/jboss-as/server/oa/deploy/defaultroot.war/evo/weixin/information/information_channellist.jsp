@@ -30,9 +30,9 @@ String title = request.getParameter("title")==null?"":request.getParameter("titl
 <section id="sectionScroll" class="wh-section wh-section-topstatic">
     <header class="wh-search">
         <div class="wh-container">
-		<c:set var="flagChannelId"><%=flagChannelId%></c:set>
-		<c:set var="flagChannelName"><%=flagChannelName%></c:set>
-		<c:set var="title"><%=title%></c:set>
+            <c:set var="flagChannelId"><%=flagChannelId%></c:set>
+			<c:set var="flagChannelName"><%=flagChannelName%></c:set>
+			<c:set var="title"><%=title%></c:set>
 			<c:choose>  
   				   <c:when test="${flagChannelId ==''}">
 						<form method="post" action="/defaultroot/information/allChannelList.controller" id="searchForm">
@@ -63,24 +63,27 @@ String title = request.getParameter("title")==null?"":request.getParameter("titl
 		                    </li>
 						</c:if>
 						<x:forEach select="$doc//informationChannel" var="n" varStatus="status">
+							<c:set var="isView"><x:out select="$n/isView/text()" /></c:set>
 							<c:set var="curChannelName"><x:out select="$n/channelName/text()" /></c:set>
 							<c:set var="curChannelId"><x:out select="$n/channelId/text()"/></c:set>
 							<c:set var="hasChildChannl"><x:out select="$n/hasChildChannl/text()"/></c:set>
 							<c:set var="hasInfomation"><x:out select="$n/hasInfomation/text()"/></c:set>
 							<c:set var="channelNeedCheckup"><x:out select="$n/channelNeedCheckup/text()"/></c:set>
-		                    <li>
-		                    	<div class="wh-cate-libox wh-cate-libox-right">
-			                        <a href="/defaultroot/information/channelList.controller?channelId=${curChannelId}&channelName=${curChannelName}">
-			                            <i class="icon">${fn:substring(curChannelName,0,1)}</i>
-			                            <p>
-			                                <strong>${curChannelName}</strong>
-			                                <c:if test="${hasChildChannl eq '1'}">
-				                                <span>下级栏目</span>
-			                                </c:if>
-			                            </p>
-			                        </a>
-		                        </div>
-		                    </li>
+							<c:if test="${isView != 0 }">
+			                    <li>
+			                    	<div class="wh-cate-libox wh-cate-libox-right">
+				                        <a href="/defaultroot/information/channelList.controller?channelId=${curChannelId}&channelName=${curChannelName}">
+				                            <i class="icon">${fn:substring(curChannelName,0,1)}</i>
+				                            <p>
+				                                <strong>${curChannelName}</strong>
+				                                <c:if test="${hasChildChannl eq '1'}">
+					                                <span>下级栏目</span>
+				                                </c:if>
+				                            </p>
+				                        </a>
+			                        </div>
+			                    </li>
+		                    </c:if>
 	                    </x:forEach>
                     </c:if>
                 </ul>

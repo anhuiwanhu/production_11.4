@@ -355,7 +355,7 @@ if(modiButton != null){
 
 String  qianfaName="";
 String  qianfaTime="";
-String [] qianfaStr=new com.whir.ezoffice.workflow.newBD.WorkFlowButtonBD().getCommentUserAndDateByCommField((String)request.getAttribute("p_wf_tableId"),(String)request.getAttribute("p_wf_recordId"),"documentSendFileSendFile");
+String [] qianfaStr=new com.whir.ezoffice.bpm.bd.BPMCommonBD().getCommentUserAndDateByCommField((String)request.getAttribute("p_wf_tableId"),(String)request.getAttribute("p_wf_recordId"),"documentSendFileSendFile","2");  
 if(qianfaStr!=null&&qianfaStr.length>2){
   qianfaName=qianfaStr[1];
   qianfaTime=qianfaStr[2];

@@ -80,10 +80,11 @@ String title = po.getDocumentSendFileTitle();
 								if(sysMap != null && sysMap.get("附件上传") != null){
 									smartInUse = Integer.parseInt(sysMap.get("附件上传").toString());
 								} 
+								String isYzOffice = com.whir.component.config.ConfigReader.getReader().getAttribute("Weixin", "isYzOffice");
 								%>
 								<i class="fa fa-paperclip"></i>
 								<a href="javascript:void(0);" class="clickstyle" color="blue"
-								onclick="clickSub('/defaultroot/evo/weixin/download/download.jsp?FileName=<%=goldGridId+wordType%>&name=正文<%=wordType%>&path=govdocumentmanager',this,'<%=goldGridId+wordType%>','govdocumentmanager','<%=smartInUse %>');">
+								onclick="clickSubyz('/defaultroot/evo/weixin/download/download.jsp?FileName=<%=goldGridId+wordType%>&name=正文<%=wordType%>&path=govdocumentmanager',this,'<%=goldGridId+wordType%>','govdocumentmanager','<%=smartInUse %>','<%=isYzOffice %>');">
 									<strong class="atta-name">点击查看正文<%=wordType%></strong>
 								</a>
 							</p>

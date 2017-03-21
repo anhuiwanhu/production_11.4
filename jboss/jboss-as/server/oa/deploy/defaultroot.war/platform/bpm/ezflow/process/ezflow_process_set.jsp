@@ -676,6 +676,10 @@ if(whir_agent.indexOf("Firefox/4")>0){
 									      <!-- -->
 									      <input name="processCanMobilePhone"          id="processCanMobilePhone" type="checkbox" value="1"> <s:text name="workflow.processCanMobilePhoneStatus"/><!-- 同步到手机端 -->
                                           <input name="processCanPAD"  id="processCanPAD" type="checkbox" value="1"> <s:text name="workflow.processCanPADStatus"/><!-- 同步到PAD端 -->
+
+										  <span <%if(!moduleId.equals("1")){%>style="display:none;"<%}%>>
+											 <input name="processFormShowAtMobile"  id="processFormShowAtMobile" type="checkbox" value="1"> 移动端显示原表单
+										  </span>
 									  </td>
 									  <td>&nbsp;</td>
 								 </tr>

@@ -170,7 +170,8 @@ function clickSub_backup(url,event){
 }
 
 //点击下载附件
-function clickSub(url,obj,saveFileName,moduleName,smartInUse){
+function clickSub(url,obj,saveFileName,moduleName,smartInUse,isYzOffice){
+	
 	// 非微信环境直接下载（可禁用）
 	if(!is_weixin()){
 		window.open(url);
@@ -206,10 +207,6 @@ function clickSub(url,obj,saveFileName,moduleName,smartInUse){
 			if(androidFileType.indexOf(fileType) != -1){
 				isOpenTip = false;
 				if(fileType.toLowerCase() == '.doc' || fileType.toLowerCase() == '.docx'){
-					var dialog = $.dialog({
-			            content:"正在打开，请稍候...",
-			            title : "ok"
-			        });
 					$.ajax({
 						url : '/defaultroot/convertFile/doc2Html.controller',
 						type : 'post',
@@ -229,7 +226,6 @@ function clickSub(url,obj,saveFileName,moduleName,smartInUse){
 								}else{
 									alert('打开文件失败，请尝试使用浏览器打开下载！');
 								}
-								dialog.close();
 							}
 						},
 						error : function(){
@@ -258,3 +254,102 @@ function clickSub(url,obj,saveFileName,moduleName,smartInUse){
 		});
 	}
 }
+
+function clickSubyz(url,obj,saveFileName,moduleName,smartInUse,isYzOffice){
+	var dialog = $.dialog({
+		content:"正在打开，请稍候...",
+		title : "ok"
+	});
+	var fileType = saveFileName.substr(saveFileName.lastIndexOf(".")).replace(/<[^>]+>/g,'').toLowerCase();
+	if(fileType.toLowerCase() != '.xls' && fileType.toLowerCase() != '.xlsx'
+			&& fileType.toLowerCase() != '.doc' && fileType.toLowerCase() != '.docx' 
+			&& fileType.toLowerCase() != '.ppt' && fileType.toLowerCase() != '.pptx' 
+			&& fileType.toLowerCase() != '.rtf' && fileType.toLowerCase() != '.eio'
+			&& fileType.toLowerCase() != '.pdf' && fileType.toLowerCase() != '.xml'
+			&& fileType.toLowerCase() != '.txt' && fileType.toLowerCase() != '.zip'
+			&& fileType.toLowerCase() != '.rar' && fileType.toLowerCase() != '.jpg'
+			&& fileType.toLowerCase() != '.png' && fileType.toLowerCase() != '.gif'
+			&& fileType.toLowerCase() != '.jpeg' && fileType.toLowerCase() != '.bmp'){
+		//timeout = true;
+		dialog.close();
+		alert("该类型不支持预览，请于电脑端查看！");
+		return;
+		
+	}
+	
+	if(isYzOffice != '1' && (fileType.toLowerCase() == '.rar' || fileType.toLowerCase() == '.zip' || fileType.toLowerCase() == '.xml')){
+		//timeout = true;
+		dialog.close();
+		alert("该类型不支持预览，请于电脑端查看！");
+		return;
+	}
+	
+	if(fileType.toLowerCase() == '.jpg' || fileType.toLowerCase() == '.png' || fileType.toLowerCase() == '.gif' || 
+			fileType.toLowerCase() == '.jpeg' || fileType.toLowerCase() == '.bmp'){
+			dialog.close();
+			window.open('/defaultroot/evo/weixin/common/img_view.jsp?saveFileName='+saveFileName+'&moduleName='+moduleName);
+			return;
+	}
+	
+	if(isYzOffice == 1){
+		$.ajax({
+			url : '/defaultroot/yzConvertFile/file2Html.controller',
+			type : 'post',
+			dataType:'text',
+			data : {'fileName': saveFileName, 'path' : moduleName,'url': url, 'isEncrypt' :'0'},
+			success : function(data){
+				dialog.close();
+			var jsonData = eval("("+data+")");
+		 	if(jsonData.result == '0'){
+		 		window.location = jsonData.data;
+		 	}else if(jsonData.result == '3'){
+		 		alert("指定文件不存在！");
+		 	}else{
+		 		alert(jsonData.message);
+		 	}
+				
+			},
+			error : function(){
+				dialog.close();
+				//dialog.close();
+				alert('打开文件失败，请尝试使用浏览器打开下载！');
+			}
+		});
+	}else{
+		var userAgent = navigator.userAgent.toLowerCase();
+		if(!((userAgent.indexOf("android") != -1) || (
+			(userAgent.indexOf("linux") != -1) && (((userAgent.indexOf("chrome") != -1) || (userAgent.indexOf("safari") != -1))))) && fileType.toLowerCase() =='.pdf'){
+			if(iosOpenFileType.indexOf(fileType) != -1){
+				window.location.href=url;
+				return;
+			}
+		}else{
+			if(fileType.toLowerCase() == '.pdf' ){
+				window.open('/defaultroot/evo/weixin/common/ppt_img.jsp?saveFileName='+saveFileName+'&moduleName='+moduleName);
+			}else{
+				$.ajax({
+					url : '/defaultroot/yzConvertFile/fileView.controller',
+					type : 'post',
+					dataType:'text',
+					data : {'fileName': saveFileName, 'path' : moduleName,'url': url, 'isEncrypt' :'0'},
+					success : function(data){
+						dialog.close();
+						var jsonData = eval("("+data+")");
+						window.location.href=jsonData.data0;
+					},
+					error : function(){
+						dialog.close();
+						//dialog.close();
+						alert('打开文件失败，请尝试使用浏览器打开下载！');
+					}
+				});
+			}
+		}
+	}
+}
+
+
+
+
+
+  
