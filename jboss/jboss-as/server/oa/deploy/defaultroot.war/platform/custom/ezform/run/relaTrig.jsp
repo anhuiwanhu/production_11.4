@@ -360,6 +360,7 @@ var form_field_readonly = "";
 
 //字段关联触发事件
 function relaTrigChange(obj, evt){
+	var p_wf_cur_ModifyField = $("#p_wf_cur_ModifyField").val();
     var obj_id = $(obj).attr("id");
     var obj_val = $(obj).val();
     var indexNO = 0;//下标索引
@@ -516,7 +517,7 @@ if(relaSet!=null && relaSet.size()>0){
         String d_showId = d_showPO.getShowId().toString();
         String d_oldFieldName = dfieldPO.getFieldName();
         String d_newFieldName = StringUtil.replaceSpecial(dfieldPO.getFieldName(), '$');
-%>        
+%> 
     if(obj_id=='<%=s_oldFieldName%>' && obj_val=='<%=srcFieldVal%>'){//<%=dfieldPO.getFieldDesName()%>
         var isSubTable = false;
         var subTableTR = null;        
@@ -588,6 +589,7 @@ if(relaSet!=null && relaSet.size()>0){
             divObj.find("select[name='<%=d_oldFieldName%>']").removeAttr('disabled');
             //清除隐藏域值
             divObj.find("input[type=hidden][name='<%=d_oldFieldName%>']").val('');
+			$("#p_wf_cur_ModifyField").val(p_wf_cur_ModifyField+"$"+_d_oldFieldName+"$");
         }else if("212"==d_showId || "214"==d_showId || "404"==d_showId || "405"==d_showId){
             $("div[id$='-<%=d_oldFieldName%>'] > a.openSelectIco").css('display', '');
         }else if("212"!=d_showId && "214"!=d_showId && "404"!=d_showId && "405"!=d_showId){
@@ -604,6 +606,11 @@ if(relaSet!=null && relaSet.size()>0){
 		if("101"==d_showId||"102"==d_showId||"110"==d_showId||"301"==d_showId||"406"==d_showId){
 			document.getElementById(_d_oldFieldName).value="";
 		}
+
+		//将动态添加的可写字段去除
+		var _d_oldFieldName = '<%=d_oldFieldName%>';
+		var modifyField = $("#p_wf_cur_ModifyField").val().replace("$"+_d_oldFieldName+"$",'');
+		$("#p_wf_cur_ModifyField").val(modifyField);
 	}
 <%
     }
