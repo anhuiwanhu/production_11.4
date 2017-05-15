@@ -39,6 +39,10 @@ String location = (String)sysSetupMap.get("location");
 String wxlocation = (String)sysSetupMap.get("wxlocation");
 String yibo_flag = (String)sysSetupMap.get("yibo_flag");
 String oa_PDF = (String)sysSetupMap.get("oa_PDF");
+//20170505 -by jqq evo端Word范围
+String evoWordRangeIds =  sysSetupMap.get("evoWordRangeIds") != null ? (String) sysSetupMap.get("evoWordRangeIds") : "" ;
+String evoWordRangeNames = sysSetupMap.get("evoWordRangeNames")!= null ? (String) sysSetupMap.get("evoWordRangeNames") : "" ;
+//evoWordRangeIds = "null".equals(evoWordRangeIds) ? "" : evoWordRangeIds;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -158,6 +162,11 @@ String oa_PDF = (String)sysSetupMap.get("oa_PDF");
                      onclick="chgWord1(this);"/>网页端&nbsp;&nbsp;&nbsp;
                     <input type="checkbox" value="<%=options.charAt(16) %>" id="word0" name="evoword"  <%if(options.length()>16&&options.charAt(16)=='1'&&"0".equals(oa_PDF)){%>checked<%}%> onclick="chgWord0(this);"  <%if("1".equals(oa_PDF)){%>disabled<%}%> />EVO端
                     <span id="wordSizeSpan" <%if(options.charAt(5)!='1'&&options.charAt(16)!='1'){%>style="display:none"<%}%> >&nbsp;&nbsp;附件大小限制&nbsp;&nbsp;<input type="text" id="wordlimitsize" name="wordlimitsize" class="inputText" style="width:40px" value="<%=wordlimitsize%>" maxlength="3">&nbsp;M</span>
+					<div  id="evoWordRangeDIV"  <%if(options.charAt(16)!='1'){%> style="display:none"<%}%> cssStyle="width:100%" >
+						<input type="hidden" name="evoWordRangeIds" id="evoWordRangeIds" value='<%=evoWordRangeIds%>'/>
+                        范围： <textarea name="evoWordRangeNames" id="evoWordRangeNames"  cssStyle="width:90%" readonly="true"  value='<%=evoWordRangeNames%>' title='<%=evoWordRangeNames%>'><%=evoWordRangeNames%></textarea>
+						<a class="selectIco textareaIco" onclick="selectEvoWordRange();"></a>
+					</div>
                 </td>
             </tr>
 			<tr>
@@ -785,8 +794,13 @@ function chgWord1(obj){
 function chgWord0(obj){
 	if(obj.checked){
 		$(obj).val("1");
+		//20170505 -by jqq 选人范围
+		$('#evoWordRangeDIV').show();
 	}else{
 		$(obj).val("0");
+		$('#evoWordRangeDIV').hide();
+		$('#evoWordRangeIds').val('');
+		$('#evoWordRangeNames').val('');
 	}
     if($("#word1").val()!=1&&$(obj).val()!=1){
         $('#wordSizeSpan').hide();
@@ -828,6 +842,10 @@ function chgPDF1(obj){
 		var word0 = $('#word0');
 		word0.attr("checked", false);
 		word0.attr("disabled",true);
+		//20170505 -by jqq 选人范围
+		$('#evoWordRangeDIV').hide();
+		$('#evoWordRangeIds').val('');
+		$('#evoWordRangeNames').val('');
 	}
    
 
@@ -838,12 +856,17 @@ function chgPDF0(obj){
 		word0.attr("disabled",false);
 		<%if(options.length()>16&&options.charAt(16)=='1'&&"0".equals(oa_PDF)){ %>
 		word0.attr("checked", true);
+		//20170505 -by jqq 选人范围
+		$('#evoWordRangeDIV').show();
 		<%}%>
 	}
    
 
 }
-
+//20170505 -by jqq evo端word编辑范围选择
+function selectEvoWordRange(){
+	openSelect({allowId:'evoWordRangeIds', allowName:'evoWordRangeNames', select:'user', single:'no', show:'userorggroup', range:'*0*'});
+}
 //-->
 </script>
 </html>

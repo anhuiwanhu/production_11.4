@@ -548,3 +548,24 @@ go
 
 insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.33_SP_20170508','11.4.0.33',getdate());
 go
+
+
+
+
+
+
+
+alter table org_domain add  evoWordRangeIds text;
+go
+alter table org_domain add  evoWordRangeNames text;
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.34_SP_20170515','11.4.0.34',getdate());
+go
+
+
+
+
+
+
+
+
