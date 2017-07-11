@@ -15,6 +15,10 @@ String corpid2 = (String)(session.getAttribute("corpid")==null?"":session.getAtt
 //	session.setAttribute("corpid",corpid);
 List<CorpSetAppPO> csapppolist	= (List<CorpSetAppPO>)request.getAttribute("csapppolist");
 String relactionId =(String)(request.getAttribute("relactionId")==null? "empId":request.getAttribute("relactionId"));
+//20170620 -by jqq 同步组织用户设置信息
+CorpSetAppPO orguserSetPO = (CorpSetAppPO) request.getAttribute("orguserSetPO");
+String orguserSectect = (orguserSetPO==null || orguserSetPO.getModuleSecret()==null) ? "" : orguserSetPO.getModuleSecret();
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -134,6 +138,15 @@ String relactionId =(String)(request.getAttribute("relactionId")==null? "empId":
 		<tr>
 			<td width="100%">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr id="orguserSet" >
+					<td width="4%"></td>
+					<td colspan="2">
+						Secret：<input id="orguserSectect" style="margin-left: 10px;width:30%;" type="text" Class="inputText" name="orguserSectect"   value="<%=orguserSectect%>"
+					 	 whir-options="vtype:['notempty',{},'spechar3']" />
+						 <input id="hiddenOrguserSectect"  type="hidden" name="hiddenOrguserSectect" value="<%=orguserSectect%>" />
+						<input type="button" id="saveOrgUserSecretSet" class="btnButton4font"  onclick="saveOrgUserSet()"   value="同步配置" />  
+					</td>
+				</tr>
 				<tr>
 					<td width="4%"></td>
 					<td width="12%">  
@@ -168,29 +181,30 @@ String relactionId =(String)(request.getAttribute("relactionId")==null? "empId":
 				<tr>
 					<td width="4%"></td>
 					
-					<td width="20%">
+					<td  colspan="3">
 						<span class="MustFillColor">请先在企业号内创建该应用，在此填写对应应用的ID </span>
-					</td>
-					<td width="3%"></td>
-					<td width="57%">
 					</td>
 				</tr>
 				<%if(csapppolist.size()>0){for(int i=0;i<csapppolist.size();i++){ %>
 				<tr >
 					<td width="4%"></td>
 					
-					<td width="30%" id="corpsetappname_app">
+					<td width="16%" id="corpsetappname_app">
 	                   <input  id="corpsetappname_appname_input<%=i%>" disabled="disabled"  type="text" id="appname" Class="inputText" name="appname"   value="<%=csapppolist.get(i).getAppname() %>"
 					 	 whir-options="vtype:['notempty',{},'spechar3']" /><a id="corpsetappname_a_input<%=i%>" href="javascript:void(0);" class="selectIco" onclick="openSelectAPP(this);"></a>
 					   <input  id="corpsetappname_appid_input<%=i%>" style="display:none" id="appid" Class="inputText" name="appid"   value="<%=csapppolist.get(i).getAppid() %>"
 					 	 />
 					</td>
-					<td width="10%" id="corpsetappname_corpid">
+					<td width="15%" id="corpsetappname_corpid">
 						<input  id="corpsetappname_corpid_input<%=i%>" type="text" id="appcorpid" Class="inputText" name="appcorpid"   value="<%=csapppolist.get(i).getCorpid() %>"
 					 	 whir-options="vtype:['notempty',{},'spechar3']" />  
 					</td>
-					
-					<td width="10%">
+
+					<td width="50%">
+						&nbsp;&nbsp;Secret：&nbsp;&nbsp;<input id="corpsetappname_moduleSecret_input<%=i%>" style="width:80%;" type="text" Class="inputText" name="moduleSecret" value="<%=csapppolist.get(i).getModuleSecret()==null ? "" : csapppolist.get(i).getModuleSecret() %>"
+					 	 whir-options="vtype:['notempty',{},'spechar3']" />  
+					</td>
+					<td width="15%">
 						<i  >&nbsp;&nbsp;</i>
 						<a href="javascript:void(0)" onclick="addTR(this)"><i  style="color:#2196f3;font-size:40px">+&nbsp;&nbsp;</i> </a>
 						<a href="javascript:void(0)" onclick="deletetr(this)"><i   style="color:#2196f3;font-size:40px">-</i> </a>
@@ -200,18 +214,21 @@ String relactionId =(String)(request.getAttribute("relactionId")==null? "empId":
 				<tr>
 					<td width="4%"></td>
 					
-					<td width="30%" id="corpsetappname_app">
+					<td width="16%" id="corpsetappname_app">
 	                   <input  id="corpsetappname_appname_input0" disabled="disabled"  type="text" id="appname" Class="inputText" name="appname"   value=""
 					 	 whir-options="vtype:['notempty',{},'spechar3']" /><a id="corpsetappname_a_input0" href="javascript:void(0);" class="selectIco" onclick="openSelectAPP(this);"></a>
 					   <input  id="corpsetappname_appid_input0" style="display:none" id="appid" Class="inputText" name="appid"   value=""
 					 	 />
 					</td>
-					<td width="10%" id="corpsetappname_corpid">
+					<td width="15%" id="corpsetappname_corpid">
 						<input  id="corpsetappname_corpid_input0" type="text" id="appcorpid" Class="inputText" name="appcorpid"   value=""
 					 	 whir-options="vtype:['notempty',{},'spechar3']" />  
 					</td>
 					
-					<td width="10%">
+					<td width="50%">
+						&nbsp;&nbsp;Secret：&nbsp;&nbsp;<input id="corpsetappname_moduleSecret_input0" style="width:80%;" type="text" Class="inputText" name="moduleSecret" value="" whir-options="vtype:['notempty',{},'spechar3']" />  
+					</td>
+					<td width="15%">
 						<i  >&nbsp;&nbsp;</i>
 						<a href="javascript:void(0)" onclick="addTR(this)"><i  style="color:#2196f3;font-size:40px">+&nbsp;&nbsp;</i> </a>
 						<a href="javascript:void(0)" onclick="deletetr(this)"><i   style="color:#2196f3;font-size:40px">-</i> </a>
@@ -261,8 +278,9 @@ function corpidcheck(){
 	
 }
 function synAll(){
-	 whir_confirm("确定同步所有组织用户？ ", function check(){
-
+	whir_confirm("确定同步所有组织用户？ ", function check(){
+	//隐藏字段为当前系统保存的secret，作为调用webapp接口传递参数值
+	var syncSecret = $("#hiddenOrguserSectect").val();
 	//var flag=0;
  	//var corpid1='<%=corpid1%>';
 	//var corpid2='<%=corpid2%>';
@@ -277,7 +295,7 @@ function synAll(){
 	if(flag==1){ */
 	$.dialog.tips("正在同步"+'....',1000,'loading.gif',function(){},true); 
 		$.ajax({
-				url: "/defaultroot/synOrgAndEmp/synAll.controller",
+				url: "/defaultroot/synOrgAndEmp/synAll.controller?secret="+syncSecret,
 				//url:"/defaultroot/MoveOAmanager!allSyn.action",
 				cache: false,
 				async: true,
@@ -315,6 +333,8 @@ function synAll(){
 	 			var  appid = $('#corpsetappname_appid_input'+i).val();
 		 		var  appname = $('#corpsetappname_appname_input'+i).val();
 		 		var  corpid = $('#corpsetappname_corpid_input'+i).val();
+				//20170620 -by jqq 微信每个功能模块增加secret
+				var moculeSecret = $('#corpsetappname_moduleSecret_input'+i).val();
 		 		if(appname==undefined&&corpid==undefined){
 		 			num=num+1;
 			 		continue;
@@ -333,7 +353,7 @@ function synAll(){
 			 		}
 			 		ary.push(corpid);
 			 		appname = encodeURI(appname);
-			 		jsonstr =jsonstr+'{"appid":"'+appid+'","corpid":"'+corpid+'","appname":"'+appname+'"},';
+			 		jsonstr =jsonstr+'{"appid":"'+appid+'","corpid":"'+corpid+'","appname":"'+appname+'","moduleSecret":"'+moculeSecret+'"},';
 			 	}
 	 	}
 	 	//判断corpid 不能重复
@@ -427,18 +447,20 @@ function addTR(obj){
 	var tr = '<tr>'+
 					'<td width="4%"></td>'+
 					
-					'<td width="30%" id="corpsetappname_app">'+
+					'<td width="16%" id="corpsetappname_app">'+
 	                   '<input  id="corpsetappname_appname_input'+i+'" disabled="disabled"  type="text" id="appname" Class="inputText" name="appname"   value=""'+
 					 	' whir-options="vtype:[\'notempty\',{},\'spechar3\']" /><a id="corpsetappname_a_input'+i+'" href="javascript:void(0);" class="selectIco" onclick="openSelectAPP(this);"></a>'+
 					   '<input  id="corpsetappname_appid_input'+i+'" style="display:none" id="appid" Class="inputText" name="appid"   value=""'+
 					 	' />'+
 					'</td>'+
-					'<td width="10%" id="corpsetappname_corpid">'+
+					'<td width="15%" id="corpsetappname_corpid">'+
 						'<input  id="corpsetappname_corpid_input'+i+'" type="text" id="appcorpid" Class="inputText" name="appcorpid"   value="请填写对应的ID"'+
 					 	' whir-options="vtype:[\'notempty\',{},\'spechar3\']" style= "color:#CCC " onfocus="revalue(this)" /> '+ 
 					'</td>'+
-					
-					'<td width="10%">'+
+						'<td width="50%">'+
+						'&nbsp;&nbsp;Secret：&nbsp;&nbsp;<input id="corpsetappname_moduleSecret_input'+i+'" style="width:80%;" type="text" Class="inputText" name="moduleSecret" value="" whir-options="vtype:[\'notempty\',{},\'spechar3\']" />'+
+					'</td>'+
+					'<td width="15%">'+
 						'<i  >&nbsp;&nbsp;</i>'+
 						'<a href="javascript:void(0)" onclick="addTR(this)"><i  style="color:#2196f3;font-size:40px">+&nbsp;&nbsp;</i> </a>'+
 						'<a href="javascript:void(0)" onclick="deletetr(this)"><i   style="color:#2196f3;font-size:40px">-</i> </a>'+
@@ -477,6 +499,30 @@ function evoLI(){
 	$("#enterprisenumberLI").removeClass();
 	location_href("<%=rootPath%>/mobilecustmenu!mobCustMenu.action");
 }
-
+//20170620 -by jqq 保存同步用户组织的设置
+function saveOrgUserSet(){
+	var orguserSectect = $('#orguserSectect').val();
+	if(orguserSectect==null||orguserSectect==""){
+		whir_alert("必填项不能为空！");
+		return false;
+	}
+	$.ajax({
+		url: "/defaultroot/MoveOAmanager!saveSyncOrgUserSecret.action?orguserSectect="+orguserSectect,
+		cache: false,
+		async: true,
+		success: function(dataForm) {
+			var data = eval('('+dataForm+')');
+			var res = data.result;
+			if(data.result=="true"){
+				//隐藏字段为当前系统保存的secret，作为调用webapp接口传递参数值
+				$("#hiddenOrguserSectect").val(orguserSectect);
+				whir_alert("同步成功！");
+			}else{
+				whir_alert("同步失败！");
+			}
+		}
+	});
+	
+}
 </script>
 </html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.whir.org.vo.MoveOAmanager.CorpSetAppPO"
+        table="SYS_CORP_SET_APP"
+        schema="EZOFFICE">
+        <id name="id" column="id">
+            <generator class="native" />
+        </id>
+        <property name="appname" column="appname" />
+        <property name="appid" column="appid" />
+       	<property name="corpid" column="corpid" />
+       	<property name="moduleSecret" column="modulesecret" />
+    </class>
+</hibernate-mapping>

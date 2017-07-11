@@ -568,3 +568,31 @@ alter table org_domain add  evoWordRangeNames clob;
 commit;
 insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.34_SP_20170515','11.4.0.34',sysdate);
 commit;
+
+
+
+
+
+
+
+
+
+
+
+alter table SYS_CORP_SET_APP add moduleSecret varchar2(200);
+commit;
+create table ezmobile_wxToken(
+  id  NUMBER(20),
+  corpsecret VARCHAR2(500),
+  wxToken VARCHAR2(500),	
+  tokenTimeStamp VARCHAR2(20)
+);
+commit;
+comment on column ezmobile_wxToken.corpsecret is'企业微信应用对应secret';
+commit;
+comment on column ezmobile_wxToken.wxToken is'微信生成的token';
+commit;
+comment on column ezmobile_wxToken.tokenTimeStamp is'token生成的时间戳';
+commit;
+insert into oa_patchinfo (patch_id,patch_editinfo,patch_name,patch_version,patch_time) values(hibernate_sequence.nextval,'Wanhu ezOFFICE','11.4.0.35_SP_20170704','11.4.0.35',sysdate);
+commit;

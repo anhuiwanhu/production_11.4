@@ -569,3 +569,14 @@ go
 
 
 
+alter table SYS_CORP_SET_APP add moduleSecret nvarchar(200);
+go
+CREATE table EZOFFICE.ezmobile_wxToken(
+    id              numeric(20,0),
+    corpsecret          NVARCHAR(500),
+    wxToken           NVARCHAR(500),  
+    tokenTimeStamp       NVARCHAR(20)  
+);
+go
+insert into oa_patchinfo (patch_editinfo,patch_name,patch_version,patch_time) values('Wanhu ezOFFICE','11.4.0.35_SP_20170704','11.4.0.35',getdate());
+go
